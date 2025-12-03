@@ -1,0 +1,1942 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Internet Fibra Óptica Brisanet: planos de 500 Mega a 1 Giga com Wi-Fi 6, streaming incluso e instalação em até 48h.">
+  <meta name="theme-color" content="#0a0a0f">
+  <title>Brisanet Fibra | Internet Ultra-Rápida até 1 Giga</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Dark Theme - Original */
+      --bg: #0a0a0f;
+      --bg2: #12121a;
+      --bg3: #1a1a24;
+      --surface: rgba(255, 255, 255, 0.03);
+      --surface-hover: rgba(255, 255, 255, 0.06);
+      
+      /* Text */
+      --text: #ffffff;
+      --text2: rgba(255, 255, 255, 0.85);
+      --text-muted: rgba(255, 255, 255, 0.6);
+      --text-subtle: rgba(255, 255, 255, 0.4);
+      
+      /* Brand Colors */
+      --accent: #F37021;
+      --accent2: #FF8C42;
+      --accent-gradient: linear-gradient(135deg, #F37021 0%, #FF8C42 50%, #ffb347 100%);
+      --accent-glow: rgba(243, 112, 33, 0.4);
+      
+      --blue: #004870;
+      --blue-light: #0066a1;
+      --blue-gradient: linear-gradient(135deg, #004870 0%, #0066a1 100%);
+      
+      --green: #10b981;
+      --green-glow: rgba(16, 185, 129, 0.3);
+      
+      /* Borders */
+      --border: rgba(255, 255, 255, 0.08);
+      --border-hover: rgba(255, 255, 255, 0.15);
+      --border-accent: rgba(243, 112, 33, 0.3);
+      
+      /* Shadows */
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.4);
+      --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.5);
+      --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.6);
+      --shadow-glow: 0 0 40px rgba(243, 112, 33, 0.2);
+      --shadow-accent: 0 8px 30px rgba(243, 112, 33, 0.3);
+      
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      color: var(--text2);
+      background: var(--bg);
+      min-height: 100vh;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg2); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
+
+    img, svg { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; border: none; background: none; }
+    ul { list-style: none; }
+    
+    ::selection { background: var(--accent); color: white; }
+
+    .container { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
+    .section { padding: 5rem 0; position: relative; }
+
+    /* ========================================
+       NAVIGATION
+    ======================================== */
+    
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      padding: 0.75rem 0;
+      background: rgba(10, 10, 15, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      transition: all 0.4s var(--ease-out);
+    }
+    
+    .nav.scrolled {
+      background: rgba(10, 10, 15, 0.95);
+      box-shadow: var(--shadow-md);
+    }
+    
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .logo { display: flex; align-items: center; gap: 0.5rem; }
+    .logo-img { height: 38px; width: auto; }
+
+    .nav-links { display: flex; align-items: center; gap: 0.5rem; }
+    
+    .nav-link {
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      border-radius: 8px;
+      transition: all 0.2s ease;
+    }
+    
+    .nav-link:hover { color: var(--text); background: var(--surface); }
+    
+    .nav-switch {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--primary);
+      background: rgba(243, 112, 33, 0.1);
+      border: 1px solid var(--primary);
+      border-radius: 50px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      margin-left: 0.5rem;
+    }
+    .nav-switch:hover {
+      background: var(--primary);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+    .nav-switch svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .nav-cta {
+      padding: 0.625rem 1.5rem;
+      background: var(--accent-gradient);
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: white;
+      box-shadow: var(--shadow-accent);
+      transition: all 0.3s var(--ease-out);
+    }
+    
+    .nav-cta:hover { transform: translateY(-2px); box-shadow: var(--shadow-glow); }
+
+    .mobile-btn {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: 0.5rem;
+    }
+    
+    .mobile-btn span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all 0.3s var(--ease-out);
+    }
+    
+    .mobile-btn.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .mobile-btn.active span:nth-child(2) { opacity: 0; }
+    .mobile-btn.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    .mobile-menu {
+      position: fixed;
+      inset: 0;
+      background: var(--bg);
+      z-index: 300;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s var(--ease-out);
+    }
+    
+    .mobile-menu.active { opacity: 1; visibility: visible; }
+    
+    .mobile-menu a {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text);
+      padding: 0.5rem 2rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s var(--ease-out);
+    }
+    
+    .mobile-menu.active a { opacity: 1; transform: translateY(0); }
+    .mobile-menu.active a:nth-child(1) { transition-delay: 100ms; }
+    .mobile-menu.active a:nth-child(2) { transition-delay: 150ms; }
+    .mobile-menu.active a:nth-child(3) { transition-delay: 200ms; }
+    .mobile-menu.active a:nth-child(4) { transition-delay: 250ms; }
+    .mobile-menu.active a:nth-child(5) { transition-delay: 300ms; }
+
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .mobile-btn { display: flex; }
+    }
+
+    /* ========================================
+       HERO - Banner Only
+    ======================================== */
+    
+    .hero {
+      padding-top: 70px;
+      background: var(--bg);
+      position: relative;
+    }
+    
+    .hero-banner {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      position: relative;
+    }
+    
+    .hero-banner-desktop,
+    .hero-banner-mobile {
+      width: 100%;
+      border-radius: 0;
+    }
+    
+    .hero-banner-desktop {
+      display: block;
+    }
+    
+    .hero-banner-mobile {
+      display: none;
+    }
+    
+    /* Placeholder styling when no image */
+    .banner-placeholder {
+      width: 100%;
+      aspect-ratio: 16/5;
+      background: linear-gradient(135deg, var(--bg2) 0%, var(--bg3) 100%);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .banner-placeholder-icon {
+      width: 64px;
+      height: 64px;
+      color: var(--text-subtle);
+    }
+    
+    .banner-placeholder-text {
+      color: var(--text-subtle);
+      font-size: 0.9rem;
+    }
+    
+    @media (max-width: 768px) {
+      .hero-banner-desktop { display: none; }
+      .hero-banner-mobile { display: block; }
+      .banner-placeholder { aspect-ratio: 1/1; }
+    }
+
+    /* ========================================
+       PLANS SECTION
+    ======================================== */
+    
+    .plans {
+      background: var(--bg);
+      position: relative;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 2.5rem;
+    }
+    
+    .section-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    
+    .section-eyebrow::before,
+    .section-eyebrow::after {
+      content: '';
+      width: 32px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent));
+    }
+    
+    .section-eyebrow::after {
+      background: linear-gradient(90deg, var(--accent), transparent);
+    }
+    
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2rem, 1.5rem + 3vw, 3rem);
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.02em;
+    }
+    
+    .section-subtitle {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+    }
+
+    /* Plan Tabs - Centralized */
+    .plan-tabs-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 2.5rem;
+    }
+    
+    .plan-tabs {
+      display: inline-flex;
+      gap: 0.25rem;
+      padding: 0.375rem;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+    }
+    
+    .plan-tab {
+      padding: 0.75rem 2rem;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      transition: all 0.3s var(--ease-out);
+    }
+    
+    .plan-tab.active {
+      color: white;
+      background: var(--accent-gradient);
+      box-shadow: var(--shadow-accent);
+    }
+    
+    .plan-tab:hover:not(.active) {
+      color: var(--text);
+      background: var(--surface);
+    }
+
+    .plan-panel { display: none; }
+    .plan-panel.active { display: block; animation: fadeIn 0.5s var(--ease-out); }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    .plan-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+    }
+    
+    @media (max-width: 1200px) { .plan-grid { grid-template-columns: repeat(2, 1fr); } }
+    
+    @media (max-width: 640px) {
+      .plan-grid {
+        display: flex;
+        gap: 1rem;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        padding: 1rem 0.5rem 1.5rem;
+        margin: 0 -1.5rem;
+        scrollbar-width: none;
+      }
+      .plan-grid::-webkit-scrollbar { display: none; }
+      .plan-card {
+        flex: 0 0 85%;
+        scroll-snap-align: center;
+        min-width: 300px;
+      }
+    }
+
+    /* Plan Cards */
+    .plan-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 1.75rem;
+      position: relative;
+      transition: all 0.4s var(--ease-out);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    
+    .plan-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--border);
+      transition: all 0.4s var(--ease-out);
+    }
+    
+    .plan-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--border-hover);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .plan-card:hover::before {
+      background: var(--accent-gradient);
+    }
+    
+    .plan-card.featured {
+      border-color: var(--accent);
+      background: linear-gradient(180deg, rgba(243, 112, 33, 0.08) 0%, var(--bg2) 30%);
+      box-shadow: var(--shadow-glow);
+    }
+    
+    .plan-card.featured::before {
+      background: var(--accent-gradient);
+      height: 4px;
+    }
+
+    .plan-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      padding: 0.375rem 0.875rem;
+      background: var(--blue-gradient);
+      border-radius: 6px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: white;
+    }
+    
+    .plan-badge.pop {
+      background: var(--green);
+      animation: badge-glow 2s ease-in-out infinite;
+    }
+    
+    @keyframes badge-glow {
+      0%, 100% { box-shadow: 0 0 0 0 var(--green-glow); }
+      50% { box-shadow: 0 0 20px 4px var(--green-glow); }
+    }
+
+    .plan-speed { margin-bottom: 0.75rem; }
+    
+    .plan-speed-value {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.5rem, 2rem + 2vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1;
+      color: var(--text);
+    }
+    
+    .plan-card.featured .plan-speed-value {
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .plan-speed-unit {
+      font-size: 1.125rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+    
+    .plan-speed-label {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+    }
+
+    .plan-speed-bar {
+      height: 6px;
+      background: var(--bg3);
+      border-radius: 6px;
+      margin-top: 0.75rem;
+      overflow: hidden;
+    }
+    
+    .plan-speed-bar-fill {
+      height: 100%;
+      background: var(--accent-gradient);
+      border-radius: 6px;
+      transition: width 0.8s var(--ease-out);
+      position: relative;
+    }
+    
+    .plan-speed-bar-fill::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 12px;
+      height: 12px;
+      background: var(--bg);
+      border: 3px solid var(--accent);
+      border-radius: 50%;
+    }
+
+    .plan-partner {
+      height: 32px;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      color: var(--text2);
+      font-weight: 500;
+    }
+
+    .plan-price {
+      margin-bottom: 1.25rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .plan-price-old {
+      font-size: 0.875rem;
+      color: var(--text-subtle);
+      text-decoration: line-through;
+      margin-bottom: 0.125rem;
+    }
+    
+    .plan-price-current {
+      display: flex;
+      align-items: baseline;
+      gap: 0.125rem;
+    }
+    
+    .plan-price-currency {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      align-self: flex-start;
+      margin-top: 0.5rem;
+    }
+    
+    .plan-price-value {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.25rem, 2rem + 1.5vw, 3rem);
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1;
+    }
+    
+    .plan-card.featured .plan-price-value { color: var(--accent); }
+    
+    .plan-price-period {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-left: 0.25rem;
+    }
+
+    .plan-features {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.625rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .plan-feature {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+      font-size: 0.9rem;
+      color: var(--text2);
+    }
+    
+    .plan-feature svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      color: var(--green);
+    }
+
+    /* CTA Button - Centralized */
+    .plan-cta-wrapper {
+      display: flex;
+      justify-content: center;
+    }
+    
+    .plan-cta {
+      padding: 1rem 2rem;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-weight: 600;
+      color: var(--text);
+      transition: all 0.3s var(--ease-out);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .plan-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--accent-gradient);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .plan-cta span { position: relative; z-index: 1; }
+    
+    .plan-cta:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-accent);
+    }
+    
+    .plan-cta:hover::before { opacity: 1; }
+    
+    .plan-card.featured .plan-cta {
+      background: var(--accent-gradient);
+      border-color: transparent;
+      box-shadow: var(--shadow-accent);
+    }
+    
+    .plan-card.featured .plan-cta::before { display: none; }
+    
+    .plan-card.featured .plan-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-glow);
+    }
+
+    /* Navigation Arrows */
+    .plan-nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    
+    .plan-nav-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      transition: all 0.3s var(--ease-out);
+    }
+    
+    .plan-nav-btn:hover {
+      background: var(--accent-gradient);
+      border-color: transparent;
+      color: white;
+      transform: scale(1.1);
+      box-shadow: var(--shadow-accent);
+    }
+    
+    .plan-nav-btn svg {
+      width: 24px;
+      height: 24px;
+    }
+    
+    @media (max-width: 640px) {
+      .plan-nav { display: flex; }
+    }
+    
+    @media (min-width: 641px) {
+      .plan-nav { display: none; }
+    }
+
+    /* ========================================
+       BENEFITS SECTION
+    ======================================== */
+    
+    .benefits {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+    
+    @media (max-width: 1024px) { .benefits-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px) { .benefits-grid { grid-template-columns: 1fr; } }
+
+    .benefit-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem;
+      transition: all 0.4s var(--ease-out);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .benefit-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: var(--accent-gradient);
+      transition: width 0.4s var(--ease-out);
+    }
+    
+    .benefit-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--border-hover);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .benefit-card:hover::after { width: 100%; }
+
+    .benefit-icon {
+      width: 56px;
+      height: 56px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 1.25rem;
+      transition: all 0.3s var(--ease-out);
+    }
+    
+    .benefit-card:hover .benefit-icon {
+      background: var(--accent-gradient);
+      border-color: transparent;
+      box-shadow: var(--shadow-accent);
+    }
+    
+    .benefit-icon svg {
+      width: 26px;
+      height: 26px;
+      color: var(--accent);
+      transition: color 0.3s ease;
+    }
+    
+    .benefit-card:hover .benefit-icon svg { color: white; }
+    
+    .benefit-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+    
+    .benefit-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+    
+    .benefit-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* ========================================
+       TESTIMONIALS
+    ======================================== */
+    
+    .testimonials {
+      background: var(--bg);
+    }
+
+    .testimonials-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    
+    @media (max-width: 1024px) { .testimonials-wrapper { grid-template-columns: 1fr; gap: 2.5rem; } }
+
+    .experience-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    
+    .experience-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      transition: all 0.3s var(--ease-out);
+    }
+    
+    .experience-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--border-hover);
+    }
+    
+    .experience-card-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--bg3);
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 1rem;
+    }
+    
+    .experience-card-icon svg {
+      width: 22px;
+      height: 22px;
+      color: var(--accent);
+    }
+    
+    .experience-card h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+    
+    .experience-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .testimonial-track { position: relative; min-height: 320px; }
+    
+    .testimonial-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.5s var(--ease-out);
+    }
+    
+    .testimonial-slide.active { opacity: 1; visibility: visible; }
+
+    .testimonial-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 2rem;
+      position: relative;
+    }
+    
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: 1.5rem;
+      left: 2rem;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 100px;
+      line-height: 1;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      opacity: 0.2;
+    }
+    
+    .testimonial-quote {
+      font-size: 1.25rem;
+      font-weight: 500;
+      line-height: 1.7;
+      color: var(--text);
+      margin-bottom: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .testimonial-avatar {
+      width: 52px;
+      height: 52px;
+      background: var(--accent-gradient);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: white;
+    }
+    
+    .testimonial-info h5 {
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+    
+    .testimonial-info span {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+    
+    .testimonial-rating {
+      display: flex;
+      gap: 2px;
+      margin-left: auto;
+    }
+    
+    .testimonial-rating svg {
+      width: 18px;
+      height: 18px;
+      color: #FBBF24;
+      fill: #FBBF24;
+    }
+
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 2rem;
+    }
+    
+    .carousel-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--border-hover);
+      transition: all 0.3s var(--ease-out);
+    }
+    
+    .carousel-dot.active {
+      background: var(--accent-gradient);
+      transform: scale(1.2);
+      box-shadow: 0 2px 8px var(--accent-glow);
+    }
+
+    /* ========================================
+       FAQ
+    ======================================== */
+    
+    .faq { background: var(--bg2); border-top: 1px solid var(--border); }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    @media (max-width: 768px) { .faq-grid { grid-template-columns: 1fr; } }
+
+    .faq-item {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.3s var(--ease-out);
+    }
+    
+    .faq-item:hover {
+      border-color: var(--border-hover);
+    }
+    
+    .faq-item[open] {
+      border-color: var(--accent);
+      box-shadow: var(--shadow-glow);
+    }
+    
+    .faq-item summary {
+      padding: 1.25rem 1.5rem;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      list-style: none;
+    }
+    
+    .faq-item summary::-webkit-details-marker { display: none; }
+    
+    .faq-item summary:hover { background: var(--surface); }
+    
+    .faq-item summary::after {
+      content: '+';
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--accent);
+      transition: transform 0.3s var(--ease-out);
+    }
+    
+    .faq-item[open] summary::after { transform: rotate(45deg); }
+    .faq-item[open] summary { background: var(--surface); }
+    
+    .faq-item p {
+      padding: 0 1.5rem 1.5rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    /* ========================================
+       CTA SECTION
+    ======================================== */
+    
+    .cta-section { background: var(--bg); padding-bottom: 6rem; }
+    
+    .cta-card {
+      background: var(--accent-gradient);
+      border-radius: 28px;
+      padding: 4rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-xl);
+    }
+    
+    .cta-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 80% 60% at 20% 20%, rgba(255, 255, 255, 0.2) 0%, transparent 50%),
+        radial-gradient(ellipse 50% 40% at 80% 80%, rgba(0, 0, 0, 0.2) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    
+    .cta-content {
+      position: relative;
+      z-index: 1;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .cta-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.25rem, 1.75rem + 3vw, 3.5rem);
+      font-weight: 700;
+      color: white;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+    
+    .cta-subtitle {
+      font-size: 1.25rem;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 2rem;
+    }
+    
+    .cta-features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .cta-feature {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: rgba(255, 255, 255, 0.95);
+      font-weight: 500;
+    }
+    
+    .cta-feature svg { width: 20px; height: 20px; }
+    
+    .cta-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+    
+    .cta-btn-p {
+      padding: 1.125rem 2.25rem;
+      background: white;
+      color: var(--accent);
+      border-radius: 14px;
+      font-weight: 700;
+      transition: all 0.3s var(--ease-spring);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .cta-btn-p:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    }
+    
+    .cta-btn-s {
+      padding: 1.125rem 2.25rem;
+      background: transparent;
+      color: white;
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      border-radius: 14px;
+      font-weight: 600;
+      transition: all 0.3s var(--ease-out);
+    }
+    
+    .cta-btn-s:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: white;
+    }
+
+    /* ========================================
+       FOOTER - Light Blue
+    ======================================== */
+    
+    .footer {
+      background: var(--blue-light);
+      padding: 3rem 0 120px;
+    }
+    
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      text-align: center;
+    }
+    
+    .footer-logo { display: flex; align-items: center; gap: 0.5rem; }
+    .footer-logo .logo-img { height: 36px; width: auto; filter: brightness(0) invert(1); }
+    
+    .footer-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.9rem;
+    }
+    
+    .footer-contact {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .footer-contact a {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: white;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: opacity 0.2s ease;
+    }
+    
+    .footer-contact a:hover { opacity: 0.8; }
+    .footer-contact svg { width: 18px; height: 18px; }
+    
+    .footer-legal {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.6);
+      max-width: 600px;
+    }
+
+    /* ========================================
+       WHATSAPP WIDGET
+    ======================================== */
+    
+    .whatsapp-float {
+      position: fixed;
+      bottom: 32px;
+      right: 24px;
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.625rem;
+    }
+    
+    @media (max-width: 640px) { .whatsapp-float { bottom: 28px; right: 16px; } }
+    
+    .whatsapp-online {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 0.5rem 1rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text2);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: var(--shadow-md);
+      animation: fadeUp 0.6s var(--ease-out) 1s forwards;
+      opacity: 0;
+    }
+    
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .whatsapp-online .dot {
+      width: 8px;
+      height: 8px;
+      background: var(--green);
+      border-radius: 50%;
+      position: relative;
+    }
+    
+    .whatsapp-online .dot::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: pulse-ring 2s ease-out infinite;
+    }
+    
+    @keyframes pulse-ring {
+      0% { transform: scale(1); opacity: 0.4; }
+      100% { transform: scale(2); opacity: 0; }
+    }
+    
+    .whatsapp-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+      padding: 1rem 1.75rem;
+      background: #25D366;
+      color: white;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      box-shadow: var(--shadow-lg), 0 8px 24px -8px rgba(37, 211, 102, 0.5);
+      transition: all 0.3s var(--ease-spring);
+      animation: wa-float 3s ease-in-out infinite;
+    }
+    
+    @keyframes wa-float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+    
+    .whatsapp-btn:hover {
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: var(--shadow-xl), 0 12px 32px -8px rgba(37, 211, 102, 0.6);
+    }
+    
+    .whatsapp-btn svg { width: 24px; height: 24px; }
+    
+    @media (max-width: 640px) {
+      .whatsapp-btn span { display: none; }
+      .whatsapp-btn { padding: 1rem; border-radius: 50%; }
+    }
+
+    /* Reveal animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s var(--ease-out);
+    }
+    
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 100ms; }
+    .reveal-delay-2 { transition-delay: 200ms; }
+    .reveal-delay-3 { transition-delay: 300ms; }
+    .reveal-delay-4 { transition-delay: 400ms; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="#" class="logo">
+          <img src="img/logo.png" alt="Brisanet" class="logo-img">
+        </a>
+        <div class="nav-links">
+          <a href="#planos" class="nav-link">Planos</a>
+          <a href="#beneficios" class="nav-link">Benefícios</a>
+          <a href="#cases" class="nav-link">Depoimentos</a>
+          <a href="#faq" class="nav-link">FAQ</a>
+          <a href="empresas.html" class="nav-switch">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5m-4 0h4"/></svg>
+            Para Empresas
+          </a>
+        </div>
+        <a href="https://wa.me/5581992823101" class="nav-cta" target="_blank" rel="noopener">Contratar</a>
+        <button class="mobile-btn" id="mobile-btn" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#planos">Planos</a>
+    <a href="#beneficios">Benefícios</a>
+    <a href="#cases">Depoimentos</a>
+    <a href="#faq">FAQ</a>
+    <a href="empresas.html" style="color:var(--primary);font-weight:600;">🏢 Para Empresas</a>
+    <a href="https://wa.me/5581992823101" target="_blank" rel="noopener">Contratar</a>
+  </div>
+
+  <main>
+    <!-- Hero Section - Banner Only -->
+    <section class="hero" id="top">
+      <div class="hero-banner">
+        <!-- Desktop Banner -->
+        <picture class="hero-banner-desktop">
+          <img src="img/banner-desktop.png" alt="Brisanet Internet Fibra" class="hero-banner-desktop">
+        </picture>
+        <!-- Mobile Banner -->
+        <picture class="hero-banner-mobile">
+          <img src="img/banner-mobile.png" alt="Brisanet Internet Fibra" class="hero-banner-mobile">
+        </picture>
+      </div>
+    </section>
+
+    <!-- Plans Section -->
+    <section class="section plans" id="planos">
+      <div class="container">
+        <header class="section-header reveal">
+          <span class="section-eyebrow">Nossos Planos</span>
+          <h2 class="section-title">Escolha sua velocidade</h2>
+          <p class="section-subtitle">Fibra óptica com Wi-Fi 6, streaming incluso e instalação rápida.</p>
+        </header>
+        
+        <!-- Tabs Centralizadas -->
+        <div class="plan-tabs-wrapper reveal">
+          <div class="plan-tabs">
+            <button class="plan-tab active" data-tab="combos">Combos com Apps</button>
+            <button class="plan-tab" data-tab="fibra">Fibra Pura</button>
+          </div>
+        </div>
+
+        <!-- Combos Panel -->
+        <div class="plan-panel active" id="panel-combos">
+          <div class="plan-grid" id="grid-combos">
+            <article class="plan-card featured reveal reveal-delay-1">
+              <span class="plan-badge pop">Mais vendido</span>
+              <div class="plan-speed">
+                <span class="plan-speed-value">700</span><span class="plan-speed-unit">Mega</span>
+                <p class="plan-speed-label">+ Chip 50GB 5G</p>
+                <div class="plan-speed-bar"><div class="plan-speed-bar-fill" style="width:70%"></div></div>
+              </div>
+              <div class="plan-partner"><span>🔥 Combo exclusivo</span></div>
+              <div class="plan-price">
+                <p class="plan-price-old">De R$ 119,90</p>
+                <div class="plan-price-current">
+                  <span class="plan-price-currency">R$</span>
+                  <span class="plan-price-value">99,90</span>
+                  <span class="plan-price-period">/mês</span>
+                </div>
+              </div>
+              <ul class="plan-features">
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Download 700 Mega</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Upload 350 Mega</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Wi-Fi 6 incluso</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação grátis</span></li>
+              </ul>
+              <div class="plan-cta-wrapper">
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 700 Mega + Chip" class="plan-cta" target="_blank" rel="noopener"><span>Assinar agora</span></a>
+              </div>
+            </article>
+
+            <article class="plan-card reveal reveal-delay-2">
+              <span class="plan-badge">Streaming</span>
+              <div class="plan-speed">
+                <span class="plan-speed-value">600</span><span class="plan-speed-unit">Mega</span>
+                <p class="plan-speed-label">+ Netflix incluso</p>
+                <div class="plan-speed-bar"><div class="plan-speed-bar-fill" style="width:60%"></div></div>
+              </div>
+              <div class="plan-partner"><span>📺 Netflix Standard</span></div>
+              <div class="plan-price">
+                <p class="plan-price-old">De R$ 120,00</p>
+                <div class="plan-price-current">
+                  <span class="plan-price-currency">R$</span>
+                  <span class="plan-price-value">109,90</span>
+                  <span class="plan-price-period">/mês</span>
+                </div>
+              </div>
+              <ul class="plan-features">
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Download 600 Mega</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Upload 300 Mega</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Wi-Fi 6 incluso</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação grátis</span></li>
+              </ul>
+              <div class="plan-cta-wrapper">
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 600 Mega + Netflix" class="plan-cta" target="_blank" rel="noopener"><span>Assinar agora</span></a>
+              </div>
+            </article>
+
+            <article class="plan-card reveal reveal-delay-3">
+              <span class="plan-badge">Família</span>
+              <div class="plan-speed">
+                <span class="plan-speed-value">500</span><span class="plan-speed-unit">Mega</span>
+                <p class="plan-speed-label">+ Globoplay incluso</p>
+                <div class="plan-speed-bar"><div class="plan-speed-bar-fill" style="width:50%"></div></div>
+              </div>
+              <div class="plan-partner"><span>🎬 Globoplay</span></div>
+              <div class="plan-price">
+                <p class="plan-price-old">De R$ 104,89</p>
+                <div class="plan-price-current">
+                  <span class="plan-price-currency">R$</span>
+                  <span class="plan-price-value">99,90</span>
+                  <span class="plan-price-period">/mês</span>
+                </div>
+              </div>
+              <ul class="plan-features">
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Download 500 Mega</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Upload 250 Mega</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Wi-Fi 5 incluso</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação grátis</span></li>
+              </ul>
+              <div class="plan-cta-wrapper">
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 500 Mega + Globoplay" class="plan-cta" target="_blank" rel="noopener"><span>Assinar agora</span></a>
+              </div>
+            </article>
+
+            <article class="plan-card reveal reveal-delay-4">
+              <span class="plan-badge">Cinema</span>
+              <div class="plan-speed">
+                <span class="plan-speed-value">600</span><span class="plan-speed-unit">Mega</span>
+                <p class="plan-speed-label">+ Paramount+ incluso</p>
+                <div class="plan-speed-bar"><div class="plan-speed-bar-fill" style="width:60%"></div></div>
+              </div>
+              <div class="plan-partner"><span>🎥 Paramount+</span></div>
+              <div class="plan-price">
+                <p class="plan-price-old">De R$ 104,90</p>
+                <div class="plan-price-current">
+                  <span class="plan-price-currency">R$</span>
+                  <span class="plan-price-value">94,90</span>
+                  <span class="plan-price-period">/mês</span>
+                </div>
+              </div>
+              <ul class="plan-features">
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Download 600 Mega</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Upload 300 Mega</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Wi-Fi 6 incluso</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação grátis</span></li>
+              </ul>
+              <div class="plan-cta-wrapper">
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 600 Mega + Paramount+" class="plan-cta" target="_blank" rel="noopener"><span>Assinar agora</span></a>
+              </div>
+            </article>
+          </div>
+          
+          <!-- Setas de Navegação - Combos -->
+          <div class="plan-nav" data-grid="grid-combos">
+            <button class="plan-nav-btn" data-dir="prev" aria-label="Anterior">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <button class="plan-nav-btn" data-dir="next" aria-label="Próximo">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Fibra Pura Panel -->
+        <div class="plan-panel" id="panel-fibra">
+          <div class="plan-grid" id="grid-fibra">
+            <article class="plan-card reveal reveal-delay-1">
+              <span class="plan-badge">Econômico</span>
+              <div class="plan-speed">
+                <span class="plan-speed-value">500</span><span class="plan-speed-unit">Mega</span>
+                <p class="plan-speed-label">Fibra pura</p>
+                <div class="plan-speed-bar"><div class="plan-speed-bar-fill" style="width:50%"></div></div>
+              </div>
+              <div class="plan-partner"><span>💡 Custo-benefício</span></div>
+              <div class="plan-price">
+                <p class="plan-price-old">De R$ 89,99</p>
+                <div class="plan-price-current">
+                  <span class="plan-price-currency">R$</span>
+                  <span class="plan-price-value">84,99</span>
+                  <span class="plan-price-period">/mês</span>
+                </div>
+              </div>
+              <ul class="plan-features">
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Download 500 Mega</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Upload 250 Mega</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Wi-Fi 5 incluso</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação grátis</span></li>
+              </ul>
+              <div class="plan-cta-wrapper">
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 500 Mega Fibra Pura" class="plan-cta" target="_blank" rel="noopener"><span>Assinar agora</span></a>
+              </div>
+            </article>
+
+            <article class="plan-card featured reveal reveal-delay-2">
+              <span class="plan-badge pop">Favorito</span>
+              <div class="plan-speed">
+                <span class="plan-speed-value">600</span><span class="plan-speed-unit">Mega</span>
+                <p class="plan-speed-label">Fibra + Wi-Fi 6</p>
+                <div class="plan-speed-bar"><div class="plan-speed-bar-fill" style="width:60%"></div></div>
+              </div>
+              <div class="plan-partner"><span>⚡ Equilíbrio perfeito</span></div>
+              <div class="plan-price">
+                <p class="plan-price-old">De R$ 109,90</p>
+                <div class="plan-price-current">
+                  <span class="plan-price-currency">R$</span>
+                  <span class="plan-price-value">99,90</span>
+                  <span class="plan-price-period">/mês</span>
+                </div>
+              </div>
+              <ul class="plan-features">
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Download 600 Mega</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Upload 300 Mega</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Wi-Fi 6 incluso</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação grátis</span></li>
+              </ul>
+              <div class="plan-cta-wrapper">
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 600 Mega Fibra Pura" class="plan-cta" target="_blank" rel="noopener"><span>Assinar agora</span></a>
+              </div>
+            </article>
+
+            <article class="plan-card reveal reveal-delay-3">
+              <span class="plan-badge">Performance</span>
+              <div class="plan-speed">
+                <span class="plan-speed-value">700</span><span class="plan-speed-unit">Mega</span>
+                <p class="plan-speed-label">Fibra + Wi-Fi 6</p>
+                <div class="plan-speed-bar"><div class="plan-speed-bar-fill" style="width:70%"></div></div>
+              </div>
+              <div class="plan-partner"><span>🎮 Ideal gamers</span></div>
+              <div class="plan-price">
+                <p class="plan-price-old">De R$ 119,90</p>
+                <div class="plan-price-current">
+                  <span class="plan-price-currency">R$</span>
+                  <span class="plan-price-value">109,90</span>
+                  <span class="plan-price-period">/mês</span>
+                </div>
+              </div>
+              <ul class="plan-features">
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Download 700 Mega</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Upload 350 Mega</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Wi-Fi 6 incluso</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação grátis</span></li>
+              </ul>
+              <div class="plan-cta-wrapper">
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 700 Mega Fibra Pura" class="plan-cta" target="_blank" rel="noopener"><span>Assinar agora</span></a>
+              </div>
+            </article>
+
+            <article class="plan-card reveal reveal-delay-4">
+              <span class="plan-badge">Ultra</span>
+              <div class="plan-speed">
+                <span class="plan-speed-value">1</span><span class="plan-speed-unit">Giga</span>
+                <p class="plan-speed-label">Máxima velocidade</p>
+                <div class="plan-speed-bar"><div class="plan-speed-bar-fill" style="width:100%"></div></div>
+              </div>
+              <div class="plan-partner"><span>🚀 Sem limites</span></div>
+              <div class="plan-price">
+                <p class="plan-price-old">De R$ 159,90</p>
+                <div class="plan-price-current">
+                  <span class="plan-price-currency">R$</span>
+                  <span class="plan-price-value">149,90</span>
+                  <span class="plan-price-period">/mês</span>
+                </div>
+              </div>
+              <ul class="plan-features">
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Download 1.000 Mega</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Upload 500 Mega</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Wi-Fi 6 incluso</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação grátis</span></li>
+              </ul>
+              <div class="plan-cta-wrapper">
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 1 Giga Fibra Pura" class="plan-cta" target="_blank" rel="noopener"><span>Assinar agora</span></a>
+              </div>
+            </article>
+          </div>
+          
+          <!-- Setas de Navegação - Fibra -->
+          <div class="plan-nav" data-grid="grid-fibra">
+            <button class="plan-nav-btn" data-dir="prev" aria-label="Anterior">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <button class="plan-nav-btn" data-dir="next" aria-label="Próximo">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="section benefits" id="beneficios">
+      <div class="container">
+        <header class="section-header reveal">
+          <span class="section-eyebrow">Benefícios</span>
+          <h2 class="section-title">Tudo que sua casa precisa</h2>
+          <p class="section-subtitle">Cobertura Wi-Fi forte, apps inclusos e atendimento próximo.</p>
+        </header>
+        <div class="benefits-grid">
+          <article class="benefit-card reveal reveal-delay-1">
+            <div class="benefit-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.5c3-5 6-7 7-7s4 2 7 7M8 15c2-3 3.5-4 4-4s2 1 4 4"/><circle cx="12" cy="18" r="1"/></svg>
+            </div>
+            <span class="benefit-label">Wi-Fi completo</span>
+            <h3 class="benefit-title">Wi-Fi 6 de longo alcance</h3>
+            <p class="benefit-desc">Sinal forte em todos os cômodos com equipamentos de última geração.</p>
+          </article>
+          <article class="benefit-card reveal reveal-delay-2">
+            <div class="benefit-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M10 9l5 3-5 3V9z"/></svg>
+            </div>
+            <span class="benefit-label">Conteúdo</span>
+            <h3 class="benefit-title">BrisaPlay e Brisamusic</h3>
+            <p class="benefit-desc">Filmes, séries e música inclusos nos planos a partir de 600 Mega.</p>
+          </article>
+          <article class="benefit-card reveal reveal-delay-3">
+            <div class="benefit-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <span class="benefit-label">Suporte</span>
+            <h3 class="benefit-title">Atendimento local</h3>
+            <p class="benefit-desc">Time próximo para instalar rápido e resolver qualquer dúvida.</p>
+          </article>
+          <article class="benefit-card reveal reveal-delay-4">
+            <div class="benefit-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            </div>
+            <span class="benefit-label">Estabilidade</span>
+            <h3 class="benefit-title">100% Fibra Óptica</h3>
+            <p class="benefit-desc">Velocidade constante para trabalho remoto, aulas e jogos online.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section testimonials" id="cases">
+      <div class="container">
+        <header class="section-header reveal">
+          <span class="section-eyebrow">Depoimentos</span>
+          <h2 class="section-title">Experiências reais</h2>
+          <p class="section-subtitle">Veja o que nossos clientes falam sobre a Brisanet.</p>
+        </header>
+        <div class="testimonials-wrapper">
+          <div class="experience-cards reveal">
+            <article class="experience-card">
+              <div class="experience-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="15" rx="2"/><path d="M17 2l-5 5-5-5"/></svg></div>
+              <h4>Streaming 4K</h4>
+              <p>TVs e tablets rodando séries sem travar.</p>
+            </article>
+            <article class="experience-card">
+              <div class="experience-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+              <h4>Home office</h4>
+              <p>Chamadas de vídeo estáveis em toda casa.</p>
+            </article>
+            <article class="experience-card">
+              <div class="experience-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M12 18h.01"/></svg></div>
+              <h4>Gamers</h4>
+              <p>Baixa latência para consoles e PCs.</p>
+            </article>
+            <article class="experience-card">
+              <div class="experience-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+              <h4>Famílias</h4>
+              <p>Rede segura para estudos e redes sociais.</p>
+            </article>
+          </div>
+          <div class="testimonial-carousel reveal">
+            <div class="testimonial-track">
+              <div class="testimonial-slide active">
+                <div class="testimonial-card">
+                  <p class="testimonial-quote">"Instalaram em dois dias e o Wi-Fi 6 resolveu os pontos sem sinal lá em casa."</p>
+                  <div class="testimonial-author">
+                    <div class="testimonial-avatar">FS</div>
+                    <div class="testimonial-info"><h5>Família Silva</h5><span>Cliente desde 2023</span></div>
+                    <div class="testimonial-rating"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+                  </div>
+                </div>
+              </div>
+              <div class="testimonial-slide">
+                <div class="testimonial-card">
+                  <p class="testimonial-quote">"Consigo fazer duas calls em 4K enquanto as crianças assistem desenhos."</p>
+                  <div class="testimonial-author">
+                    <div class="testimonial-avatar">AC</div>
+                    <div class="testimonial-info"><h5>Ana Carolina</h5><span>Home office</span></div>
+                    <div class="testimonial-rating"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+                  </div>
+                </div>
+              </div>
+              <div class="testimonial-slide">
+                <div class="testimonial-card">
+                  <p class="testimonial-quote">"No 1 Gb o ping ficou baixo e o upload aguenta lives sem oscilar."</p>
+                  <div class="testimonial-author">
+                    <div class="testimonial-avatar">MR</div>
+                    <div class="testimonial-info"><h5>Matheus Reis</h5><span>Gamer / Streamer</span></div>
+                    <div class="testimonial-rating"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+                  </div>
+                </div>
+              </div>
+              <div class="testimonial-slide">
+                <div class="testimonial-card">
+                  <p class="testimonial-quote">"Equipe local atendeu super rápido quando pedi um repetidor."</p>
+                  <div class="testimonial-author">
+                    <div class="testimonial-avatar">DL</div>
+                    <div class="testimonial-info"><h5>Daniela Lima</h5><span>Cliente Brisanet</span></div>
+                    <div class="testimonial-rating"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-dots">
+              <button class="carousel-dot active" data-index="0"></button>
+              <button class="carousel-dot" data-index="1"></button>
+              <button class="carousel-dot" data-index="2"></button>
+              <button class="carousel-dot" data-index="3"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section faq" id="faq">
+      <div class="container">
+        <header class="section-header reveal">
+          <span class="section-eyebrow">FAQ</span>
+          <h2 class="section-title">Dúvidas frequentes</h2>
+          <p class="section-subtitle">Tudo que você precisa saber.</p>
+        </header>
+        <div class="faq-grid">
+          <details class="faq-item reveal reveal-delay-1">
+            <summary>Precisa de fidelidade?</summary>
+            <p>Os planos seguem as condições comerciais vigentes. Informe-se na proposta ou no WhatsApp.</p>
+          </details>
+          <details class="faq-item reveal reveal-delay-2">
+            <summary>Quanto tempo para instalar?</summary>
+            <p>Confirmamos cobertura em minutos e agendamos a instalação normalmente em até 48h.</p>
+          </details>
+          <details class="faq-item reveal reveal-delay-3">
+            <summary>O Wi-Fi 6 já vem incluso?</summary>
+            <p>Planos a partir de 600 Mega já levam modem Wi-Fi 6 de longo alcance.</p>
+          </details>
+          <details class="faq-item reveal reveal-delay-4">
+            <summary>Tem streaming incluso?</summary>
+            <p>BrisaPlay está incluído em todos os planos e combos com Brisamusic nos planos superiores.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section cta-section" id="contato">
+      <div class="container">
+        <div class="cta-card reveal">
+          <div class="cta-content">
+            <h2 class="cta-title">Pronto para conectar?</h2>
+            <p class="cta-subtitle">Fale direto no WhatsApp para confirmar cobertura e agendar instalação.</p>
+            <div class="cta-features">
+              <div class="cta-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span>500 Mega a 1 Gb</span></div>
+              <div class="cta-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span>Wi-Fi 6 incluso</span></div>
+              <div class="cta-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span>Suporte local</span></div>
+            </div>
+            <div class="cta-buttons">
+              <a href="https://wa.me/5581992823101" class="cta-btn-p" target="_blank" rel="noopener">Falar no WhatsApp</a>
+              <a href="#planos" class="cta-btn-s">Ver planos</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer - Light Blue -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <img src="img/logo.png" alt="Brisanet" class="logo-img">
+        </div>
+        <div class="footer-info">
+          <p>Brisanet Telecomunicações S.A. | CNPJ 02.421.421/0001-11</p>
+          <p>Matriz: Pereiro - CE</p>
+        </div>
+        <div class="footer-contact">
+          <a href="tel:08002813017">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+            SAC 0800 281 3017
+          </a>
+          <a href="https://wa.me/5581992823101" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>
+            WhatsApp: 81 99282-3101
+          </a>
+        </div>
+        <p class="footer-legal">Agente Autorizado Brisanet. Preços e condições sujeitos a alteração.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Widget -->
+  <div class="whatsapp-float">
+    <div class="whatsapp-online">
+      <span class="dot"></span>
+      <span id="online-count">127 pessoas online</span>
+    </div>
+    <a href="https://wa.me/5581992823101" class="whatsapp-btn" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+      <span>WhatsApp</span>
+    </a>
+  </div>
+
+  <script>
+    // Navigation scroll effect
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
+
+    // Mobile menu
+    const mobileBtn = document.getElementById('mobile-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileBtn.addEventListener('click', () => {
+      mobileBtn.classList.toggle('active');
+      mobileMenu.classList.toggle('active');
+      document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+    });
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      mobileBtn.classList.remove('active');
+      mobileMenu.classList.remove('active');
+      document.body.style.overflow = '';
+    }));
+
+    // Plan tabs
+    const planTabs = document.querySelectorAll('.plan-tab');
+    const planPanels = document.querySelectorAll('.plan-panel');
+    planTabs.forEach(tab => tab.addEventListener('click', () => {
+      const t = tab.dataset.tab;
+      planTabs.forEach(t => t.classList.remove('active'));
+      planPanels.forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('panel-' + t).classList.add('active');
+    }));
+
+    // Plan navigation arrows
+    document.querySelectorAll('.plan-nav').forEach(navEl => {
+      const gridId = navEl.dataset.grid;
+      const grid = document.getElementById(gridId);
+      if (!grid) return;
+      
+      navEl.querySelectorAll('.plan-nav-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const dir = btn.dataset.dir;
+          const cardWidth = grid.querySelector('.plan-card')?.offsetWidth || 300;
+          const gap = 16;
+          const scrollAmount = cardWidth + gap;
+          
+          if (dir === 'prev') {
+            grid.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+          } else {
+            grid.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+          }
+        });
+      });
+    });
+
+    // Testimonial carousel
+    const dots = document.querySelectorAll('.carousel-dot');
+    const slides = document.querySelectorAll('.testimonial-slide');
+    let currentSlide = 0;
+    function setSlide(i) {
+      currentSlide = i;
+      slides.forEach((s, j) => s.classList.toggle('active', j === i));
+      dots.forEach((d, j) => d.classList.toggle('active', j === i));
+    }
+    dots.forEach(d => d.addEventListener('click', () => setSlide(parseInt(d.dataset.index))));
+    setInterval(() => setSlide((currentSlide + 1) % slides.length), 6000);
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver(entries => entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    }), { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    reveals.forEach(el => revealObserver.observe(el));
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', function(e) {
+      e.preventDefault();
+      const t = document.querySelector(this.getAttribute('href'));
+      if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }));
+
+    // WhatsApp counter - Business hours logic
+    const onlineCount = document.getElementById('online-count');
+    function updateOnlineCount() {
+      const hour = new Date().getHours();
+      const isBusinessHours = hour >= 8 && hour < 18;
+      let min, max;
+      if (isBusinessHours) { min = 100; max = 150; } 
+      else { min = 15; max = 40; }
+      const count = Math.floor(Math.random() * (max - min + 1)) + min;
+      onlineCount.textContent = count + ' pessoas online';
+    }
+    if (onlineCount) { updateOnlineCount(); setInterval(updateOnlineCount, 8000); }
+  </script>
+</body>
+</html>
