@@ -104,15 +104,15 @@
       right: 0;
       z-index: 200;
       padding: 0.75rem 0;
-      background: rgba(30, 30, 30, 0.85);
+      background: #F37021;
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       transition: all 0.4s var(--ease-out);
     }
-    
+
     .nav.scrolled {
-      background: rgba(30, 30, 30, 0.98);
+      background: #F37021;
       box-shadow: var(--shadow-md);
     }
     
@@ -141,12 +141,12 @@
       padding: 0.5rem 1rem;
       font-size: 0.9rem;
       font-weight: 500;
-      color: var(--text-muted);
+      color: rgba(255, 255, 255, 0.9);
       border-radius: 8px;
       transition: all 0.2s ease;
     }
-    
-    .nav-link:hover { color: var(--text); background: var(--surface); }
+
+    .nav-link:hover { color: #ffffff; background: rgba(255, 255, 255, 0.15); }
     
     .nav-switch {
       display: flex;
@@ -155,17 +155,17 @@
       padding: 0.5rem 1rem;
       font-size: 0.875rem;
       font-weight: 600;
-      color: var(--orange);
-      background: rgba(255, 80, 34, 0.1);
-      border: 1px solid var(--orange);
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
       border-radius: 50px;
       text-decoration: none;
       transition: all 0.3s ease;
       margin-left: 0.5rem;
     }
     .nav-switch:hover {
-      background: var(--orange);
-      color: #fff;
+      background: rgba(255, 255, 255, 0.25);
+      color: #ffffff;
       transform: translateY(-2px);
     }
     .nav-switch svg {
@@ -175,16 +175,16 @@
 
     .nav-cta {
       padding: 0.625rem 1.5rem;
-      background: var(--orange-gradient);
+      background: #ffffff;
       border-radius: 50px;
       font-size: 0.9rem;
       font-weight: 600;
-      color: white;
-      box-shadow: var(--shadow-accent);
+      color: #F37021;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       transition: all 0.3s var(--ease-out);
     }
-    
-    .nav-cta:hover { transform: translateY(-2px); box-shadow: var(--shadow-glow); }
+
+    .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); }
 
     .mobile-btn {
       display: none;
@@ -197,7 +197,7 @@
       display: block;
       width: 22px;
       height: 2px;
-      background: var(--text);
+      background: #ffffff;
       border-radius: 2px;
       transition: all 0.3s var(--ease-out);
     }
@@ -251,7 +251,7 @@
     
     .hero {
       padding-top: 70px;
-      background: var(--bg);
+      background: #F37021;
       position: relative;
     }
     
