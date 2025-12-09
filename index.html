@@ -4,52 +4,83 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Internet Fibra Óptica Brisanet: planos de 500 Mega a 1 Giga com Wi-Fi 6, streaming incluso e instalação em até 48h.">
-  <meta name="theme-color" content="#0a0a0f">
+  <meta name="theme-color" content="#2855d4">
   <title>Brisanet Fibra | Internet Ultra-Rápida até 1 Giga</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      /* Dark Theme - Original */
+      /* Tema Híbrido Residencial - Cores Vibrantes Brisanet */
+
+      /* Cores da Marca */
+      --brand-blue: #2855d4;
+      --brand-orange: #FF5722;
+      --brand-blue-dark: #1a237e;
+
+      /* Backgrounds por Seção */
+      --bg-hero: #2855d4;           /* Hero e Footer - Azul Vibrante */
+      --bg-light: #f5f5f7;          /* Seção Planos e Depoimentos - Cinza Claro */
+      --bg-dark: #0a0a0f;           /* Benefícios e FAQ - Escuro */
+      --bg-dark-2: #12121a;         /* Cards sobre escuro */
+      --bg-cta: #FF5722;            /* CTA Final - Laranja */
+
+      /* Backgrounds legados (mantidos para compatibilidade) */
       --bg: #0a0a0f;
       --bg2: #12121a;
       --bg3: #1a1a24;
+
+      /* Cards */
+      --card-on-light: #2d2d3a;     /* Card escuro sobre fundo cinza */
+      --card-on-dark: #12121a;      /* Card sobre fundo escuro */
+      --card-light: #ffffff;        /* Card branco sobre cinza */
+
+      /* Surfaces */
       --surface: rgba(255, 255, 255, 0.03);
       --surface-hover: rgba(255, 255, 255, 0.06);
-      
-      /* Text */
+      --surface-light: rgba(0, 0, 0, 0.03);
+
+      /* Textos */
       --text: #ffffff;
       --text2: rgba(255, 255, 255, 0.85);
       --text-muted: rgba(255, 255, 255, 0.6);
       --text-subtle: rgba(255, 255, 255, 0.4);
-      
+
+      /* Textos sobre fundos claros */
+      --text-on-light: #1a237e;     /* Azul escuro para títulos */
+      --text-on-light-muted: #5f6368; /* Cinza médio para subtítulos */
+      --text-on-light-body: #3c4043; /* Cinza escuro para corpo */
+
       /* Brand Colors */
-      --accent: #F37021;
+      --accent: #FF5722;             /* Laranja vibrante (atualizado) */
       --accent2: #FF8C42;
-      --accent-gradient: linear-gradient(135deg, #F37021 0%, #FF8C42 50%, #ffb347 100%);
-      --accent-glow: rgba(243, 112, 33, 0.4);
-      
-      --blue: #004870;
-      --blue-light: #0066a1;
-      --blue-gradient: linear-gradient(135deg, #004870 0%, #0066a1 100%);
-      
+      --accent-gradient: linear-gradient(135deg, #FF5722 0%, #FF8C42 50%, #ffb347 100%);
+      --accent-glow: rgba(255, 87, 34, 0.4);
+
+      --blue: #2855d4;               /* Azul vibrante (atualizado) */
+      --blue-light: #4a90e2;
+      --blue-dark: #1a237e;
+      --blue-gradient: linear-gradient(135deg, #2855d4 0%, #4a90e2 100%);
+
       --green: #10b981;
       --green-glow: rgba(16, 185, 129, 0.3);
-      
+
       /* Borders */
       --border: rgba(255, 255, 255, 0.08);
       --border-hover: rgba(255, 255, 255, 0.15);
-      --border-accent: rgba(243, 112, 33, 0.3);
-      
+      --border-accent: rgba(255, 87, 34, 0.3);
+      --border-light: rgba(0, 0, 0, 0.08);      /* Borda sobre fundos claros */
+      --border-light-hover: rgba(0, 0, 0, 0.15);
+
       /* Shadows */
-      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
-      --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.4);
-      --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.5);
-      --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.6);
-      --shadow-glow: 0 0 40px rgba(243, 112, 33, 0.2);
-      --shadow-accent: 0 8px 30px rgba(243, 112, 33, 0.3);
-      
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+      --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.15);
+      --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.2);
+      --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.25);
+      --shadow-glow: 0 0 40px rgba(255, 87, 34, 0.2);
+      --shadow-accent: 0 8px 30px rgba(255, 87, 34, 0.3);
+      --shadow-card-light: 0 2px 12px rgba(0, 0, 0, 0.08); /* Sombra para cards sobre claro */
+
       /* Motion */
       --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
       --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -94,15 +125,15 @@
       right: 0;
       z-index: 200;
       padding: 0.75rem 0;
-      background: rgba(10, 10, 15, 0.8);
+      background: rgba(40, 85, 212, 0.85);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
       transition: all 0.4s var(--ease-out);
     }
-    
+
     .nav.scrolled {
-      background: rgba(10, 10, 15, 0.95);
+      background: rgba(40, 85, 212, 0.95);
       box-shadow: var(--shadow-md);
     }
     
@@ -229,10 +260,10 @@
     /* ========================================
        HERO - Banner Only
     ======================================== */
-    
+
     .hero {
       padding-top: 70px;
-      background: var(--bg);
+      background: var(--bg-hero);
       position: relative;
     }
     
@@ -290,10 +321,23 @@
     /* ========================================
        PLANS SECTION
     ======================================== */
-    
+
     .plans {
-      background: var(--bg);
+      background: var(--bg-light);
       position: relative;
+    }
+
+    /* Títulos sobre fundo claro na seção de planos */
+    .plans .section-title {
+      color: var(--text-on-light);
+    }
+
+    .plans .section-subtitle {
+      color: var(--text-on-light-muted);
+    }
+
+    .plans .section-eyebrow {
+      color: var(--accent);
     }
 
     .section-header {
@@ -351,29 +395,30 @@
       display: inline-flex;
       gap: 0.25rem;
       padding: 0.375rem;
-      background: var(--bg2);
-      border: 1px solid var(--border);
+      background: white;
+      border: 1px solid var(--border-light);
       border-radius: 14px;
+      box-shadow: var(--shadow-card-light);
     }
-    
+
     .plan-tab {
       padding: 0.75rem 2rem;
       border-radius: 10px;
       font-size: 0.95rem;
       font-weight: 600;
-      color: var(--text-muted);
+      color: var(--text-on-light-muted);
       transition: all 0.3s var(--ease-out);
     }
-    
+
     .plan-tab.active {
       color: white;
       background: var(--accent-gradient);
       box-shadow: var(--shadow-accent);
     }
-    
+
     .plan-tab:hover:not(.active) {
-      color: var(--text);
-      background: var(--surface);
+      color: var(--text-on-light);
+      background: var(--surface-light);
     }
 
     .plan-panel { display: none; }
@@ -409,8 +454,8 @@
 
     /* Plan Cards */
     .plan-card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
+      background: var(--card-on-light);
+      border: 1px solid rgba(0, 0, 0, 0.1);
       border-radius: 20px;
       padding: 1.75rem;
       position: relative;
@@ -418,8 +463,9 @@
       display: flex;
       flex-direction: column;
       overflow: hidden;
+      box-shadow: var(--shadow-card-light);
     }
-    
+
     .plan-card::before {
       content: '';
       position: absolute;
@@ -427,26 +473,26 @@
       left: 0;
       right: 0;
       height: 3px;
-      background: var(--border);
+      background: rgba(255, 255, 255, 0.1);
       transition: all 0.4s var(--ease-out);
     }
-    
+
     .plan-card:hover {
       transform: translateY(-8px);
-      border-color: var(--border-hover);
-      box-shadow: var(--shadow-lg);
+      border-color: rgba(0, 0, 0, 0.2);
+      box-shadow: 0 12px 48px rgba(0, 0, 0, 0.15);
     }
-    
+
     .plan-card:hover::before {
       background: var(--accent-gradient);
     }
-    
+
     .plan-card.featured {
       border-color: var(--accent);
-      background: linear-gradient(180deg, rgba(243, 112, 33, 0.08) 0%, var(--bg2) 30%);
-      box-shadow: var(--shadow-glow);
+      background: linear-gradient(180deg, rgba(255, 87, 34, 0.15) 0%, var(--card-on-light) 30%);
+      box-shadow: 0 8px 40px rgba(255, 87, 34, 0.25);
     }
-    
+
     .plan-card.featured::before {
       background: var(--accent-gradient);
       height: 4px;
@@ -619,46 +665,46 @@
     
     .plan-cta {
       padding: 1rem 2rem;
-      background: var(--bg3);
-      border: 1px solid var(--border);
+      background: var(--accent-gradient);
+      border: none;
       border-radius: 12px;
-      font-weight: 600;
-      color: var(--text);
+      font-weight: 700;
+      color: white;
       transition: all 0.3s var(--ease-out);
       position: relative;
       overflow: hidden;
+      box-shadow: var(--shadow-accent);
     }
-    
+
     .plan-cta::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: var(--accent-gradient);
+      background: linear-gradient(135deg, #FF8C42 0%, #ffb347 100%);
       opacity: 0;
       transition: opacity 0.3s ease;
     }
-    
+
     .plan-cta span { position: relative; z-index: 1; }
-    
+
     .plan-cta:hover {
-      border-color: var(--accent);
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-accent);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-glow);
     }
-    
+
     .plan-cta:hover::before { opacity: 1; }
-    
+
     .plan-card.featured .plan-cta {
       background: var(--accent-gradient);
       border-color: transparent;
-      box-shadow: var(--shadow-accent);
-    }
-    
-    .plan-card.featured .plan-cta::before { display: none; }
-    
-    .plan-card.featured .plan-cta:hover {
-      transform: translateY(-3px);
       box-shadow: var(--shadow-glow);
+    }
+
+    .plan-card.featured .plan-cta::before { display: none; }
+
+    .plan-card.featured .plan-cta:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 12px 48px rgba(255, 87, 34, 0.4);
     }
 
     /* Navigation Arrows */
@@ -804,9 +850,22 @@
     /* ========================================
        TESTIMONIALS
     ======================================== */
-    
+
     .testimonials {
-      background: var(--bg);
+      background: var(--bg-light);
+    }
+
+    /* Títulos sobre fundo claro na seção de depoimentos */
+    .testimonials .section-title {
+      color: var(--text-on-light);
+    }
+
+    .testimonials .section-subtitle {
+      color: var(--text-on-light-muted);
+    }
+
+    .testimonials .section-eyebrow {
+      color: var(--accent);
     }
 
     .testimonials-wrapper {
@@ -825,45 +884,46 @@
     }
     
     .experience-card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
+      background: var(--card-light);
+      border: 1px solid var(--border-light);
       border-radius: 16px;
       padding: 1.5rem;
       transition: all 0.3s var(--ease-out);
+      box-shadow: var(--shadow-card-light);
     }
-    
+
     .experience-card:hover {
       transform: translateY(-4px);
       box-shadow: var(--shadow-md);
-      border-color: var(--border-hover);
+      border-color: var(--border-light-hover);
     }
-    
+
     .experience-card-icon {
       width: 44px;
       height: 44px;
-      background: var(--bg3);
+      background: rgba(255, 87, 34, 0.1);
       border-radius: 12px;
       display: grid;
       place-items: center;
       margin-bottom: 1rem;
     }
-    
+
     .experience-card-icon svg {
       width: 22px;
       height: 22px;
       color: var(--accent);
     }
-    
+
     .experience-card h4 {
       font-size: 1rem;
       font-weight: 700;
-      color: var(--text);
+      color: var(--text-on-light);
       margin-bottom: 0.25rem;
     }
-    
+
     .experience-card p {
       font-size: 0.9rem;
-      color: var(--text-muted);
+      color: var(--text-on-light-muted);
     }
 
     .testimonial-track { position: relative; min-height: 320px; }
@@ -879,13 +939,14 @@
     .testimonial-slide.active { opacity: 1; visibility: visible; }
 
     .testimonial-card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
+      background: var(--card-light);
+      border: 1px solid var(--border-light);
       border-radius: 24px;
       padding: 2rem;
       position: relative;
+      box-shadow: var(--shadow-card-light);
     }
-    
+
     .testimonial-card::before {
       content: '"';
       position: absolute;
@@ -898,25 +959,25 @@
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
-      opacity: 0.2;
+      opacity: 0.15;
     }
-    
+
     .testimonial-quote {
       font-size: 1.25rem;
       font-weight: 500;
       line-height: 1.7;
-      color: var(--text);
+      color: var(--text-on-light-body);
       margin-bottom: 2rem;
       position: relative;
       z-index: 1;
     }
-    
+
     .testimonial-author {
       display: flex;
       align-items: center;
       gap: 1rem;
     }
-    
+
     .testimonial-avatar {
       width: 52px;
       height: 52px;
@@ -928,16 +989,16 @@
       font-size: 1.1rem;
       color: white;
     }
-    
+
     .testimonial-info h5 {
       font-weight: 700;
-      color: var(--text);
+      color: var(--text-on-light);
       margin-bottom: 2px;
     }
-    
+
     .testimonial-info span {
       font-size: 0.875rem;
-      color: var(--text-muted);
+      color: var(--text-on-light-muted);
     }
     
     .testimonial-rating {
@@ -1044,17 +1105,16 @@
     /* ========================================
        CTA SECTION
     ======================================== */
-    
-    .cta-section { background: var(--bg); padding-bottom: 6rem; }
-    
+
+    .cta-section { background: var(--bg-cta); padding-bottom: 6rem; }
+
     .cta-card {
-      background: var(--accent-gradient);
-      border-radius: 28px;
+      background: transparent;
+      border-radius: 0;
       padding: 4rem 2rem;
       text-align: center;
       position: relative;
       overflow: hidden;
-      box-shadow: var(--shadow-xl);
     }
     
     .cta-card::before {
@@ -1145,11 +1205,11 @@
     }
 
     /* ========================================
-       FOOTER - Light Blue
+       FOOTER - Azul Vibrante (igual Hero)
     ======================================== */
-    
+
     .footer {
-      background: var(--blue-light);
+      background: var(--bg-hero);
       padding: 3rem 0 120px;
     }
     
