@@ -246,34 +246,227 @@
     }
 
     /* ========================================
-       HERO - Banner Only
+       HERO - Estrutura Moderna Empresarial
     ======================================== */
-    
+
     .hero {
-      padding-top: 70px;
-      background: var(--bg);
+      background: linear-gradient(135deg, #1E1E1E 0%, #2A2A2A 50%, #1E1E1E 100%);
       position: relative;
+      overflow: hidden;
+      min-height: 650px;
+      padding-top: 90px;
+      padding-bottom: 0;
     }
-    
-    .hero-banner {
-      width: 100%;
-      max-width: 1280px;
-      margin: 0 auto;
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 50%;
+      height: 100%;
+      background: radial-gradient(ellipse at top right, rgba(255, 80, 34, 0.08) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .hero-container {
       position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 560px;
+      gap: 3rem;
     }
-    
-    .hero-banner-desktop,
-    .hero-banner-mobile {
+
+    .hero-content {
+      flex: 1;
+      max-width: 600px;
+      z-index: 10;
+      padding: 2rem 0;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1.25rem;
+      background: rgba(255, 80, 34, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 80, 34, 0.3);
+      border-radius: 50px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      animation: fadeInUp 0.8s var(--ease-out) 0.2s forwards;
+      opacity: 0;
+    }
+
+    .hero-badge-icon {
+      width: 18px;
+      height: 18px;
+      color: var(--accent);
+    }
+
+    .hero-title {
+      font-family: 'Figtree', sans-serif;
+      font-size: clamp(2.75rem, 2rem + 4vw, 4.5rem);
+      font-weight: 800;
+      color: white;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.25rem;
+      animation: fadeInUp 0.8s var(--ease-out) 0.3s forwards;
+      opacity: 0;
+    }
+
+    .hero-title-highlight {
+      color: var(--accent);
+      display: block;
+    }
+
+    .hero-description {
+      font-size: 1.25rem;
+      color: rgba(255, 255, 255, 0.85);
+      line-height: 1.6;
+      margin-bottom: 2rem;
+      animation: fadeInUp 0.8s var(--ease-out) 0.4s forwards;
+      opacity: 0;
+    }
+
+    .hero-price {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      animation: fadeInUp 0.8s var(--ease-out) 0.5s forwards;
+      opacity: 0;
+    }
+
+    .hero-price-label {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.7);
+      font-weight: 500;
+    }
+
+    .hero-price-currency {
+      font-size: 1.5rem;
+      color: white;
+      font-weight: 700;
+    }
+
+    .hero-price-value {
+      font-family: 'Figtree', sans-serif;
+      font-size: 4rem;
+      font-weight: 800;
+      color: white;
+      line-height: 1;
+    }
+
+    .hero-price-period {
+      font-size: 1.25rem;
+      color: rgba(255, 255, 255, 0.7);
+      font-weight: 600;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1.25rem 3rem;
+      background: var(--orange-gradient);
+      color: white;
+      font-size: 1.125rem;
+      font-weight: 700;
+      border-radius: 14px;
+      box-shadow: var(--shadow-accent);
+      transition: all 0.3s var(--ease-spring);
+      animation: fadeInUp 0.8s var(--ease-out) 0.6s forwards;
+      opacity: 0;
+    }
+
+    .hero-cta:hover {
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: var(--shadow-glow);
+      background: linear-gradient(135deg, #FF6B3D 0%, #FF8C42 100%);
+    }
+
+    .hero-cta svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .hero-image-wrapper {
+      position: absolute;
+      bottom: 0;
+      right: 5%;
+      width: 45%;
+      height: 90%;
+      z-index: 5;
+      animation: fadeInRight 1s var(--ease-out) 0.4s forwards;
+      opacity: 0;
+    }
+
+    .hero-model {
       width: 100%;
-      border-radius: 0;
+      height: 100%;
+      object-fit: contain;
+      object-position: bottom right;
+      filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.5));
     }
-    
-    .hero-banner-desktop { display: block; }
-    .hero-banner-mobile { display: none; }
-    
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .hero-container {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 2rem;
+      }
+
+      .hero-content {
+        max-width: 100%;
+      }
+
+      .hero-image-wrapper {
+        position: relative;
+        right: auto;
+        width: 80%;
+        height: 400px;
+        margin: 0 auto;
+      }
+    }
+
     @media (max-width: 768px) {
-      .hero-banner-desktop { display: none; }
-      .hero-banner-mobile { display: block; }
+      .hero {
+        min-height: 550px;
+        padding-top: 80px;
+      }
+
+      .hero-image-wrapper {
+        width: 100%;
+        height: 300px;
+      }
     }
 
     /* ========================================
@@ -1047,105 +1240,82 @@
     }
 
     /* ========================================
-       CTA SECTION
+       CTA SECTION - Simplificada com Expansão
     ======================================== */
-    
-    .cta-section { background: var(--bg); padding-bottom: 6rem; }
-    
+
+    .cta-section {
+      background: linear-gradient(135deg, #1E1E1E 0%, #252525 100%);
+      padding: 5rem 0;
+      margin: 0;
+    }
+
     .cta-card {
-      background: var(--orange-gradient);
-      border-radius: 28px;
-      padding: 4rem 2rem;
+      background: transparent;
+      border-radius: 0;
+      padding: 0;
       text-align: center;
       position: relative;
       overflow: hidden;
-      box-shadow: var(--shadow-xl);
     }
-    
-    .cta-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: 
-        radial-gradient(ellipse 80% 60% at 20% 20%, rgba(255, 255, 255, 0.2) 0%, transparent 50%),
-        radial-gradient(ellipse 50% 40% at 80% 80%, rgba(0, 0, 0, 0.2) 0%, transparent 50%);
-      pointer-events: none;
-    }
-    
+
     .cta-content {
       position: relative;
       z-index: 1;
-      max-width: 600px;
+      max-width: 700px;
       margin: 0 auto;
+      padding: 0 1.5rem;
     }
-    
+
     .cta-title {
-      font-size: clamp(2.25rem, 1.75rem + 3vw, 3.5rem);
+      font-family: 'Figtree', sans-serif;
+      font-size: clamp(2.5rem, 2rem + 3vw, 4rem);
       font-weight: 800;
       color: white;
-      margin-bottom: 1rem;
+      margin-bottom: 1.25rem;
       letter-spacing: -0.02em;
+      line-height: 1.1;
     }
-    
+
     .cta-subtitle {
-      font-size: 1.25rem;
-      color: rgba(255, 255, 255, 0.9);
-      margin-bottom: 2rem;
+      font-size: 1.35rem;
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 2.5rem;
+      line-height: 1.5;
     }
-    
+
+    /* Ocultar os checkmarks */
     .cta-features {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
+      display: none;
     }
-    
-    .cta-feature {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: rgba(255, 255, 255, 0.95);
-      font-weight: 500;
-    }
-    
-    .cta-feature svg { width: 20px; height: 20px; }
-    
+
     .cta-buttons {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 1rem;
     }
-    
+
+    /* Botão primário LARANJA */
     .cta-btn-p {
-      padding: 1.125rem 2.25rem;
-      background: white;
-      color: var(--accent);
+      padding: 1.25rem 3rem;
+      background: var(--orange-gradient);
+      color: white;
       border-radius: 14px;
       font-weight: 700;
+      font-size: 1.125rem;
       transition: all 0.3s var(--ease-spring);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      box-shadow: var(--shadow-accent);
     }
-    
+
     .cta-btn-p:hover {
-      transform: translateY(-4px) scale(1.02);
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: var(--shadow-glow);
+      background: linear-gradient(135deg, #FF6B3D 0%, #FF8C42 100%);
     }
-    
+
+    /* Ocultar botão secundário */
     .cta-btn-s {
-      padding: 1.125rem 2.25rem;
-      background: transparent;
-      color: white;
-      border: 2px solid rgba(255, 255, 255, 0.4);
-      border-radius: 14px;
-      font-weight: 600;
-      transition: all 0.3s var(--ease-out);
-    }
-    
-    .cta-btn-s:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: white;
+      display: none;
     }
 
     /* ========================================
@@ -1355,15 +1525,51 @@
   </div>
 
   <main>
-    <!-- Hero Section - Banner Only -->
+    <!-- Hero Section - Estrutura Moderna -->
     <section class="hero" id="top">
-      <div class="hero-banner">
-        <picture class="hero-banner-desktop">
-          <img src="img/banner-empresas-desktop.png" alt="Brisasoluções - Internet para Empresas" class="hero-banner-desktop">
-        </picture>
-        <picture class="hero-banner-mobile">
-          <img src="img/banner-empresas-mobile.png" alt="Brisasoluções - Internet para Empresas" class="hero-banner-mobile">
-        </picture>
+      <div class="container hero-container">
+        <!-- Conteúdo à Esquerda -->
+        <div class="hero-content">
+          <!-- Badge -->
+          <div class="hero-badge">
+            <svg class="hero-badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 21V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5m-4 0h4"/>
+            </svg>
+            <span>Conectividade Empresarial</span>
+          </div>
+
+          <!-- Título -->
+          <h1 class="hero-title">
+            Internet Fibra para
+            <span class="hero-title-highlight">Empresas</span>
+          </h1>
+
+          <!-- Descrição -->
+          <p class="hero-description">
+            Conecte sua empresa com fibra óptica de alta performance. Wi-Fi empresarial, suporte prioritário e instalação rápida.
+          </p>
+
+          <!-- Preço em Destaque -->
+          <div class="hero-price">
+            <span class="hero-price-label">A partir de</span>
+            <span class="hero-price-currency">R$</span>
+            <span class="hero-price-value">89</span>
+            <span class="hero-price-period">,99/mês</span>
+          </div>
+
+          <!-- Botão CTA Único -->
+          <a href="#planos" class="hero-cta">
+            <span>Ver Planos</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Imagem Flutuante à Direita -->
+        <div class="hero-image-wrapper">
+          <img src="img/modelo-empresarial.png" alt="Empresária satisfeita com internet Brisasoluções" class="hero-model">
+        </div>
       </div>
     </section>
 
@@ -1803,15 +2009,15 @@
       <div class="container">
         <div class="cta-card reveal">
           <div class="cta-content">
-            <h2 class="cta-title">Aumente suas vendas</h2>
-            <p class="cta-subtitle">Conecte-se com mais clientes com internet 100% fibra óptica.</p>
+            <h2 class="cta-title">Conecte sua empresa agora</h2>
+            <p class="cta-subtitle">Fale direto no WhatsApp para confirmar disponibilidade e agendar instalação em até 48h.</p>
             <div class="cta-features">
               <div class="cta-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span>IP Fixo incluso</span></div>
               <div class="cta-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span>Suporte 24/7</span></div>
               <div class="cta-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação em 48h</span></div>
             </div>
             <div class="cta-buttons">
-              <a href="https://wa.me/5581992823101?text=Olá! Quero contratar internet para minha empresa" class="cta-btn-p" target="_blank" rel="noopener">Assine agora</a>
+              <a href="https://wa.me/5581992823101?text=Olá! Quero contratar internet para minha empresa" class="cta-btn-p" target="_blank" rel="noopener">Falar no WhatsApp</a>
               <a href="#planos" class="cta-btn-s">Ver planos</a>
             </div>
           </div>
