@@ -141,7 +141,7 @@
       padding: 0.5rem 1rem;
       font-size: 0.9rem;
       font-weight: 500;
-      color: var(--text-muted);
+      color: #ffffff;
       border-radius: 8px;
       transition: all 0.2s ease;
     }
@@ -155,9 +155,9 @@
       padding: 0.5rem 1rem;
       font-size: 0.875rem;
       font-weight: 600;
-      color: var(--orange);
-      background: rgba(255, 80, 34, 0.1);
-      border: 1px solid var(--orange);
+      color: #ffffff;
+      background: transparent;
+      border: 2px solid #ffffff;
       border-radius: 50px;
       text-decoration: none;
       transition: all 0.3s ease;
@@ -397,8 +397,8 @@
 
     /* Plan Cards */
     .plan-card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
+      background: linear-gradient(180deg, #2A2A2A 0%, #252525 100%);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 20px;
       padding: 1.75rem;
       position: relative;
@@ -406,6 +406,7 @@
       display: flex;
       flex-direction: column;
       overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
     }
     
     .plan-card::before {
@@ -421,8 +422,8 @@
     
     .plan-card:hover {
       transform: translateY(-8px);
-      border-color: var(--border-hover);
-      box-shadow: var(--shadow-lg);
+      border-color: rgba(255, 255, 255, 0.25);
+      box-shadow: 0 12px 48px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.1);
     }
     
     .plan-card:hover::before {
@@ -729,13 +730,14 @@
     @media (max-width: 640px) { .benefits-grid { grid-template-columns: 1fr; } }
 
     .benefit-card {
-      background: var(--bg);
-      border: 1px solid var(--border);
+      background: linear-gradient(180deg, #252525 0%, #1E1E1E 100%);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 20px;
       padding: 2rem;
       transition: all 0.4s var(--ease-out);
       position: relative;
       overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
     }
     
     .benefit-card::after {
@@ -751,8 +753,8 @@
     
     .benefit-card:hover {
       transform: translateY(-6px);
-      border-color: var(--border-hover);
-      box-shadow: var(--shadow-lg);
+      border-color: rgba(255, 255, 255, 0.25);
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 80, 34, 0.3);
     }
     
     .benefit-card:hover::after { width: 100%; }
@@ -830,17 +832,18 @@
     }
     
     .experience-card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
+      background: linear-gradient(180deg, #2A2A2A 0%, #252525 100%);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 16px;
       padding: 1.5rem;
       transition: all 0.3s var(--ease-out);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     }
     
     .experience-card:hover {
       transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
-      border-color: var(--border-hover);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7);
+      border-color: rgba(255, 255, 255, 0.2);
     }
     
     .experience-card-icon {
@@ -884,11 +887,12 @@
     .testimonial-slide.active { opacity: 1; visibility: visible; }
 
     .testimonial-card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
+      background: linear-gradient(180deg, #2A2A2A 0%, #252525 100%);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 24px;
       padding: 2rem;
       position: relative;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
     }
     
     .testimonial-card::before {
@@ -1406,7 +1410,7 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Atendimento local</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano PME 350 Mega" class="plan-cta" target="_blank" rel="noopener"><span>Assine agora</span></a>
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano PME 350 Mega" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
               </div>
             </article>
 
@@ -1433,7 +1437,7 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Atendimento local</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano PME 500 Mega" class="plan-cta" target="_blank" rel="noopener"><span>Assine agora</span></a>
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano PME 500 Mega" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
               </div>
             </article>
 
@@ -1460,7 +1464,7 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Suporte 24/7</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano PME 700 Mega com Conecta+" class="plan-cta" target="_blank" rel="noopener"><span>Assine agora</span></a>
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano PME 700 Mega com Conecta+" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
               </div>
             </article>
 
@@ -1487,7 +1491,7 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Atendimento dedicado</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano PME 1 GIGA" class="plan-cta" target="_blank" rel="noopener"><span>Assine agora</span></a>
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano PME 1 GIGA" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
               </div>
             </article>
           </div>
@@ -1529,7 +1533,7 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Fidelidade 12 meses</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101?text=Olá! Quero o Link Full IP 100 Mega" class="plan-cta" target="_blank" rel="noopener"><span>Assine agora</span></a>
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o Link Full IP 100 Mega" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
               </div>
             </article>
 
@@ -1556,7 +1560,7 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Fidelidade 12 meses</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101?text=Olá! Quero o Link Full IP 300 Mega" class="plan-cta" target="_blank" rel="noopener"><span>Assine agora</span></a>
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o Link Full IP 300 Mega" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
               </div>
             </article>
 
@@ -1583,7 +1587,7 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Fidelidade 12 meses</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101?text=Olá! Quero o Link Full IP 500 Mega" class="plan-cta" target="_blank" rel="noopener"><span>Assine agora</span></a>
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o Link Full IP 500 Mega" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
               </div>
             </article>
 
