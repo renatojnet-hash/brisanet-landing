@@ -141,7 +141,7 @@
       padding: 0.5rem 1rem;
       font-size: 0.9rem;
       font-weight: 500;
-      color: var(--text-muted);
+      color: #ffffff;
       border-radius: 8px;
       transition: all 0.2s ease;
     }
@@ -155,9 +155,9 @@
       padding: 0.5rem 1rem;
       font-size: 0.875rem;
       font-weight: 600;
-      color: var(--orange);
-      background: rgba(255, 80, 34, 0.1);
-      border: 1px solid var(--orange);
+      color: #ffffff;
+      background: transparent;
+      border: 2px solid #ffffff;
       border-radius: 50px;
       text-decoration: none;
       transition: all 0.3s ease;
@@ -246,34 +246,341 @@
     }
 
     /* ========================================
-       HERO - Banner Only
+       HERO - Estrutura Moderna Empresarial
     ======================================== */
-    
+
     .hero {
-      padding-top: 70px;
-      background: var(--bg);
+      background: linear-gradient(135deg, #1E1E1E 0%, #2A2A2A 50%, #1E1E1E 100%);
       position: relative;
+      overflow: hidden;
+      min-height: 650px;
+      padding-top: 90px;
+      padding-bottom: 0;
     }
-    
-    .hero-banner {
-      width: 100%;
-      max-width: 1280px;
-      margin: 0 auto;
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 50%;
+      height: 100%;
+      background: radial-gradient(ellipse at top right, rgba(255, 80, 34, 0.08) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .hero-container {
       position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 560px;
+      gap: 3rem;
     }
-    
-    .hero-banner-desktop,
-    .hero-banner-mobile {
+
+    .hero-content {
+      flex: 1;
+      max-width: 600px;
+      z-index: 10;
+      padding: 2rem 0;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1.25rem;
+      background: rgba(255, 80, 34, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 80, 34, 0.3);
+      border-radius: 50px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      animation: fadeInUp 0.8s var(--ease-out) 0.2s forwards;
+      opacity: 0;
+    }
+
+    .hero-badge-icon {
+      width: 18px;
+      height: 18px;
+      color: var(--accent);
+    }
+
+    .hero-title {
+      font-family: 'Figtree', sans-serif;
+      font-size: clamp(2.75rem, 2rem + 4vw, 4.5rem);
+      font-weight: 800;
+      color: white;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.25rem;
+      animation: fadeInUp 0.8s var(--ease-out) 0.3s forwards;
+      opacity: 0;
+    }
+
+    .hero-title-highlight {
+      color: var(--accent);
+      display: block;
+    }
+
+    /* Badge Laranja para Empresarial */
+    .hero-badge-orange {
+      background: #FF6B35;
+      border-color: rgba(255, 107, 53, 0.5);
+    }
+
+    /* Subtítulo H2 */
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: rgba(255, 255, 255, 0.85);
+      font-weight: 500;
+      line-height: 1.5;
+      margin-bottom: 2.5rem;
+      animation: fadeInUp 0.8s var(--ease-out) 0.4s forwards;
+      opacity: 0;
+    }
+
+    /* Layout Horizontal da Oferta */
+    .hero-offer {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      background: rgba(255, 107, 53, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 107, 53, 0.3);
+      border-radius: 16px;
+      padding: 1.75rem 2rem;
+      margin-bottom: 2rem;
+      animation: fadeInUp 0.8s var(--ease-out) 0.5s forwards;
+      opacity: 0;
+    }
+
+    .hero-offer-left {
+      flex: 1;
+    }
+
+    .hero-offer-speed {
+      font-family: 'Figtree', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: white;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-offer-extra {
+      font-size: 1.125rem;
+      color: rgba(255, 255, 255, 0.85);
+      font-weight: 500;
+    }
+
+    .hero-offer-divider {
+      width: 2px;
+      height: 60px;
+      background: linear-gradient(to bottom, transparent, rgba(255, 107, 53, 0.5), transparent);
+    }
+
+    .hero-offer-right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .hero-offer-price {
+      font-family: 'Figtree', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: white;
+      line-height: 1;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1.25rem 3rem;
+      background: var(--orange-gradient);
+      color: white;
+      font-size: 1.125rem;
+      font-weight: 700;
+      border-radius: 14px;
+      box-shadow: var(--shadow-accent);
+      transition: all 0.3s var(--ease-spring);
+      animation: fadeInUp 0.8s var(--ease-out) 0.6s forwards;
+      opacity: 0;
+    }
+
+    .hero-cta:hover {
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: var(--shadow-glow);
+      background: linear-gradient(135deg, #FF6B3D 0%, #FF8C42 100%);
+    }
+
+    .hero-cta svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .hero-image-wrapper {
+      position: absolute;
+      bottom: -40px;              /* Permite mostrar os pés sem cortar */
+      right: 0;                   /* Alinhado com a borda (mais espaço) */
+      width: 50%;                 /* Mais largo para melhor presença */
+      height: 110%;               /* Mais alto para não cortar cabeça */
+      max-width: 650px;           /* Limite máximo em telas grandes */
+      z-index: 5;
+      animation: fadeInRight 1s var(--ease-out) 0.4s forwards;
+      opacity: 0;
+    }
+
+    /* Shape decorativo sutil atrás da imagem */
+    .hero-image-wrapper::before {
+      content: '';
+      position: absolute;
+      width: 70%;
+      height: 70%;
+      background: radial-gradient(
+        ellipse at center,
+        rgba(255, 80, 34, 0.12) 0%,
+        rgba(255, 80, 34, 0.04) 50%,
+        transparent 100%
+      );
+      border-radius: 50%;
+      left: 15%;
+      top: 15%;
+      z-index: -1;
+      filter: blur(60px);
+      animation: pulse-glow 4s ease-in-out infinite;
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.15); opacity: 0.7; }
+    }
+
+    .hero-model {
       width: 100%;
-      border-radius: 0;
+      height: 100%;
+      object-fit: contain;
+      object-position: bottom center;  /* Centralizado verticalmente, base embaixo */
+      filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.5));
+      transform: translateX(5%);       /* Pequeno ajuste para direita */
     }
-    
-    .hero-banner-desktop { display: block; }
-    .hero-banner-mobile { display: none; }
-    
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .hero-container {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 2rem;
+      }
+
+      .hero-content {
+        max-width: 100%;
+      }
+
+      .hero-image-wrapper {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        width: 70%;              /* Ajustado para tablet */
+        height: 450px;           /* Altura fixa adequada */
+        max-width: 500px;
+        margin: 2rem auto 0;     /* Espaço superior */
+      }
+
+      .hero-image-wrapper::before {
+        width: 90%;
+        height: 90%;
+        left: 5%;
+        top: 5%;
+      }
+
+      .hero-model {
+        transform: translateX(0);  /* Remove ajuste horizontal */
+      }
+    }
+
     @media (max-width: 768px) {
-      .hero-banner-desktop { display: none; }
-      .hero-banner-mobile { display: block; }
+      .hero {
+        min-height: 550px;
+        padding-top: 80px;
+      }
+
+      .hero-container {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero-content {
+        text-align: center;
+      }
+
+      /* Oferta Responsiva Mobile - Layout Vertical */
+      .hero-offer {
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 1.5rem;
+      }
+
+      .hero-offer-divider {
+        width: 80%;
+        height: 2px;
+        background: linear-gradient(to right, transparent, rgba(255, 107, 53, 0.5), transparent);
+      }
+
+      .hero-offer-left,
+      .hero-offer-right {
+        text-align: center;
+      }
+
+      .hero-offer-speed {
+        font-size: 2rem;
+      }
+
+      .hero-offer-price {
+        font-size: 1.75rem;
+      }
+
+      .hero-cta {
+        width: 100%;
+        justify-content: center;
+        padding: 1.125rem 2rem;
+      }
+
+      .hero-image-wrapper {
+        width: 85%;              /* Mais largo em mobile */
+        height: 350px;           /* Altura reduzida */
+        margin-top: 1.5rem;
+      }
+
+      .hero-image-wrapper::before {
+        filter: blur(40px);      /* Menos blur em mobile */
+      }
     }
 
     /* ========================================
@@ -397,8 +704,8 @@
 
     /* Plan Cards */
     .plan-card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
+      background: linear-gradient(180deg, #2A2A2A 0%, #252525 100%);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 20px;
       padding: 1.75rem;
       position: relative;
@@ -406,6 +713,7 @@
       display: flex;
       flex-direction: column;
       overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
     }
     
     .plan-card::before {
@@ -421,8 +729,8 @@
     
     .plan-card:hover {
       transform: translateY(-8px);
-      border-color: var(--border-hover);
-      box-shadow: var(--shadow-lg);
+      border-color: rgba(255, 255, 255, 0.25);
+      box-shadow: 0 12px 48px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.1);
     }
     
     .plan-card:hover::before {
@@ -729,13 +1037,14 @@
     @media (max-width: 640px) { .benefits-grid { grid-template-columns: 1fr; } }
 
     .benefit-card {
-      background: var(--bg);
-      border: 1px solid var(--border);
+      background: linear-gradient(180deg, #252525 0%, #1E1E1E 100%);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 20px;
       padding: 2rem;
       transition: all 0.4s var(--ease-out);
       position: relative;
       overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
     }
     
     .benefit-card::after {
@@ -751,8 +1060,8 @@
     
     .benefit-card:hover {
       transform: translateY(-6px);
-      border-color: var(--border-hover);
-      box-shadow: var(--shadow-lg);
+      border-color: rgba(255, 255, 255, 0.25);
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 80, 34, 0.3);
     }
     
     .benefit-card:hover::after { width: 100%; }
@@ -830,17 +1139,18 @@
     }
     
     .experience-card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
+      background: linear-gradient(180deg, #2A2A2A 0%, #252525 100%);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 16px;
       padding: 1.5rem;
       transition: all 0.3s var(--ease-out);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     }
     
     .experience-card:hover {
       transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
-      border-color: var(--border-hover);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7);
+      border-color: rgba(255, 255, 255, 0.2);
     }
     
     .experience-card-icon {
@@ -884,11 +1194,12 @@
     .testimonial-slide.active { opacity: 1; visibility: visible; }
 
     .testimonial-card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
+      background: linear-gradient(180deg, #2A2A2A 0%, #252525 100%);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 24px;
       padding: 2rem;
       position: relative;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
     }
     
     .testimonial-card::before {
@@ -1043,105 +1354,82 @@
     }
 
     /* ========================================
-       CTA SECTION
+       CTA SECTION - Simplificada com Expansão
     ======================================== */
-    
-    .cta-section { background: var(--bg); padding-bottom: 6rem; }
-    
+
+    .cta-section {
+      background: linear-gradient(135deg, #1E1E1E 0%, #252525 100%);
+      padding: 5rem 0;
+      margin: 0;
+    }
+
     .cta-card {
-      background: var(--orange-gradient);
-      border-radius: 28px;
-      padding: 4rem 2rem;
+      background: transparent;
+      border-radius: 0;
+      padding: 0;
       text-align: center;
       position: relative;
       overflow: hidden;
-      box-shadow: var(--shadow-xl);
     }
-    
-    .cta-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: 
-        radial-gradient(ellipse 80% 60% at 20% 20%, rgba(255, 255, 255, 0.2) 0%, transparent 50%),
-        radial-gradient(ellipse 50% 40% at 80% 80%, rgba(0, 0, 0, 0.2) 0%, transparent 50%);
-      pointer-events: none;
-    }
-    
+
     .cta-content {
       position: relative;
       z-index: 1;
-      max-width: 600px;
+      max-width: 700px;
       margin: 0 auto;
+      padding: 0 1.5rem;
     }
-    
+
     .cta-title {
-      font-size: clamp(2.25rem, 1.75rem + 3vw, 3.5rem);
+      font-family: 'Figtree', sans-serif;
+      font-size: clamp(2.5rem, 2rem + 3vw, 4rem);
       font-weight: 800;
       color: white;
-      margin-bottom: 1rem;
+      margin-bottom: 1.25rem;
       letter-spacing: -0.02em;
+      line-height: 1.1;
     }
-    
+
     .cta-subtitle {
-      font-size: 1.25rem;
-      color: rgba(255, 255, 255, 0.9);
-      margin-bottom: 2rem;
+      font-size: 1.35rem;
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 2.5rem;
+      line-height: 1.5;
     }
-    
+
+    /* Ocultar os checkmarks */
     .cta-features {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
+      display: none;
     }
-    
-    .cta-feature {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: rgba(255, 255, 255, 0.95);
-      font-weight: 500;
-    }
-    
-    .cta-feature svg { width: 20px; height: 20px; }
-    
+
     .cta-buttons {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 1rem;
     }
-    
+
+    /* Botão primário LARANJA */
     .cta-btn-p {
-      padding: 1.125rem 2.25rem;
-      background: white;
-      color: var(--accent);
+      padding: 1.25rem 3rem;
+      background: var(--orange-gradient);
+      color: white;
       border-radius: 14px;
       font-weight: 700;
+      font-size: 1.125rem;
       transition: all 0.3s var(--ease-spring);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      box-shadow: var(--shadow-accent);
     }
-    
+
     .cta-btn-p:hover {
-      transform: translateY(-4px) scale(1.02);
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: var(--shadow-glow);
+      background: linear-gradient(135deg, #FF6B3D 0%, #FF8C42 100%);
     }
-    
+
+    /* Ocultar botão secundário */
     .cta-btn-s {
-      padding: 1.125rem 2.25rem;
-      background: transparent;
-      color: white;
-      border: 2px solid rgba(255, 255, 255, 0.4);
-      border-radius: 14px;
-      font-weight: 600;
-      transition: all 0.3s var(--ease-out);
-    }
-    
-    .cta-btn-s:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: white;
+      display: none;
     }
 
     /* ========================================
@@ -1351,15 +1639,53 @@
   </div>
 
   <main>
-    <!-- Hero Section - Banner Only -->
+    <!-- Hero Section - Estrutura Moderna -->
     <section class="hero" id="top">
-      <div class="hero-banner">
-        <picture class="hero-banner-desktop">
-          <img src="img/banner-empresas-desktop.png" alt="Brisasoluções - Internet para Empresas" class="hero-banner-desktop">
-        </picture>
-        <picture class="hero-banner-mobile">
-          <img src="img/banner-empresas-mobile.png" alt="Brisasoluções - Internet para Empresas" class="hero-banner-mobile">
-        </picture>
+      <div class="container hero-container">
+        <!-- Conteúdo à Esquerda -->
+        <div class="hero-content">
+          <!-- Badge -->
+          <div class="hero-badge hero-badge-orange">
+            <svg class="hero-badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 7h-9M11 3L4 10l7 7m8 0v-4a4 4 0 0 0-4-4H4"/>
+            </svg>
+            <span>Conexão Empresarial Certificada</span>
+          </div>
+
+          <!-- Título -->
+          <h1 class="hero-title">
+            Brisanet Empresas: Internet de alta performance
+            <span class="hero-title-highlight">para seu negócio</span>
+          </h1>
+
+          <!-- Subtítulo -->
+          <h2 class="hero-subtitle">
+            Tenha suporte prioritário e instalação rápida na sua empresa.
+          </h2>
+
+          <!-- Oferta Horizontal -->
+          <div class="hero-offer">
+            <div class="hero-offer-left">
+              <div class="hero-offer-speed">700 MEGA</div>
+              <div class="hero-offer-extra">+ Conecta + Brisa Fixo</div>
+            </div>
+            <div class="hero-offer-divider"></div>
+            <div class="hero-offer-right">
+              <div class="hero-offer-price">R$ 119,99/mês</div>
+              <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 700 Mega com Conecta+" class="hero-cta" target="_blank" rel="noopener">
+                <span>Assine Agora</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Imagem Flutuante à Direita -->
+        <div class="hero-image-wrapper">
+          <img src="img/modelo-empresarial.png" alt="Empresária satisfeita com internet Brisasoluções" class="hero-model">
+        </div>
       </div>
     </section>
 
@@ -1406,16 +1732,16 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Atendimento local</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano PME 350 Mega" class="plan-cta" target="_blank" rel="noopener"><span>Assine agora</span></a>
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano PME 350 Mega" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
               </div>
             </article>
 
             <article class="plan-card reveal reveal-delay-2">
               <span class="plan-badge">Básico</span>
               <div class="plan-speed">
-                <span class="plan-speed-value">500</span><span class="plan-speed-unit">Mega</span>
+                <span class="plan-speed-value">600</span><span class="plan-speed-unit">Mega</span>
                 <p class="plan-speed-label">Internet 100% Fibra</p>
-                <div class="plan-speed-bar"><div class="plan-speed-bar-fill" style="width:50%"></div></div>
+                <div class="plan-speed-bar"><div class="plan-speed-bar-fill" style="width:60%"></div></div>
               </div>
               <div class="plan-partner"><span>🏢 Para equipes em crescimento</span></div>
               <div class="plan-price">
@@ -1433,7 +1759,7 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Atendimento local</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano PME 500 Mega" class="plan-cta" target="_blank" rel="noopener"><span>Assine agora</span></a>
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano PME 600 Mega" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
               </div>
             </article>
 
@@ -1460,7 +1786,7 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Suporte 24/7</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano PME 700 Mega com Conecta+" class="plan-cta" target="_blank" rel="noopener"><span>Assine agora</span></a>
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano PME 700 Mega com Conecta+" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
               </div>
             </article>
 
@@ -1487,7 +1813,7 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Atendimento dedicado</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano PME 1 GIGA" class="plan-cta" target="_blank" rel="noopener"><span>Assine agora</span></a>
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano PME 1 GIGA" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
               </div>
             </article>
           </div>
@@ -1529,7 +1855,7 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Fidelidade 12 meses</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101?text=Olá! Quero o Link Full IP 100 Mega" class="plan-cta" target="_blank" rel="noopener"><span>Assine agora</span></a>
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o Link Full IP 100 Mega" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
               </div>
             </article>
 
@@ -1556,7 +1882,7 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Fidelidade 12 meses</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101?text=Olá! Quero o Link Full IP 300 Mega" class="plan-cta" target="_blank" rel="noopener"><span>Assine agora</span></a>
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o Link Full IP 300 Mega" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
               </div>
             </article>
 
@@ -1583,7 +1909,7 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Fidelidade 12 meses</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101?text=Olá! Quero o Link Full IP 500 Mega" class="plan-cta" target="_blank" rel="noopener"><span>Assine agora</span></a>
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o Link Full IP 500 Mega" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
               </div>
             </article>
 
@@ -1799,15 +2125,15 @@
       <div class="container">
         <div class="cta-card reveal">
           <div class="cta-content">
-            <h2 class="cta-title">Aumente suas vendas</h2>
-            <p class="cta-subtitle">Conecte-se com mais clientes com internet 100% fibra óptica.</p>
+            <h2 class="cta-title">Conecte sua empresa agora</h2>
+            <p class="cta-subtitle">Fale direto no WhatsApp para confirmar disponibilidade e agendar instalação em até 48h.</p>
             <div class="cta-features">
               <div class="cta-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span>IP Fixo incluso</span></div>
               <div class="cta-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span>Suporte 24/7</span></div>
               <div class="cta-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação em 48h</span></div>
             </div>
             <div class="cta-buttons">
-              <a href="https://wa.me/5581992823101?text=Olá! Quero contratar internet para minha empresa" class="cta-btn-p" target="_blank" rel="noopener">Assine agora</a>
+              <a href="https://wa.me/5581992823101?text=Olá! Quero contratar internet para minha empresa" class="cta-btn-p" target="_blank" rel="noopener">Falar no WhatsApp</a>
               <a href="#planos" class="cta-btn-s">Ver planos</a>
             </div>
           </div>

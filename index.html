@@ -4,52 +4,96 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Internet Fibra Óptica Brisanet: planos de 500 Mega a 1 Giga com Wi-Fi 6, streaming incluso e instalação em até 48h.">
-  <meta name="theme-color" content="#0a0a0f">
+  <meta name="theme-color" content="#2855d4">
   <title>Brisanet Fibra | Internet Ultra-Rápida até 1 Giga</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      /* Dark Theme - Original */
+      /* Tema Híbrido Residencial - Cores Vibrantes Brisanet */
+
+      /* Cores da Marca */
+      --brand-blue: #2855d4;
+      --brand-orange: #FF5722;
+      --brand-blue-dark: #1a237e;
+
+      /* Backgrounds por Seção - Versão Alternativa */
+      --bg-hero: #2855d4;           /* Hero - Azul Vibrante */
+      --bg-plans: #2855d4;          /* Seção Planos - Azul Vibrante */
+      --bg-benefits: #f5f5f7;       /* Benefícios - Cinza Claro */
+      --bg-testimonials: #2855d4;   /* Depoimentos - Azul Vibrante */
+      --bg-faq: #f5f5f7;            /* FAQ - Cinza Claro */
+      --bg-cta: #2d2d2d;            /* CTA Final - Cinza Escuro */
+      --bg-footer: #2855d4;         /* Footer - Azul Vibrante */
+
+      /* Backgrounds legados */
+      --bg-light: #f5f5f7;
+      --bg-dark: #0a0a0f;
+      --bg-dark-2: #12121a;
+
+      /* Backgrounds legados (mantidos para compatibilidade) */
       --bg: #0a0a0f;
       --bg2: #12121a;
       --bg3: #1a1a24;
+
+      /* Cards - Versão Cards Brancos */
+      --card-on-blue: #ffffff;      /* Card branco sobre fundo azul */
+      --card-on-light: #ffffff;     /* Card branco sobre fundo cinza */
+      --card-on-dark: #12121a;      /* Card sobre fundo escuro */
+      --card-light: #ffffff;        /* Card branco */
+
+      /* Surfaces */
       --surface: rgba(255, 255, 255, 0.03);
       --surface-hover: rgba(255, 255, 255, 0.06);
-      
-      /* Text */
+      --surface-light: rgba(0, 0, 0, 0.03);
+
+      /* Textos */
       --text: #ffffff;
       --text2: rgba(255, 255, 255, 0.85);
       --text-muted: rgba(255, 255, 255, 0.6);
       --text-subtle: rgba(255, 255, 255, 0.4);
-      
+
+      /* Textos sobre fundos claros */
+      --text-on-light: #1a237e;     /* Azul escuro para títulos */
+      --text-on-light-muted: #5f6368; /* Cinza médio para subtítulos */
+      --text-on-light-body: #3c4043; /* Cinza escuro para corpo */
+
+      /* Textos sobre cards brancos */
+      --text-on-white: #1a1a1a;     /* Preto para textos principais */
+      --text-on-white-muted: #5f6368; /* Cinza para textos secundários */
+      --text-on-white-subtle: #9aa0a6; /* Cinza claro para textos sutis */
+
       /* Brand Colors */
-      --accent: #F37021;
+      --accent: #FF5722;             /* Laranja vibrante (atualizado) */
       --accent2: #FF8C42;
-      --accent-gradient: linear-gradient(135deg, #F37021 0%, #FF8C42 50%, #ffb347 100%);
-      --accent-glow: rgba(243, 112, 33, 0.4);
-      
-      --blue: #004870;
-      --blue-light: #0066a1;
-      --blue-gradient: linear-gradient(135deg, #004870 0%, #0066a1 100%);
-      
+      --accent-gradient: linear-gradient(135deg, #FF5722 0%, #FF8C42 50%, #ffb347 100%);
+      --accent-glow: rgba(255, 87, 34, 0.4);
+
+      --blue: #2855d4;               /* Azul vibrante (atualizado) */
+      --blue-light: #4a90e2;
+      --blue-dark: #1a237e;
+      --blue-gradient: linear-gradient(135deg, #2855d4 0%, #4a90e2 100%);
+
       --green: #10b981;
       --green-glow: rgba(16, 185, 129, 0.3);
-      
+
       /* Borders */
       --border: rgba(255, 255, 255, 0.08);
       --border-hover: rgba(255, 255, 255, 0.15);
-      --border-accent: rgba(243, 112, 33, 0.3);
-      
+      --border-accent: rgba(255, 87, 34, 0.3);
+      --border-light: rgba(0, 0, 0, 0.08);      /* Borda sobre fundos claros */
+      --border-light-hover: rgba(0, 0, 0, 0.15);
+
       /* Shadows */
-      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
-      --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.4);
-      --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.5);
-      --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.6);
-      --shadow-glow: 0 0 40px rgba(243, 112, 33, 0.2);
-      --shadow-accent: 0 8px 30px rgba(243, 112, 33, 0.3);
-      
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+      --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.15);
+      --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.2);
+      --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.25);
+      --shadow-glow: 0 0 40px rgba(255, 87, 34, 0.2);
+      --shadow-accent: 0 8px 30px rgba(255, 87, 34, 0.3);
+      --shadow-card-light: 0 2px 12px rgba(0, 0, 0, 0.08); /* Sombra para cards sobre claro */
+
       /* Motion */
       --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
       --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -94,15 +138,15 @@
       right: 0;
       z-index: 200;
       padding: 0.75rem 0;
-      background: rgba(10, 10, 15, 0.8);
+      background: rgba(40, 85, 212, 0.85);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
       transition: all 0.4s var(--ease-out);
     }
-    
+
     .nav.scrolled {
-      background: rgba(10, 10, 15, 0.95);
+      background: rgba(40, 85, 212, 0.95);
       box-shadow: var(--shadow-md);
     }
     
@@ -122,7 +166,7 @@
       padding: 0.5rem 1rem;
       font-size: 0.9rem;
       font-weight: 500;
-      color: var(--text-muted);
+      color: #ffffff;
       border-radius: 8px;
       transition: all 0.2s ease;
     }
@@ -136,9 +180,9 @@
       padding: 0.5rem 1rem;
       font-size: 0.875rem;
       font-weight: 600;
-      color: var(--primary);
-      background: rgba(243, 112, 33, 0.1);
-      border: 1px solid var(--primary);
+      color: #ffffff;
+      background: transparent;
+      border: 2px solid #ffffff;
       border-radius: 50px;
       text-decoration: none;
       transition: all 0.3s ease;
@@ -227,73 +271,405 @@
     }
 
     /* ========================================
-       HERO - Banner Only
+       HERO - Estrutura Moderna
     ======================================== */
-    
+
     .hero {
-      padding-top: 70px;
-      background: var(--bg);
+      background: radial-gradient(ellipse at top left, #3b6be8 0%, #2855d4 50%, #1e45b8 100%);
       position: relative;
+      overflow: hidden;
+      min-height: 650px;
+      padding-top: 90px;
+      padding-bottom: 0;
     }
-    
-    .hero-banner {
-      width: 100%;
-      max-width: 1280px;
-      margin: 0 auto;
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 50%;
+      height: 100%;
+      background: radial-gradient(ellipse at top right, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .hero-container {
       position: relative;
-    }
-    
-    .hero-banner-desktop,
-    .hero-banner-mobile {
-      width: 100%;
-      border-radius: 0;
-    }
-    
-    .hero-banner-desktop {
-      display: block;
-    }
-    
-    .hero-banner-mobile {
-      display: none;
-    }
-    
-    /* Placeholder styling when no image */
-    .banner-placeholder {
-      width: 100%;
-      aspect-ratio: 16/5;
-      background: linear-gradient(135deg, var(--bg2) 0%, var(--bg3) 100%);
-      border-bottom: 1px solid var(--border);
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
+      min-height: 560px;
+      gap: 3rem;
+    }
+
+    .hero-content {
+      flex: 1;
+      max-width: 600px;
+      z-index: 10;
+      padding: 2rem 0;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1.25rem;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 50px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 1.5rem;
+      animation: fadeInUp 0.8s var(--ease-out) 0.2s forwards;
+      opacity: 0;
+    }
+
+    .hero-badge-icon {
+      width: 18px;
+      height: 18px;
+      color: var(--accent);
+    }
+
+    .hero-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.75rem, 2rem + 4vw, 4.5rem);
+      font-weight: 700;
+      color: white;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.25rem;
+      animation: fadeInUp 0.8s var(--ease-out) 0.3s forwards;
+      opacity: 0;
+    }
+
+    .hero-title-highlight {
+      color: var(--accent);
+      display: block;
+    }
+
+    /* Badge Verde para Residencial */
+    .hero-badge-green {
+      background: #00A859;
+      border-color: rgba(0, 168, 89, 0.5);
+    }
+
+    /* Subtítulo H2 */
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: rgba(255, 255, 255, 0.85);
+      font-weight: 500;
+      line-height: 1.5;
+      margin-bottom: 2.5rem;
+      animation: fadeInUp 0.8s var(--ease-out) 0.4s forwards;
+      opacity: 0;
+    }
+
+    /* Layout Horizontal da Oferta */
+    .hero-offer {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 16px;
+      padding: 1.75rem 2rem;
+      margin-bottom: 2rem;
+      animation: fadeInUp 0.8s var(--ease-out) 0.5s forwards;
+      opacity: 0;
+    }
+
+    .hero-offer-left {
+      flex: 1;
+    }
+
+    .hero-offer-speed {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: white;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-offer-extra {
+      font-size: 1.125rem;
+      color: rgba(255, 255, 255, 0.85);
+      font-weight: 500;
+    }
+
+    .hero-offer-divider {
+      width: 2px;
+      height: 60px;
+      background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.3), transparent);
+    }
+
+    .hero-offer-right {
+      flex: 1;
+      display: flex;
       flex-direction: column;
       gap: 1rem;
     }
-    
-    .banner-placeholder-icon {
-      width: 64px;
-      height: 64px;
-      color: var(--text-subtle);
+
+    .hero-offer-price {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: white;
+      line-height: 1;
     }
-    
-    .banner-placeholder-text {
-      color: var(--text-subtle);
-      font-size: 0.9rem;
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1.25rem 3rem;
+      background: var(--accent);
+      color: white;
+      font-size: 1.125rem;
+      font-weight: 700;
+      border-radius: 14px;
+      box-shadow: 0 8px 32px rgba(255, 87, 34, 0.4);
+      transition: all 0.3s var(--ease-spring);
+      animation: fadeInUp 0.8s var(--ease-out) 0.6s forwards;
+      opacity: 0;
     }
-    
+
+    .hero-cta:hover {
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: 0 12px 48px rgba(255, 87, 34, 0.5);
+      background: #ff6b3d;
+    }
+
+    .hero-cta svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .hero-image-wrapper {
+      position: absolute;
+      bottom: 0;
+      right: 5%;
+      width: 45%;
+      height: 90%;
+      z-index: 5;
+      animation: fadeInRight 1s var(--ease-out) 0.4s forwards;
+      opacity: 0;
+    }
+
+    .hero-model {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: bottom right;
+      filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.3));
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* Responsivo Mobile */
+    @media (max-width: 1024px) {
+      .hero-image-wrapper {
+        width: 50%;
+        right: 0;
+      }
+    }
+
     @media (max-width: 768px) {
-      .hero-banner-desktop { display: none; }
-      .hero-banner-mobile { display: block; }
-      .banner-placeholder { aspect-ratio: 1/1; }
+      .hero {
+        min-height: auto;
+        padding-top: 80px;
+        padding-bottom: 2rem;
+      }
+
+      .hero-container {
+        flex-direction: column;
+        min-height: auto;
+        gap: 2rem;
+      }
+
+      .hero-content {
+        max-width: 100%;
+        text-align: center;
+        padding: 0;
+      }
+
+      .hero-badge {
+        margin: 0 auto 1.25rem;
+      }
+
+      .hero-title {
+        font-size: clamp(2rem, 8vw, 2.75rem);
+      }
+
+      .hero-description {
+        font-size: 1.1rem;
+      }
+
+      /* Oferta Responsiva Mobile - Layout Vertical */
+      .hero-offer {
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 1.5rem;
+      }
+
+      .hero-offer-divider {
+        width: 80%;
+        height: 2px;
+        background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
+      }
+
+      .hero-offer-left,
+      .hero-offer-right {
+        text-align: center;
+      }
+
+      .hero-offer-speed {
+        font-size: 2rem;
+      }
+
+      .hero-offer-price {
+        font-size: 1.75rem;
+      }
+
+      .hero-cta {
+        width: 100%;
+        justify-content: center;
+        padding: 1.125rem 2rem;
+      }
+
+      .hero-image-wrapper {
+        position: relative;
+        width: 80%;
+        height: 350px;
+        right: auto;
+        margin: 0 auto;
+        opacity: 0.85;
+      }
+
+      .hero-model {
+        object-position: bottom center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-image-wrapper {
+        width: 90%;
+        height: 300px;
+      }
+
+      .hero-title {
+        font-size: 2rem;
+      }
+
+      .hero-price-value {
+        font-size: 2.5rem;
+      }
     }
 
     /* ========================================
        PLANS SECTION
     ======================================== */
-    
+
     .plans {
-      background: var(--bg);
+      background: var(--bg-plans);
       position: relative;
+    }
+
+    /* Títulos sobre fundo azul na seção de planos */
+    .plans .section-title {
+      color: white;
+    }
+
+    .plans .section-subtitle {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .plans .section-eyebrow {
+      color: var(--accent);
+    }
+
+    /* Cards BRANCOS na seção de planos */
+    .plans .plan-card {
+      background: white;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+    }
+
+    .plans .plan-card.featured {
+      border: 2px solid var(--accent);
+      box-shadow: 0 8px 40px rgba(255, 87, 34, 0.3);
+    }
+
+    /* Textos ESCUROS nos cards brancos */
+    .plans .plan-speed-value {
+      color: var(--text-on-white);
+    }
+
+    .plans .plan-speed-unit {
+      color: var(--text-on-white-muted);
+    }
+
+    .plans .plan-speed-label {
+      color: var(--text-on-white-muted);
+    }
+
+    .plans .plan-partner {
+      color: var(--text-on-white-muted);
+    }
+
+    .plans .plan-price-old {
+      color: var(--text-on-white-subtle);
+    }
+
+    .plans .plan-price-currency,
+    .plans .plan-price-value {
+      color: var(--text-on-white);
+    }
+
+    .plans .plan-price-period {
+      color: var(--text-on-white-muted);
+    }
+
+    .plans .plan-feature {
+      color: var(--text-on-white);
+    }
+
+    .plans .plan-feature svg {
+      color: var(--green);
+    }
+
+    /* Barra de progresso sobre card branco */
+    .plans .plan-speed-bar {
+      background: rgba(0, 0, 0, 0.08);
+    }
+
+    /* Borda inferior do preço */
+    .plans .plan-price {
+      border-bottom-color: rgba(0, 0, 0, 0.1);
     }
 
     .section-header {
@@ -351,29 +727,31 @@
       display: inline-flex;
       gap: 0.25rem;
       padding: 0.375rem;
-      background: var(--bg2);
-      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.3);
       border-radius: 14px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      backdrop-filter: blur(10px);
     }
-    
+
     .plan-tab {
       padding: 0.75rem 2rem;
       border-radius: 10px;
       font-size: 0.95rem;
       font-weight: 600;
-      color: var(--text-muted);
+      color: #5f6368;
       transition: all 0.3s var(--ease-out);
     }
-    
+
     .plan-tab.active {
       color: white;
-      background: var(--accent-gradient);
-      box-shadow: var(--shadow-accent);
+      background: var(--accent);
+      box-shadow: 0 4px 16px rgba(255, 87, 34, 0.4);
     }
-    
+
     .plan-tab:hover:not(.active) {
-      color: var(--text);
-      background: var(--surface);
+      color: #1a1a1a;
+      background: rgba(0, 0, 0, 0.05);
     }
 
     .plan-panel { display: none; }
@@ -393,24 +771,29 @@
         display: flex;
         gap: 1rem;
         overflow-x: auto;
+        overflow-y: hidden;
         scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
         padding: 1rem 0.5rem 1.5rem;
         margin: 0 -1.5rem;
         scrollbar-width: none;
+        touch-action: pan-x pinch-zoom;
+        overscroll-behavior-x: contain;
+        overscroll-behavior-y: auto;
       }
       .plan-grid::-webkit-scrollbar { display: none; }
       .plan-card {
         flex: 0 0 85%;
         scroll-snap-align: center;
         min-width: 300px;
+        touch-action: manipulation;
       }
     }
 
     /* Plan Cards */
     .plan-card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
+      background: var(--card-on-light);
+      border: 1px solid rgba(0, 0, 0, 0.1);
       border-radius: 20px;
       padding: 1.75rem;
       position: relative;
@@ -418,8 +801,9 @@
       display: flex;
       flex-direction: column;
       overflow: hidden;
+      box-shadow: var(--shadow-card-light);
     }
-    
+
     .plan-card::before {
       content: '';
       position: absolute;
@@ -427,29 +811,32 @@
       left: 0;
       right: 0;
       height: 3px;
-      background: var(--border);
+      background: var(--accent);
       transition: all 0.4s var(--ease-out);
     }
-    
+
     .plan-card:hover {
       transform: translateY(-8px);
-      border-color: var(--border-hover);
-      box-shadow: var(--shadow-lg);
+      border-color: rgba(0, 0, 0, 0.2);
+      box-shadow: 0 12px 48px rgba(0, 0, 0, 0.15);
     }
-    
+
     .plan-card:hover::before {
-      background: var(--accent-gradient);
-    }
-    
-    .plan-card.featured {
-      border-color: var(--accent);
-      background: linear-gradient(180deg, rgba(243, 112, 33, 0.08) 0%, var(--bg2) 30%);
-      box-shadow: var(--shadow-glow);
-    }
-    
-    .plan-card.featured::before {
-      background: var(--accent-gradient);
       height: 4px;
+      background: var(--accent);
+      box-shadow: 0 0 20px rgba(255, 87, 34, 0.5);
+    }
+
+    .plan-card.featured {
+      border: 2px solid var(--accent);
+      background: var(--card-on-light);
+      box-shadow: 0 8px 40px rgba(255, 87, 34, 0.3);
+    }
+
+    .plan-card.featured::before {
+      background: var(--accent);
+      height: 4px;
+      box-shadow: 0 0 20px rgba(255, 87, 34, 0.6);
     }
 
     .plan-badge {
@@ -457,13 +844,14 @@
       top: 1rem;
       right: 1rem;
       padding: 0.375rem 0.875rem;
-      background: var(--blue-gradient);
+      background: var(--blue);
       border-radius: 6px;
       font-size: 0.7rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.05em;
       color: white;
+      box-shadow: 0 2px 8px rgba(40, 85, 212, 0.3);
     }
     
     .plan-badge.pop {
@@ -485,12 +873,10 @@
       line-height: 1;
       color: var(--text);
     }
-    
+
     .plan-card.featured .plan-speed-value {
-      background: var(--accent-gradient);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: var(--accent);
+      text-shadow: 0 0 30px rgba(255, 87, 34, 0.3);
     }
     
     .plan-speed-unit {
@@ -515,12 +901,13 @@
     
     .plan-speed-bar-fill {
       height: 100%;
-      background: var(--accent-gradient);
+      background: var(--accent);
       border-radius: 6px;
       transition: width 0.8s var(--ease-out);
       position: relative;
+      box-shadow: 0 0 10px rgba(255, 87, 34, 0.4);
     }
-    
+
     .plan-speed-bar-fill::after {
       content: '';
       position: absolute;
@@ -529,9 +916,10 @@
       transform: translateY(-50%);
       width: 12px;
       height: 12px;
-      background: var(--bg);
+      background: white;
       border: 3px solid var(--accent);
       border-radius: 50%;
+      box-shadow: 0 0 8px rgba(255, 87, 34, 0.5);
     }
 
     .plan-partner {
@@ -619,46 +1007,46 @@
     
     .plan-cta {
       padding: 1rem 2rem;
-      background: var(--bg3);
-      border: 1px solid var(--border);
+      background: var(--accent-gradient);
+      border: none;
       border-radius: 12px;
-      font-weight: 600;
-      color: var(--text);
+      font-weight: 700;
+      color: white;
       transition: all 0.3s var(--ease-out);
       position: relative;
       overflow: hidden;
+      box-shadow: var(--shadow-accent);
     }
-    
+
     .plan-cta::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: var(--accent-gradient);
+      background: linear-gradient(135deg, #FF8C42 0%, #ffb347 100%);
       opacity: 0;
       transition: opacity 0.3s ease;
     }
-    
+
     .plan-cta span { position: relative; z-index: 1; }
-    
+
     .plan-cta:hover {
-      border-color: var(--accent);
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-accent);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-glow);
     }
-    
+
     .plan-cta:hover::before { opacity: 1; }
-    
+
     .plan-card.featured .plan-cta {
       background: var(--accent-gradient);
       border-color: transparent;
-      box-shadow: var(--shadow-accent);
-    }
-    
-    .plan-card.featured .plan-cta::before { display: none; }
-    
-    .plan-card.featured .plan-cta:hover {
-      transform: translateY(-3px);
       box-shadow: var(--shadow-glow);
+    }
+
+    .plan-card.featured .plan-cta::before { display: none; }
+
+    .plan-card.featured .plan-cta:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 12px 48px rgba(255, 87, 34, 0.4);
     }
 
     /* Navigation Arrows */
@@ -706,11 +1094,68 @@
     /* ========================================
        BENEFITS SECTION
     ======================================== */
-    
+
     .benefits {
-      background: var(--bg2);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
+      background: var(--bg-benefits);
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    /* Títulos sobre fundo cinza claro */
+    .benefits .section-title {
+      color: var(--text-on-light);
+    }
+
+    .benefits .section-subtitle {
+      color: var(--text-on-light-muted);
+    }
+
+    .benefits .section-eyebrow {
+      color: var(--accent);
+    }
+
+    /* Cards brancos sobre cinza claro */
+    .benefits .benefit-card {
+      background: white;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .benefits .benefit-card:hover {
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    }
+
+    .benefits .benefit-card::after {
+      background: var(--accent);
+    }
+
+    .benefits .benefit-icon {
+      background: rgba(255, 87, 34, 0.1);
+      border-color: transparent;
+    }
+
+    .benefits .benefit-icon svg {
+      color: var(--accent);
+    }
+
+    .benefits .benefit-card:hover .benefit-icon {
+      background: var(--accent);
+    }
+
+    .benefits .benefit-card:hover .benefit-icon svg {
+      color: white;
+    }
+
+    .benefits .benefit-label {
+      color: var(--accent);
+    }
+
+    .benefits .benefit-title {
+      color: var(--text-on-white);
+    }
+
+    .benefits .benefit-desc {
+      color: var(--text-on-white-muted);
     }
 
     .benefits-grid {
@@ -804,9 +1249,67 @@
     /* ========================================
        TESTIMONIALS
     ======================================== */
-    
+
     .testimonials {
-      background: var(--bg);
+      background: var(--bg-testimonials);
+    }
+
+    /* Títulos sobre fundo azul na seção de depoimentos */
+    .testimonials .section-title {
+      color: white;
+    }
+
+    .testimonials .section-subtitle {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .testimonials .section-eyebrow {
+      color: var(--accent);
+    }
+
+    /* Cards brancos sobre azul */
+    .testimonials .experience-card {
+      background: white;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .testimonials .experience-card:hover {
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    .testimonials .experience-card-icon {
+      background: rgba(255, 87, 34, 0.1);
+    }
+
+    .testimonials .experience-card-icon svg {
+      color: var(--accent);
+    }
+
+    .testimonials .experience-card h4 {
+      color: var(--text-on-white);
+    }
+
+    .testimonials .experience-card p {
+      color: var(--text-on-white-muted);
+    }
+
+    .testimonials .testimonial-card {
+      background: white;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    .testimonials .testimonial-quote {
+      color: var(--text-on-white-body);
+    }
+
+    .testimonials .testimonial-info h5 {
+      color: var(--text-on-white);
+    }
+
+    .testimonials .testimonial-info span {
+      color: var(--text-on-white-muted);
     }
 
     .testimonials-wrapper {
@@ -825,45 +1328,46 @@
     }
     
     .experience-card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
+      background: var(--card-light);
+      border: 1px solid var(--border-light);
       border-radius: 16px;
       padding: 1.5rem;
       transition: all 0.3s var(--ease-out);
+      box-shadow: var(--shadow-card-light);
     }
-    
+
     .experience-card:hover {
       transform: translateY(-4px);
       box-shadow: var(--shadow-md);
-      border-color: var(--border-hover);
+      border-color: var(--border-light-hover);
     }
-    
+
     .experience-card-icon {
       width: 44px;
       height: 44px;
-      background: var(--bg3);
+      background: rgba(255, 87, 34, 0.1);
       border-radius: 12px;
       display: grid;
       place-items: center;
       margin-bottom: 1rem;
     }
-    
+
     .experience-card-icon svg {
       width: 22px;
       height: 22px;
       color: var(--accent);
     }
-    
+
     .experience-card h4 {
       font-size: 1rem;
       font-weight: 700;
-      color: var(--text);
+      color: var(--text-on-light);
       margin-bottom: 0.25rem;
     }
-    
+
     .experience-card p {
       font-size: 0.9rem;
-      color: var(--text-muted);
+      color: var(--text-on-light-muted);
     }
 
     .testimonial-track { position: relative; min-height: 320px; }
@@ -879,13 +1383,14 @@
     .testimonial-slide.active { opacity: 1; visibility: visible; }
 
     .testimonial-card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
+      background: var(--card-light);
+      border: 1px solid var(--border-light);
       border-radius: 24px;
       padding: 2rem;
       position: relative;
+      box-shadow: var(--shadow-card-light);
     }
-    
+
     .testimonial-card::before {
       content: '"';
       position: absolute;
@@ -898,25 +1403,25 @@
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
-      opacity: 0.2;
+      opacity: 0.15;
     }
-    
+
     .testimonial-quote {
       font-size: 1.25rem;
       font-weight: 500;
       line-height: 1.7;
-      color: var(--text);
+      color: var(--text-on-light-body);
       margin-bottom: 2rem;
       position: relative;
       z-index: 1;
     }
-    
+
     .testimonial-author {
       display: flex;
       align-items: center;
       gap: 1rem;
     }
-    
+
     .testimonial-avatar {
       width: 52px;
       height: 52px;
@@ -928,16 +1433,16 @@
       font-size: 1.1rem;
       color: white;
     }
-    
+
     .testimonial-info h5 {
       font-weight: 700;
-      color: var(--text);
+      color: var(--text-on-light);
       margin-bottom: 2px;
     }
-    
+
     .testimonial-info span {
       font-size: 0.875rem;
-      color: var(--text-muted);
+      color: var(--text-on-light-muted);
     }
     
     .testimonial-rating {
@@ -977,8 +1482,52 @@
     /* ========================================
        FAQ
     ======================================== */
-    
-    .faq { background: var(--bg2); border-top: 1px solid var(--border); }
+
+    .faq {
+      background: var(--bg-faq);
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    /* Títulos sobre fundo cinza claro */
+    .faq .section-title {
+      color: var(--text-on-light);
+    }
+
+    .faq .section-subtitle {
+      color: var(--text-on-light-muted);
+    }
+
+    .faq .section-eyebrow {
+      color: var(--accent);
+    }
+
+    /* Items brancos sobre cinza claro */
+    .faq .faq-item {
+      background: white;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .faq .faq-item:hover {
+      border-color: rgba(0, 0, 0, 0.12);
+    }
+
+    .faq .faq-item[open] {
+      border-color: var(--accent);
+      box-shadow: 0 4px 16px rgba(255, 87, 34, 0.2);
+    }
+
+    .faq .faq-item summary {
+      color: var(--text-on-white);
+    }
+
+    .faq .faq-item summary:hover {
+      background: rgba(0, 0, 0, 0.02);
+    }
+
+    .faq .faq-item p {
+      color: var(--text-on-white-muted);
+    }
 
     .faq-grid {
       display: grid;
@@ -1042,114 +1591,90 @@
     }
 
     /* ========================================
-       CTA SECTION
+       CTA SECTION - Simplificada
     ======================================== */
-    
-    .cta-section { background: var(--bg); padding-bottom: 6rem; }
-    
+
+    .cta-section {
+      background: var(--bg-cta);
+      padding: 5rem 0;
+      margin: 0;
+    }
+
     .cta-card {
-      background: var(--accent-gradient);
-      border-radius: 28px;
-      padding: 4rem 2rem;
+      background: transparent;
+      border-radius: 0;
+      padding: 0;
       text-align: center;
       position: relative;
       overflow: hidden;
-      box-shadow: var(--shadow-xl);
     }
-    
-    .cta-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: 
-        radial-gradient(ellipse 80% 60% at 20% 20%, rgba(255, 255, 255, 0.2) 0%, transparent 50%),
-        radial-gradient(ellipse 50% 40% at 80% 80%, rgba(0, 0, 0, 0.2) 0%, transparent 50%);
-      pointer-events: none;
-    }
-    
+
     .cta-content {
       position: relative;
       z-index: 1;
-      max-width: 600px;
+      max-width: 700px;
       margin: 0 auto;
+      padding: 0 1.5rem;
     }
-    
+
     .cta-title {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(2.25rem, 1.75rem + 3vw, 3.5rem);
+      font-size: clamp(2.5rem, 2rem + 3vw, 4rem);
       font-weight: 700;
       color: white;
-      margin-bottom: 1rem;
+      margin-bottom: 1.25rem;
       letter-spacing: -0.02em;
+      line-height: 1.1;
     }
-    
+
     .cta-subtitle {
-      font-size: 1.25rem;
-      color: rgba(255, 255, 255, 0.9);
-      margin-bottom: 2rem;
+      font-size: 1.35rem;
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 2.5rem;
+      line-height: 1.5;
     }
-    
+
+    /* Ocultar os 3 benefícios (checkmarks) */
     .cta-features {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
+      display: none;
     }
-    
-    .cta-feature {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: rgba(255, 255, 255, 0.95);
-      font-weight: 500;
-    }
-    
-    .cta-feature svg { width: 20px; height: 20px; }
-    
+
     .cta-buttons {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 1rem;
     }
-    
+
+    /* Botão primário LARANJA com texto BRANCO */
     .cta-btn-p {
-      padding: 1.125rem 2.25rem;
-      background: white;
-      color: var(--accent);
+      padding: 1.25rem 3rem;
+      background: var(--accent);
+      color: white;
       border-radius: 14px;
       font-weight: 700;
+      font-size: 1.125rem;
       transition: all 0.3s var(--ease-spring);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 8px 32px rgba(255, 87, 34, 0.4);
     }
-    
+
     .cta-btn-p:hover {
-      transform: translateY(-4px) scale(1.02);
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: 0 12px 48px rgba(255, 87, 34, 0.5);
+      background: #ff6b3d;
     }
-    
+
+    /* Ocultar botão secundário */
     .cta-btn-s {
-      padding: 1.125rem 2.25rem;
-      background: transparent;
-      color: white;
-      border: 2px solid rgba(255, 255, 255, 0.4);
-      border-radius: 14px;
-      font-weight: 600;
-      transition: all 0.3s var(--ease-out);
-    }
-    
-    .cta-btn-s:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: white;
+      display: none;
     }
 
     /* ========================================
-       FOOTER - Light Blue
+       FOOTER - Azul Vibrante (igual Hero)
     ======================================== */
-    
+
     .footer {
-      background: var(--blue-light);
+      background: var(--bg-hero);
       padding: 3rem 0 120px;
     }
     
@@ -1349,17 +1874,53 @@
   </div>
 
   <main>
-    <!-- Hero Section - Banner Only -->
+    <!-- Hero Section - Estrutura Moderna -->
     <section class="hero" id="top">
-      <div class="hero-banner">
-        <!-- Desktop Banner -->
-        <picture class="hero-banner-desktop">
-          <img src="img/banner-desktop.png" alt="Brisanet Internet Fibra" class="hero-banner-desktop">
-        </picture>
-        <!-- Mobile Banner -->
-        <picture class="hero-banner-mobile">
-          <img src="img/banner-mobile.png" alt="Brisanet Internet Fibra" class="hero-banner-mobile">
-        </picture>
+      <div class="container hero-container">
+        <!-- Conteúdo à Esquerda -->
+        <div class="hero-content">
+          <!-- Badge -->
+          <div class="hero-badge hero-badge-green">
+            <svg class="hero-badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+            <span>6x Líder em Satisfação Anatel</span>
+          </div>
+
+          <!-- Título -->
+          <h1 class="hero-title">
+            Brisanet Fibra: Internet de alta performance
+            <span class="hero-title-highlight">para sua casa</span>
+          </h1>
+
+          <!-- Subtítulo -->
+          <h2 class="hero-subtitle">
+            Aproveite a instalação rápida e conecte sua casa agora.
+          </h2>
+
+          <!-- Oferta Horizontal -->
+          <div class="hero-offer">
+            <div class="hero-offer-left">
+              <div class="hero-offer-speed">700 MEGA</div>
+              <div class="hero-offer-extra">+ Brisachip 50GB</div>
+            </div>
+            <div class="hero-offer-divider"></div>
+            <div class="hero-offer-right">
+              <div class="hero-offer-price">R$ 99,90/mês</div>
+              <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 700 Mega + Chip" class="hero-cta" target="_blank" rel="noopener">
+                <span>Assine Agora</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Imagem Flutuante à Direita -->
+        <div class="hero-image-wrapper">
+          <img src="img/modelo.png" alt="Mulher feliz usando internet Brisanet" class="hero-model">
+        </div>
       </div>
     </section>
 
@@ -1376,7 +1937,7 @@
         <div class="plan-tabs-wrapper reveal">
           <div class="plan-tabs">
             <button class="plan-tab active" data-tab="combos">Combos com Apps</button>
-            <button class="plan-tab" data-tab="fibra">Fibra Pura</button>
+            <button class="plan-tab" data-tab="fibra">Apenas Internet</button>
           </div>
         </div>
 
@@ -1406,7 +1967,7 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação grátis</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 700 Mega + Chip" class="plan-cta" target="_blank" rel="noopener"><span>Assinar agora</span></a>
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 700 Mega + Chip" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
               </div>
             </article>
 
@@ -1433,7 +1994,7 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação grátis</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 600 Mega + Netflix" class="plan-cta" target="_blank" rel="noopener"><span>Assinar agora</span></a>
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 600 Mega + Netflix" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
               </div>
             </article>
 
@@ -1460,7 +2021,7 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação grátis</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 500 Mega + Globoplay" class="plan-cta" target="_blank" rel="noopener"><span>Assinar agora</span></a>
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 500 Mega + Globoplay" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
               </div>
             </article>
 
@@ -1487,7 +2048,7 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação grátis</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 600 Mega + Paramount+" class="plan-cta" target="_blank" rel="noopener"><span>Assinar agora</span></a>
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 600 Mega + Paramount+" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
               </div>
             </article>
           </div>
@@ -1503,7 +2064,7 @@
           </div>
         </div>
 
-        <!-- Fibra Pura Panel -->
+        <!-- Apenas Internet Panel -->
         <div class="plan-panel" id="panel-fibra">
           <div class="plan-grid" id="grid-fibra">
             <article class="plan-card reveal reveal-delay-1">
@@ -1529,7 +2090,7 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação grátis</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 500 Mega Fibra Pura" class="plan-cta" target="_blank" rel="noopener"><span>Assinar agora</span></a>
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 500 Mega Fibra Pura" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
               </div>
             </article>
 
@@ -1556,7 +2117,7 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação grátis</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 600 Mega Fibra Pura" class="plan-cta" target="_blank" rel="noopener"><span>Assinar agora</span></a>
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 600 Mega Fibra Pura" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
               </div>
             </article>
 
@@ -1583,7 +2144,7 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação grátis</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 700 Mega Fibra Pura" class="plan-cta" target="_blank" rel="noopener"><span>Assinar agora</span></a>
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 700 Mega Fibra Pura" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
               </div>
             </article>
 
@@ -1610,7 +2171,7 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação grátis</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 1 Giga Fibra Pura" class="plan-cta" target="_blank" rel="noopener"><span>Assinar agora</span></a>
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 1 Giga Fibra Pura" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
               </div>
             </article>
           </div>
