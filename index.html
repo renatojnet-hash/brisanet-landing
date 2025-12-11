@@ -6,6 +6,7 @@
   <meta name="description" content="Internet Fibra Óptica Brisanet: planos de 500 Mega a 1 Giga com Wi-Fi 6, streaming incluso e instalação em até 48h.">
   <meta name="theme-color" content="#2855d4">
   <title>Brisanet Fibra | Internet Ultra-Rápida até 1 Giga</title>
+  <link rel="icon" type="image/x-icon" href="img/favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
@@ -468,6 +469,14 @@
       filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.3));
     }
 
+    .hero-model-mobile {
+      display: none;
+    }
+
+    .hero-model-desktop {
+      display: block;
+    }
+
     @keyframes fadeInUp {
       from {
         opacity: 0;
@@ -572,6 +581,14 @@
 
       .hero-model {
         object-position: bottom center;
+      }
+
+      .hero-model-desktop {
+        display: none;
+      }
+
+      .hero-model-mobile {
+        display: block;
       }
     }
 
@@ -1919,7 +1936,8 @@
 
         <!-- Imagem Flutuante à Direita -->
         <div class="hero-image-wrapper">
-          <img src="img/modelo.png" alt="Mulher feliz usando internet Brisanet" class="hero-model">
+          <img src="img/hero-web-residencia-dezembro.png" alt="Mulher feliz usando internet Brisanet" class="hero-model hero-model-desktop">
+          <img src="img/hero-mobile-residencia-dezembro.png" alt="Mulher feliz usando internet Brisanet" class="hero-model hero-model-mobile">
         </div>
       </div>
     </section>

@@ -6,6 +6,7 @@
   <meta name="description" content="Brisasoluções - Internet Fibra Óptica para Empresas: conectividade, segurança e soluções de T.I para seu negócio crescer.">
   <meta name="theme-color" content="#1E1E1E">
   <title>Brisasoluções | Internet Fibra para Empresas</title>
+  <link rel="icon" type="image/x-icon" href="img/favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -470,6 +471,14 @@
       transform: translateX(5%);       /* Pequeno ajuste para direita */
     }
 
+    .hero-model-mobile {
+      display: none;
+    }
+
+    .hero-model-desktop {
+      display: block;
+    }
+
     @keyframes fadeInUp {
       from {
         opacity: 0;
@@ -580,6 +589,14 @@
 
       .hero-image-wrapper::before {
         filter: blur(40px);      /* Menos blur em mobile */
+      }
+
+      .hero-model-desktop {
+        display: none;
+      }
+
+      .hero-model-mobile {
+        display: block;
       }
     }
 
@@ -1684,7 +1701,8 @@
 
         <!-- Imagem Flutuante à Direita -->
         <div class="hero-image-wrapper">
-          <img src="img/modelo-empresarial.png" alt="Empresária satisfeita com internet Brisasoluções" class="hero-model">
+          <img src="img/hero-web-empresas-dezembro.png" alt="Empresária satisfeita com internet Brisasoluções" class="hero-model hero-model-desktop">
+          <img src="img/hero-mobile-empresas-dezembro.png" alt="Empresária satisfeita com internet Brisasoluções" class="hero-model hero-model-mobile">
         </div>
       </div>
     </section>
