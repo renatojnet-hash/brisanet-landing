@@ -276,7 +276,6 @@
     ======================================== */
 
     .hero {
-      background: radial-gradient(ellipse at top left, #3b6be8 0%, #2855d4 50%, #1e45b8 100%);
       position: relative;
       overflow: hidden;
       min-height: 650px;
@@ -284,16 +283,6 @@
       padding-bottom: 0;
     }
 
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 50%;
-      height: 100%;
-      background: radial-gradient(ellipse at top right, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
-      pointer-events: none;
-    }
 
     .hero-container {
       position: relative;
@@ -452,21 +441,31 @@
 
     .hero-image-wrapper {
       position: absolute;
-      bottom: 0;
-      right: 5%;
-      width: 45%;
-      height: 90%;
-      z-index: 5;
-      animation: fadeInRight 1s var(--ease-out) 0.4s forwards;
-      opacity: 0;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    .hero-image-wrapper::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.66);
+      z-index: 2;
+      pointer-events: none;
     }
 
     .hero-model {
       width: 100%;
       height: 100%;
-      object-fit: contain;
-      object-position: bottom right;
-      filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.3));
+      object-fit: cover;
+      object-position: center;
+      z-index: 1;
     }
 
     .hero-model-mobile {
@@ -571,16 +570,11 @@
       }
 
       .hero-image-wrapper {
-        position: relative;
-        width: 80%;
-        height: 350px;
-        right: auto;
-        margin: 0 auto;
-        opacity: 0.85;
-      }
-
-      .hero-model {
-        object-position: bottom center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
       }
 
       .hero-model-desktop {
