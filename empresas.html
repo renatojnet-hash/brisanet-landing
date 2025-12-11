@@ -398,21 +398,48 @@
 
     .hero-image-wrapper {
       position: absolute;
-      bottom: 0;
-      right: 5%;
-      width: 45%;
-      height: 90%;
+      bottom: -40px;              /* Permite mostrar os pés sem cortar */
+      right: 0;                   /* Alinhado com a borda (mais espaço) */
+      width: 50%;                 /* Mais largo para melhor presença */
+      height: 110%;               /* Mais alto para não cortar cabeça */
+      max-width: 650px;           /* Limite máximo em telas grandes */
       z-index: 5;
       animation: fadeInRight 1s var(--ease-out) 0.4s forwards;
       opacity: 0;
+    }
+
+    /* Shape decorativo sutil atrás da imagem */
+    .hero-image-wrapper::before {
+      content: '';
+      position: absolute;
+      width: 70%;
+      height: 70%;
+      background: radial-gradient(
+        ellipse at center,
+        rgba(255, 80, 34, 0.12) 0%,
+        rgba(255, 80, 34, 0.04) 50%,
+        transparent 100%
+      );
+      border-radius: 50%;
+      left: 15%;
+      top: 15%;
+      z-index: -1;
+      filter: blur(60px);
+      animation: pulse-glow 4s ease-in-out infinite;
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.15); opacity: 0.7; }
     }
 
     .hero-model {
       width: 100%;
       height: 100%;
       object-fit: contain;
-      object-position: bottom right;
+      object-position: bottom center;  /* Centralizado verticalmente, base embaixo */
       filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.5));
+      transform: translateX(5%);       /* Pequeno ajuste para direita */
     }
 
     @keyframes fadeInUp {
@@ -451,9 +478,22 @@
       .hero-image-wrapper {
         position: relative;
         right: auto;
-        width: 80%;
-        height: 400px;
-        margin: 0 auto;
+        bottom: auto;
+        width: 70%;              /* Ajustado para tablet */
+        height: 450px;           /* Altura fixa adequada */
+        max-width: 500px;
+        margin: 2rem auto 0;     /* Espaço superior */
+      }
+
+      .hero-image-wrapper::before {
+        width: 90%;
+        height: 90%;
+        left: 5%;
+        top: 5%;
+      }
+
+      .hero-model {
+        transform: translateX(0);  /* Remove ajuste horizontal */
       }
     }
 
@@ -464,8 +504,13 @@
       }
 
       .hero-image-wrapper {
-        width: 100%;
-        height: 300px;
+        width: 85%;              /* Mais largo em mobile */
+        height: 350px;           /* Altura reduzida */
+        margin-top: 1.5rem;
+      }
+
+      .hero-image-wrapper::before {
+        filter: blur(40px);      /* Menos blur em mobile */
       }
     }
 
