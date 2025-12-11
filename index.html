@@ -18,22 +18,30 @@
       --brand-orange: #FF5722;
       --brand-blue-dark: #1a237e;
 
-      /* Backgrounds por Seção */
-      --bg-hero: #2855d4;           /* Hero e Footer - Azul Vibrante */
-      --bg-light: #f5f5f7;          /* Seção Planos e Depoimentos - Cinza Claro */
-      --bg-dark: #0a0a0f;           /* Benefícios e FAQ - Escuro */
-      --bg-dark-2: #12121a;         /* Cards sobre escuro */
-      --bg-cta: #FF5722;            /* CTA Final - Laranja */
+      /* Backgrounds por Seção - Versão Alternativa */
+      --bg-hero: #2855d4;           /* Hero - Azul Vibrante */
+      --bg-plans: #2855d4;          /* Seção Planos - Azul Vibrante */
+      --bg-benefits: #f5f5f7;       /* Benefícios - Cinza Claro */
+      --bg-testimonials: #2855d4;   /* Depoimentos - Azul Vibrante */
+      --bg-faq: #f5f5f7;            /* FAQ - Cinza Claro */
+      --bg-cta: #2d2d2d;            /* CTA Final - Cinza Escuro */
+      --bg-footer: #2855d4;         /* Footer - Azul Vibrante */
+
+      /* Backgrounds legados */
+      --bg-light: #f5f5f7;
+      --bg-dark: #0a0a0f;
+      --bg-dark-2: #12121a;
 
       /* Backgrounds legados (mantidos para compatibilidade) */
       --bg: #0a0a0f;
       --bg2: #12121a;
       --bg3: #1a1a24;
 
-      /* Cards */
-      --card-on-light: #2d2d3a;     /* Card escuro sobre fundo cinza */
+      /* Cards - Versão Cards Brancos */
+      --card-on-blue: #ffffff;      /* Card branco sobre fundo azul */
+      --card-on-light: #ffffff;     /* Card branco sobre fundo cinza */
       --card-on-dark: #12121a;      /* Card sobre fundo escuro */
-      --card-light: #ffffff;        /* Card branco sobre cinza */
+      --card-light: #ffffff;        /* Card branco */
 
       /* Surfaces */
       --surface: rgba(255, 255, 255, 0.03);
@@ -50,6 +58,11 @@
       --text-on-light: #1a237e;     /* Azul escuro para títulos */
       --text-on-light-muted: #5f6368; /* Cinza médio para subtítulos */
       --text-on-light-body: #3c4043; /* Cinza escuro para corpo */
+
+      /* Textos sobre cards brancos */
+      --text-on-white: #1a1a1a;     /* Preto para textos principais */
+      --text-on-white-muted: #5f6368; /* Cinza para textos secundários */
+      --text-on-white-subtle: #9aa0a6; /* Cinza claro para textos sutis */
 
       /* Brand Colors */
       --accent: #FF5722;             /* Laranja vibrante (atualizado) */
@@ -153,7 +166,7 @@
       padding: 0.5rem 1rem;
       font-size: 0.9rem;
       font-weight: 500;
-      color: var(--text-muted);
+      color: #ffffff;
       border-radius: 8px;
       transition: all 0.2s ease;
     }
@@ -167,9 +180,9 @@
       padding: 0.5rem 1rem;
       font-size: 0.875rem;
       font-weight: 600;
-      color: var(--primary);
-      background: rgba(243, 112, 33, 0.1);
-      border: 1px solid var(--primary);
+      color: #ffffff;
+      background: transparent;
+      border: 2px solid #ffffff;
       border-radius: 50px;
       text-decoration: none;
       transition: all 0.3s ease;
@@ -258,64 +271,323 @@
     }
 
     /* ========================================
-       HERO - Banner Only
+       HERO - Estrutura Moderna
     ======================================== */
 
     .hero {
-      padding-top: 70px;
-      background: var(--bg-hero);
+      background: radial-gradient(ellipse at top left, #3b6be8 0%, #2855d4 50%, #1e45b8 100%);
       position: relative;
+      overflow: hidden;
+      min-height: 650px;
+      padding-top: 90px;
+      padding-bottom: 0;
     }
-    
-    .hero-banner {
-      width: 100%;
-      max-width: 1280px;
-      margin: 0 auto;
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 50%;
+      height: 100%;
+      background: radial-gradient(ellipse at top right, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .hero-container {
       position: relative;
-    }
-    
-    .hero-banner-desktop,
-    .hero-banner-mobile {
-      width: 100%;
-      border-radius: 0;
-    }
-    
-    .hero-banner-desktop {
-      display: block;
-    }
-    
-    .hero-banner-mobile {
-      display: none;
-    }
-    
-    /* Placeholder styling when no image */
-    .banner-placeholder {
-      width: 100%;
-      aspect-ratio: 16/5;
-      background: rgba(255, 255, 255, 0.1);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
+      min-height: 560px;
+      gap: 3rem;
+    }
+
+    .hero-content {
+      flex: 1;
+      max-width: 600px;
+      z-index: 10;
+      padding: 2rem 0;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1.25rem;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 50px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 1.5rem;
+      animation: fadeInUp 0.8s var(--ease-out) 0.2s forwards;
+      opacity: 0;
+    }
+
+    .hero-badge-icon {
+      width: 18px;
+      height: 18px;
+      color: var(--accent);
+    }
+
+    .hero-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.75rem, 2rem + 4vw, 4.5rem);
+      font-weight: 700;
+      color: white;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.25rem;
+      animation: fadeInUp 0.8s var(--ease-out) 0.3s forwards;
+      opacity: 0;
+    }
+
+    .hero-title-highlight {
+      color: var(--accent);
+      display: block;
+    }
+
+    /* Badge Verde para Residencial */
+    .hero-badge-green {
+      background: #00A859;
+      border-color: rgba(0, 168, 89, 0.5);
+    }
+
+    /* Subtítulo H2 */
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: rgba(255, 255, 255, 0.85);
+      font-weight: 500;
+      line-height: 1.5;
+      margin-bottom: 2.5rem;
+      animation: fadeInUp 0.8s var(--ease-out) 0.4s forwards;
+      opacity: 0;
+    }
+
+    /* Layout Horizontal da Oferta */
+    .hero-offer {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 16px;
+      padding: 1.75rem 2rem;
+      margin-bottom: 2rem;
+      animation: fadeInUp 0.8s var(--ease-out) 0.5s forwards;
+      opacity: 0;
+    }
+
+    .hero-offer-left {
+      flex: 1;
+    }
+
+    .hero-offer-speed {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: white;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-offer-extra {
+      font-size: 1.125rem;
+      color: rgba(255, 255, 255, 0.85);
+      font-weight: 500;
+    }
+
+    .hero-offer-divider {
+      width: 2px;
+      height: 60px;
+      background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.3), transparent);
+    }
+
+    .hero-offer-right {
+      flex: 1;
+      display: flex;
       flex-direction: column;
       gap: 1rem;
     }
-    
-    .banner-placeholder-icon {
-      width: 64px;
-      height: 64px;
-      color: var(--text-subtle);
+
+    .hero-offer-price {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: white;
+      line-height: 1;
     }
-    
-    .banner-placeholder-text {
-      color: var(--text-subtle);
-      font-size: 0.9rem;
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1.25rem 3rem;
+      background: var(--accent);
+      color: white;
+      font-size: 1.125rem;
+      font-weight: 700;
+      border-radius: 14px;
+      box-shadow: 0 8px 32px rgba(255, 87, 34, 0.4);
+      transition: all 0.3s var(--ease-spring);
+      animation: fadeInUp 0.8s var(--ease-out) 0.6s forwards;
+      opacity: 0;
     }
-    
+
+    .hero-cta:hover {
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: 0 12px 48px rgba(255, 87, 34, 0.5);
+      background: #ff6b3d;
+    }
+
+    .hero-cta svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .hero-image-wrapper {
+      position: absolute;
+      bottom: 0;
+      right: 5%;
+      width: 45%;
+      height: 90%;
+      z-index: 5;
+      animation: fadeInRight 1s var(--ease-out) 0.4s forwards;
+      opacity: 0;
+    }
+
+    .hero-model {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: bottom right;
+      filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.3));
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* Responsivo Mobile */
+    @media (max-width: 1024px) {
+      .hero-image-wrapper {
+        width: 50%;
+        right: 0;
+      }
+    }
+
     @media (max-width: 768px) {
-      .hero-banner-desktop { display: none; }
-      .hero-banner-mobile { display: block; }
-      .banner-placeholder { aspect-ratio: 1/1; }
+      .hero {
+        min-height: auto;
+        padding-top: 80px;
+        padding-bottom: 2rem;
+      }
+
+      .hero-container {
+        flex-direction: column;
+        min-height: auto;
+        gap: 2rem;
+      }
+
+      .hero-content {
+        max-width: 100%;
+        text-align: center;
+        padding: 0;
+      }
+
+      .hero-badge {
+        margin: 0 auto 1.25rem;
+      }
+
+      .hero-title {
+        font-size: clamp(2rem, 8vw, 2.75rem);
+      }
+
+      .hero-description {
+        font-size: 1.1rem;
+      }
+
+      /* Oferta Responsiva Mobile - Layout Vertical */
+      .hero-offer {
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 1.5rem;
+      }
+
+      .hero-offer-divider {
+        width: 80%;
+        height: 2px;
+        background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
+      }
+
+      .hero-offer-left,
+      .hero-offer-right {
+        text-align: center;
+      }
+
+      .hero-offer-speed {
+        font-size: 2rem;
+      }
+
+      .hero-offer-price {
+        font-size: 1.75rem;
+      }
+
+      .hero-cta {
+        width: 100%;
+        justify-content: center;
+        padding: 1.125rem 2rem;
+      }
+
+      .hero-image-wrapper {
+        position: relative;
+        width: 80%;
+        height: 350px;
+        right: auto;
+        margin: 0 auto;
+        opacity: 0.85;
+      }
+
+      .hero-model {
+        object-position: bottom center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-image-wrapper {
+        width: 90%;
+        height: 300px;
+      }
+
+      .hero-title {
+        font-size: 2rem;
+      }
+
+      .hero-price-value {
+        font-size: 2.5rem;
+      }
     }
 
     /* ========================================
@@ -323,21 +595,81 @@
     ======================================== */
 
     .plans {
-      background: var(--bg-light);
+      background: var(--bg-plans);
       position: relative;
     }
 
-    /* Títulos sobre fundo claro na seção de planos */
+    /* Títulos sobre fundo azul na seção de planos */
     .plans .section-title {
-      color: var(--text-on-light);
+      color: white;
     }
 
     .plans .section-subtitle {
-      color: var(--text-on-light-muted);
+      color: rgba(255, 255, 255, 0.9);
     }
 
     .plans .section-eyebrow {
       color: var(--accent);
+    }
+
+    /* Cards BRANCOS na seção de planos */
+    .plans .plan-card {
+      background: white;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+    }
+
+    .plans .plan-card.featured {
+      border: 2px solid var(--accent);
+      box-shadow: 0 8px 40px rgba(255, 87, 34, 0.3);
+    }
+
+    /* Textos ESCUROS nos cards brancos */
+    .plans .plan-speed-value {
+      color: var(--text-on-white);
+    }
+
+    .plans .plan-speed-unit {
+      color: var(--text-on-white-muted);
+    }
+
+    .plans .plan-speed-label {
+      color: var(--text-on-white-muted);
+    }
+
+    .plans .plan-partner {
+      color: var(--text-on-white-muted);
+    }
+
+    .plans .plan-price-old {
+      color: var(--text-on-white-subtle);
+    }
+
+    .plans .plan-price-currency,
+    .plans .plan-price-value {
+      color: var(--text-on-white);
+    }
+
+    .plans .plan-price-period {
+      color: var(--text-on-white-muted);
+    }
+
+    .plans .plan-feature {
+      color: var(--text-on-white);
+    }
+
+    .plans .plan-feature svg {
+      color: var(--green);
+    }
+
+    /* Barra de progresso sobre card branco */
+    .plans .plan-speed-bar {
+      background: rgba(0, 0, 0, 0.08);
+    }
+
+    /* Borda inferior do preço */
+    .plans .plan-price {
+      border-bottom-color: rgba(0, 0, 0, 0.1);
     }
 
     .section-header {
@@ -395,10 +727,11 @@
       display: inline-flex;
       gap: 0.25rem;
       padding: 0.375rem;
-      background: white;
-      border: 1px solid var(--border-light);
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.3);
       border-radius: 14px;
-      box-shadow: var(--shadow-card-light);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      backdrop-filter: blur(10px);
     }
 
     .plan-tab {
@@ -406,19 +739,19 @@
       border-radius: 10px;
       font-size: 0.95rem;
       font-weight: 600;
-      color: var(--text-on-light-muted);
+      color: #5f6368;
       transition: all 0.3s var(--ease-out);
     }
 
     .plan-tab.active {
       color: white;
-      background: var(--accent-gradient);
-      box-shadow: var(--shadow-accent);
+      background: var(--accent);
+      box-shadow: 0 4px 16px rgba(255, 87, 34, 0.4);
     }
 
     .plan-tab:hover:not(.active) {
-      color: var(--text-on-light);
-      background: var(--surface-light);
+      color: #1a1a1a;
+      background: rgba(0, 0, 0, 0.05);
     }
 
     .plan-panel { display: none; }
@@ -438,17 +771,22 @@
         display: flex;
         gap: 1rem;
         overflow-x: auto;
+        overflow-y: hidden;
         scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
         padding: 1rem 0.5rem 1.5rem;
         margin: 0 -1.5rem;
         scrollbar-width: none;
+        touch-action: pan-x pinch-zoom;
+        overscroll-behavior-x: contain;
+        overscroll-behavior-y: auto;
       }
       .plan-grid::-webkit-scrollbar { display: none; }
       .plan-card {
         flex: 0 0 85%;
         scroll-snap-align: center;
         min-width: 300px;
+        touch-action: manipulation;
       }
     }
 
@@ -756,11 +1094,68 @@
     /* ========================================
        BENEFITS SECTION
     ======================================== */
-    
+
     .benefits {
-      background: var(--bg2);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
+      background: var(--bg-benefits);
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    /* Títulos sobre fundo cinza claro */
+    .benefits .section-title {
+      color: var(--text-on-light);
+    }
+
+    .benefits .section-subtitle {
+      color: var(--text-on-light-muted);
+    }
+
+    .benefits .section-eyebrow {
+      color: var(--accent);
+    }
+
+    /* Cards brancos sobre cinza claro */
+    .benefits .benefit-card {
+      background: white;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .benefits .benefit-card:hover {
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    }
+
+    .benefits .benefit-card::after {
+      background: var(--accent);
+    }
+
+    .benefits .benefit-icon {
+      background: rgba(255, 87, 34, 0.1);
+      border-color: transparent;
+    }
+
+    .benefits .benefit-icon svg {
+      color: var(--accent);
+    }
+
+    .benefits .benefit-card:hover .benefit-icon {
+      background: var(--accent);
+    }
+
+    .benefits .benefit-card:hover .benefit-icon svg {
+      color: white;
+    }
+
+    .benefits .benefit-label {
+      color: var(--accent);
+    }
+
+    .benefits .benefit-title {
+      color: var(--text-on-white);
+    }
+
+    .benefits .benefit-desc {
+      color: var(--text-on-white-muted);
     }
 
     .benefits-grid {
@@ -856,20 +1251,65 @@
     ======================================== */
 
     .testimonials {
-      background: var(--bg-light);
+      background: var(--bg-testimonials);
     }
 
-    /* Títulos sobre fundo claro na seção de depoimentos */
+    /* Títulos sobre fundo azul na seção de depoimentos */
     .testimonials .section-title {
-      color: var(--text-on-light);
+      color: white;
     }
 
     .testimonials .section-subtitle {
-      color: var(--text-on-light-muted);
+      color: rgba(255, 255, 255, 0.9);
     }
 
     .testimonials .section-eyebrow {
       color: var(--accent);
+    }
+
+    /* Cards brancos sobre azul */
+    .testimonials .experience-card {
+      background: white;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .testimonials .experience-card:hover {
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    .testimonials .experience-card-icon {
+      background: rgba(255, 87, 34, 0.1);
+    }
+
+    .testimonials .experience-card-icon svg {
+      color: var(--accent);
+    }
+
+    .testimonials .experience-card h4 {
+      color: var(--text-on-white);
+    }
+
+    .testimonials .experience-card p {
+      color: var(--text-on-white-muted);
+    }
+
+    .testimonials .testimonial-card {
+      background: white;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    .testimonials .testimonial-quote {
+      color: var(--text-on-white-body);
+    }
+
+    .testimonials .testimonial-info h5 {
+      color: var(--text-on-white);
+    }
+
+    .testimonials .testimonial-info span {
+      color: var(--text-on-white-muted);
     }
 
     .testimonials-wrapper {
@@ -1042,8 +1482,52 @@
     /* ========================================
        FAQ
     ======================================== */
-    
-    .faq { background: var(--bg2); border-top: 1px solid var(--border); }
+
+    .faq {
+      background: var(--bg-faq);
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    /* Títulos sobre fundo cinza claro */
+    .faq .section-title {
+      color: var(--text-on-light);
+    }
+
+    .faq .section-subtitle {
+      color: var(--text-on-light-muted);
+    }
+
+    .faq .section-eyebrow {
+      color: var(--accent);
+    }
+
+    /* Items brancos sobre cinza claro */
+    .faq .faq-item {
+      background: white;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .faq .faq-item:hover {
+      border-color: rgba(0, 0, 0, 0.12);
+    }
+
+    .faq .faq-item[open] {
+      border-color: var(--accent);
+      box-shadow: 0 4px 16px rgba(255, 87, 34, 0.2);
+    }
+
+    .faq .faq-item summary {
+      color: var(--text-on-white);
+    }
+
+    .faq .faq-item summary:hover {
+      background: rgba(0, 0, 0, 0.02);
+    }
+
+    .faq .faq-item p {
+      color: var(--text-on-white-muted);
+    }
 
     .faq-grid {
       display: grid;
@@ -1107,95 +1591,82 @@
     }
 
     /* ========================================
-       CTA SECTION
+       CTA SECTION - Simplificada
     ======================================== */
 
-    .cta-section { background: var(--bg-cta); padding-bottom: 6rem; }
+    .cta-section {
+      background: var(--bg-cta);
+      padding: 5rem 0;
+      margin: 0;
+    }
 
     .cta-card {
       background: transparent;
       border-radius: 0;
-      padding: 4rem 2rem;
+      padding: 0;
       text-align: center;
       position: relative;
       overflow: hidden;
     }
-    
+
     .cta-content {
       position: relative;
       z-index: 1;
-      max-width: 600px;
+      max-width: 700px;
       margin: 0 auto;
+      padding: 0 1.5rem;
     }
-    
+
     .cta-title {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(2.25rem, 1.75rem + 3vw, 3.5rem);
+      font-size: clamp(2.5rem, 2rem + 3vw, 4rem);
       font-weight: 700;
       color: white;
-      margin-bottom: 1rem;
+      margin-bottom: 1.25rem;
       letter-spacing: -0.02em;
+      line-height: 1.1;
     }
-    
+
     .cta-subtitle {
-      font-size: 1.25rem;
-      color: rgba(255, 255, 255, 0.9);
-      margin-bottom: 2rem;
+      font-size: 1.35rem;
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 2.5rem;
+      line-height: 1.5;
     }
-    
+
+    /* Ocultar os 3 benefícios (checkmarks) */
     .cta-features {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
+      display: none;
     }
-    
-    .cta-feature {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: rgba(255, 255, 255, 0.95);
-      font-weight: 500;
-    }
-    
-    .cta-feature svg { width: 20px; height: 20px; }
-    
+
     .cta-buttons {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 1rem;
     }
-    
+
+    /* Botão primário LARANJA com texto BRANCO */
     .cta-btn-p {
-      padding: 1.125rem 2.25rem;
-      background: white;
-      color: var(--accent);
+      padding: 1.25rem 3rem;
+      background: var(--accent);
+      color: white;
       border-radius: 14px;
       font-weight: 700;
+      font-size: 1.125rem;
       transition: all 0.3s var(--ease-spring);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 8px 32px rgba(255, 87, 34, 0.4);
     }
-    
+
     .cta-btn-p:hover {
-      transform: translateY(-4px) scale(1.02);
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: 0 12px 48px rgba(255, 87, 34, 0.5);
+      background: #ff6b3d;
     }
-    
+
+    /* Ocultar botão secundário */
     .cta-btn-s {
-      padding: 1.125rem 2.25rem;
-      background: transparent;
-      color: white;
-      border: 2px solid rgba(255, 255, 255, 0.4);
-      border-radius: 14px;
-      font-weight: 600;
-      transition: all 0.3s var(--ease-out);
-    }
-    
-    .cta-btn-s:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: white;
+      display: none;
     }
 
     /* ========================================
@@ -1403,17 +1874,53 @@
   </div>
 
   <main>
-    <!-- Hero Section - Banner Only -->
+    <!-- Hero Section - Estrutura Moderna -->
     <section class="hero" id="top">
-      <div class="hero-banner">
-        <!-- Desktop Banner -->
-        <picture class="hero-banner-desktop">
-          <img src="img/banner-desktop.png" alt="Brisanet Internet Fibra" class="hero-banner-desktop">
-        </picture>
-        <!-- Mobile Banner -->
-        <picture class="hero-banner-mobile">
-          <img src="img/banner-mobile.png" alt="Brisanet Internet Fibra" class="hero-banner-mobile">
-        </picture>
+      <div class="container hero-container">
+        <!-- Conteúdo à Esquerda -->
+        <div class="hero-content">
+          <!-- Badge -->
+          <div class="hero-badge hero-badge-green">
+            <svg class="hero-badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+            <span>6x Líder em Satisfação Anatel</span>
+          </div>
+
+          <!-- Título -->
+          <h1 class="hero-title">
+            Brisanet Fibra: Internet de alta performance
+            <span class="hero-title-highlight">para sua casa</span>
+          </h1>
+
+          <!-- Subtítulo -->
+          <h2 class="hero-subtitle">
+            Aproveite a instalação rápida e conecte sua casa agora.
+          </h2>
+
+          <!-- Oferta Horizontal -->
+          <div class="hero-offer">
+            <div class="hero-offer-left">
+              <div class="hero-offer-speed">700 MEGA</div>
+              <div class="hero-offer-extra">+ Brisachip 50GB</div>
+            </div>
+            <div class="hero-offer-divider"></div>
+            <div class="hero-offer-right">
+              <div class="hero-offer-price">R$ 99,90/mês</div>
+              <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 700 Mega + Chip" class="hero-cta" target="_blank" rel="noopener">
+                <span>Assine Agora</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Imagem Flutuante à Direita -->
+        <div class="hero-image-wrapper">
+          <img src="img/modelo.png" alt="Mulher feliz usando internet Brisanet" class="hero-model">
+        </div>
       </div>
     </section>
 
@@ -1430,7 +1937,7 @@
         <div class="plan-tabs-wrapper reveal">
           <div class="plan-tabs">
             <button class="plan-tab active" data-tab="combos">Combos com Apps</button>
-            <button class="plan-tab" data-tab="fibra">Fibra Pura</button>
+            <button class="plan-tab" data-tab="fibra">Apenas Internet</button>
           </div>
         </div>
 
@@ -1460,7 +1967,7 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação grátis</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 700 Mega + Chip" class="plan-cta" target="_blank" rel="noopener"><span>Assinar agora</span></a>
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 700 Mega + Chip" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
               </div>
             </article>
 
@@ -1487,7 +1994,7 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação grátis</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 600 Mega + Netflix" class="plan-cta" target="_blank" rel="noopener"><span>Assinar agora</span></a>
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 600 Mega + Netflix" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
               </div>
             </article>
 
@@ -1514,7 +2021,7 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação grátis</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 500 Mega + Globoplay" class="plan-cta" target="_blank" rel="noopener"><span>Assinar agora</span></a>
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 500 Mega + Globoplay" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
               </div>
             </article>
 
@@ -1541,7 +2048,7 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação grátis</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 600 Mega + Paramount+" class="plan-cta" target="_blank" rel="noopener"><span>Assinar agora</span></a>
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 600 Mega + Paramount+" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
               </div>
             </article>
           </div>
@@ -1557,7 +2064,7 @@
           </div>
         </div>
 
-        <!-- Fibra Pura Panel -->
+        <!-- Apenas Internet Panel -->
         <div class="plan-panel" id="panel-fibra">
           <div class="plan-grid" id="grid-fibra">
             <article class="plan-card reveal reveal-delay-1">
@@ -1583,7 +2090,7 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação grátis</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 500 Mega Fibra Pura" class="plan-cta" target="_blank" rel="noopener"><span>Assinar agora</span></a>
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 500 Mega Fibra Pura" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
               </div>
             </article>
 
@@ -1610,7 +2117,7 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação grátis</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 600 Mega Fibra Pura" class="plan-cta" target="_blank" rel="noopener"><span>Assinar agora</span></a>
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 600 Mega Fibra Pura" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
               </div>
             </article>
 
@@ -1637,7 +2144,7 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação grátis</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 700 Mega Fibra Pura" class="plan-cta" target="_blank" rel="noopener"><span>Assinar agora</span></a>
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 700 Mega Fibra Pura" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
               </div>
             </article>
 
@@ -1664,7 +2171,7 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação grátis</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 1 Giga Fibra Pura" class="plan-cta" target="_blank" rel="noopener"><span>Assinar agora</span></a>
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 1 Giga Fibra Pura" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
               </div>
             </article>
           </div>
