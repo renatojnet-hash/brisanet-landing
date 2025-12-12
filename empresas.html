@@ -6,6 +6,7 @@
   <meta name="description" content="Brisasoluções - Internet Fibra Óptica para Empresas: conectividade, segurança e soluções de T.I para seu negócio crescer.">
   <meta name="theme-color" content="#1E1E1E">
   <title>Brisasoluções | Internet Fibra para Empresas</title>
+  <link rel="icon" type="image/x-icon" href="img/favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -246,340 +247,208 @@
     }
 
     /* ========================================
-       HERO - Estrutura Moderna Empresarial
+       HERO BANNER - Background Image Style (Empresarial)
     ======================================== */
 
-    .hero {
-      background: linear-gradient(135deg, #1E1E1E 0%, #2A2A2A 50%, #1E1E1E 100%);
+    .hero-banner {
       position: relative;
-      overflow: hidden;
-      min-height: 650px;
+      width: 100%;
+      min-height: 600px;
+      background:
+        url('img/hero-web-empresas-dez-v2.png'),
+        linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 80%);
+      background-size: cover, cover;
+      background-position: right center, center;
+      background-repeat: no-repeat;
+      display: flex;
+      align-items: center;
       padding-top: 90px;
-      padding-bottom: 0;
+      overflow: hidden;
     }
 
-    .hero::before {
-      content: '';
+    .hero-banner__overlay {
       position: absolute;
       top: 0;
-      right: 0;
-      width: 50%;
+      left: 0;
+      width: 65%;
       height: 100%;
-      background: radial-gradient(ellipse at top right, rgba(255, 80, 34, 0.08) 0%, transparent 50%);
+      background: linear-gradient(90deg,
+        rgba(26, 26, 26, 0.95) 0%,
+        rgba(26, 26, 26, 0.75) 30%,
+        rgba(26, 26, 26, 0.40) 50%,
+        rgba(26, 26, 26, 0.0) 70%);
       pointer-events: none;
+      z-index: 1;
     }
 
-    .hero-container {
+    .hero-banner__content {
       position: relative;
+      z-index: 2;
+      max-width: 600px;
+      padding: 60px 20px;
+    }
+
+    .hero-banner__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #F59E0B;
+      color: #1e3a8a;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 8px 16px;
+      border-radius: 50px;
+      margin-bottom: 20px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .hero-banner__title {
+      font-family: 'Figtree', sans-serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .hero-banner__title .highlight {
+      color: #FF6B35;
+    }
+
+    .hero-banner__subtitle {
+      font-size: 1.05rem;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 32px;
+      line-height: 1.5;
+    }
+
+    .hero-banner__offer-box {
+      background: rgba(255, 107, 53, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 0;
+      border: 1px solid rgba(255, 107, 53, 0.3);
+      display: inline-block;
+      min-width: 400px;
+    }
+
+    .hero-banner__offer-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      min-height: 560px;
-      gap: 3rem;
+      gap: 24px;
     }
 
-    .hero-content {
-      flex: 1;
-      max-width: 600px;
-      z-index: 10;
-      padding: 2rem 0;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.5rem 1.25rem;
-      background: rgba(255, 80, 34, 0.1);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 80, 34, 0.3);
-      border-radius: 50px;
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: var(--accent);
-      margin-bottom: 1.5rem;
-      animation: fadeInUp 0.8s var(--ease-out) 0.2s forwards;
-      opacity: 0;
-    }
-
-    .hero-badge-icon {
-      width: 18px;
-      height: 18px;
-      color: var(--accent);
-    }
-
-    .hero-title {
-      font-family: 'Figtree', sans-serif;
-      font-size: clamp(2.75rem, 2rem + 4vw, 4.5rem);
-      font-weight: 800;
-      color: white;
-      line-height: 1.1;
-      letter-spacing: -0.03em;
-      margin-bottom: 1.25rem;
-      animation: fadeInUp 0.8s var(--ease-out) 0.3s forwards;
-      opacity: 0;
-    }
-
-    .hero-title-highlight {
-      color: var(--accent);
-      display: block;
-    }
-
-    /* Badge Laranja para Empresarial */
-    .hero-badge-orange {
-      background: #FF6B35;
-      border-color: rgba(255, 107, 53, 0.5);
-    }
-
-    /* Subtítulo H2 */
-    .hero-subtitle {
-      font-size: 1.25rem;
-      color: rgba(255, 255, 255, 0.85);
-      font-weight: 500;
-      line-height: 1.5;
-      margin-bottom: 2.5rem;
-      animation: fadeInUp 0.8s var(--ease-out) 0.4s forwards;
-      opacity: 0;
-    }
-
-    /* Layout Horizontal da Oferta */
-    .hero-offer {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-      background: rgba(255, 107, 53, 0.1);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 107, 53, 0.3);
-      border-radius: 16px;
-      padding: 1.75rem 2rem;
-      margin-bottom: 2rem;
-      animation: fadeInUp 0.8s var(--ease-out) 0.5s forwards;
-      opacity: 0;
-    }
-
-    .hero-offer-left {
+    .hero-banner__plan-info {
       flex: 1;
     }
 
-    .hero-offer-speed {
-      font-family: 'Figtree', sans-serif;
-      font-size: 2.5rem;
-      font-weight: 800;
-      color: white;
-      line-height: 1;
-      margin-bottom: 0.5rem;
-    }
-
-    .hero-offer-extra {
-      font-size: 1.125rem;
-      color: rgba(255, 255, 255, 0.85);
-      font-weight: 500;
-    }
-
-    .hero-offer-divider {
-      width: 2px;
-      height: 60px;
-      background: linear-gradient(to bottom, transparent, rgba(255, 107, 53, 0.5), transparent);
-    }
-
-    .hero-offer-right {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .hero-offer-price {
+    .hero-banner__plan-speed {
       font-family: 'Figtree', sans-serif;
       font-size: 2rem;
-      font-weight: 700;
-      color: white;
+      font-weight: 800;
+      color: #ffffff;
       line-height: 1;
+      margin-bottom: 8px;
     }
 
-    .hero-cta {
+    .hero-banner__plan-benefit {
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.85);
+      font-weight: 400;
+    }
+
+    .hero-banner__separator {
+      width: 2px;
+      height: 60px;
+      background: rgba(255, 107, 53, 0.4);
+    }
+
+    .hero-banner__price-info {
+      text-align: left;
+    }
+
+    .hero-banner__price-value {
+      font-family: 'Figtree', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 12px;
+    }
+
+    .hero-banner .btn--highlight {
+      padding: 14px 36px;
+      font-size: 1rem;
+      background: linear-gradient(135deg, #FF5022 0%, #FF6B3D 100%);
+      color: #ffffff;
+      font-weight: 700;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      border: none;
       display: inline-flex;
       align-items: center;
-      gap: 0.75rem;
-      padding: 1.25rem 3rem;
-      background: var(--orange-gradient);
-      color: white;
-      font-size: 1.125rem;
-      font-weight: 700;
-      border-radius: 14px;
-      box-shadow: var(--shadow-accent);
-      transition: all 0.3s var(--ease-spring);
-      animation: fadeInUp 0.8s var(--ease-out) 0.6s forwards;
-      opacity: 0;
+      gap: 8px;
+      white-space: nowrap;
+      text-decoration: none;
     }
 
-    .hero-cta:hover {
-      transform: translateY(-4px) scale(1.03);
-      box-shadow: var(--shadow-glow);
+    .hero-banner .btn--highlight:hover {
       background: linear-gradient(135deg, #FF6B3D 0%, #FF8C42 100%);
-    }
-
-    .hero-cta svg {
-      width: 20px;
-      height: 20px;
-    }
-
-    .hero-image-wrapper {
-      position: absolute;
-      bottom: -40px;              /* Permite mostrar os pés sem cortar */
-      right: 0;                   /* Alinhado com a borda (mais espaço) */
-      width: 50%;                 /* Mais largo para melhor presença */
-      height: 110%;               /* Mais alto para não cortar cabeça */
-      max-width: 650px;           /* Limite máximo em telas grandes */
-      z-index: 5;
-      animation: fadeInRight 1s var(--ease-out) 0.4s forwards;
-      opacity: 0;
-    }
-
-    /* Shape decorativo sutil atrás da imagem */
-    .hero-image-wrapper::before {
-      content: '';
-      position: absolute;
-      width: 70%;
-      height: 70%;
-      background: radial-gradient(
-        ellipse at center,
-        rgba(255, 80, 34, 0.12) 0%,
-        rgba(255, 80, 34, 0.04) 50%,
-        transparent 100%
-      );
-      border-radius: 50%;
-      left: 15%;
-      top: 15%;
-      z-index: -1;
-      filter: blur(60px);
-      animation: pulse-glow 4s ease-in-out infinite;
-    }
-
-    @keyframes pulse-glow {
-      0%, 100% { transform: scale(1); opacity: 0.5; }
-      50% { transform: scale(1.15); opacity: 0.7; }
-    }
-
-    .hero-model {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      object-position: bottom center;  /* Centralizado verticalmente, base embaixo */
-      filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.5));
-      transform: translateX(5%);       /* Pequeno ajuste para direita */
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes fadeInRight {
-      from {
-        opacity: 0;
-        transform: translateX(50px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    @media (max-width: 1024px) {
-      .hero-container {
-        flex-direction: column;
-        text-align: center;
-        padding-top: 2rem;
-      }
-
-      .hero-content {
-        max-width: 100%;
-      }
-
-      .hero-image-wrapper {
-        position: relative;
-        right: auto;
-        bottom: auto;
-        width: 70%;              /* Ajustado para tablet */
-        height: 450px;           /* Altura fixa adequada */
-        max-width: 500px;
-        margin: 2rem auto 0;     /* Espaço superior */
-      }
-
-      .hero-image-wrapper::before {
-        width: 90%;
-        height: 90%;
-        left: 5%;
-        top: 5%;
-      }
-
-      .hero-model {
-        transform: translateX(0);  /* Remove ajuste horizontal */
-      }
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(255, 107, 53, 0.4);
     }
 
     @media (max-width: 768px) {
-      .hero {
-        min-height: 550px;
-        padding-top: 80px;
+      .hero-banner {
+        background:
+          url('img/hero-mob-empresas-dez-v2.png'),
+          linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 80%);
+        background-size: cover, cover;
+        background-position: center top, center;
+        min-height: auto;
+        padding: 80px 0 40px;
       }
 
-      .hero-container {
+      .hero-banner__overlay {
+        width: 100%;
+        background: linear-gradient(180deg,
+          rgba(26, 26, 26, 0.92) 0%,
+          rgba(26, 26, 26, 0.78) 40%,
+          rgba(26, 26, 26, 0.45) 65%,
+          rgba(26, 26, 26, 0.0) 85%);
+      }
+
+      .hero-banner__content {
+        max-width: 100%;
+        text-align: left;
+        padding: 30px 20px;
+      }
+
+      .hero-banner__offer-box {
+        min-width: 100%;
+        width: 100%;
+      }
+
+      .hero-banner__offer-row {
         flex-direction: column;
-        text-align: center;
+        align-items: flex-start;
+        gap: 16px;
       }
 
-      .hero-content {
-        text-align: center;
+      .hero-banner__separator {
+        display: none;
       }
 
-      /* Oferta Responsiva Mobile - Layout Vertical */
-      .hero-offer {
-        flex-direction: column;
-        gap: 1.5rem;
-        padding: 1.5rem;
+      .hero-banner__price-info {
+        width: 100%;
       }
 
-      .hero-offer-divider {
-        width: 80%;
-        height: 2px;
-        background: linear-gradient(to right, transparent, rgba(255, 107, 53, 0.5), transparent);
-      }
-
-      .hero-offer-left,
-      .hero-offer-right {
-        text-align: center;
-      }
-
-      .hero-offer-speed {
-        font-size: 2rem;
-      }
-
-      .hero-offer-price {
-        font-size: 1.75rem;
-      }
-
-      .hero-cta {
+      .hero-banner .btn--highlight {
         width: 100%;
         justify-content: center;
-        padding: 1.125rem 2rem;
-      }
-
-      .hero-image-wrapper {
-        width: 85%;              /* Mais largo em mobile */
-        height: 350px;           /* Altura reduzida */
-        margin-top: 1.5rem;
-      }
-
-      .hero-image-wrapper::before {
-        filter: blur(40px);      /* Menos blur em mobile */
+        padding: 14px 30px;
       }
     }
 
@@ -1639,52 +1508,57 @@
   </div>
 
   <main>
-    <!-- Hero Section - Estrutura Moderna -->
-    <section class="hero" id="top">
-      <div class="container hero-container">
-        <!-- Conteúdo à Esquerda -->
-        <div class="hero-content">
-          <!-- Badge -->
-          <div class="hero-badge hero-badge-orange">
-            <svg class="hero-badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M20 7h-9M11 3L4 10l7 7m8 0v-4a4 4 0 0 0-4-4H4"/>
-            </svg>
-            <span>Conexão Empresarial Certificada</span>
-          </div>
+    <!-- Hero Section - Background Image Style -->
+    <section class="hero-banner" id="top">
+      <div class="hero-banner__overlay"></div>
 
-          <!-- Título -->
-          <h1 class="hero-title">
+      <div class="container">
+        <div class="hero-banner__content">
+
+          <!-- BADGE -->
+          <span class="hero-banner__badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/>
+            </svg>
+            Conexão Empresarial Certificada
+          </span>
+
+          <!-- TÍTULO -->
+          <h1 class="hero-banner__title">
             Brisanet Empresas: Internet de alta performance
-            <span class="hero-title-highlight">para seu negócio</span>
+            <span class="highlight">para seu negócio</span>
           </h1>
 
-          <!-- Subtítulo -->
-          <h2 class="hero-subtitle">
+          <!-- SUBTÍTULO -->
+          <p class="hero-banner__subtitle">
             Tenha suporte prioritário e instalação rápida na sua empresa.
-          </h2>
+          </p>
 
-          <!-- Oferta Horizontal -->
-          <div class="hero-offer">
-            <div class="hero-offer-left">
-              <div class="hero-offer-speed">700 MEGA</div>
-              <div class="hero-offer-extra">+ Conecta + Brisa Fixo</div>
-            </div>
-            <div class="hero-offer-divider"></div>
-            <div class="hero-offer-right">
-              <div class="hero-offer-price">R$ 119,99/mês</div>
-              <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 700 Mega com Conecta+" class="hero-cta" target="_blank" rel="noopener">
-                <span>Assine Agora</span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-              </a>
+          <!-- OFERTA -->
+          <div class="hero-banner__offer-box">
+            <div class="hero-banner__offer-row">
+              <!-- ESQUERDA: Plano -->
+              <div class="hero-banner__plan-info">
+                <div class="hero-banner__plan-speed">700 MEGA</div>
+                <div class="hero-banner__plan-benefit">+ Conecta + Brisa Fixo</div>
+              </div>
+
+              <!-- SEPARADOR -->
+              <div class="hero-banner__separator"></div>
+
+              <!-- DIREITA: Preço + CTA -->
+              <div class="hero-banner__price-info">
+                <div class="hero-banner__price-value">R$ 119,99/mês</div>
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 700 Mega com Conecta+" class="btn btn--highlight" target="_blank" rel="noopener">
+                  Assine Agora
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                  </svg>
+                </a>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- Imagem Flutuante à Direita -->
-        <div class="hero-image-wrapper">
-          <img src="img/modelo-empresarial.png" alt="Empresária satisfeita com internet Brisasoluções" class="hero-model">
         </div>
       </div>
     </section>
