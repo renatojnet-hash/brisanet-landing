@@ -293,7 +293,7 @@
       align-items: center;
       gap: 8px;
       background: #F59E0B;
-      color: #1e3a8a;
+      color: #1a1a1a;
       font-size: 0.75rem;
       font-weight: 700;
       padding: 8px 16px;
@@ -557,17 +557,22 @@
         display: flex;
         gap: 1rem;
         overflow-x: auto;
+        overflow-y: visible;
         scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
         padding: 1rem 0.5rem 1.5rem;
         margin: 0 -1.5rem;
         scrollbar-width: none;
+        touch-action: auto;
+        overscroll-behavior-x: contain;
+        overscroll-behavior-y: auto;
       }
       .plan-grid::-webkit-scrollbar { display: none; }
       .plan-card {
         flex: 0 0 85%;
         scroll-snap-align: center;
         min-width: 300px;
+        touch-action: auto;
       }
     }
 
@@ -1549,7 +1554,7 @@
               <!-- DIREITA: Preço + CTA -->
               <div class="hero-banner__price-info">
                 <div class="hero-banner__price-value">R$ 119,99/mês</div>
-                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 700 Mega com Conecta+" class="btn btn--highlight" target="_blank" rel="noopener">
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano Empresas 700 Mega com Conecta+" class="btn btn--highlight" target="_blank" rel="noopener">
                   Assine Agora
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -1606,7 +1611,7 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Atendimento local</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano PME 350 Mega" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano Empresas PME 350 Mega" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
               </div>
             </article>
 
@@ -1633,7 +1638,7 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Atendimento local</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano PME 600 Mega" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano Empresas PME 600 Mega" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
               </div>
             </article>
 
@@ -1660,7 +1665,7 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Suporte 24/7</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano PME 700 Mega com Conecta+" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano Empresas PME 700 Mega com Conecta+" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
               </div>
             </article>
 
@@ -1687,7 +1692,7 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Atendimento dedicado</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano PME 1 GIGA" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano Empresas PME 1 GIGA" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
               </div>
             </article>
           </div>
@@ -1729,7 +1734,7 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Fidelidade 12 meses</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101?text=Olá! Quero o Link Full IP 100 Mega" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano Empresas Link Full IP 100 Mega" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
               </div>
             </article>
 
@@ -1756,7 +1761,7 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Fidelidade 12 meses</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101?text=Olá! Quero o Link Full IP 300 Mega" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano Empresas Link Full IP 300 Mega" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
               </div>
             </article>
 
@@ -1783,7 +1788,7 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Fidelidade 12 meses</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101?text=Olá! Quero o Link Full IP 500 Mega" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano Empresas Link Full IP 500 Mega" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
               </div>
             </article>
 
@@ -1808,7 +1813,7 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Projeto técnico exclusivo</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101?text=Olá! Quero solicitar proposta Link Full IP acima de 500 Mega" class="plan-cta" target="_blank" rel="noopener"><span>Solicitar proposta</span></a>
+                <a href="https://wa.me/5581992823101?text=Olá! Quero solicitar proposta Empresas Link Full IP acima de 500 Mega" class="plan-cta" target="_blank" rel="noopener"><span>Solicitar proposta</span></a>
               </div>
             </article>
           </div>
@@ -1885,7 +1890,7 @@
       <div class="container">
         <header class="section-header reveal">
           <span class="section-eyebrow">Cases de Sucesso</span>
-          <h2 class="section-title">Empresas que crescem com a Brisa</h2>
+          <h2 class="section-title">Empresas que crescem com a Brisanet</h2>
           <p class="section-subtitle">Veja como ajudamos negócios a aumentar suas vendas.</p>
         </header>
         <div class="testimonials-wrapper">
