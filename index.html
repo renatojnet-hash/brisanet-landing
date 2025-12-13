@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Internet Fibra Óptica Brisanet: planos de 500 Mega a 1 Giga com Wi-Fi 6, streaming incluso e instalação em até 48h.">
+  <meta name="description" content="Internet Fibra Brisanet: planos de 500 Mega a 1 Giga com Wi-Fi 6, BrisaChip 50GB e instalação inclusa. Contrate agora a internet mais estável para sua casa.">
   <meta name="theme-color" content="#2855d4">
-  <title>Brisanet Fibra | Internet Ultra-Rápida até 1 Giga</title>
+  <title>Internet Fibra Brisanet | Planos com Wi-Fi 6 e BrisaChip</title>
   <link rel="icon" type="image/x-icon" href="img/favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -147,8 +147,32 @@
     }
 
     .nav.scrolled {
-      background: rgba(40, 85, 212, 0.95);
-      box-shadow: var(--shadow-md);
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .nav.scrolled .nav-link {
+      color: #1a1a1a;
+    }
+
+    .nav.scrolled .nav-link:hover {
+      color: var(--brand-blue);
+      background: rgba(40, 85, 212, 0.08);
+    }
+
+    .nav.scrolled .nav-switch {
+      color: var(--brand-blue);
+      border-color: var(--brand-blue);
+    }
+
+    .nav.scrolled .logo-img {
+      filter: none;
+    }
+
+    .nav.scrolled .mobile-btn span {
+      background: #1a1a1a;
     }
     
     .nav-inner {
@@ -317,15 +341,22 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: #10b981;
+      background: rgba(0, 0, 0, 0.7);
       color: #ffffff;
       font-size: 0.75rem;
-      font-weight: 700;
-      padding: 8px 16px;
+      font-weight: 600;
+      padding: 10px 18px;
       border-radius: 50px;
       margin-bottom: 20px;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      text-transform: none;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .hero-banner__badge svg {
+      color: #FFD700;
+      filter: drop-shadow(0 0 4px rgba(255, 215, 0, 0.5));
     }
 
     .hero-banner__title {
@@ -344,8 +375,31 @@
     .hero-banner__subtitle {
       font-size: 1.05rem;
       color: rgba(255, 255, 255, 0.9);
-      margin-bottom: 32px;
+      margin-bottom: 24px;
       line-height: 1.5;
+    }
+
+    .hero-banner__checks {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 24px;
+      margin-bottom: 28px;
+    }
+
+    .hero-banner__check {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.95rem;
+      color: #ffffff;
+      font-weight: 500;
+    }
+
+    .hero-banner__check svg {
+      width: 20px;
+      height: 20px;
+      color: #10b981;
+      flex-shrink: 0;
     }
 
     .hero-banner__offer-box {
@@ -894,7 +948,7 @@
     
     .plan-cta {
       padding: 1rem 2rem;
-      background: var(--accent-gradient);
+      background: var(--accent);
       border: none;
       border-radius: 12px;
       font-weight: 700;
@@ -902,26 +956,16 @@
       transition: all 0.3s var(--ease-out);
       position: relative;
       overflow: hidden;
-      box-shadow: var(--shadow-accent);
-    }
-
-    .plan-cta::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, #FF8C42 0%, #ffb347 100%);
-      opacity: 0;
-      transition: opacity 0.3s ease;
+      box-shadow: 0 4px 16px rgba(255, 87, 34, 0.3);
     }
 
     .plan-cta span { position: relative; z-index: 1; }
 
     .plan-cta:hover {
       transform: translateY(-3px);
-      box-shadow: var(--shadow-glow);
+      background: #ff6b3d;
+      box-shadow: 0 8px 24px rgba(255, 87, 34, 0.4);
     }
-
-    .plan-cta:hover::before { opacity: 1; }
 
     .plan-card.featured .plan-cta {
       background: var(--accent-gradient);
@@ -936,44 +980,64 @@
       box-shadow: 0 12px 48px rgba(255, 87, 34, 0.4);
     }
 
-    /* Navigation Arrows */
+    /* Navigation - Pagination Dots + Setas Menores */
     .plan-nav {
       display: flex;
       justify-content: center;
-      gap: 1rem;
-      margin-top: 2rem;
+      align-items: center;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
     }
-    
+
     .plan-nav-btn {
-      width: 48px;
-      height: 48px;
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
-      background: var(--bg2);
-      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--text-muted);
+      color: rgba(255, 255, 255, 0.7);
       transition: all 0.3s var(--ease-out);
     }
-    
+
     .plan-nav-btn:hover {
-      background: var(--accent-gradient);
+      background: var(--accent);
       border-color: transparent;
       color: white;
-      transform: scale(1.1);
-      box-shadow: var(--shadow-accent);
     }
-    
+
     .plan-nav-btn svg {
-      width: 24px;
-      height: 24px;
+      width: 18px;
+      height: 18px;
     }
-    
+
+    .plan-dots {
+      display: flex;
+      gap: 8px;
+    }
+
+    .plan-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+      padding: 0;
+    }
+
+    .plan-dot.active {
+      background: var(--accent);
+      transform: scale(1.2);
+    }
+
     @media (max-width: 640px) {
       .plan-nav { display: flex; }
     }
-    
+
     @media (min-width: 641px) {
       .plan-nav { display: none; }
     }
@@ -1521,9 +1585,27 @@
       line-height: 1.5;
     }
 
-    /* Ocultar os 3 benefícios (checkmarks) */
+    /* Mostrar benefícios no CTA */
     .cta-features {
-      display: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .cta-feature {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 1rem;
+    }
+
+    .cta-feature svg {
+      width: 20px;
+      height: 20px;
+      color: #10b981;
     }
 
     .cta-buttons {
@@ -1776,24 +1858,40 @@
             6x Líder em Satisfação Anatel
           </span>
 
-          <!-- TÍTULO -->
+          <!-- TÍTULO H1 SEO -->
           <h1 class="hero-banner__title">
-            Brisanet Fibra: Internet de alta performance
+            Internet Fibra Brisanet com Wi-Fi 6
             <span class="highlight">para sua casa</span>
           </h1>
 
-          <!-- SUBTÍTULO -->
+          <!-- SUBTÍTULO SEO -->
           <p class="hero-banner__subtitle">
-            Aproveite a instalação rápida e conecte sua casa agora.
+            Planos de internet rápida e estável para streaming, home office e toda a família.
           </p>
 
-          <!-- OFERTA -->
+          <!-- BULLETS VISUAIS -->
+          <div class="hero-banner__checks">
+            <div class="hero-banner__check">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+              <span>Internet em casa e no celular</span>
+            </div>
+            <div class="hero-banner__check">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+              <span>Wi-Fi 6 de última geração</span>
+            </div>
+            <div class="hero-banner__check">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+              <span>Instalação inclusa</span>
+            </div>
+          </div>
+
+          <!-- OFERTA - Bloco de Valor -->
           <div class="hero-banner__offer-box">
             <div class="hero-banner__offer-row">
               <!-- ESQUERDA: Plano -->
               <div class="hero-banner__plan-info">
                 <div class="hero-banner__plan-speed">700 MEGA</div>
-                <div class="hero-banner__plan-benefit">+ Brisachip 50GB</div>
+                <div class="hero-banner__plan-benefit">+ BrisaChip 50GB</div>
               </div>
 
               <!-- SEPARADOR -->
@@ -1801,12 +1899,9 @@
 
               <!-- DIREITA: Preço + CTA -->
               <div class="hero-banner__price-info">
-                <div class="hero-banner__price-value">R$ 99,90/mês</div>
-                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 700 Mega + Chip" class="btn btn--highlight" target="_blank" rel="noopener">
-                  Assine Agora
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M5 12h14M12 5l7 7-7 7"/>
-                  </svg>
+                <div class="hero-banner__price-value">R$ 99,90<span style="font-size:0.5em;font-weight:400;opacity:0.8">/mês</span></div>
+                <a href="#planos" class="btn btn--highlight">
+                  Escolher meu plano
                 </a>
               </div>
             </div>
@@ -1820,9 +1915,8 @@
     <section class="section plans" id="planos">
       <div class="container">
         <header class="section-header reveal">
-          <span class="section-eyebrow">Nossos Planos</span>
-          <h2 class="section-title">Escolha sua velocidade</h2>
-          <p class="section-subtitle">Fibra óptica com Wi-Fi 6, streaming incluso e instalação rápida.</p>
+          <h2 class="section-title">Planos de Internet Fibra Brisanet</h2>
+          <p class="section-subtitle">Escolha a velocidade ideal de internet Brisanet para sua casa e aproveite mais estabilidade no dia a dia.</p>
         </header>
         
         <!-- Tabs Centralizadas -->
@@ -1945,11 +2039,17 @@
             </article>
           </div>
           
-          <!-- Setas de Navegação - Combos -->
+          <!-- Navegação - Combos -->
           <div class="plan-nav" data-grid="grid-combos">
             <button class="plan-nav-btn" data-dir="prev" aria-label="Anterior">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
             </button>
+            <div class="plan-dots">
+              <button class="plan-dot active" data-index="0"></button>
+              <button class="plan-dot" data-index="1"></button>
+              <button class="plan-dot" data-index="2"></button>
+              <button class="plan-dot" data-index="3"></button>
+            </div>
             <button class="plan-nav-btn" data-dir="next" aria-label="Próximo">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
             </button>
@@ -2068,11 +2168,17 @@
             </article>
           </div>
           
-          <!-- Setas de Navegação - Fibra -->
+          <!-- Navegação - Fibra -->
           <div class="plan-nav" data-grid="grid-fibra">
             <button class="plan-nav-btn" data-dir="prev" aria-label="Anterior">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
             </button>
+            <div class="plan-dots">
+              <button class="plan-dot active" data-index="0"></button>
+              <button class="plan-dot" data-index="1"></button>
+              <button class="plan-dot" data-index="2"></button>
+              <button class="plan-dot" data-index="3"></button>
+            </div>
             <button class="plan-nav-btn" data-dir="next" aria-label="Próximo">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
             </button>
@@ -2085,42 +2191,41 @@
     <section class="section benefits" id="beneficios">
       <div class="container">
         <header class="section-header reveal">
-          <span class="section-eyebrow">Benefícios</span>
-          <h2 class="section-title">Tudo que sua casa precisa</h2>
-          <p class="section-subtitle">Cobertura Wi-Fi forte, apps inclusos e atendimento próximo.</p>
+          <h2 class="section-title">Por que contratar a Internet Brisanet?</h2>
+          <p class="section-subtitle">Fibra óptica de verdade, com tecnologia de ponta e suporte local.</p>
         </header>
         <div class="benefits-grid">
           <article class="benefit-card reveal reveal-delay-1">
             <div class="benefit-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.5c3-5 6-7 7-7s4 2 7 7M8 15c2-3 3.5-4 4-4s2 1 4 4"/><circle cx="12" cy="18" r="1"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
             </div>
-            <span class="benefit-label">Wi-Fi completo</span>
-            <h3 class="benefit-title">Wi-Fi 6 de longo alcance</h3>
-            <p class="benefit-desc">Sinal forte em todos os cômodos com equipamentos de última geração.</p>
+            <span class="benefit-label">Performance</span>
+            <h3 class="benefit-title">Mais velocidade e estabilidade</h3>
+            <p class="benefit-desc">A fibra óptica da Brisanet entrega internet rápida e estável mesmo com vários dispositivos conectados.</p>
           </article>
           <article class="benefit-card reveal reveal-delay-2">
             <div class="benefit-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M10 9l5 3-5 3V9z"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.5c3-5 6-7 7-7s4 2 7 7M8 15c2-3 3.5-4 4-4s2 1 4 4"/><circle cx="12" cy="18" r="1"/></svg>
             </div>
-            <span class="benefit-label">Conteúdo</span>
-            <h3 class="benefit-title">BrisaPlay e Brisamusic</h3>
-            <p class="benefit-desc">Filmes, séries e música inclusos nos planos a partir de 600 Mega.</p>
+            <span class="benefit-label">Tecnologia</span>
+            <h3 class="benefit-title">Wi-Fi de última geração</h3>
+            <p class="benefit-desc">Planos com Wi-Fi 6 para melhor alcance, menos interferência e mais performance em toda casa.</p>
           </article>
           <article class="benefit-card reveal reveal-delay-3">
+            <div class="benefit-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+            </div>
+            <span class="benefit-label">Mobilidade</span>
+            <h3 class="benefit-title">Internet além da sua casa</h3>
+            <p class="benefit-desc">Com o BrisaChip, você também navega fora de casa com 50GB de internet móvel inclusa.</p>
+          </article>
+          <article class="benefit-card reveal reveal-delay-4">
             <div class="benefit-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
             </div>
             <span class="benefit-label">Suporte</span>
-            <h3 class="benefit-title">Atendimento local</h3>
-            <p class="benefit-desc">Time próximo para instalar rápido e resolver qualquer dúvida.</p>
-          </article>
-          <article class="benefit-card reveal reveal-delay-4">
-            <div class="benefit-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-            </div>
-            <span class="benefit-label">Estabilidade</span>
-            <h3 class="benefit-title">100% Fibra Óptica</h3>
-            <p class="benefit-desc">Velocidade constante para trabalho remoto, aulas e jogos online.</p>
+            <h3 class="benefit-title">Atendimento e instalação</h3>
+            <p class="benefit-desc">Instalação inclusa e acompanhamento do pedido até a ativação com equipe local.</p>
           </article>
         </div>
       </div>
@@ -2130,9 +2235,8 @@
     <section class="section testimonials" id="cases">
       <div class="container">
         <header class="section-header reveal">
-          <span class="section-eyebrow">Depoimentos</span>
-          <h2 class="section-title">Experiências reais</h2>
-          <p class="section-subtitle">Veja o que nossos clientes falam sobre a Brisanet.</p>
+          <h2 class="section-title">O que nossos clientes dizem sobre a Internet Brisanet</h2>
+          <p class="section-subtitle">Experiências reais de quem já está conectado.</p>
         </header>
         <div class="testimonials-wrapper">
           <div class="experience-cards reveal">
@@ -2161,7 +2265,7 @@
             <div class="testimonial-track">
               <div class="testimonial-slide active">
                 <div class="testimonial-card">
-                  <p class="testimonial-quote">"Instalaram em dois dias e o Wi-Fi 6 resolveu os pontos sem sinal lá em casa."</p>
+                  <p class="testimonial-quote">"Contratei a internet fibra Brisanet e a velocidade é excelente, tanto para streaming quanto para trabalho remoto."</p>
                   <div class="testimonial-author">
                     <div class="testimonial-avatar">FS</div>
                     <div class="testimonial-info"><h5>Família Silva</h5><span>Cliente desde 2023</span></div>
@@ -2171,7 +2275,7 @@
               </div>
               <div class="testimonial-slide">
                 <div class="testimonial-card">
-                  <p class="testimonial-quote">"Consigo fazer duas calls em 4K enquanto as crianças assistem desenhos."</p>
+                  <p class="testimonial-quote">"Com a Brisanet consigo fazer calls em 4K enquanto as crianças assistem streaming. Internet estável de verdade."</p>
                   <div class="testimonial-author">
                     <div class="testimonial-avatar">AC</div>
                     <div class="testimonial-info"><h5>Ana Carolina</h5><span>Home office</span></div>
@@ -2181,7 +2285,7 @@
               </div>
               <div class="testimonial-slide">
                 <div class="testimonial-card">
-                  <p class="testimonial-quote">"No 1 Gb o ping ficou baixo e o upload aguenta lives sem oscilar."</p>
+                  <p class="testimonial-quote">"A internet Brisanet é perfeita para games. Ping baixo, upload alto e não oscila nas lives."</p>
                   <div class="testimonial-author">
                     <div class="testimonial-avatar">MR</div>
                     <div class="testimonial-info"><h5>Matheus Reis</h5><span>Gamer / Streamer</span></div>
@@ -2191,7 +2295,7 @@
               </div>
               <div class="testimonial-slide">
                 <div class="testimonial-card">
-                  <p class="testimonial-quote">"Equipe local atendeu super rápido quando pedi um repetidor."</p>
+                  <p class="testimonial-quote">"Instalação rápida e equipe local muito atenciosa. A internet fibra funciona perfeitamente."</p>
                   <div class="testimonial-author">
                     <div class="testimonial-avatar">DL</div>
                     <div class="testimonial-info"><h5>Daniela Lima</h5><span>Cliente Brisanet</span></div>
@@ -2215,26 +2319,29 @@
     <section class="section faq" id="faq">
       <div class="container">
         <header class="section-header reveal">
-          <span class="section-eyebrow">FAQ</span>
-          <h2 class="section-title">Dúvidas frequentes</h2>
-          <p class="section-subtitle">Tudo que você precisa saber.</p>
+          <h2 class="section-title">Dúvidas frequentes sobre a Internet Fibra Brisanet</h2>
+          <p class="section-subtitle">Tudo que você precisa saber antes de contratar.</p>
         </header>
         <div class="faq-grid">
           <details class="faq-item reveal reveal-delay-1">
-            <summary>Precisa de fidelidade?</summary>
-            <p>Os planos seguem as condições comerciais vigentes. Informe-se na proposta ou no WhatsApp.</p>
+            <summary>A internet fibra Brisanet tem fidelidade?</summary>
+            <p>Os planos podem ter fidelidade conforme a oferta vigente. Consulte as condições no momento da contratação pelo WhatsApp.</p>
           </details>
           <details class="faq-item reveal reveal-delay-2">
-            <summary>Quanto tempo para instalar?</summary>
-            <p>Confirmamos cobertura em minutos e agendamos a instalação normalmente em até 48h.</p>
+            <summary>A internet Brisanet funciona bem para jogos e streaming?</summary>
+            <p>Sim. A fibra óptica Brisanet oferece alta velocidade, baixa latência e estabilidade para streaming, games online e home office.</p>
           </details>
           <details class="faq-item reveal reveal-delay-3">
-            <summary>O Wi-Fi 6 já vem incluso?</summary>
-            <p>Planos a partir de 600 Mega já levam modem Wi-Fi 6 de longo alcance.</p>
+            <summary>A Brisanet instala internet fibra na minha cidade?</summary>
+            <p>A disponibilidade da internet fibra Brisanet varia por região. Consulte a cobertura informando seu endereço no WhatsApp.</p>
           </details>
           <details class="faq-item reveal reveal-delay-4">
-            <summary>Tem streaming incluso?</summary>
-            <p>BrisaPlay está incluído em todos os planos e combos com Brisamusic nos planos superiores.</p>
+            <summary>O Wi-Fi já vem incluso no plano de internet Brisanet?</summary>
+            <p>Sim. Os planos contam com Wi-Fi de última geração para melhor desempenho dentro da sua casa. Planos a partir de 600 Mega incluem Wi-Fi 6.</p>
+          </details>
+          <details class="faq-item reveal reveal-delay-1">
+            <summary>Sou cliente Brisanet, posso contratar por aqui?</summary>
+            <p>Este site é destinado a novos assinantes. Se você já é cliente Brisanet, o atendimento deve ser feito pelos canais oficiais da operadora.</p>
           </details>
         </div>
       </div>
@@ -2245,16 +2352,15 @@
       <div class="container">
         <div class="cta-card reveal">
           <div class="cta-content">
-            <h2 class="cta-title">Pronto para conectar?</h2>
-            <p class="cta-subtitle">Fale direto no WhatsApp para confirmar cobertura e agendar instalação.</p>
+            <h2 class="cta-title">Pronto para contratar sua Internet Fibra Brisanet?</h2>
+            <p class="cta-subtitle">Escolha o plano ideal para sua casa e aproveite internet rápida, estável e com Wi-Fi de última geração.</p>
             <div class="cta-features">
-              <div class="cta-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span>500 Mega a 1 Gb</span></div>
+              <div class="cta-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span>500 Mega a 1 Giga</span></div>
               <div class="cta-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span>Wi-Fi 6 incluso</span></div>
-              <div class="cta-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span>Suporte local</span></div>
+              <div class="cta-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação inclusa</span></div>
             </div>
             <div class="cta-buttons">
-              <a href="https://wa.me/5581992823101?text=Olá! Gostaria de saber mais sobre os planos residenciais da Brisanet" class="cta-btn-p" target="_blank" rel="noopener">Falar no WhatsApp</a>
-              <a href="#planos" class="cta-btn-s">Ver planos</a>
+              <a href="#planos" class="cta-btn-p">Escolher meu plano</a>
             </div>
           </div>
         </div>
@@ -2330,26 +2436,51 @@
       document.getElementById('panel-' + t).classList.add('active');
     }));
 
-    // Plan navigation arrows
+    // Plan navigation with dots
     document.querySelectorAll('.plan-nav').forEach(navEl => {
       const gridId = navEl.dataset.grid;
       const grid = document.getElementById(gridId);
       if (!grid) return;
-      
+
+      const planDots = navEl.querySelectorAll('.plan-dot');
+      const cards = grid.querySelectorAll('.plan-card');
+
+      function updateDots() {
+        const cardWidth = cards[0]?.offsetWidth || 300;
+        const gap = 16;
+        const scrollPos = grid.scrollLeft;
+        const activeIndex = Math.round(scrollPos / (cardWidth + gap));
+        planDots.forEach((dot, i) => dot.classList.toggle('active', i === activeIndex));
+      }
+
+      function scrollToCard(index) {
+        const cardWidth = cards[0]?.offsetWidth || 300;
+        const gap = 16;
+        grid.scrollTo({ left: index * (cardWidth + gap), behavior: 'smooth' });
+      }
+
+      // Dots click
+      planDots.forEach(dot => {
+        dot.addEventListener('click', () => scrollToCard(parseInt(dot.dataset.index)));
+      });
+
+      // Arrow navigation
       navEl.querySelectorAll('.plan-nav-btn').forEach(btn => {
         btn.addEventListener('click', () => {
-          const dir = btn.dataset.dir;
-          const cardWidth = grid.querySelector('.plan-card')?.offsetWidth || 300;
+          const cardWidth = cards[0]?.offsetWidth || 300;
           const gap = 16;
           const scrollAmount = cardWidth + gap;
-          
-          if (dir === 'prev') {
+          if (btn.dataset.dir === 'prev') {
             grid.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
           } else {
             grid.scrollBy({ left: scrollAmount, behavior: 'smooth' });
           }
         });
       });
+
+      // Update dots on scroll
+      grid.addEventListener('scroll', updateDots);
+      updateDots();
     });
 
     // Testimonial carousel
