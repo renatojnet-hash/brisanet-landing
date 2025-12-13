@@ -56,11 +56,11 @@
       --surface-hover: rgba(255, 255, 255, 0.06);
       --surface-light: rgba(0, 0, 0, 0.03);
 
-      /* Textos */
+      /* Textos - Melhor contraste WCAG */
       --text: #ffffff;
-      --text2: rgba(255, 255, 255, 0.85);
-      --text-muted: rgba(255, 255, 255, 0.6);
-      --text-subtle: rgba(255, 255, 255, 0.4);
+      --text2: #e8e8e8;
+      --text-muted: #b0b0b0;
+      --text-subtle: #8a8a8a;
 
       /* Textos sobre fundos claros */
       --text-on-light: #1a237e;     /* Azul escuro para títulos */
@@ -270,28 +270,66 @@
       z-index: 300;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 1.5rem;
+      align-items: flex-start;
+      justify-content: flex-start;
+      padding: 80px 24px 32px;
+      gap: 0;
       opacity: 0;
       visibility: hidden;
       transition: all 0.4s var(--ease-out);
     }
-    
-    .mobile-menu.active { opacity: 1; visibility: visible; }
-    
-    .mobile-menu a {
+
+    .mobile-menu-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 44px;
+      height: 44px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
       font-size: 1.5rem;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+
+    .mobile-menu-close:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .mobile-menu-close svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .mobile-menu.active { opacity: 1; visibility: visible; }
+
+    .mobile-menu a {
+      font-size: 1.25rem;
       font-weight: 600;
       color: var(--text);
-      padding: 0.5rem 2rem;
+      padding: 1rem 0;
+      width: 100%;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateX(-20px);
       transition: all 0.3s var(--ease-out);
     }
-    
-    .mobile-menu.active a { opacity: 1; transform: translateY(0); }
-    .mobile-menu.active a:nth-child(1) { transition-delay: 100ms; }
+
+    .mobile-menu a:last-of-type {
+      border-bottom: none;
+    }
+
+    .mobile-menu a:hover {
+      color: var(--accent);
+    }
+
+    .mobile-menu.active a { opacity: 1; transform: translateX(0); }
+    .mobile-menu.active a:nth-child(2) { transition-delay: 100ms; }
     .mobile-menu.active a:nth-child(2) { transition-delay: 150ms; }
     .mobile-menu.active a:nth-child(3) { transition-delay: 200ms; }
     .mobile-menu.active a:nth-child(4) { transition-delay: 250ms; }
@@ -388,25 +426,35 @@
 
     .hero-banner__checks {
       display: flex;
-      flex-wrap: wrap;
-      gap: 12px 24px;
-      margin-bottom: 28px;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
     }
 
     .hero-banner__check {
       display: flex;
       align-items: center;
-      gap: 8px;
-      font-size: 0.95rem;
+      gap: 10px;
+      font-size: 0.9rem;
       color: #ffffff;
       font-weight: 500;
     }
 
     .hero-banner__check svg {
-      width: 20px;
-      height: 20px;
+      width: 18px;
+      height: 18px;
       color: #10b981;
       flex-shrink: 0;
+    }
+
+    @media (min-width: 769px) {
+      .hero-banner__checks {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 8px 20px;
+      }
     }
 
     .hero-banner__offer-box {
@@ -532,9 +580,11 @@
       }
 
       .hero-banner .btn--highlight {
-        width: 100%;
+        width: auto;
+        min-width: 200px;
+        max-width: calc(100% - 32px);
         justify-content: center;
-        padding: 14px 30px;
+        padding: 14px 32px;
       }
     }
 
@@ -987,58 +1037,44 @@
       box-shadow: 0 12px 48px rgba(255, 87, 34, 0.4);
     }
 
-    /* Navigation - Pagination Dots + Setas Menores */
+    /* Navigation - Pagination Dots (sem setas) */
     .plan-nav {
-      display: flex;
+      display: none;
       justify-content: center;
       align-items: center;
-      gap: 1.5rem;
-      margin-top: 1.5rem;
+      gap: 0.5rem;
+      margin-top: 1.25rem;
     }
 
     .plan-nav-btn {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.15);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: rgba(255, 255, 255, 0.7);
-      transition: all 0.3s var(--ease-out);
-    }
-
-    .plan-nav-btn:hover {
-      background: var(--accent);
-      border-color: transparent;
-      color: white;
-    }
-
-    .plan-nav-btn svg {
-      width: 18px;
-      height: 18px;
+      display: none;
     }
 
     .plan-dots {
       display: flex;
-      gap: 8px;
+      gap: 10px;
     }
 
     .plan-dot {
-      width: 8px;
-      height: 8px;
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.3);
+      background: transparent;
+      border: 2px solid rgba(255, 255, 255, 0.5);
       transition: all 0.3s ease;
       cursor: pointer;
-      border: none;
       padding: 0;
+    }
+
+    .plan-dot:hover {
+      border-color: rgba(255, 255, 255, 0.8);
     }
 
     .plan-dot.active {
       background: var(--accent);
-      transform: scale(1.2);
+      border-color: var(--accent);
+      transform: scale(1.3);
+      box-shadow: 0 0 8px rgba(255, 87, 34, 0.5);
     }
 
     @media (max-width: 640px) {
@@ -1202,6 +1238,120 @@
       font-size: 0.9rem;
       color: var(--text-muted);
       line-height: 1.7;
+    }
+
+    /* ========================================
+       ANATEL TRUST SECTION
+    ======================================== */
+
+    .anatel-section {
+      background: var(--bg-light);
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .anatel-content {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .anatel-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(135deg, rgba(40, 85, 212, 0.1) 0%, rgba(40, 85, 212, 0.05) 100%);
+      border: 1px solid rgba(40, 85, 212, 0.2);
+      border-radius: 12px;
+      padding: 12px 20px;
+      margin-bottom: 2rem;
+    }
+
+    .anatel-badge-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--brand-blue);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .anatel-badge-icon svg {
+      width: 22px;
+      height: 22px;
+      color: white;
+    }
+
+    .anatel-badge-text {
+      text-align: left;
+    }
+
+    .anatel-badge-text strong {
+      display: block;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--brand-blue);
+    }
+
+    .anatel-badge-text span {
+      font-size: 0.8rem;
+      color: var(--text-on-light-muted);
+    }
+
+    .anatel-section .section-title {
+      color: var(--text-on-light);
+      font-size: clamp(1.5rem, 1.2rem + 2vw, 2.25rem);
+    }
+
+    .anatel-section .section-subtitle {
+      color: var(--text-on-light-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .anatel-text {
+      color: var(--text-on-light-body);
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    .anatel-text strong {
+      color: var(--text-on-light);
+    }
+
+    .anatel-list {
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem 0;
+      text-align: left;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .anatel-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 0;
+      color: var(--text-on-light-body);
+      font-size: 1rem;
+    }
+
+    .anatel-list li svg {
+      width: 20px;
+      height: 20px;
+      color: var(--green);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .anatel-closing {
+      color: var(--text-on-light-muted);
+      font-size: 0.95rem;
+      font-style: italic;
+      margin-top: 1.5rem;
     }
 
     /* ========================================
@@ -1845,12 +1995,15 @@
 
   <!-- Mobile Menu -->
   <div class="mobile-menu" id="mobile-menu">
+    <button class="mobile-menu-close" id="mobile-close" aria-label="Fechar menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
     <a href="#planos">Planos</a>
     <a href="#beneficios">Benefícios</a>
     <a href="#cases">Depoimentos</a>
     <a href="#faq">FAQ</a>
-    <a href="empresas.html" style="color:var(--primary);font-weight:600;">🏢 Para Empresas</a>
-    <a href="https://wa.me/5581992823101?text=Olá! Gostaria de contratar um plano residencial Brisanet" target="_blank" rel="noopener">Contratar</a>
+    <a href="empresas.html">Para Empresas</a>
+    <a href="https://wa.me/5581992823101?text=Olá! Gostaria de contratar um plano residencial Brisanet" target="_blank" rel="noopener" style="color: var(--accent);">Contratar agora</a>
   </div>
 
   <main>
@@ -1880,24 +2033,24 @@
             Planos de internet rápida e estável para streaming, home office e toda a família.
           </p>
 
-          <!-- BULLETS VISUAIS -->
-          <div class="hero-banner__checks">
-            <div class="hero-banner__check">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
-              <span>Internet em casa e no celular</span>
-            </div>
-            <div class="hero-banner__check">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
-              <span>Wi-Fi 6 de última geração</span>
-            </div>
-            <div class="hero-banner__check">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
-              <span>Instalação inclusa</span>
-            </div>
-          </div>
-
-          <!-- OFERTA - Bloco de Valor -->
+          <!-- OFERTA - Bloco de Valor (com checks dentro) -->
           <div class="hero-banner__offer-box">
+            <!-- BULLETS VISUAIS - Dentro do bloco -->
+            <div class="hero-banner__checks">
+              <div class="hero-banner__check">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+                <span>Internet em casa e no celular</span>
+              </div>
+              <div class="hero-banner__check">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+                <span>Wi-Fi 6 de última geração</span>
+              </div>
+              <div class="hero-banner__check">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+                <span>Instalação inclusa</span>
+              </div>
+            </div>
+
             <div class="hero-banner__offer-row">
               <!-- ESQUERDA: Plano -->
               <div class="hero-banner__plan-info">
@@ -1912,7 +2065,7 @@
               <div class="hero-banner__price-info">
                 <div class="hero-banner__price-value">R$ 99,90<span style="font-size:0.5em;font-weight:400;opacity:0.8">/mês</span></div>
                 <a href="#planos" class="btn btn--highlight">
-                  Escolher meu plano
+                  Contratar este plano
                 </a>
               </div>
             </div>
@@ -1961,10 +2114,10 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Download 700 Mega</span></li>
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Upload 350 Mega</span></li>
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Wi-Fi 6 incluso</span></li>
-                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação grátis</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação inclusa</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 700 Mega + Chip" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 700 Mega + Chip" class="plan-cta" target="_blank" rel="noopener"><span>Contratar este plano</span></a>
               </div>
             </article>
 
@@ -1988,10 +2141,10 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Download 600 Mega</span></li>
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Upload 300 Mega</span></li>
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Wi-Fi 6 incluso</span></li>
-                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação grátis</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação inclusa</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 600 Mega + Netflix" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 600 Mega + Netflix" class="plan-cta" target="_blank" rel="noopener"><span>Contratar este plano</span></a>
               </div>
             </article>
 
@@ -2015,10 +2168,10 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Download 500 Mega</span></li>
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Upload 250 Mega</span></li>
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Wi-Fi 5 incluso</span></li>
-                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação grátis</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação inclusa</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 500 Mega + Globoplay" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 500 Mega + Globoplay" class="plan-cta" target="_blank" rel="noopener"><span>Contratar este plano</span></a>
               </div>
             </article>
 
@@ -2042,28 +2195,22 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Download 600 Mega</span></li>
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Upload 300 Mega</span></li>
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Wi-Fi 6 incluso</span></li>
-                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação grátis</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação inclusa</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 600 Mega + Paramount+" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 600 Mega + Paramount+" class="plan-cta" target="_blank" rel="noopener"><span>Contratar este plano</span></a>
               </div>
             </article>
           </div>
           
-          <!-- Navegação - Combos -->
+          <!-- Navegação - Combos (apenas dots) -->
           <div class="plan-nav" data-grid="grid-combos">
-            <button class="plan-nav-btn" data-dir="prev" aria-label="Anterior">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
-            </button>
             <div class="plan-dots">
-              <button class="plan-dot active" data-index="0"></button>
-              <button class="plan-dot" data-index="1"></button>
-              <button class="plan-dot" data-index="2"></button>
-              <button class="plan-dot" data-index="3"></button>
+              <button class="plan-dot active" data-index="0" aria-label="Plano 1"></button>
+              <button class="plan-dot" data-index="1" aria-label="Plano 2"></button>
+              <button class="plan-dot" data-index="2" aria-label="Plano 3"></button>
+              <button class="plan-dot" data-index="3" aria-label="Plano 4"></button>
             </div>
-            <button class="plan-nav-btn" data-dir="next" aria-label="Próximo">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-            </button>
           </div>
         </div>
 
@@ -2090,10 +2237,10 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Download 500 Mega</span></li>
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Upload 250 Mega</span></li>
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Wi-Fi 5 incluso</span></li>
-                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação grátis</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação inclusa</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 500 Mega Fibra Pura" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 500 Mega Fibra Pura" class="plan-cta" target="_blank" rel="noopener"><span>Contratar este plano</span></a>
               </div>
             </article>
 
@@ -2117,10 +2264,10 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Download 600 Mega</span></li>
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Upload 300 Mega</span></li>
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Wi-Fi 6 incluso</span></li>
-                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação grátis</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação inclusa</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 600 Mega Fibra Pura" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 600 Mega Fibra Pura" class="plan-cta" target="_blank" rel="noopener"><span>Contratar este plano</span></a>
               </div>
             </article>
 
@@ -2144,10 +2291,10 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Download 700 Mega</span></li>
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Upload 350 Mega</span></li>
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Wi-Fi 6 incluso</span></li>
-                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação grátis</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação inclusa</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 700 Mega Fibra Pura" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 700 Mega Fibra Pura" class="plan-cta" target="_blank" rel="noopener"><span>Contratar este plano</span></a>
               </div>
             </article>
 
@@ -2171,28 +2318,22 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Download 1.000 Mega</span></li>
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Upload 500 Mega</span></li>
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Wi-Fi 6 incluso</span></li>
-                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação grátis</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação inclusa</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 1 Giga Fibra Pura" class="plan-cta" target="_blank" rel="noopener"><span>Escolher Plano</span></a>
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 1 Giga Fibra Pura" class="plan-cta" target="_blank" rel="noopener"><span>Contratar este plano</span></a>
               </div>
             </article>
           </div>
           
-          <!-- Navegação - Fibra -->
+          <!-- Navegação - Fibra (apenas dots) -->
           <div class="plan-nav" data-grid="grid-fibra">
-            <button class="plan-nav-btn" data-dir="prev" aria-label="Anterior">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
-            </button>
             <div class="plan-dots">
-              <button class="plan-dot active" data-index="0"></button>
-              <button class="plan-dot" data-index="1"></button>
-              <button class="plan-dot" data-index="2"></button>
-              <button class="plan-dot" data-index="3"></button>
+              <button class="plan-dot active" data-index="0" aria-label="Plano 1"></button>
+              <button class="plan-dot" data-index="1" aria-label="Plano 2"></button>
+              <button class="plan-dot" data-index="2" aria-label="Plano 3"></button>
+              <button class="plan-dot" data-index="3" aria-label="Plano 4"></button>
             </div>
-            <button class="plan-nav-btn" data-dir="next" aria-label="Próximo">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-            </button>
           </div>
         </div>
       </div>
@@ -2242,12 +2383,53 @@
       </div>
     </section>
 
+    <!-- Anatel Trust Section -->
+    <section class="section anatel-section">
+      <div class="container">
+        <div class="anatel-content reveal">
+          <div class="anatel-badge">
+            <div class="anatel-badge-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+            </div>
+            <div class="anatel-badge-text">
+              <strong>6x Líder em Satisfação</strong>
+              <span>Pesquisas Anatel</span>
+            </div>
+          </div>
+
+          <h2 class="section-title">Por que tantos clientes avaliam a Brisanet tão bem?</h2>
+          <p class="section-subtitle">Fomos eleitos 6 vezes Líder em Satisfação nas pesquisas da Anatel, mas esse reconhecimento não aconteceu por acaso.</p>
+
+          <p class="anatel-text">A satisfação dos nossos clientes é resultado de escolhas feitas todos os dias:</p>
+
+          <ul class="anatel-list">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+              <span>Entregar a velocidade que prometemos, sem surpresas</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+              <span>Investir em tecnologia de ponta e fibra óptica de verdade</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+              <span>Manter um atendimento próximo, humano e acessível</span>
+            </li>
+          </ul>
+
+          <p class="anatel-text"><strong>Não buscamos prêmios. Buscamos cumprir o que combinamos com cada cliente.</strong></p>
+
+          <p class="anatel-closing">É por isso que, ano após ano, milhares de pessoas avaliam a Brisanet como uma das operadoras mais bem avaliadas do Brasil.</p>
+        </div>
+      </div>
+    </section>
+
     <!-- Testimonials Section -->
     <section class="section testimonials" id="cases">
       <div class="container">
         <header class="section-header reveal">
-          <h2 class="section-title">O que nossos clientes dizem sobre a Internet Brisanet</h2>
-          <p class="section-subtitle">Experiências reais de quem já está conectado.</p>
+          <h2 class="section-title">A experiência de quem já escolheu a Internet Brisanet</h2>
+          <p class="section-subtitle">Experiências reais de quem vive essa internet todos os dias.</p>
         </header>
         <div class="testimonials-wrapper">
           <div class="experience-cards reveal">
@@ -2425,11 +2607,21 @@
     // Mobile menu
     const mobileBtn = document.getElementById('mobile-btn');
     const mobileMenu = document.getElementById('mobile-menu');
+    const mobileClose = document.getElementById('mobile-close');
+
+    function closeMenu() {
+      mobileBtn.classList.remove('active');
+      mobileMenu.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
     mobileBtn.addEventListener('click', () => {
       mobileBtn.classList.toggle('active');
       mobileMenu.classList.toggle('active');
       document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
     });
+
+    mobileClose.addEventListener('click', closeMenu);
     mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
       mobileBtn.classList.remove('active');
       mobileMenu.classList.remove('active');
@@ -2473,20 +2665,6 @@
       // Dots click
       planDots.forEach(dot => {
         dot.addEventListener('click', () => scrollToCard(parseInt(dot.dataset.index)));
-      });
-
-      // Arrow navigation
-      navEl.querySelectorAll('.plan-nav-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const cardWidth = cards[0]?.offsetWidth || 300;
-          const gap = 16;
-          const scrollAmount = cardWidth + gap;
-          if (btn.dataset.dir === 'prev') {
-            grid.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-          } else {
-            grid.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-          }
-        });
       });
 
       // Update dots on scroll
