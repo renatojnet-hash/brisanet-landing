@@ -132,6 +132,25 @@
     
     ::selection { background: var(--accent); color: white; }
 
+    /* Focus states para acessibilidade de teclado */
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    button:focus-visible,
+    a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .plan-cta:focus-visible,
+    .cta-btn-p:focus-visible,
+    .nav-cta:focus-visible {
+      outline-color: #ffffff;
+      box-shadow: 0 0 0 4px rgba(255, 87, 34, 0.3);
+    }
+
     .container { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
     .section { padding: 5rem 0; position: relative; }
 
@@ -1056,14 +1075,27 @@
     }
 
     .plan-dot {
-      width: 10px;
-      height: 10px;
+      width: 12px;
+      height: 12px;
       border-radius: 50%;
       background: transparent;
       border: 2px solid rgba(255, 255, 255, 0.5);
       transition: all 0.3s ease;
       cursor: pointer;
       padding: 0;
+      /* Touch target wrapper - mínimo 44px para WCAG */
+      position: relative;
+    }
+
+    .plan-dot::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
     }
 
     .plan-dot:hover {
@@ -1574,11 +1606,25 @@
     }
     
     .carousel-dot {
-      width: 10px;
-      height: 10px;
+      width: 12px;
+      height: 12px;
       border-radius: 50%;
       background: var(--border-hover);
       transition: all 0.3s var(--ease-out);
+      cursor: pointer;
+      /* Touch target wrapper - mínimo 44px para WCAG */
+      position: relative;
+    }
+
+    .carousel-dot::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
     }
     
     .carousel-dot.active {
@@ -2498,10 +2544,10 @@
               </div>
             </div>
             <div class="carousel-dots">
-              <button class="carousel-dot active" data-index="0"></button>
-              <button class="carousel-dot" data-index="1"></button>
-              <button class="carousel-dot" data-index="2"></button>
-              <button class="carousel-dot" data-index="3"></button>
+              <button class="carousel-dot active" data-index="0" aria-label="Depoimento 1"></button>
+              <button class="carousel-dot" data-index="1" aria-label="Depoimento 2"></button>
+              <button class="carousel-dot" data-index="2" aria-label="Depoimento 3"></button>
+              <button class="carousel-dot" data-index="3" aria-label="Depoimento 4"></button>
             </div>
           </div>
         </div>
