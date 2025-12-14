@@ -1715,7 +1715,7 @@
 
     .cta-title {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(2.5rem, 2rem + 3vw, 4rem);
+      font-size: clamp(2rem, 1.5rem + 3vw, 3rem);
       font-weight: 700;
       color: white;
       margin-bottom: 1.25rem;
@@ -2650,18 +2650,36 @@
       if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }));
 
-    // WhatsApp counter - Business hours logic
+    // WhatsApp counter - Heatmap-based logic (Google Ads pattern)
     const onlineCount = document.getElementById('online-count');
     function updateOnlineCount() {
-      const hour = new Date().getHours();
-      const isBusinessHours = hour >= 8 && hour < 18;
-      let min, max;
-      if (isBusinessHours) { min = 100; max = 150; } 
-      else { min = 15; max = 40; }
-      const count = Math.floor(Math.random() * (max - min + 1)) + min;
+      const now = new Date();
+      const day = now.getDay(); // 0=Dom, 1=Seg, 2=Ter, 3=Qua, 4=Qui, 5=Sex, 6=Sab
+      const hour = now.getHours();
+
+      // Intensidade por hora (0-1) baseada no mapa de calor Google Ads
+      const hourIntensity = [
+        0.05, 0.03, 0.02, 0.02, 0.02, 0.05, // 00-05: muito baixo
+        0.15, 0.30, 0.50, 0.75, 0.90, 1.00, // 06-11: subindo até pico
+        0.95, 0.90, 0.85, 0.75, 0.65, 0.55, // 12-17: pico descendo
+        0.40, 0.30, 0.20, 0.15, 0.10, 0.08  // 18-23: caindo
+      ][hour];
+
+      // Multiplicador por dia (Dom menos, Ter-Qui mais)
+      const dayMultiplier = [0.60, 0.85, 1.00, 1.00, 0.95, 0.80, 0.70][day];
+
+      // Calcular base: max 150 no pico absoluto
+      const maxOnline = 150;
+      const minOnline = 8;
+      const baseCount = Math.round(minOnline + (maxOnline - minOnline) * hourIntensity * dayMultiplier);
+
+      // Adicionar variação aleatória de ±10%
+      const variance = Math.round(baseCount * 0.1 * (Math.random() * 2 - 1));
+      const count = Math.max(minOnline, Math.min(maxOnline, baseCount + variance));
+
       onlineCount.textContent = count + ' pessoas online';
     }
-    if (onlineCount) { updateOnlineCount(); setInterval(updateOnlineCount, 8000); }
+    if (onlineCount) { updateOnlineCount(); setInterval(updateOnlineCount, 12000); }
   </script>
 </body>
 </html>
