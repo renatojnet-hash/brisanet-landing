@@ -154,6 +154,11 @@
     .container { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
     .section { padding: 5rem 0; position: relative; }
 
+    @media (max-width: 768px) {
+      .section { padding: 3.5rem 0; }
+      .container { padding: 0 1rem; }
+    }
+
     /* ========================================
        NAVIGATION
     ======================================== */
@@ -251,12 +256,12 @@
 
     .nav-cta {
       padding: 0.625rem 1.5rem;
-      background: var(--accent-gradient);
+      background: var(--accent);
       border-radius: 50px;
       font-size: 0.9rem;
       font-weight: 600;
       color: white;
-      box-shadow: var(--shadow-accent);
+      box-shadow: 0 4px 16px rgba(255, 87, 34, 0.3);
       transition: all 0.3s var(--ease-out);
     }
     
@@ -691,8 +696,15 @@
 
     .section-header {
       text-align: center;
-      max-width: 600px;
+      max-width: 720px;
       margin: 0 auto 2.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .section-header {
+        max-width: 100%;
+        padding: 0 0.5rem;
+      }
     }
     
     .section-eyebrow {
@@ -1044,15 +1056,16 @@
     }
 
     .plan-card.featured .plan-cta {
-      background: var(--accent-gradient);
+      background: var(--accent);
       border-color: transparent;
-      box-shadow: var(--shadow-glow);
+      box-shadow: 0 4px 16px rgba(255, 87, 34, 0.3);
     }
 
     .plan-card.featured .plan-cta::before { display: none; }
 
     .plan-card.featured .plan-cta:hover {
       transform: translateY(-4px) scale(1.02);
+      background: #ff6b3d;
       box-shadow: 0 12px 48px rgba(255, 87, 34, 0.4);
     }
 
@@ -1104,8 +1117,8 @@
 
     .plan-dot.active {
       background: var(--accent);
-      border-color: var(--accent);
-      transform: scale(1.3);
+      border-color: #ffffff;
+      transform: scale(1.15);
       box-shadow: 0 0 8px rgba(255, 87, 34, 0.5);
     }
 
@@ -1210,7 +1223,7 @@
       left: 0;
       width: 0;
       height: 3px;
-      background: var(--accent-gradient);
+      background: var(--accent);
       transition: width 0.4s var(--ease-out);
     }
     
@@ -1235,9 +1248,9 @@
     }
     
     .benefit-card:hover .benefit-icon {
-      background: var(--accent-gradient);
+      background: var(--accent);
       border-color: transparent;
-      box-shadow: var(--shadow-accent);
+      box-shadow: 0 4px 16px rgba(255, 87, 34, 0.3);
     }
     
     .benefit-icon svg {
@@ -1288,49 +1301,6 @@
       text-align: center;
     }
 
-    .anatel-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      background: linear-gradient(135deg, rgba(40, 85, 212, 0.1) 0%, rgba(40, 85, 212, 0.05) 100%);
-      border: 1px solid rgba(40, 85, 212, 0.2);
-      border-radius: 12px;
-      padding: 12px 20px;
-      margin-bottom: 2rem;
-    }
-
-    .anatel-badge-icon {
-      width: 40px;
-      height: 40px;
-      background: var(--brand-blue);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .anatel-badge-icon svg {
-      width: 22px;
-      height: 22px;
-      color: white;
-    }
-
-    .anatel-badge-text {
-      text-align: left;
-    }
-
-    .anatel-badge-text strong {
-      display: block;
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--brand-blue);
-    }
-
-    .anatel-badge-text span {
-      font-size: 0.8rem;
-      color: var(--text-on-light-muted);
-    }
-
     .anatel-section .section-title {
       color: var(--text-on-light);
       font-size: clamp(1.5rem, 1.2rem + 2vw, 2.25rem);
@@ -1339,51 +1309,67 @@
     .anatel-section .section-subtitle {
       color: var(--text-on-light-muted);
       margin-bottom: 1.5rem;
-    }
-
-    .anatel-text {
-      color: var(--text-on-light-body);
       font-size: 1rem;
-      line-height: 1.8;
-      margin-bottom: 1.5rem;
     }
 
-    .anatel-text strong {
-      color: var(--text-on-light);
+    .anatel-response {
+      font-size: 1.5rem;
+      color: var(--brand-blue);
+      margin: 2rem 0;
     }
 
-    .anatel-list {
-      list-style: none;
-      padding: 0;
-      margin: 1.5rem 0;
+    .anatel-response strong {
+      font-weight: 700;
+    }
+
+    .anatel-pillars {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin: 2rem 0;
       text-align: left;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
     }
 
-    .anatel-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      padding: 10px 0;
+    @media (max-width: 768px) {
+      .anatel-pillars {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+    }
+
+    .anatel-pillar {
+      background: white;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .anatel-pillar strong {
+      display: block;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--brand-blue);
+      margin-bottom: 0.5rem;
+    }
+
+    .anatel-pillar span {
+      font-size: 0.95rem;
       color: var(--text-on-light-body);
-      font-size: 1rem;
-    }
-
-    .anatel-list li svg {
-      width: 20px;
-      height: 20px;
-      color: var(--green);
-      flex-shrink: 0;
-      margin-top: 2px;
+      line-height: 1.5;
     }
 
     .anatel-closing {
+      color: var(--text-on-light);
+      font-size: 1.1rem;
+      margin-top: 2rem;
+    }
+
+    .anatel-source {
       color: var(--text-on-light-muted);
-      font-size: 0.95rem;
+      font-size: 0.8rem;
+      margin-top: 2rem;
       font-style: italic;
-      margin-top: 1.5rem;
     }
 
     /* ========================================
@@ -1539,10 +1525,7 @@
       font-family: 'Space Grotesk', sans-serif;
       font-size: 100px;
       line-height: 1;
-      background: var(--accent-gradient);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: var(--accent);
       opacity: 0.15;
     }
 
@@ -1565,7 +1548,7 @@
     .testimonial-avatar {
       width: 52px;
       height: 52px;
-      background: var(--accent-gradient);
+      background: var(--accent);
       border-radius: 50%;
       display: grid;
       place-items: center;
@@ -1628,8 +1611,9 @@
     }
     
     .carousel-dot.active {
-      background: var(--accent-gradient);
-      transform: scale(1.2);
+      background: var(--accent);
+      border: 2px solid #ffffff;
+      transform: scale(1.15);
       box-shadow: 0 2px 8px var(--accent-glow);
     }
 
@@ -2060,23 +2044,19 @@
       <div class="container">
         <div class="hero-banner__content">
 
-          <!-- BADGE -->
+          <!-- BADGE EDITORIAL (sazonal) -->
           <span class="hero-banner__badge">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
-            </svg>
-            6x Líder em Satisfação Anatel
+            Comece 2025 fazendo a escolha certa.
           </span>
 
           <!-- TÍTULO H1 SEO -->
           <h1 class="hero-banner__title">
-            Internet Fibra Brisanet com Wi-Fi 6
-            <span class="highlight">para sua casa</span>
+            Internet Brisanet Fibra: a estabilidade que sua família precisa
           </h1>
 
-          <!-- SUBTÍTULO SEO -->
+          <!-- SUBTÍTULO DE APOIO -->
           <p class="hero-banner__subtitle">
-            Planos de internet rápida e estável para streaming, home office e toda a família.
+            Internet rápida e estável para streaming, home office, estudos e toda a família.
           </p>
 
           <!-- OFERTA - Bloco de Valor (com checks dentro) -->
@@ -2110,7 +2090,7 @@
               <!-- DIREITA: Preço + CTA -->
               <div class="hero-banner__price-info">
                 <div class="hero-banner__price-value">R$ 99,90<span style="font-size:0.5em;font-weight:400;opacity:0.8">/mês</span></div>
-                <a href="#planos" class="btn btn--highlight">
+                <a href="https://wa.me/5581992823101?text=Olá! Quero o plano 700 Mega + Chip 50GB" class="btn btn--highlight" target="_blank" rel="noopener">
                   Contratar este plano
                 </a>
               </div>
@@ -2433,39 +2413,29 @@
     <section class="section anatel-section">
       <div class="container">
         <div class="anatel-content reveal">
-          <div class="anatel-badge">
-            <div class="anatel-badge-icon">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+          <h2 class="section-title">Por que tantos clientes avaliam a Brisanet tão bem?</h2>
+          <p class="section-subtitle">Eleita pelo 6º ano consecutivo como líder em satisfação nas pesquisas da Anatel.*</p>
+
+          <p class="anatel-response"><strong>Entregamos o que prometemos.</strong></p>
+
+          <div class="anatel-pillars">
+            <div class="anatel-pillar">
+              <strong>Internet</strong>
+              <span>Fibra óptica de verdade e equipamentos de alto padrão</span>
             </div>
-            <div class="anatel-badge-text">
-              <strong>6x Líder em Satisfação</strong>
-              <span>Pesquisas Anatel</span>
+            <div class="anatel-pillar">
+              <strong>Preço</strong>
+              <span>Transparente, com aviso antecipado de reajuste</span>
+            </div>
+            <div class="anatel-pillar">
+              <strong>Suporte</strong>
+              <span>Rápido, humano e próximo</span>
             </div>
           </div>
 
-          <h2 class="section-title">Por que tantos clientes avaliam a Brisanet tão bem?</h2>
-          <p class="section-subtitle">Fomos eleitos 6 vezes Líder em Satisfação nas pesquisas da Anatel, mas esse reconhecimento não aconteceu por acaso.</p>
+          <p class="anatel-closing"><strong>Nunca foram os prêmios. Sempre foi o nosso compromisso com o assinante.</strong></p>
 
-          <p class="anatel-text">A satisfação dos nossos clientes é resultado de escolhas feitas todos os dias:</p>
-
-          <ul class="anatel-list">
-            <li>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
-              <span>Entregar a velocidade que prometemos, sem surpresas</span>
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
-              <span>Investir em tecnologia de ponta e fibra óptica de verdade</span>
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
-              <span>Manter um atendimento próximo, humano e acessível</span>
-            </li>
-          </ul>
-
-          <p class="anatel-text"><strong>Não buscamos prêmios. Buscamos cumprir o que combinamos com cada cliente.</strong></p>
-
-          <p class="anatel-closing">É por isso que, ano após ano, milhares de pessoas avaliam a Brisanet como uma das operadoras mais bem avaliadas do Brasil.</p>
+          <p class="anatel-source">*Fonte: Pesquisa de Satisfação e Qualidade Percebida – Anatel (Banda Larga Fixa, Região Nordeste).</p>
         </div>
       </div>
     </section>
@@ -2474,7 +2444,7 @@
     <section class="section testimonials" id="cases">
       <div class="container">
         <header class="section-header reveal">
-          <h2 class="section-title">A experiência de quem já escolheu a Internet Brisanet</h2>
+          <h2 class="section-title">A experiência de quem já escolheu a Brisanet</h2>
           <p class="section-subtitle">Experiências reais de quem vive essa internet todos os dias.</p>
         </header>
         <div class="testimonials-wrapper">
