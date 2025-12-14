@@ -485,14 +485,14 @@
       background: rgba(255, 255, 255, 0.08);
       backdrop-filter: blur(10px);
       border-radius: 16px;
-      padding: 28px;
+      padding: 24px 18px;
       margin-bottom: 0;
       border: 1px solid rgba(255, 255, 255, 0.1);
       display: flex;
       flex-direction: column;
       gap: 16px;
-      min-width: 340px;
-      max-width: 400px;
+      min-width: 300px;
+      max-width: 360px;
     }
 
     /* 1. VELOCIDADE - Maior destaque */
@@ -544,7 +544,7 @@
     }
 
     .hero-banner .btn--highlight {
-      padding: 14px 36px;
+      padding: 12px 24px;
       font-size: 1rem;
       background: #FF6B35;
       color: #ffffff;
@@ -557,6 +557,7 @@
       gap: 8px;
       white-space: nowrap;
       text-decoration: none;
+      width: fit-content;
     }
 
     .hero-banner .btn--highlight:hover {
@@ -1326,93 +1327,6 @@
       font-size: 0.9rem;
       color: var(--text-muted);
       line-height: 1.7;
-    }
-
-    /* ========================================
-       ANATEL TRUST SECTION
-    ======================================== */
-
-    .anatel-section {
-      background: var(--bg-light);
-      border-top: 1px solid rgba(0, 0, 0, 0.08);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-    }
-
-    .anatel-content {
-      max-width: 800px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .anatel-section .section-title {
-      color: var(--text-on-light);
-      font-size: clamp(1.5rem, 1.2rem + 2vw, 2.25rem);
-    }
-
-    .anatel-section .section-subtitle {
-      color: var(--text-on-light-muted);
-      margin-bottom: 1.5rem;
-      font-size: 1rem;
-    }
-
-    .anatel-response {
-      font-size: 1.5rem;
-      color: var(--brand-blue);
-      margin: 2rem 0;
-    }
-
-    .anatel-response strong {
-      font-weight: 700;
-    }
-
-    .anatel-pillars {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      margin: 2rem 0;
-      text-align: left;
-    }
-
-    @media (max-width: 768px) {
-      .anatel-pillars {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-      }
-    }
-
-    .anatel-pillar {
-      background: white;
-      border: 1px solid rgba(0, 0, 0, 0.08);
-      border-radius: 12px;
-      padding: 1.5rem;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    }
-
-    .anatel-pillar strong {
-      display: block;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--brand-blue);
-      margin-bottom: 0.5rem;
-    }
-
-    .anatel-pillar span {
-      font-size: 0.95rem;
-      color: var(--text-on-light-body);
-      line-height: 1.5;
-    }
-
-    .anatel-closing {
-      color: var(--text-on-light);
-      font-size: 1.1rem;
-      margin-top: 2rem;
-    }
-
-    .anatel-source {
-      color: var(--text-on-light-muted);
-      font-size: 0.8rem;
-      margin-top: 2rem;
-      font-style: italic;
     }
 
     /* ========================================
@@ -2458,37 +2372,6 @@
             <h3 class="benefit-title">Atendimento e instalação</h3>
             <p class="benefit-desc">Instalação inclusa e acompanhamento do pedido até a ativação com equipe local.</p>
           </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Anatel Trust Section -->
-    <section class="section anatel-section">
-      <div class="container">
-        <div class="anatel-content reveal">
-          <h2 class="section-title">Por que tantos clientes avaliam a Brisanet tão bem?</h2>
-          <p class="section-subtitle">Eleita pelo 6º ano consecutivo como líder em satisfação nas pesquisas da Anatel.*</p>
-
-          <p class="anatel-response"><strong>Entregamos o que prometemos.</strong></p>
-
-          <div class="anatel-pillars">
-            <div class="anatel-pillar">
-              <strong>Internet</strong>
-              <span>Fibra óptica de verdade e equipamentos de alto padrão</span>
-            </div>
-            <div class="anatel-pillar">
-              <strong>Preço</strong>
-              <span>Transparente, com aviso antecipado de reajuste</span>
-            </div>
-            <div class="anatel-pillar">
-              <strong>Suporte</strong>
-              <span>Rápido, humano e próximo</span>
-            </div>
-          </div>
-
-          <p class="anatel-closing"><strong>Nunca foram os prêmios. Sempre foi o nosso compromisso com o assinante.</strong></p>
-
-          <p class="anatel-source">*Fonte: Pesquisa de Satisfação e Qualidade Percebida – Anatel (Banda Larga Fixa, Região Nordeste).</p>
         </div>
       </div>
     </section>
