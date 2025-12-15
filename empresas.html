@@ -324,14 +324,10 @@
     }
 
     .hero-banner__offer-box {
-      background: rgba(255, 107, 53, 0.1);
-      backdrop-filter: blur(10px);
-      border-radius: 16px;
-      padding: 24px;
-      margin-bottom: 0;
-      border: 1px solid rgba(255, 107, 53, 0.3);
-      display: inline-block;
-      min-width: 400px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: flex-start;
     }
 
     .hero-banner__offer-row {
@@ -379,9 +375,9 @@
     }
 
     .hero-banner .btn--highlight {
-      padding: 14px 36px;
+      padding: 12px 24px;
       font-size: 1rem;
-      background: linear-gradient(135deg, #FF5022 0%, #FF6B3D 100%);
+      background: #FF5022;
       color: #ffffff;
       font-weight: 700;
       border-radius: 50px;
@@ -392,10 +388,11 @@
       gap: 8px;
       white-space: nowrap;
       text-decoration: none;
+      width: fit-content;
     }
 
     .hero-banner .btn--highlight:hover {
-      background: linear-gradient(135deg, #FF6B3D 0%, #FF8C42 100%);
+      background: #ff5520;
       transform: translateY(-2px);
       box-shadow: 0 4px 20px rgba(255, 107, 53, 0.4);
     }
@@ -427,8 +424,7 @@
       }
 
       .hero-banner__offer-box {
-        min-width: 100%;
-        width: 100%;
+        align-items: flex-start;
       }
 
       .hero-banner__offer-row {
@@ -442,13 +438,12 @@
       }
 
       .hero-banner__price-info {
-        width: 100%;
+        width: auto;
       }
 
       .hero-banner .btn--highlight {
-        width: 100%;
-        justify-content: center;
-        padding: 14px 30px;
+        width: fit-content;
+        padding: 12px 24px;
       }
     }
 
@@ -887,9 +882,41 @@
     }
     
     .plan-nav-btn svg { width: 24px; height: 24px; }
-    
+
     @media (max-width: 640px) { .plan-nav { display: flex; } }
     @media (min-width: 641px) { .plan-nav { display: none; } }
+
+    /* Plan Dots */
+    .plan-dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-top: 2rem;
+    }
+
+    .plan-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: transparent;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      cursor: pointer;
+      transition: all 0.3s var(--ease-out);
+    }
+
+    .plan-dot.active {
+      background: var(--accent);
+      border-color: #ffffff;
+      transform: scale(1.15);
+    }
+
+    .plan-dot:hover:not(.active) {
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    @media (min-width: 641px) {
+      .plan-dots { display: none; }
+    }
 
     /* ========================================
        BENEFITS SECTION
@@ -1153,14 +1180,21 @@
       width: 10px;
       height: 10px;
       border-radius: 50%;
-      background: var(--border-hover);
+      background: transparent;
+      border: 2px solid rgba(255, 255, 255, 0.3);
       transition: all 0.3s var(--ease-out);
+      cursor: pointer;
     }
-    
+
     .carousel-dot.active {
-      background: var(--orange-gradient);
-      transform: scale(1.2);
+      background: var(--accent);
+      border-color: #ffffff;
+      transform: scale(1.15);
       box-shadow: 0 2px 8px var(--orange-glow);
+    }
+
+    .carousel-dot:hover:not(.active) {
+      border-color: rgba(255, 255, 255, 0.5);
     }
 
     /* ========================================
@@ -1256,7 +1290,7 @@
 
     .cta-title {
       font-family: 'Figtree', sans-serif;
-      font-size: clamp(2.5rem, 2rem + 3vw, 4rem);
+      font-size: clamp(2rem, 1.5rem + 3vw, 3rem);
       font-weight: 800;
       color: white;
       margin-bottom: 1.25rem;
@@ -1696,7 +1730,15 @@
               </div>
             </article>
           </div>
-          
+
+          <!-- Dots de Navegação -->
+          <div class="plan-dots" data-grid="grid-pme">
+            <button class="plan-dot active" data-index="0" aria-label="Plano 1"></button>
+            <button class="plan-dot" data-index="1" aria-label="Plano 2"></button>
+            <button class="plan-dot" data-index="2" aria-label="Plano 3"></button>
+            <button class="plan-dot" data-index="3" aria-label="Plano 4"></button>
+          </div>
+
           <!-- Setas de Navegação -->
           <div class="plan-nav" data-grid="grid-pme">
             <button class="plan-nav-btn" data-dir="prev" aria-label="Anterior">
@@ -1817,16 +1859,15 @@
               </div>
             </article>
           </div>
-          
-          <!-- Info técnica Link Full IP -->
-          <div class="fullip-info reveal" style="margin-top:2rem;padding:1.5rem;background:rgba(255,80,34,0.1);border-radius:12px;border:1px solid rgba(255,80,34,0.3);">
-            <p style="color:#C6C6C6;font-size:0.9rem;line-height:1.6;margin:0;">
-              <strong style="color:#FF5022;">ℹ️ Requisitos técnicos:</strong> ONU em modo bridge. Cliente provê roteador ou firewall próprio.<br>
-              <strong style="color:#FF5022;">📡 Características:</strong> Link 100% simétrico com banda garantida e IP dedicado.<br>
-              <strong style="color:#FF5022;">🛡️ Suporte:</strong> NOC 24/7 com monitoramento ativo e time dedicado para incidentes.
-            </p>
+
+          <!-- Dots de Navegação -->
+          <div class="plan-dots" data-grid="grid-fullip">
+            <button class="plan-dot active" data-index="0" aria-label="Plano 1"></button>
+            <button class="plan-dot" data-index="1" aria-label="Plano 2"></button>
+            <button class="plan-dot" data-index="2" aria-label="Plano 3"></button>
+            <button class="plan-dot" data-index="3" aria-label="Plano 4"></button>
           </div>
-          
+
           <!-- Setas de Navegação -->
           <div class="plan-nav" data-grid="grid-fullip">
             <button class="plan-nav-btn" data-dir="prev" aria-label="Anterior">
@@ -1835,6 +1876,15 @@
             <button class="plan-nav-btn" data-dir="next" aria-label="Próximo">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
             </button>
+          </div>
+
+          <!-- Info técnica Link Full IP -->
+          <div class="fullip-info reveal" style="margin-top:2rem;padding:1.5rem;background:rgba(255,80,34,0.1);border-radius:12px;border:1px solid rgba(255,80,34,0.3);">
+            <p style="color:#C6C6C6;font-size:0.9rem;line-height:1.6;margin:0;">
+              <strong style="color:#FF5022;">ℹ️ Requisitos técnicos:</strong> ONU em modo bridge. Cliente provê roteador ou firewall próprio.<br>
+              <strong style="color:#FF5022;">📡 Características:</strong> Link 100% simétrico com banda garantida e IP dedicado.<br>
+              <strong style="color:#FF5022;">🛡️ Suporte:</strong> NOC 24/7 com monitoramento ativo e time dedicado para incidentes.
+            </p>
           </div>
         </div>
       </div>
@@ -2095,20 +2145,49 @@
       const gridId = navEl.dataset.grid;
       const grid = document.getElementById(gridId);
       if (!grid) return;
-      
+
       navEl.querySelectorAll('.plan-nav-btn').forEach(btn => {
         btn.addEventListener('click', () => {
           const dir = btn.dataset.dir;
           const cardWidth = grid.querySelector('.plan-card')?.offsetWidth || 300;
           const gap = 16;
           const scrollAmount = cardWidth + gap;
-          
+
           if (dir === 'prev') {
             grid.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
           } else {
             grid.scrollBy({ left: scrollAmount, behavior: 'smooth' });
           }
         });
+      });
+    });
+
+    // Plan dots navigation
+    document.querySelectorAll('.plan-dots').forEach(dotsEl => {
+      const gridId = dotsEl.dataset.grid;
+      const grid = document.getElementById(gridId);
+      if (!grid) return;
+
+      const planDots = dotsEl.querySelectorAll('.plan-dot');
+      const cards = grid.querySelectorAll('.plan-card');
+
+      planDots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+          const card = cards[index];
+          if (card) {
+            card.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            planDots.forEach(d => d.classList.remove('active'));
+            dot.classList.add('active');
+          }
+        });
+      });
+
+      // Update dots on scroll
+      grid.addEventListener('scroll', () => {
+        const scrollLeft = grid.scrollLeft;
+        const cardWidth = cards[0]?.offsetWidth || 300;
+        const currentIndex = Math.round(scrollLeft / (cardWidth + 16));
+        planDots.forEach((d, i) => d.classList.toggle('active', i === currentIndex));
       });
     });
 
