@@ -2209,7 +2209,7 @@
       });
 
       const phone = '5581992823101';
-      const msg = encodeURIComponent('Olá! Tenho interesse no plano: ' + (plano || '') + '. Origem: ' + (origem || ''));
+      const msg = encodeURIComponent('Olá! Tenho interesse no plano: ' + (plano || 'Brisanet Empresas'));
       const url = 'https://wa.me/' + phone + '?text=' + msg;
 
       window.open(url, '_blank', 'noopener');
