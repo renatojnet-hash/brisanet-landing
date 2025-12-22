@@ -1,0 +1,1947 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contratação Brisanet Fibra | Assine Agora</title>
+    <meta name="description" content="Contrate sua internet Brisanet Fibra de forma rápida e segura. Planos a partir de R$79,99/mês.">
+    
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NWNQHFF');</script>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <style>
+        /* ============================================
+           CSS VARIABLES - BRISANET BRAND
+        ============================================ */
+        :root {
+            /* Brand Colors */
+            --brisa-red: #E31E24;
+            --brisa-red-dark: #B91820;
+            --brisa-red-light: #FF4D52;
+            --brisa-blue: #1E3A8A;
+            --brisa-blue-light: #3B82F6;
+            
+            /* Neutrals */
+            --white: #FFFFFF;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-300: #D1D5DB;
+            --gray-400: #9CA3AF;
+            --gray-500: #6B7280;
+            --gray-600: #4B5563;
+            --gray-700: #374151;
+            --gray-800: #1F2937;
+            --gray-900: #111827;
+            
+            /* Status */
+            --success: #10B981;
+            --success-light: #D1FAE5;
+            --warning: #F59E0B;
+            --warning-light: #FEF3C7;
+            --error: #EF4444;
+            --error-light: #FEE2E2;
+            --info: #3B82F6;
+            --info-light: #DBEAFE;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            
+            /* Border Radius */
+            --radius-sm: 6px;
+            --radius: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --radius-full: 9999px;
+            
+            /* Transitions */
+            --transition-fast: 150ms ease;
+            --transition: 200ms ease;
+            --transition-slow: 300ms ease;
+        }
+
+        /* ============================================
+           RESET & BASE
+        ============================================ */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, var(--brisa-red) 100%);
+            min-height: 100vh;
+            color: var(--gray-800);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ============================================
+           LAYOUT CONTAINER
+        ============================================ */
+        .page-wrapper {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* ============================================
+           HEADER / LOGO
+        ============================================ */
+        .form-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .logo {
+            height: 48px;
+            margin-bottom: 8px;
+        }
+
+        .header-tagline {
+            color: rgba(255,255,255,0.9);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* ============================================
+           MAIN CARD
+        ============================================ */
+        .form-card {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-xl);
+            width: 100%;
+            max-width: 520px;
+            overflow: hidden;
+            animation: slideUp 0.5s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ============================================
+           STEPPER
+        ============================================ */
+        .stepper {
+            background: var(--gray-50);
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .stepper-track {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .stepper-track::before {
+            content: '';
+            position: absolute;
+            top: 16px;
+            left: 24px;
+            right: 24px;
+            height: 2px;
+            background: var(--gray-200);
+            z-index: 1;
+        }
+
+        .stepper-progress {
+            position: absolute;
+            top: 16px;
+            left: 24px;
+            height: 2px;
+            background: var(--brisa-red);
+            z-index: 2;
+            transition: width var(--transition-slow);
+            width: 0%;
+        }
+
+        .step-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 3;
+        }
+
+        .step-circle {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--white);
+            border: 2px solid var(--gray-300);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray-400);
+            transition: all var(--transition);
+        }
+
+        .step-item.active .step-circle {
+            border-color: var(--brisa-red);
+            background: var(--brisa-red);
+            color: var(--white);
+            box-shadow: 0 0 0 4px rgba(227, 30, 36, 0.2);
+        }
+
+        .step-item.completed .step-circle {
+            border-color: var(--success);
+            background: var(--success);
+            color: var(--white);
+        }
+
+        .step-item.completed .step-circle::after {
+            content: '✓';
+        }
+
+        .step-item.completed .step-number {
+            display: none;
+        }
+
+        .step-label {
+            font-size: 11px;
+            color: var(--gray-500);
+            margin-top: 6px;
+            font-weight: 500;
+            text-align: center;
+            max-width: 60px;
+            transition: color var(--transition);
+        }
+
+        .step-item.active .step-label {
+            color: var(--brisa-red);
+            font-weight: 600;
+        }
+
+        .step-item.completed .step-label {
+            color: var(--success);
+        }
+
+        /* ============================================
+           FORM CONTENT AREA
+        ============================================ */
+        .form-content {
+            padding: 24px;
+        }
+
+        /* ============================================
+           STEP PANELS (hidden by default)
+        ============================================ */
+        .step-panel {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .step-panel.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateX(10px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* ============================================
+           STEP HEADER
+        ============================================ */
+        .step-header {
+            margin-bottom: 24px;
+        }
+
+        .step-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 4px;
+        }
+
+        .step-subtitle {
+            font-size: 14px;
+            color: var(--gray-500);
+        }
+
+        /* ============================================
+           PLAN CARD (appears in step 1+)
+        ============================================ */
+        .plan-card {
+            background: linear-gradient(135deg, var(--brisa-red) 0%, var(--brisa-red-dark) 100%);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            color: var(--white);
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .plan-card.visible {
+            display: block;
+        }
+
+        .plan-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .plan-info h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .plan-info .plan-speed {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .plan-price {
+            text-align: right;
+        }
+
+        .plan-price .currency {
+            font-size: 14px;
+            vertical-align: super;
+        }
+
+        .plan-price .value {
+            font-family: 'Outfit', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .plan-price .period {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .plan-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .plan-btn {
+            flex: 1;
+            padding: 8px 12px;
+            border-radius: var(--radius);
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition);
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        .plan-btn-details {
+            background: rgba(255,255,255,0.2);
+            color: var(--white);
+        }
+
+        .plan-btn-details:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .plan-btn-change {
+            background: var(--white);
+            color: var(--brisa-red);
+        }
+
+        .plan-btn-change:hover {
+            background: var(--gray-100);
+        }
+
+        /* ============================================
+           FORM ELEMENTS
+        ============================================ */
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-row {
+            display: grid;
+            gap: 12px;
+        }
+
+        .form-row-2 {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .form-row-3 {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        @media (max-width: 480px) {
+            .form-row-2, .form-row-3 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .form-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gray-700);
+            margin-bottom: 6px;
+        }
+
+        .form-label .required {
+            color: var(--brisa-red);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius);
+            font-size: 15px;
+            font-family: inherit;
+            color: var(--gray-800);
+            background: var(--white);
+            transition: all var(--transition);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--brisa-red);
+            box-shadow: 0 0 0 3px rgba(227, 30, 36, 0.1);
+        }
+
+        .form-input.error {
+            border-color: var(--error);
+            background: var(--error-light);
+        }
+
+        .form-input.success {
+            border-color: var(--success);
+        }
+
+        .form-input::placeholder {
+            color: var(--gray-400);
+        }
+
+        .form-input:disabled {
+            background: var(--gray-100);
+            cursor: not-allowed;
+        }
+
+        /* Select styling */
+        .form-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236B7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 16px;
+            padding-right: 40px;
+        }
+
+        /* Error message */
+        .form-error {
+            font-size: 12px;
+            color: var(--error);
+            margin-top: 4px;
+            display: none;
+        }
+
+        .form-error.visible {
+            display: block;
+        }
+
+        /* Help text */
+        .form-help {
+            font-size: 12px;
+            color: var(--gray-500);
+            margin-top: 4px;
+        }
+
+        /* ============================================
+           ADDRESS BOX (Step 2)
+        ============================================ */
+        .address-box {
+            background: var(--info-light);
+            border: 1px solid var(--info);
+            border-radius: var(--radius-md);
+            padding: 14px 16px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .address-box i {
+            color: var(--info);
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .address-box-content {
+            flex: 1;
+        }
+
+        .address-box-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gray-800);
+            margin-bottom: 2px;
+        }
+
+        .address-box-text {
+            font-size: 14px;
+            color: var(--gray-600);
+        }
+
+        .address-box-btn {
+            font-size: 12px;
+            color: var(--info);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            padding: 0;
+            text-decoration: underline;
+        }
+
+        /* ============================================
+           RADIO/CHECKBOX CARDS
+        ============================================ */
+        .option-cards {
+            display: grid;
+            gap: 10px;
+        }
+
+        .option-card {
+            position: relative;
+        }
+
+        .option-card input {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .option-card-content {
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-md);
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all var(--transition);
+        }
+
+        .option-card input:checked + .option-card-content {
+            border-color: var(--brisa-red);
+            background: rgba(227, 30, 36, 0.05);
+        }
+
+        .option-card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius);
+            background: var(--gray-100);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: var(--gray-600);
+            transition: all var(--transition);
+        }
+
+        .option-card input:checked + .option-card-content .option-card-icon {
+            background: var(--brisa-red);
+            color: var(--white);
+        }
+
+        .option-card-text h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray-800);
+            margin-bottom: 2px;
+        }
+
+        .option-card-text p {
+            font-size: 12px;
+            color: var(--gray-500);
+        }
+
+        /* ============================================
+           SCHEDULE CARDS (Step 3)
+        ============================================ */
+        .schedule-card {
+            background: var(--gray-50);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            margin-bottom: 12px;
+        }
+
+        .schedule-card-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gray-700);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .schedule-card-title i {
+            color: var(--brisa-red);
+        }
+
+        .period-options {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .period-btn {
+            flex: 1;
+            padding: 10px 8px;
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius);
+            background: var(--white);
+            cursor: pointer;
+            transition: all var(--transition);
+            text-align: center;
+        }
+
+        .period-btn:hover {
+            border-color: var(--gray-300);
+        }
+
+        .period-btn.selected {
+            border-color: var(--brisa-red);
+            background: rgba(227, 30, 36, 0.05);
+        }
+
+        .period-btn .period-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gray-800);
+        }
+
+        .period-btn .period-time {
+            font-size: 11px;
+            color: var(--gray-500);
+        }
+
+        /* ============================================
+           BIOMETRIA SECTION (Step 3)
+        ============================================ */
+        .biometria-section {
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .biometria-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--gray-800);
+            margin-bottom: 12px;
+        }
+
+        .biometria-info {
+            background: var(--warning-light);
+            border-radius: var(--radius);
+            padding: 12px 14px;
+            font-size: 13px;
+            color: var(--gray-700);
+            margin-top: 12px;
+            display: none;
+        }
+
+        .biometria-info.visible {
+            display: block;
+        }
+
+        /* ============================================
+           SUMMARY (Step 4)
+        ============================================ */
+        .summary-section {
+            background: var(--gray-50);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .summary-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+
+        .summary-item-label {
+            font-size: 14px;
+            color: var(--gray-600);
+        }
+
+        .summary-item-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray-800);
+        }
+
+        /* Addon Toggle */
+        .addon-toggle {
+            background: var(--white);
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .addon-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .addon-info h4 {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--gray-800);
+        }
+
+        .addon-info p {
+            font-size: 13px;
+            color: var(--gray-500);
+        }
+
+        .addon-price {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--brisa-red);
+        }
+
+        /* Toggle Switch */
+        .toggle-switch {
+            position: relative;
+            width: 48px;
+            height: 26px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--gray-300);
+            transition: var(--transition);
+            border-radius: var(--radius-full);
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: var(--transition);
+            border-radius: 50%;
+            box-shadow: var(--shadow);
+        }
+
+        .toggle-switch input:checked + .toggle-slider {
+            background-color: var(--brisa-red);
+        }
+
+        .toggle-switch input:checked + .toggle-slider:before {
+            transform: translateX(22px);
+        }
+
+        /* Total */
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--gray-800) 0%, var(--gray-900) 100%);
+            border-radius: var(--radius-md);
+            color: var(--white);
+        }
+
+        .total-label {
+            font-size: 14px;
+        }
+
+        .total-value {
+            font-family: 'Outfit', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+        }
+
+        .total-value small {
+            font-size: 14px;
+            font-weight: 400;
+            opacity: 0.8;
+        }
+
+        /* ============================================
+           LGPD CHECKBOX
+        ============================================ */
+        .lgpd-check {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .lgpd-check input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--brisa-red);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .lgpd-check label {
+            font-size: 13px;
+            color: var(--gray-600);
+            line-height: 1.5;
+        }
+
+        .lgpd-check label a {
+            color: var(--brisa-red);
+            text-decoration: underline;
+        }
+
+        /* ============================================
+           BUTTONS
+        ============================================ */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 24px;
+            border-radius: var(--radius);
+            font-size: 15px;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all var(--transition);
+            border: none;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--brisa-red) 0%, var(--brisa-red-dark) 100%);
+            color: var(--white);
+            box-shadow: 0 4px 14px rgba(227, 30, 36, 0.35);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(227, 30, 36, 0.45);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-primary:disabled {
+            background: var(--gray-300);
+            box-shadow: none;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--gray-700);
+            border: 2px solid var(--gray-200);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--gray-300);
+            background: var(--gray-50);
+        }
+
+        .btn-block {
+            width: 100%;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .btn-group .btn {
+            flex: 1;
+        }
+
+        /* ============================================
+           CEP SEARCH (Step 0)
+        ============================================ */
+        .cep-search {
+            display: flex;
+            gap: 12px;
+        }
+
+        .cep-search .form-input {
+            flex: 1;
+        }
+
+        .cep-search .btn {
+            white-space: nowrap;
+        }
+
+        /* CEP Result */
+        .cep-result {
+            margin-top: 16px;
+            display: none;
+        }
+
+        .cep-result.visible {
+            display: block;
+        }
+
+        .cep-success {
+            background: var(--success-light);
+            border: 1px solid var(--success);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            text-align: center;
+        }
+
+        .cep-success i {
+            font-size: 32px;
+            color: var(--success);
+            margin-bottom: 8px;
+        }
+
+        .cep-success h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--gray-800);
+            margin-bottom: 4px;
+        }
+
+        .cep-success p {
+            font-size: 14px;
+            color: var(--gray-600);
+        }
+
+        .cep-error {
+            background: var(--error-light);
+            border: 1px solid var(--error);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            text-align: center;
+        }
+
+        .cep-error i {
+            font-size: 32px;
+            color: var(--error);
+            margin-bottom: 8px;
+        }
+
+        .cep-error h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--gray-800);
+            margin-bottom: 4px;
+        }
+
+        .cep-error p {
+            font-size: 14px;
+            color: var(--gray-600);
+        }
+
+        /* ============================================
+           LOADING STATE
+        ============================================ */
+        .loading {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 20px;
+        }
+
+        .loading.visible {
+            display: flex;
+        }
+
+        .spinner {
+            width: 24px;
+            height: 24px;
+            border: 3px solid var(--gray-200);
+            border-top-color: var(--brisa-red);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* ============================================
+           THANK YOU PAGE (Step 5)
+        ============================================ */
+        .thank-you {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .thank-you-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--success-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .thank-you-icon i {
+            font-size: 40px;
+            color: var(--success);
+        }
+
+        .thank-you h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 8px;
+        }
+
+        .thank-you p {
+            font-size: 14px;
+            color: var(--gray-600);
+            margin-bottom: 24px;
+        }
+
+        /* Timeline */
+        .timeline {
+            text-align: left;
+            margin: 24px 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 16px;
+            padding-bottom: 20px;
+            position: relative;
+        }
+
+        .timeline-item:not(:last-child)::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 32px;
+            bottom: 0;
+            width: 2px;
+            background: var(--gray-200);
+        }
+
+        .timeline-dot {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--brisa-red);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .timeline-content h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray-800);
+            margin-bottom: 2px;
+        }
+
+        .timeline-content p {
+            font-size: 13px;
+            color: var(--gray-500);
+            margin: 0;
+        }
+
+        /* WhatsApp CTA */
+        .whatsapp-cta {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: var(--white);
+            padding: 16px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            transition: all var(--transition);
+        }
+
+        .whatsapp-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        .whatsapp-cta i {
+            font-size: 32px;
+        }
+
+        .whatsapp-cta-text {
+            text-align: left;
+        }
+
+        .whatsapp-cta-text span {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+
+        .whatsapp-cta-text strong {
+            display: block;
+            font-size: 16px;
+        }
+
+        /* ============================================
+           MODAL (Plan Selection)
+        ============================================ */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .modal-overlay.visible {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            width: 100%;
+            max-width: 400px;
+            max-height: 80vh;
+            overflow-y: auto;
+            animation: modalIn 0.3s ease;
+        }
+
+        @keyframes modalIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .modal-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--gray-800);
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--gray-400);
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+        }
+
+        .modal-body {
+            padding: 20px;
+        }
+
+        .plan-option {
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all var(--transition);
+        }
+
+        .plan-option:hover {
+            border-color: var(--gray-300);
+        }
+
+        .plan-option.selected {
+            border-color: var(--brisa-red);
+            background: rgba(227, 30, 36, 0.05);
+        }
+
+        .plan-option-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .plan-option-name {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--gray-800);
+        }
+
+        .plan-option-price {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--brisa-red);
+        }
+
+        .plan-option-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .plan-option-features span {
+            font-size: 11px;
+            background: var(--gray-100);
+            padding: 4px 8px;
+            border-radius: var(--radius-sm);
+            color: var(--gray-600);
+        }
+
+        /* ============================================
+           RESPONSIVE
+        ============================================ */
+        @media (max-width: 480px) {
+            .page-wrapper {
+                padding: 12px;
+            }
+
+            .form-card {
+                border-radius: var(--radius-lg);
+            }
+
+            .stepper {
+                padding: 16px;
+            }
+
+            .step-label {
+                display: none;
+            }
+
+            .form-content {
+                padding: 20px 16px;
+            }
+
+            .step-title {
+                font-size: 20px;
+            }
+
+            .btn-group {
+                flex-direction: column;
+            }
+
+            .cep-search {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NWNQHFF" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <div class="page-wrapper">
+        <!-- Header -->
+        <header class="form-header">
+            <img src="https://brisanetfibra.com.br/midia/logo-brisa.webp" alt="Brisanet Fibra" class="logo">
+            <p class="header-tagline">Parceiro Autorizado</p>
+        </header>
+
+        <!-- Main Form Card -->
+        <main class="form-card">
+            <!-- Stepper -->
+            <div class="stepper">
+                <div class="stepper-track">
+                    <div class="stepper-progress" id="stepperProgress"></div>
+                    
+                    <div class="step-item active" data-step="0">
+                        <div class="step-circle"><span class="step-number">1</span></div>
+                        <span class="step-label">CEP</span>
+                    </div>
+                    
+                    <div class="step-item" data-step="1">
+                        <div class="step-circle"><span class="step-number">2</span></div>
+                        <span class="step-label">Dados</span>
+                    </div>
+                    
+                    <div class="step-item" data-step="2">
+                        <div class="step-circle"><span class="step-number">3</span></div>
+                        <span class="step-label">Endereço</span>
+                    </div>
+                    
+                    <div class="step-item" data-step="3">
+                        <div class="step-circle"><span class="step-number">4</span></div>
+                        <span class="step-label">Agenda</span>
+                    </div>
+                    
+                    <div class="step-item" data-step="4">
+                        <div class="step-circle"><span class="step-number">5</span></div>
+                        <span class="step-label">Confirmar</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Content -->
+            <div class="form-content">
+                <!-- STEP 0: CEP -->
+                <div class="step-panel active" id="step-0">
+                    <div class="step-header">
+                        <h2 class="step-title">Consulte a disponibilidade</h2>
+                        <p class="step-subtitle">Digite seu CEP para verificar a cobertura</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">CEP <span class="required">*</span></label>
+                        <div class="cep-search">
+                            <input type="text" 
+                                   class="form-input" 
+                                   id="cep" 
+                                   placeholder="00000-000"
+                                   maxlength="9"
+                                   inputmode="numeric">
+                            <button type="button" class="btn btn-primary" id="btnCheckCep">
+                                <i class="bi bi-search"></i>
+                                Verificar
+                            </button>
+                        </div>
+                        <p class="form-help">Não sabe o CEP? <a href="https://buscacepinter.correios.com.br/" target="_blank">Consulte aqui</a></p>
+                    </div>
+
+                    <div class="loading" id="cepLoading">
+                        <div class="spinner"></div>
+                        <span>Verificando cobertura...</span>
+                    </div>
+
+                    <div class="cep-result" id="cepResult">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- STEP 1: Dados Pessoais -->
+                <div class="step-panel" id="step-1">
+                    <div class="step-header">
+                        <h2 class="step-title">Dados do Titular</h2>
+                        <p class="step-subtitle">Informe os dados de quem será o titular do plano</p>
+                    </div>
+
+                    <!-- Plan Card -->
+                    <div class="plan-card visible" id="planCard">
+                        <div class="plan-card-header">
+                            <div class="plan-info">
+                                <h3 id="selectedPlanName">500 Mega</h3>
+                                <span class="plan-speed">Download 500 Mbps / Upload 250 Mbps</span>
+                            </div>
+                            <div class="plan-price">
+                                <span class="currency">R$</span>
+                                <span class="value" id="selectedPlanPrice">84</span>
+                                <span class="period">,99/mês</span>
+                            </div>
+                        </div>
+                        <div class="plan-actions">
+                            <button type="button" class="plan-btn plan-btn-details" id="btnPlanDetails">
+                                <i class="bi bi-eye"></i> Ver detalhes
+                            </button>
+                            <button type="button" class="plan-btn plan-btn-change" id="btnChangePlan">
+                                <i class="bi bi-arrow-repeat"></i> Alterar plano
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-row form-row-2">
+                        <div class="form-group">
+                            <label class="form-label">Nome <span class="required">*</span></label>
+                            <input type="text" class="form-input" id="nome" placeholder="Seu nome">
+                            <span class="form-error" id="nomeError">Nome é obrigatório</span>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Sobrenome <span class="required">*</span></label>
+                            <input type="text" class="form-input" id="sobrenome" placeholder="Seu sobrenome">
+                            <span class="form-error" id="sobrenomeError">Sobrenome é obrigatório</span>
+                        </div>
+                    </div>
+
+                    <div class="form-row form-row-2">
+                        <div class="form-group">
+                            <label class="form-label">CPF <span class="required">*</span></label>
+                            <input type="text" class="form-input" id="cpf" placeholder="000.000.000-00" maxlength="14" inputmode="numeric">
+                            <span class="form-error" id="cpfError">CPF inválido</span>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">RG <span class="required">*</span></label>
+                            <input type="text" class="form-input" id="rg" placeholder="Seu RG">
+                            <span class="form-error" id="rgError">RG é obrigatório</span>
+                        </div>
+                    </div>
+
+                    <div class="form-row form-row-2">
+                        <div class="form-group">
+                            <label class="form-label">Data de Nascimento <span class="required">*</span></label>
+                            <input type="text" class="form-input" id="dataNascimento" placeholder="dd/mm/aaaa" maxlength="10" inputmode="numeric">
+                            <span class="form-error" id="dataNascimentoError">Data inválida</span>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">WhatsApp <span class="required">*</span></label>
+                            <input type="text" class="form-input" id="whatsapp" placeholder="(00) 00000-0000" maxlength="15" inputmode="tel">
+                            <span class="form-error" id="whatsappError">WhatsApp é obrigatório</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">E-mail <span class="required">*</span></label>
+                        <input type="email" class="form-input" id="email" placeholder="seu@email.com">
+                        <span class="form-error" id="emailError">E-mail inválido</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Telefone Alternativo</label>
+                        <input type="text" class="form-input" id="telefoneAlternativo" placeholder="(00) 0000-0000" maxlength="15" inputmode="tel">
+                    </div>
+
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-secondary" id="btnBack1">
+                            <i class="bi bi-arrow-left"></i> Voltar
+                        </button>
+                        <button type="button" class="btn btn-primary" id="btnNext1">
+                            Continuar <i class="bi bi-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- STEP 2: Endereço -->
+                <div class="step-panel" id="step-2">
+                    <div class="step-header">
+                        <h2 class="step-title">Endereço de Instalação</h2>
+                        <p class="step-subtitle">Confirme e complete as informações</p>
+                    </div>
+
+                    <!-- Plan Card -->
+                    <div class="plan-card visible">
+                        <div class="plan-card-header">
+                            <div class="plan-info">
+                                <h3 id="selectedPlanName2">500 Mega</h3>
+                                <span class="plan-speed">Download 500 Mbps / Upload 250 Mbps</span>
+                            </div>
+                            <div class="plan-price">
+                                <span class="currency">R$</span>
+                                <span class="value" id="selectedPlanPrice2">84</span>
+                                <span class="period">,99/mês</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="address-box">
+                        <i class="bi bi-geo-alt-fill"></i>
+                        <div class="address-box-content">
+                            <p class="address-box-title">Endereço identificado</p>
+                            <p class="address-box-text" id="addressPreview">Carregando...</p>
+                        </div>
+                        <button type="button" class="address-box-btn" id="btnEditAddress">Editar</button>
+                    </div>
+
+                    <div class="form-row form-row-3">
+                        <div class="form-group" style="grid-column: span 2;">
+                            <label class="form-label">Logradouro <span class="required">*</span></label>
+                            <input type="text" class="form-input" id="logradouro" placeholder="Rua, Avenida...">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Número <span class="required">*</span></label>
+                            <input type="text" class="form-input" id="numero" placeholder="Nº">
+                            <span class="form-error" id="numeroError">Obrigatório</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Tipo de Imóvel <span class="required">*</span></label>
+                        <div class="option-cards">
+                            <label class="option-card">
+                                <input type="radio" name="tipoImovel" value="CASA">
+                                <div class="option-card-content">
+                                    <div class="option-card-icon"><i class="bi bi-house"></i></div>
+                                    <div class="option-card-text">
+                                        <h4>Casa / Sobrado</h4>
+                                        <p>Residência individual</p>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="option-card">
+                                <input type="radio" name="tipoImovel" value="EDIFICIO">
+                                <div class="option-card-content">
+                                    <div class="option-card-icon"><i class="bi bi-building"></i></div>
+                                    <div class="option-card-text">
+                                        <h4>Edifício</h4>
+                                        <p>Apartamento em prédio</p>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="option-card">
+                                <input type="radio" name="tipoImovel" value="CONDOMINIO">
+                                <div class="option-card-content">
+                                    <div class="option-card-icon"><i class="bi bi-houses"></i></div>
+                                    <div class="option-card-text">
+                                        <h4>Condomínio Horizontal</h4>
+                                        <p>Casa em condomínio fechado</p>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <span class="form-error" id="tipoImovelError">Selecione o tipo de imóvel</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Complemento</label>
+                        <input type="text" class="form-input" id="complemento" placeholder="Apto, Bloco, Casa...">
+                    </div>
+
+                    <div class="form-row form-row-2">
+                        <div class="form-group">
+                            <label class="form-label">Ponto de Referência 1 <span class="required">*</span></label>
+                            <input type="text" class="form-input" id="referencia1" placeholder="Ex: Próximo ao mercado">
+                            <span class="form-error" id="referencia1Error">Obrigatório</span>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Ponto de Referência 2 <span class="required">*</span></label>
+                            <input type="text" class="form-input" id="referencia2" placeholder="Ex: Em frente à praça">
+                            <span class="form-error" id="referencia2Error">Obrigatório</span>
+                        </div>
+                    </div>
+
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-secondary" id="btnBack2">
+                            <i class="bi bi-arrow-left"></i> Voltar
+                        </button>
+                        <button type="button" class="btn btn-primary" id="btnNext2">
+                            Continuar <i class="bi bi-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- STEP 3: Agendamento + Biometria -->
+                <div class="step-panel" id="step-3">
+                    <div class="step-header">
+                        <h2 class="step-title">Agendamento</h2>
+                        <p class="step-subtitle">Escolha duas opções de data para instalação</p>
+                    </div>
+
+                    <!-- Plan Card -->
+                    <div class="plan-card visible">
+                        <div class="plan-card-header">
+                            <div class="plan-info">
+                                <h3 id="selectedPlanName3">500 Mega</h3>
+                                <span class="plan-speed">Download 500 Mbps / Upload 250 Mbps</span>
+                            </div>
+                            <div class="plan-price">
+                                <span class="currency">R$</span>
+                                <span class="value" id="selectedPlanPrice3">84</span>
+                                <span class="period">,99/mês</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Schedule Option 1 -->
+                    <div class="schedule-card">
+                        <p class="schedule-card-title"><i class="bi bi-calendar-event"></i> Opção 1</p>
+                        <div class="form-group">
+                            <input type="date" class="form-input" id="data1">
+                        </div>
+                        <div class="period-options" id="period1Options">
+                            <button type="button" class="period-btn" data-period="MANHA">
+                                <div class="period-name">Manhã</div>
+                                <div class="period-time">08h - 12h</div>
+                            </button>
+                            <button type="button" class="period-btn" data-period="TARDE">
+                                <div class="period-name">Tarde</div>
+                                <div class="period-time">12h - 18h</div>
+                            </button>
+                            <button type="button" class="period-btn" data-period="NOITE">
+                                <div class="period-name">Noite</div>
+                                <div class="period-time">18h - 21h</div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Schedule Option 2 -->
+                    <div class="schedule-card">
+                        <p class="schedule-card-title"><i class="bi bi-calendar-event"></i> Opção 2</p>
+                        <div class="form-group">
+                            <input type="date" class="form-input" id="data2">
+                        </div>
+                        <div class="period-options" id="period2Options">
+                            <button type="button" class="period-btn" data-period="MANHA">
+                                <div class="period-name">Manhã</div>
+                                <div class="period-time">08h - 12h</div>
+                            </button>
+                            <button type="button" class="period-btn" data-period="TARDE">
+                                <div class="period-name">Tarde</div>
+                                <div class="period-time">12h - 18h</div>
+                            </button>
+                            <button type="button" class="period-btn" data-period="NOITE">
+                                <div class="period-name">Noite</div>
+                                <div class="period-time">18h - 21h</div>
+                            </button>
+                        </div>
+                    </div>
+                    <span class="form-error" id="agendaError">Selecione datas diferentes para as duas opções</span>
+
+                    <!-- Biometria Section -->
+                    <div class="biometria-section">
+                        <p class="biometria-title">Quem fará a biometria facial do pedido?</p>
+                        <div class="option-cards">
+                            <label class="option-card">
+                                <input type="radio" name="biometria" value="TITULAR" checked>
+                                <div class="option-card-content">
+                                    <div class="option-card-icon"><i class="bi bi-person-check"></i></div>
+                                    <div class="option-card-text">
+                                        <h4>Eu sou o titular</h4>
+                                        <p>Farei a biometria pessoalmente</p>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="option-card">
+                                <input type="radio" name="biometria" value="TERCEIRO">
+                                <div class="option-card-content">
+                                    <div class="option-card-icon"><i class="bi bi-people"></i></div>
+                                    <div class="option-card-text">
+                                        <h4>Estou solicitando para outra pessoa</h4>
+                                        <p>O titular fará a biometria</p>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div class="biometria-info" id="biometriaInfo">
+                            <p><strong>Atenção:</strong> A biometria deverá ser realizada pelo titular do plano através do aplicativo Brisa Cliente.</p>
+                            <div class="form-group" style="margin-top: 12px;">
+                                <label class="form-label">WhatsApp do Titular (opcional)</label>
+                                <input type="text" class="form-input" id="whatsappTitular" placeholder="(00) 00000-0000" maxlength="15">
+                                <p class="form-help">Podemos enviar as instruções diretamente para o titular</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-secondary" id="btnBack3">
+                            <i class="bi bi-arrow-left"></i> Voltar
+                        </button>
+                        <button type="button" class="btn btn-primary" id="btnNext3">
+                            Continuar <i class="bi bi-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- STEP 4: Confirmação -->
+                <div class="step-panel" id="step-4">
+                    <div class="step-header">
+                        <h2 class="step-title">Confirmação</h2>
+                        <p class="step-subtitle">Revise os dados antes de finalizar</p>
+                    </div>
+
+                    <!-- Summary Sections -->
+                    <div class="summary-section">
+                        <p class="summary-title">Plano</p>
+                        <div class="summary-item">
+                            <span class="summary-item-label">Plano selecionado</span>
+                            <span class="summary-item-value" id="summaryPlan">500 Mega</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-item-label">Velocidade</span>
+                            <span class="summary-item-value" id="summarySpeed">500 Mbps / 250 Mbps</span>
+                        </div>
+                    </div>
+
+                    <div class="summary-section">
+                        <p class="summary-title">Endereço</p>
+                        <div class="summary-item">
+                            <span class="summary-item-label">Local</span>
+                            <span class="summary-item-value" id="summaryAddress">-</span>
+                        </div>
+                    </div>
+
+                    <div class="summary-section">
+                        <p class="summary-title">Agendamento</p>
+                        <div class="summary-item">
+                            <span class="summary-item-label">Opção 1</span>
+                            <span class="summary-item-value" id="summaryDate1">-</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-item-label">Opção 2</span>
+                            <span class="summary-item-value" id="summaryDate2">-</span>
+                        </div>
+                    </div>
+
+                    <!-- Addon Toggle -->
+                    <div class="addon-toggle">
+                        <div class="addon-header">
+                            <div class="addon-info">
+                                <h4>Conecta+ <span class="addon-price">+R$ 9,90</span></h4>
+                                <p>Assistência técnica premium 24h</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="addonConecta">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- WhatsApp Destination -->
+                    <div class="form-group">
+                        <label class="form-label">Enviar instruções para qual WhatsApp?</label>
+                        <div class="option-cards">
+                            <label class="option-card">
+                                <input type="radio" name="whatsappDestino" value="PRINCIPAL" checked>
+                                <div class="option-card-content">
+                                    <div class="option-card-icon"><i class="bi bi-whatsapp"></i></div>
+                                    <div class="option-card-text">
+                                        <h4 id="whatsappPrincipalLabel">WhatsApp informado</h4>
+                                        <p id="whatsappPrincipalNumber">-</p>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="option-card" id="whatsappTitularOption" style="display: none;">
+                                <input type="radio" name="whatsappDestino" value="TITULAR">
+                                <div class="option-card-content">
+                                    <div class="option-card-icon"><i class="bi bi-whatsapp"></i></div>
+                                    <div class="option-card-text">
+                                        <h4>WhatsApp do Titular</h4>
+                                        <p id="whatsappTitularNumber">-</p>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Total -->
+                    <div class="total-row">
+                        <span class="total-label">Total mensal</span>
+                        <span class="total-value">R$ <span id="totalValue">84,99</span><small>/mês</small></span>
+                    </div>
+
+                    <!-- LGPD -->
+                    <div class="lgpd-check">
+                        <input type="checkbox" id="lgpdCheck">
+                        <label for="lgpdCheck">
+                            Li e aceito os <a href="#" target="_blank">Termos de Uso</a> e a 
+                            <a href="#" target="_blank">Política de Privacidade</a>. 
+                            Autorizo o tratamento dos meus dados conforme a LGPD.
+                        </label>
+                    </div>
+                    <span class="form-error" id="lgpdError">Você precisa aceitar os termos para continuar</span>
+
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-secondary" id="btnBack4">
+                            <i class="bi bi-arrow-left"></i> Voltar
+                        </button>
+                        <button type="button" class="btn btn-primary" id="btnSubmit" disabled>
+                            <i class="bi bi-check-circle"></i> Finalizar Pedido
+                        </button>
+                    </div>
+
+                    <div class="loading" id="submitLoading">
+                        <div class="spinner"></div>
+                        <span>Processando seu pedido...</span>
+                    </div>
+                </div>
+
+                <!-- STEP 5: Obrigado -->
+                <div class="step-panel" id="step-5">
+                    <div class="thank-you">
+                        <div class="thank-you-icon">
+                            <i class="bi bi-check-lg"></i>
+                        </div>
+                        <h2>Pedido Realizado!</h2>
+                        <p>Recebemos sua solicitação e em breve entraremos em contato.</p>
+
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-dot">1</div>
+                                <div class="timeline-content">
+                                    <h4>Baixe o App Brisa Cliente</h4>
+                                    <p>Disponível na App Store e Google Play</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-dot">2</div>
+                                <div class="timeline-content">
+                                    <h4>Complete a Biometria</h4>
+                                    <p>Confirme sua identidade pelo aplicativo</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-dot">3</div>
+                                <div class="timeline-content">
+                                    <h4>Aguarde a Instalação</h4>
+                                    <p>Nossa equipe entrará em contato para confirmar</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="https://wa.me/5581992823101" target="_blank" class="whatsapp-cta">
+                            <i class="bi bi-whatsapp"></i>
+                            <div class="whatsapp-cta-text">
+                                <span>Precisa de ajuda?</span>
+                                <strong>Fale conosco pelo WhatsApp</strong>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer style="text-align: center; margin-top: 20px; color: rgba(255,255,255,0.7); font-size: 12px;">
+            <p>© 2025 Brisanet Fibra - Parceiro Autorizado</p>
+        </footer>
+    </div>
+
+    <!-- Modal: Change Plan -->
+    <div class="modal-overlay" id="planModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Escolha seu plano</h3>
+                <button type="button" class="modal-close" id="closePlanModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="plan-option selected" data-plan="FIBRA_350" data-price="79.99" data-name="350 Mega" data-download="350" data-upload="175">
+                    <div class="plan-option-header">
+                        <span class="plan-option-name">350 Mega</span>
+                        <span class="plan-option-price">R$ 79,99</span>
+                    </div>
+                    <div class="plan-option-features">
+                        <span>350 Mbps Download</span>
+                        <span>175 Mbps Upload</span>
+                        <span>Wi-Fi incluso</span>
+                    </div>
+                </div>
+                <div class="plan-option" data-plan="FIBRA_500" data-price="84.99" data-name="500 Mega" data-download="500" data-upload="250">
+                    <div class="plan-option-header">
+                        <span class="plan-option-name">500 Mega</span>
+                        <span class="plan-option-price">R$ 84,99</span>
+                    </div>
+                    <div class="plan-option-features">
+                        <span>500 Mbps Download</span>
+                        <span>250 Mbps Upload</span>
+                        <span>Wi-Fi incluso</span>
+                    </div>
+                </div>
+                <div class="plan-option" data-plan="FIBRA_700" data-price="99.90" data-name="700 Mega" data-download="700" data-upload="350">
+                    <div class="plan-option-header">
+                        <span class="plan-option-name">700 Mega</span>
+                        <span class="plan-option-price">R$ 99,90</span>
+                    </div>
+                    <div class="plan-option-features">
+                        <span>700 Mbps Download</span>
+                        <span>350 Mbps Upload</span>
+                        <span>Wi-Fi incluso</span>
+                    </div>
+                </div>
+                <div class="plan-option" data-plan="FIBRA_1000" data-price="149.90" data-name="1 Giga" data-download="1000" data-upload="500">
+                    <div class="plan-option-header">
+                        <span class="plan-option-name">1 Giga</span>
+                        <span class="plan-option-price">R$ 149,90</span>
+                    </div>
+                    <div class="plan-option-features">
+                        <span>1000 Mbps Download</span>
+                        <span>500 Mbps Upload</span>
+                        <span>Wi-Fi incluso</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="form-contratacao.js"></script>
+</body>
+</html>
