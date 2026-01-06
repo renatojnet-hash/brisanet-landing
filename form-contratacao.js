@@ -9,17 +9,33 @@
 // CONFIGURAÇÃO
 // ============================================
 const CONFIG = {
-    // Endpoint do Worker (ajustar para produção)
-    WORKER_URL: '/api/submit', // ou URL completa: 'https://seu-worker.workers.dev/api/submit'
-    
+    // Endpoint do Worker Datacake v4.0
+    WORKER_URL: 'https://brisanet-datacake-worker.renatojnet.workers.dev/api/checkout',
+
     // Preço do addon Conecta+
     CONECTA_PLUS_PRICE: 9.90,
-    
+
     // Origem do lead
     ORIGEM: 'LP_RESIDENCIAL',
-    
+
     // WhatsApp comercial
     WHATSAPP_COMERCIAL: '5581992823101'
+};
+
+// ============================================
+// MAPEAMENTO DE PLANOS DATACAKE - JANEIRO 2026
+// ============================================
+const PLANOS_DATACAKE = {
+    'FIBRA_500': { id: '1056', nome: '500 MEGA', preco: 84.99 },
+    'FIBRA_600': { id: '1060', nome: '600 MEGA', preco: 99.90 },
+    'FIBRA_700': { id: '1062', nome: '700 MEGA', preco: 109.90 },
+    'FIBRA_1GIGA': { id: '1082', nome: '1 GIGA', preco: 149.99 },
+    'FIBRA_600_GLOBO': { id: '1060', sva: '870', nome: '600 MEGA + Globoplay', preco: 99.90 },
+    'FIBRA_500_GLOBO': { id: '1056', sva: '836', nome: '500 MEGA + Globoplay', preco: 124.89 },
+    'FIBRA_600_NETFLIX': { id: '1060', sva: '448', nome: '600 MEGA + Netflix', preco: 109.99 },
+    'FIBRA_500_TELECINE': { id: '1056', sva: '411', nome: '500 MEGA + Telecine', preco: 108.89 },
+    'COMBO_500_CHIP': { id: '1170', nome: '500 MEGA + Chip + Globoplay', preco: 99.99 },
+    'COMBO_700_2CHIPS': { id: '1171', nome: '700 MEGA + 2 Chips + Globoplay', preco: 119.99 }
 };
 
 // ============================================
@@ -864,53 +880,41 @@ async function submitForm() {
     
     // Disparar evento
     pushDataLayer('form_submit');
-    
-    // Montar payload
+
+    // Obter dados do plano Datacake
+    const planoDC = PLANOS_DATACAKE[state.plano.codigo] || PLANOS_DATACAKE['FIBRA_500'];
+
+    // Montar payload no formato esperado pelo Worker Datacake v4.0
     const payload = {
+        nome: state.titular.nome,
+        sobrenome: state.titular.sobrenome,
+        cpf: state.titular.cpf,
+        telefone: state.titular.whatsapp,
+        email: state.titular.email,
+        data_nascimento: state.titular.dataNascimento,
+        cep: state.cobertura.cep,
+        logradouro: state.endereco.logradouro,
+        numero: state.endereco.numero,
+        complemento: state.endereco.complemento || '',
+        bairro: state.cobertura.bairro,
+        cidade: state.cobertura.cidade,
+        uf: state.cobertura.uf,
+        city_id: state.cobertura.city_id || '1660', // ID padrão Recife
+        plano_id: planoDC.id,
+        sva_ids: planoDC.sva ? [planoDC.sva] : [],
+        referencia1: state.endereco.referencia1,
+        referencia2: state.endereco.referencia2,
+        plan_type_id: '1', // Residencial
         origem: CONFIG.ORIGEM,
-        cobertura: {
-            status: state.cobertura.status,
-            cep: state.cobertura.cep,
-            logradouro: state.endereco.logradouro,
-            bairro: state.cobertura.bairro,
-            cidade: state.cobertura.cidade,
-            uf: state.cobertura.uf
-        },
-        titular: {
-            nome: state.titular.nome,
-            sobrenome: state.titular.sobrenome,
-            cpf: state.titular.cpf,
-            rg: state.titular.rg,
-            data_nascimento: state.titular.dataNascimento,
-            whatsapp: state.titular.whatsapp,
-            email: state.titular.email,
-            telefone_alternativo: state.titular.telefoneAlternativo
-        },
-        endereco: {
-            cep: state.cobertura.cep,
-            logradouro: state.endereco.logradouro,
-            numero: state.endereco.numero,
-            bairro: state.cobertura.bairro,
-            cidade: state.cobertura.cidade,
-            uf: state.cobertura.uf,
-            tipo_imovel: state.endereco.tipoImovel,
-            complemento: state.endereco.complemento,
-            ponto_referencia1: state.endereco.referencia1,
-            ponto_referencia2: state.endereco.referencia2
-        },
         agendamento: state.agendamento,
         biometria: {
             responsavel: state.biometria.responsavel,
             whatsapp_titular: state.biometria.whatsappTitular
         },
-        plano: {
-            plano_codigo: state.plano.codigo,
-            plano_nome: state.plano.nome,
-            preco_base: state.plano.preco,
-            addons: state.addonConecta ? ['CONECTA_PLUS'] : []
-        },
-        whatsapp_destino: state.whatsappDestino,
-        consentimento_lgpd: true
+        rg: state.titular.rg,
+        tipo_imovel: state.endereco.tipoImovel,
+        addon_conecta: state.addonConecta,
+        whatsapp_destino: state.whatsappDestino
     };
     
     console.log('Payload a ser enviado:', payload);
