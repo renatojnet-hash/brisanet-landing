@@ -39,6 +39,27 @@ const PLANOS_DATACAKE = {
 };
 
 // ============================================
+// FUNÇÕES AUXILIARES - VELOCIDADES
+// ============================================
+function getDownloadSpeed(codigo) {
+    const speeds = {
+        'FIBRA_500': 500, 'FIBRA_600': 600, 'FIBRA_700': 700, 'FIBRA_1GIGA': 1000,
+        'FIBRA_600_GLOBO': 600, 'FIBRA_500_GLOBO': 500, 'FIBRA_600_NETFLIX': 600,
+        'FIBRA_500_TELECINE': 500, 'COMBO_500_CHIP': 500, 'COMBO_700_2CHIPS': 700
+    };
+    return speeds[codigo] || 500;
+}
+
+function getUploadSpeed(codigo) {
+    const speeds = {
+        'FIBRA_500': 250, 'FIBRA_600': 300, 'FIBRA_700': 350, 'FIBRA_1GIGA': 500,
+        'FIBRA_600_GLOBO': 300, 'FIBRA_500_GLOBO': 250, 'FIBRA_600_NETFLIX': 300,
+        'FIBRA_500_TELECINE': 250, 'COMBO_500_CHIP': 250, 'COMBO_700_2CHIPS': 350
+    };
+    return speeds[codigo] || 250;
+}
+
+// ============================================
 // ESTADO GLOBAL
 // ============================================
 let state = {
@@ -95,16 +116,31 @@ let state = {
 document.addEventListener('DOMContentLoaded', function() {
     // Carregar estado do localStorage (se existir)
     loadState();
-    
+
+    // Ler plano da URL e pré-selecionar
+    const urlParams = new URLSearchParams(window.location.search);
+    const planoParam = urlParams.get('plano');
+    if (planoParam && PLANOS_DATACAKE[planoParam]) {
+        state.plano = {
+            codigo: planoParam,
+            nome: PLANOS_DATACAKE[planoParam].nome,
+            preco: PLANOS_DATACAKE[planoParam].preco,
+            download: getDownloadSpeed(planoParam),
+            upload: getUploadSpeed(planoParam)
+        };
+        updatePlanDisplay();
+        saveState();
+    }
+
     // Inicializar máscaras
     initMasks();
-    
+
     // Inicializar eventos
     initEvents();
-    
+
     // Configurar data mínima para agendamento
     setMinDates();
-    
+
     // Disparar evento de visualização do step inicial
     pushDataLayer('step_view', { step_number: 0 });
 });
