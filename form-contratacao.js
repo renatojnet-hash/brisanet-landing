@@ -3,13 +3,20 @@
  * BRISANET FORM - CONTRATAÇÃO RESIDENCIAL
  * Wizard Multi-Step com Validação e Integração
  * ============================================
+ * v1.1 - Correções Janeiro 2026:
+ * - IDs Datacake corrigidos (removidos IDs Revan)
+ * - Mapeamento de planos com streaming atualizado
+ * - Limpeza de localStorage aprimorada
+ * - Suporte a Conecta+ como addon
+ * - DataLayer events atualizados
+ * ============================================
  */
 
 // ============================================
 // CONFIGURAÇÃO
 // ============================================
 const CONFIG = {
-    // Endpoint do Worker Datacake v4.0
+    // Endpoint do Worker Datacake v5.x
     WORKER_URL: 'https://brisanet-datacake-worker.renatojnet.workers.dev/api/checkout',
 
     // Preço do addon Conecta+
@@ -19,44 +26,208 @@ const CONFIG = {
     ORIGEM: 'LP_RESIDENCIAL',
 
     // WhatsApp comercial
-    WHATSAPP_COMERCIAL: '5581992823101'
+    WHATSAPP_COMERCIAL: '5581992823101',
+
+    // Versão do formulário (para debug)
+    VERSION: '1.1.0'
 };
 
 // ============================================
-// MAPEAMENTO DE PLANOS DATACAKE - JANEIRO 2026
+// MAPEAMENTO DE PLANOS - IDs DATACAKE DIRETOS
+// Janeiro 2026 - IDs verificados via API Datacake
 // ============================================
 const PLANOS_DATACAKE = {
-    'FIBRA_500': { id: '1056', nome: '500 MEGA', preco: 84.99 },
-    'FIBRA_600': { id: '1060', nome: '600 MEGA', preco: 99.90 },
-    'FIBRA_700': { id: '1062', nome: '700 MEGA', preco: 109.90 },
-    'FIBRA_1GIGA': { id: '1082', nome: '1 GIGA', preco: 149.99 },
-    'FIBRA_600_GLOBO': { id: '1060', sva: '870', nome: '600 MEGA + Globoplay', preco: 99.90 },
-    'FIBRA_500_GLOBO': { id: '1056', sva: '836', nome: '500 MEGA + Globoplay', preco: 124.89 },
-    'FIBRA_600_NETFLIX': { id: '1060', sva: '448', nome: '600 MEGA + Netflix', preco: 109.99 },
-    'FIBRA_500_TELECINE': { id: '1056', sva: '411', nome: '500 MEGA + Telecine', preco: 108.89 },
-    'COMBO_500_CHIP': { id: '1170', nome: '500 MEGA + Chip + Globoplay', preco: 99.99 },
-    'COMBO_700_2CHIPS': { id: '1171', nome: '700 MEGA + 2 Chips + Globoplay', preco: 119.99 }
+    // ========== FIBRA PURA ==========
+    'FIBRA_400': { 
+        id: '280', 
+        nome: '400 MEGA', 
+        preco: 79.99,
+        download: 400,
+        upload: 200
+    },
+    'FIBRA_500': { 
+        id: '281', 
+        nome: '500 MEGA', 
+        preco: 84.99,
+        download: 500,
+        upload: 250
+    },
+    'FIBRA_600': { 
+        id: '284', 
+        nome: '600 MEGA', 
+        preco: 99.90,
+        download: 600,
+        upload: 300
+    },
+    'FIBRA_700': { 
+        id: '285', 
+        nome: '700 MEGA', 
+        preco: 109.90,
+        download: 700,
+        upload: 350
+    },
+    'FIBRA_1GIGA': { 
+        id: '287', 
+        nome: '1 GIGA', 
+        preco: 149.99,
+        download: 1000,
+        upload: 500
+    },
+    
+    // ========== FIBRA + STREAMING (IDs combo únicos) ==========
+    // Aliases para compatibilidade (podem vir da URL com _GLOBO ou _GLOBOPLAY)
+    'FIBRA_500_GLOBO': { 
+        id: '282', 
+        nome: '500 MEGA + Globoplay', 
+        preco: 124.89,
+        download: 500,
+        upload: 250,
+        streaming: 'Globoplay'
+    },
+    'FIBRA_500_GLOBOPLAY': { 
+        id: '282', 
+        nome: '500 MEGA + Globoplay', 
+        preco: 124.89,
+        download: 500,
+        upload: 250,
+        streaming: 'Globoplay'
+    },
+    'FIBRA_500_TELECINE': { 
+        id: '283', 
+        nome: '500 MEGA + Telecine', 
+        preco: 108.89,
+        download: 500,
+        upload: 250,
+        streaming: 'Telecine'
+    },
+    'FIBRA_500_NETFLIX': { 
+        id: '288', 
+        nome: '500 MEGA + Netflix', 
+        preco: 109.99,
+        download: 500,
+        upload: 250,
+        streaming: 'Netflix'
+    },
+    'FIBRA_600_GLOBO': { 
+        id: '290', 
+        nome: '600 MEGA + Globoplay', 
+        preco: 99.90,
+        download: 600,
+        upload: 300,
+        streaming: 'Globoplay'
+    },
+    'FIBRA_600_GLOBOPLAY': { 
+        id: '290', 
+        nome: '600 MEGA + Globoplay', 
+        preco: 99.90,
+        download: 600,
+        upload: 300,
+        streaming: 'Globoplay'
+    },
+    'FIBRA_600_NETFLIX': { 
+        id: '289', 
+        nome: '600 MEGA + Netflix', 
+        preco: 109.99,
+        download: 600,
+        upload: 300,
+        streaming: 'Netflix'
+    },
+    'FIBRA_700_GLOBO': { 
+        id: '238', 
+        nome: '700 MEGA + Globoplay', 
+        preco: 99.90,
+        download: 700,
+        upload: 350,
+        streaming: 'Globoplay'
+    },
+    'FIBRA_700_GLOBOPLAY': { 
+        id: '238', 
+        nome: '700 MEGA + Globoplay', 
+        preco: 99.90,
+        download: 700,
+        upload: 350,
+        streaming: 'Globoplay'
+    },
+    'FIBRA_700_NETFLIX': { 
+        id: '292', 
+        nome: '700 MEGA + Netflix', 
+        preco: 129.99,
+        download: 700,
+        upload: 350,
+        streaming: 'Netflix'
+    },
+    
+    // ========== COMBOS FIBRA + CHIP ==========
+    'COMBO_500_CHIP': { 
+        id: '272', 
+        nome: '500 MEGA + Chip 20GB', 
+        preco: 84.90,
+        download: 500,
+        upload: 250,
+        chip: true
+    },
+    'COMBO_500_CHIP20': { 
+        id: '272', 
+        nome: '500 MEGA + Chip 20GB', 
+        preco: 84.90,
+        download: 500,
+        upload: 250,
+        chip: true
+    },
+    'COMBO_500_CHIP_GLOBO': { 
+        id: '280', 
+        nome: '500 MEGA + Chip 20GB + Globoplay', 
+        preco: 99.99,
+        download: 500,
+        upload: 250,
+        chip: true,
+        streaming: 'Globoplay'
+    },
+    'COMBO_500_CHIP20_GLOBO': { 
+        id: '280', 
+        nome: '500 MEGA + Chip 20GB + Globoplay', 
+        preco: 99.99,
+        download: 500,
+        upload: 250,
+        chip: true,
+        streaming: 'Globoplay'
+    },
+    'COMBO_700_2CHIPS': { 
+        id: '267', 
+        nome: '700 MEGA + 2 Chips 20GB + Globoplay', 
+        preco: 119.99,
+        download: 700,
+        upload: 350,
+        chips: 2,
+        streaming: 'Globoplay'
+    },
+    'COMBO_700_2CHIP20_GLOBO': { 
+        id: '267', 
+        nome: '700 MEGA + 2 Chips 20GB + Globoplay', 
+        preco: 119.99,
+        download: 700,
+        upload: 350,
+        chips: 2,
+        streaming: 'Globoplay'
+    }
 };
 
 // ============================================
 // FUNÇÕES AUXILIARES - VELOCIDADES
 // ============================================
 function getDownloadSpeed(codigo) {
-    const speeds = {
-        'FIBRA_500': 500, 'FIBRA_600': 600, 'FIBRA_700': 700, 'FIBRA_1GIGA': 1000,
-        'FIBRA_600_GLOBO': 600, 'FIBRA_500_GLOBO': 500, 'FIBRA_600_NETFLIX': 600,
-        'FIBRA_500_TELECINE': 500, 'COMBO_500_CHIP': 500, 'COMBO_700_2CHIPS': 700
-    };
-    return speeds[codigo] || 500;
+    const plano = PLANOS_DATACAKE[codigo];
+    return plano ? plano.download : 500;
 }
 
 function getUploadSpeed(codigo) {
-    const speeds = {
-        'FIBRA_500': 250, 'FIBRA_600': 300, 'FIBRA_700': 350, 'FIBRA_1GIGA': 500,
-        'FIBRA_600_GLOBO': 300, 'FIBRA_500_GLOBO': 250, 'FIBRA_600_NETFLIX': 300,
-        'FIBRA_500_TELECINE': 250, 'COMBO_500_CHIP': 250, 'COMBO_700_2CHIPS': 350
-    };
-    return speeds[codigo] || 250;
+    const plano = PLANOS_DATACAKE[codigo];
+    return plano ? plano.upload : 250;
+}
+
+function getPlanPrice(codigo) {
+    const plano = PLANOS_DATACAKE[codigo];
+    return plano ? plano.preco : 84.99;
 }
 
 // ============================================
@@ -70,7 +241,8 @@ let state = {
         logradouro: '',
         bairro: '',
         cidade: '',
-        uf: ''
+        uf: '',
+        city_id: null
     },
     plano: {
         codigo: 'FIBRA_500',
@@ -95,7 +267,8 @@ let state = {
         tipoImovel: '',
         complemento: '',
         referencia1: '',
-        referencia2: ''
+        referencia2: '',
+        nomeCondominio: ''
     },
     agendamento: [
         { data: '', periodo: '' },
@@ -114,22 +287,28 @@ let state = {
 // INICIALIZAÇÃO
 // ============================================
 document.addEventListener('DOMContentLoaded', function() {
+    console.log(`Brisanet Form v${CONFIG.VERSION} inicializando...`);
+    
     // Carregar estado do localStorage (se existir)
     loadState();
 
     // Ler plano da URL e pré-selecionar
     const urlParams = new URLSearchParams(window.location.search);
     const planoParam = urlParams.get('plano');
+    
     if (planoParam && PLANOS_DATACAKE[planoParam]) {
+        const planoData = PLANOS_DATACAKE[planoParam];
         state.plano = {
             codigo: planoParam,
-            nome: PLANOS_DATACAKE[planoParam].nome,
-            preco: PLANOS_DATACAKE[planoParam].preco,
-            download: getDownloadSpeed(planoParam),
-            upload: getUploadSpeed(planoParam)
+            nome: planoData.nome,
+            preco: planoData.preco,
+            download: planoData.download,
+            upload: planoData.upload
         };
         updatePlanDisplay();
         saveState();
+        
+        console.log('Plano selecionado via URL:', planoParam, planoData);
     }
 
     // Inicializar máscaras
@@ -143,6 +322,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Disparar evento de visualização do step inicial
     pushDataLayer('step_view', { step_number: 0 });
+    
+    console.log(`Brisanet Form v${CONFIG.VERSION} carregado com sucesso!`);
 });
 
 // ============================================
@@ -177,7 +358,27 @@ function loadState() {
 
 function clearState() {
     try {
+        // Limpar localStorage
         localStorage.removeItem('brisanet_form_state');
+        
+        // Limpar sessionStorage também
+        sessionStorage.clear();
+        
+        // Resetar estado para valores iniciais
+        state = {
+            currentStep: 0,
+            cobertura: { status: false, cep: '', logradouro: '', bairro: '', cidade: '', uf: '', city_id: null },
+            plano: { codigo: 'FIBRA_500', nome: '500 Mega', preco: 84.99, download: 500, upload: 250 },
+            titular: { nome: '', sobrenome: '', cpf: '', rg: '', dataNascimento: '', whatsapp: '', email: '', telefoneAlternativo: '' },
+            endereco: { logradouro: '', numero: '', tipoImovel: '', complemento: '', referencia1: '', referencia2: '', nomeCondominio: '' },
+            agendamento: [{ data: '', periodo: '' }, { data: '', periodo: '' }],
+            biometria: { responsavel: 'TITULAR', whatsappTitular: '' },
+            addonConecta: false,
+            whatsappDestino: 'PRINCIPAL',
+            lgpdAceito: false
+        };
+        
+        console.log('Estado limpo com sucesso');
     } catch (e) {
         console.warn('Não foi possível limpar localStorage:', e);
     }
@@ -185,21 +386,26 @@ function clearState() {
 
 function applyStateToDOM() {
     // Aplicar dados do titular
-    if (state.titular.nome) document.getElementById('nome').value = state.titular.nome;
-    if (state.titular.sobrenome) document.getElementById('sobrenome').value = state.titular.sobrenome;
-    if (state.titular.cpf) document.getElementById('cpf').value = formatCPF(state.titular.cpf);
-    if (state.titular.rg) document.getElementById('rg').value = state.titular.rg;
-    if (state.titular.dataNascimento) document.getElementById('dataNascimento').value = formatDateBR(state.titular.dataNascimento);
-    if (state.titular.whatsapp) document.getElementById('whatsapp').value = formatPhone(state.titular.whatsapp);
-    if (state.titular.email) document.getElementById('email').value = state.titular.email;
-    if (state.titular.telefoneAlternativo) document.getElementById('telefoneAlternativo').value = formatPhone(state.titular.telefoneAlternativo);
+    const fields = {
+        'nome': state.titular.nome,
+        'sobrenome': state.titular.sobrenome,
+        'cpf': state.titular.cpf ? formatCPF(state.titular.cpf) : '',
+        'rg': state.titular.rg,
+        'dataNascimento': state.titular.dataNascimento ? formatDateBR(state.titular.dataNascimento) : '',
+        'whatsapp': state.titular.whatsapp ? formatPhone(state.titular.whatsapp) : '',
+        'email': state.titular.email,
+        'telefoneAlternativo': state.titular.telefoneAlternativo ? formatPhone(state.titular.telefoneAlternativo) : '',
+        'logradouro': state.endereco.logradouro,
+        'numero': state.endereco.numero,
+        'complemento': state.endereco.complemento,
+        'referencia1': state.endereco.referencia1,
+        'referencia2': state.endereco.referencia2
+    };
     
-    // Aplicar endereço
-    if (state.endereco.logradouro) document.getElementById('logradouro').value = state.endereco.logradouro;
-    if (state.endereco.numero) document.getElementById('numero').value = state.endereco.numero;
-    if (state.endereco.complemento) document.getElementById('complemento').value = state.endereco.complemento;
-    if (state.endereco.referencia1) document.getElementById('referencia1').value = state.endereco.referencia1;
-    if (state.endereco.referencia2) document.getElementById('referencia2').value = state.endereco.referencia2;
+    Object.entries(fields).forEach(([id, value]) => {
+        const el = document.getElementById(id);
+        if (el && value) el.value = value;
+    });
     
     // Tipo de imóvel
     if (state.endereco.tipoImovel) {
@@ -220,32 +426,38 @@ function applyStateToDOM() {
 function initMasks() {
     // CEP: 00000-000
     const cepInput = document.getElementById('cep');
-    cepInput.addEventListener('input', function(e) {
-        let value = e.target.value.replace(/\D/g, '');
-        if (value.length > 5) {
-            value = value.substring(0, 5) + '-' + value.substring(5, 8);
-        }
-        e.target.value = value;
-    });
+    if (cepInput) {
+        cepInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 5) {
+                value = value.substring(0, 5) + '-' + value.substring(5, 8);
+            }
+            e.target.value = value;
+        });
+    }
     
     // CPF: 000.000.000-00
     const cpfInput = document.getElementById('cpf');
-    cpfInput.addEventListener('input', function(e) {
-        e.target.value = formatCPF(e.target.value);
-    });
+    if (cpfInput) {
+        cpfInput.addEventListener('input', function(e) {
+            e.target.value = formatCPF(e.target.value);
+        });
+    }
     
     // Data: dd/mm/aaaa
     const dataInput = document.getElementById('dataNascimento');
-    dataInput.addEventListener('input', function(e) {
-        let value = e.target.value.replace(/\D/g, '');
-        if (value.length > 2) {
-            value = value.substring(0, 2) + '/' + value.substring(2);
-        }
-        if (value.length > 5) {
-            value = value.substring(0, 5) + '/' + value.substring(5, 9);
-        }
-        e.target.value = value;
-    });
+    if (dataInput) {
+        dataInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 2) {
+                value = value.substring(0, 2) + '/' + value.substring(2);
+            }
+            if (value.length > 5) {
+                value = value.substring(0, 5) + '/' + value.substring(5, 9);
+            }
+            e.target.value = value;
+        });
+    }
     
     // Telefones: (00) 00000-0000
     const phoneInputs = ['whatsapp', 'telefoneAlternativo', 'whatsappTitular'];
@@ -432,7 +644,10 @@ function updateStepper(currentStep) {
     
     // Atualizar barra de progresso
     const progressPercent = (currentStep / 4) * 100;
-    document.getElementById('stepperProgress').style.width = `${progressPercent}%`;
+    const progressBar = document.getElementById('stepperProgress');
+    if (progressBar) {
+        progressBar.style.width = `${progressPercent}%`;
+    }
 }
 
 // ============================================
@@ -476,7 +691,8 @@ async function checkCEP() {
                 logradouro: data.logradouro || '',
                 bairro: data.bairro || '',
                 cidade: data.localidade || '',
-                uf: data.uf || ''
+                uf: data.uf || '',
+                city_id: null // Será preenchido pelo Worker se disponível
             };
             
             state.endereco.logradouro = data.logradouro || '';
@@ -660,6 +876,12 @@ function validateStep2() {
     // Complemento (opcional)
     state.endereco.complemento = document.getElementById('complemento').value.trim() || null;
     
+    // Nome do Condomínio (opcional, se aplicável)
+    const nomeCondominioEl = document.getElementById('nomeCondominio');
+    if (nomeCondominioEl) {
+        state.endereco.nomeCondominio = nomeCondominioEl.value.trim() || null;
+    }
+    
     // Referência 1
     const ref1 = document.getElementById('referencia1').value.trim();
     if (!ref1) {
@@ -767,15 +989,19 @@ function validateStep3() {
 // ============================================
 function updateSummary() {
     // Plano
-    document.getElementById('summaryPlan').textContent = state.plano.nome;
-    document.getElementById('summarySpeed').textContent = 
-        `${state.plano.download} Mbps / ${state.plano.upload} Mbps`;
+    const summaryPlan = document.getElementById('summaryPlan');
+    const summarySpeed = document.getElementById('summarySpeed');
+    
+    if (summaryPlan) summaryPlan.textContent = state.plano.nome;
+    if (summarySpeed) summarySpeed.textContent = `${state.plano.download} Mbps / ${state.plano.upload} Mbps`;
     
     // Endereço
     const enderecoStr = `${state.endereco.logradouro}, ${state.endereco.numero}` +
         (state.endereco.complemento ? ` - ${state.endereco.complemento}` : '') +
         ` - ${state.cobertura.bairro}, ${state.cobertura.cidade}/${state.cobertura.uf}`;
-    document.getElementById('summaryAddress').textContent = enderecoStr;
+    
+    const summaryAddress = document.getElementById('summaryAddress');
+    if (summaryAddress) summaryAddress.textContent = enderecoStr;
     
     // Agendamento
     const formatDateDisplay = (dateStr) => {
@@ -786,23 +1012,32 @@ function updateSummary() {
     
     const periodNames = { 'MANHA': 'Manhã', 'TARDE': 'Tarde', 'NOITE': 'Noite' };
     
-    document.getElementById('summaryDate1').textContent = 
-        state.agendamento[0].data ? 
-        `${formatDateDisplay(state.agendamento[0].data)} - ${periodNames[state.agendamento[0].periodo] || ''}` : '-';
+    const summaryDate1 = document.getElementById('summaryDate1');
+    const summaryDate2 = document.getElementById('summaryDate2');
     
-    document.getElementById('summaryDate2').textContent = 
-        state.agendamento[1].data ? 
-        `${formatDateDisplay(state.agendamento[1].data)} - ${periodNames[state.agendamento[1].periodo] || ''}` : '-';
+    if (summaryDate1) {
+        summaryDate1.textContent = state.agendamento[0].data ? 
+            `${formatDateDisplay(state.agendamento[0].data)} - ${periodNames[state.agendamento[0].periodo] || ''}` : '-';
+    }
+    
+    if (summaryDate2) {
+        summaryDate2.textContent = state.agendamento[1].data ? 
+            `${formatDateDisplay(state.agendamento[1].data)} - ${periodNames[state.agendamento[1].periodo] || ''}` : '-';
+    }
     
     // WhatsApp principal
-    document.getElementById('whatsappPrincipalNumber').textContent = 
-        formatPhone(state.titular.whatsapp);
+    const whatsappPrincipalNumber = document.getElementById('whatsappPrincipalNumber');
+    if (whatsappPrincipalNumber) {
+        whatsappPrincipalNumber.textContent = formatPhone(state.titular.whatsapp);
+    }
     
     // WhatsApp titular (se informado)
     if (state.biometria.whatsappTitular) {
-        document.getElementById('whatsappTitularOption').style.display = 'block';
-        document.getElementById('whatsappTitularNumber').textContent = 
-            formatPhone(state.biometria.whatsappTitular);
+        const whatsappTitularOption = document.getElementById('whatsappTitularOption');
+        const whatsappTitularNumber = document.getElementById('whatsappTitularNumber');
+        
+        if (whatsappTitularOption) whatsappTitularOption.style.display = 'block';
+        if (whatsappTitularNumber) whatsappTitularNumber.textContent = formatPhone(state.biometria.whatsappTitular);
     }
     
     // Total
@@ -816,7 +1051,10 @@ function updateTotal() {
         total += CONFIG.CONECTA_PLUS_PRICE;
     }
     
-    document.getElementById('totalValue').textContent = total.toFixed(2).replace('.', ',');
+    const totalValue = document.getElementById('totalValue');
+    if (totalValue) {
+        totalValue.textContent = total.toFixed(2).replace('.', ',');
+    }
 }
 
 // ============================================
@@ -848,29 +1086,44 @@ function selectPlan(planElement) {
     // Adicionar seleção
     planElement.classList.add('selected');
     
-    // Atualizar estado
-    state.plano = {
-        codigo: planElement.dataset.plan,
-        nome: planElement.dataset.name,
-        preco: parseFloat(planElement.dataset.price),
-        download: parseInt(planElement.dataset.download),
-        upload: parseInt(planElement.dataset.upload)
-    };
+    // Obter dados do plano
+    const codigo = planElement.dataset.plan;
+    const planoData = PLANOS_DATACAKE[codigo];
     
-    saveState();
-    updatePlanDisplay();
-    updateTotal();
+    if (planoData) {
+        // Atualizar estado
+        state.plano = {
+            codigo: codigo,
+            nome: planoData.nome,
+            preco: planoData.preco,
+            download: planoData.download,
+            upload: planoData.upload
+        };
+        
+        saveState();
+        updatePlanDisplay();
+        updateTotal();
+        
+        // Disparar evento
+        pushDataLayer('plan_selected', {
+            plan_code: codigo,
+            plan_name: planoData.nome,
+            plan_price: planoData.preco
+        });
+    }
     
     // Fechar modal
     closePlanModal();
 }
 
 function openPlanModal() {
-    document.getElementById('planModal').classList.add('visible');
+    const modal = document.getElementById('planModal');
+    if (modal) modal.classList.add('visible');
 }
 
 function closePlanModal() {
-    document.getElementById('planModal').classList.remove('visible');
+    const modal = document.getElementById('planModal');
+    if (modal) modal.classList.remove('visible');
 }
 
 // ============================================
@@ -884,8 +1137,9 @@ function updateAddressPreview() {
     }
     
     // Preencher logradouro automaticamente
-    if (state.cobertura.logradouro) {
-        document.getElementById('logradouro').value = state.cobertura.logradouro;
+    const logradouroInput = document.getElementById('logradouro');
+    if (logradouroInput && state.cobertura.logradouro) {
+        logradouroInput.value = state.cobertura.logradouro;
     }
 }
 
@@ -895,8 +1149,11 @@ function setMinDates() {
     tomorrow.setDate(tomorrow.getDate() + 1);
     const minDate = tomorrow.toISOString().split('T')[0];
     
-    document.getElementById('data1').min = minDate;
-    document.getElementById('data2').min = minDate;
+    const data1Input = document.getElementById('data1');
+    const data2Input = document.getElementById('data2');
+    
+    if (data1Input) data1Input.min = minDate;
+    if (data2Input) data2Input.min = minDate;
 }
 
 // ============================================
@@ -904,30 +1161,43 @@ function setMinDates() {
 // ============================================
 async function submitForm() {
     // Validar LGPD
-    if (!document.getElementById('lgpdCheck').checked) {
+    const lgpdCheck = document.getElementById('lgpdCheck');
+    if (!lgpdCheck || !lgpdCheck.checked) {
         showError('lgpd', 'Você precisa aceitar os termos para continuar');
         return;
     }
     clearError('lgpd');
     
     // Mostrar loading
-    document.getElementById('submitLoading').classList.add('visible');
-    document.getElementById('btnSubmit').disabled = true;
+    const submitLoading = document.getElementById('submitLoading');
+    const btnSubmit = document.getElementById('btnSubmit');
+    
+    if (submitLoading) submitLoading.classList.add('visible');
+    if (btnSubmit) btnSubmit.disabled = true;
     
     // Disparar evento
-    pushDataLayer('form_submit');
+    pushDataLayer('form_submit', {
+        plan_code: state.plano.codigo,
+        plan_name: state.plano.nome,
+        plan_price: state.plano.preco,
+        addon_conecta: state.addonConecta
+    });
 
-    // Obter dados do plano Datacake
+    // Obter dados do plano Datacake (ID já é o correto)
     const planoDC = PLANOS_DATACAKE[state.plano.codigo] || PLANOS_DATACAKE['FIBRA_500'];
 
-    // Montar payload no formato esperado pelo Worker Datacake v4.0
+    // Montar payload no formato esperado pelo Worker Datacake v5.x
     const payload = {
+        // Dados pessoais
         nome: state.titular.nome,
         sobrenome: state.titular.sobrenome,
         cpf: state.titular.cpf,
+        rg: state.titular.rg,
+        data_nascimento: state.titular.dataNascimento,
         telefone: state.titular.whatsapp,
         email: state.titular.email,
-        data_nascimento: state.titular.dataNascimento,
+        
+        // Endereço
         cep: state.cobertura.cep,
         logradouro: state.endereco.logradouro,
         numero: state.endereco.numero,
@@ -935,25 +1205,37 @@ async function submitForm() {
         bairro: state.cobertura.bairro,
         cidade: state.cobertura.cidade,
         uf: state.cobertura.uf,
-        city_id: state.cobertura.city_id || '1660', // ID padrão Recife
-        plano_id: planoDC.id,
-        sva_ids: planoDC.sva ? [planoDC.sva] : [],
         referencia1: state.endereco.referencia1,
         referencia2: state.endereco.referencia2,
+        tipo_imovel: state.endereco.tipoImovel,
+        nome_condominio: state.endereco.nomeCondominio || '',
+        
+        // Plano - ID Datacake direto (já inclui streaming se aplicável)
+        plano_id: planoDC.id,
+        plano_nome: planoDC.nome,
+        plano_preco: planoDC.preco,
         plan_type_id: '1', // Residencial
-        origem: CONFIG.ORIGEM,
+        
+        // Agendamento
         agendamento: state.agendamento,
+        
+        // Biometria
         biometria: {
             responsavel: state.biometria.responsavel,
             whatsapp_titular: state.biometria.whatsappTitular
         },
-        rg: state.titular.rg,
-        tipo_imovel: state.endereco.tipoImovel,
+        whatsapp_destino: state.whatsappDestino,
+        
+        // Addons
         addon_conecta: state.addonConecta,
-        whatsapp_destino: state.whatsappDestino
+        
+        // Metadata
+        origem: CONFIG.ORIGEM,
+        form_version: CONFIG.VERSION
     };
     
     console.log('Payload a ser enviado:', payload);
+    console.log('ID Datacake do plano:', planoDC.id);
     
     try {
         const response = await fetch(CONFIG.WORKER_URL, {
@@ -966,29 +1248,42 @@ async function submitForm() {
         
         const result = await response.json();
         
-        document.getElementById('submitLoading').classList.remove('visible');
+        if (submitLoading) submitLoading.classList.remove('visible');
+        
+        console.log('Resposta do Worker:', result);
         
         if (response.ok && (result.status === 'auto' || result.status === 'manual' || result.success)) {
-            // Sucesso
+            // Sucesso - disparar evento ANTES de limpar
             pushDataLayer('form_success', { 
                 status: result.status,
-                orcamento_id: result.orcamento_id || null
+                deal_id: result.deal_id || null,
+                orcamento_id: result.orcamento_id || null,
+                transaction_id: result.deal_id || result.orcamento_id || null,
+                plan_code: state.plano.codigo,
+                plan_name: state.plano.nome,
+                value: state.plano.preco + (state.addonConecta ? CONFIG.CONECTA_PLUS_PRICE : 0)
             });
             
-            // Limpar estado
+            // Limpar estado ANTES de ir para página de obrigado
             clearState();
             
             // Ir para página de obrigado
             goToStep(5);
+            
         } else {
-            throw new Error(result.message || 'Erro ao processar pedido');
+            throw new Error(result.message || result.error || 'Erro ao processar pedido');
         }
         
     } catch (error) {
         console.error('Erro ao enviar formulário:', error);
         
-        document.getElementById('submitLoading').classList.remove('visible');
-        document.getElementById('btnSubmit').disabled = false;
+        if (submitLoading) submitLoading.classList.remove('visible');
+        if (btnSubmit) btnSubmit.disabled = false;
+        
+        // Disparar evento de erro
+        pushDataLayer('form_error', {
+            error_message: error.message
+        });
         
         alert('Ocorreu um erro ao processar seu pedido. Por favor, tente novamente ou entre em contato pelo WhatsApp.');
     }
@@ -1011,44 +1306,74 @@ function pushDataLayer(event, data = {}) {
 // ============================================
 function initEvents() {
     // Step 0: CEP
-    document.getElementById('btnCheckCep').addEventListener('click', checkCEP);
-    document.getElementById('cep').addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') checkCEP();
-    });
+    const btnCheckCep = document.getElementById('btnCheckCep');
+    const cepInput = document.getElementById('cep');
+    
+    if (btnCheckCep) btnCheckCep.addEventListener('click', checkCEP);
+    if (cepInput) {
+        cepInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') checkCEP();
+        });
+    }
     
     // Step 1: Navegação
-    document.getElementById('btnBack1').addEventListener('click', () => goToStep(0));
-    document.getElementById('btnNext1').addEventListener('click', () => {
+    const btnBack1 = document.getElementById('btnBack1');
+    const btnNext1 = document.getElementById('btnNext1');
+    
+    if (btnBack1) btnBack1.addEventListener('click', () => goToStep(0));
+    if (btnNext1) btnNext1.addEventListener('click', () => {
         if (validateStep1()) goToStep(2);
     });
     
     // Step 2: Navegação
-    document.getElementById('btnBack2').addEventListener('click', () => goToStep(1));
-    document.getElementById('btnNext2').addEventListener('click', () => {
+    const btnBack2 = document.getElementById('btnBack2');
+    const btnNext2 = document.getElementById('btnNext2');
+    
+    if (btnBack2) btnBack2.addEventListener('click', () => goToStep(1));
+    if (btnNext2) btnNext2.addEventListener('click', () => {
         if (validateStep2()) goToStep(3);
     });
     
     // Step 3: Navegação
-    document.getElementById('btnBack3').addEventListener('click', () => goToStep(2));
-    document.getElementById('btnNext3').addEventListener('click', () => {
+    const btnBack3 = document.getElementById('btnBack3');
+    const btnNext3 = document.getElementById('btnNext3');
+    
+    if (btnBack3) btnBack3.addEventListener('click', () => goToStep(2));
+    if (btnNext3) btnNext3.addEventListener('click', () => {
         if (validateStep3()) goToStep(4);
     });
     
     // Step 4: Navegação e Submit
-    document.getElementById('btnBack4').addEventListener('click', () => goToStep(3));
-    document.getElementById('btnSubmit').addEventListener('click', submitForm);
+    const btnBack4 = document.getElementById('btnBack4');
+    const btnSubmit = document.getElementById('btnSubmit');
+    
+    if (btnBack4) btnBack4.addEventListener('click', () => goToStep(3));
+    if (btnSubmit) btnSubmit.addEventListener('click', submitForm);
     
     // LGPD checkbox - habilita/desabilita botão
-    document.getElementById('lgpdCheck').addEventListener('change', (e) => {
-        document.getElementById('btnSubmit').disabled = !e.target.checked;
-        state.lgpdAceito = e.target.checked;
-    });
+    const lgpdCheck = document.getElementById('lgpdCheck');
+    if (lgpdCheck) {
+        lgpdCheck.addEventListener('change', (e) => {
+            const btnSubmit = document.getElementById('btnSubmit');
+            if (btnSubmit) btnSubmit.disabled = !e.target.checked;
+            state.lgpdAceito = e.target.checked;
+        });
+    }
     
     // Addon Conecta+
-    document.getElementById('addonConecta').addEventListener('change', (e) => {
-        state.addonConecta = e.target.checked;
-        updateTotal();
-    });
+    const addonConecta = document.getElementById('addonConecta');
+    if (addonConecta) {
+        addonConecta.addEventListener('change', (e) => {
+            state.addonConecta = e.target.checked;
+            updateTotal();
+            
+            // Disparar evento
+            pushDataLayer('addon_toggle', {
+                addon_name: 'conecta_plus',
+                addon_enabled: e.target.checked
+            });
+        });
+    }
     
     // WhatsApp destino
     document.querySelectorAll('input[name="whatsappDestino"]').forEach(radio => {
@@ -1058,11 +1383,17 @@ function initEvents() {
     });
     
     // Plan modal
-    document.getElementById('btnChangePlan').addEventListener('click', openPlanModal);
-    document.getElementById('closePlanModal').addEventListener('click', closePlanModal);
-    document.getElementById('planModal').addEventListener('click', (e) => {
-        if (e.target.id === 'planModal') closePlanModal();
-    });
+    const btnChangePlan = document.getElementById('btnChangePlan');
+    const closePlanModalBtn = document.getElementById('closePlanModal');
+    const planModal = document.getElementById('planModal');
+    
+    if (btnChangePlan) btnChangePlan.addEventListener('click', openPlanModal);
+    if (closePlanModalBtn) closePlanModalBtn.addEventListener('click', closePlanModal);
+    if (planModal) {
+        planModal.addEventListener('click', (e) => {
+            if (e.target.id === 'planModal') closePlanModal();
+        });
+    }
     
     // Plan selection
     document.querySelectorAll('.plan-option').forEach(option => {
@@ -1073,10 +1404,12 @@ function initEvents() {
     document.querySelectorAll('input[name="biometria"]').forEach(radio => {
         radio.addEventListener('change', (e) => {
             const info = document.getElementById('biometriaInfo');
-            if (e.target.value === 'TERCEIRO') {
-                info.classList.add('visible');
-            } else {
-                info.classList.remove('visible');
+            if (info) {
+                if (e.target.value === 'TERCEIRO') {
+                    info.classList.add('visible');
+                } else {
+                    info.classList.remove('visible');
+                }
             }
         });
     });
@@ -1097,18 +1430,22 @@ function initEvents() {
     });
     
     // Edit address button
-    document.getElementById('btnEditAddress').addEventListener('click', () => {
-        document.getElementById('logradouro').focus();
-    });
+    const btnEditAddress = document.getElementById('btnEditAddress');
+    if (btnEditAddress) {
+        btnEditAddress.addEventListener('click', () => {
+            const logradouro = document.getElementById('logradouro');
+            if (logradouro) logradouro.focus();
+        });
+    }
     
-    // Plan details button (pode abrir modal de detalhes futuramente)
-    document.getElementById('btnPlanDetails').addEventListener('click', () => {
-        // Por ora, abre o modal de seleção
-        openPlanModal();
-    });
+    // Plan details button
+    const btnPlanDetails = document.getElementById('btnPlanDetails');
+    if (btnPlanDetails) {
+        btnPlanDetails.addEventListener('click', openPlanModal);
+    }
 }
 
 // ============================================
 // FIM DO SCRIPT
 // ============================================
-console.log('Brisanet Form v1.0 carregado');
+console.log(`Brisanet Form v${CONFIG.VERSION} carregado`);
