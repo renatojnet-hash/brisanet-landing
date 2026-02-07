@@ -360,18 +360,24 @@
       padding: 60px 20px;
     }
 
-    .hero-banner__eyebrow {
-      display: inline-block;
-      background: rgba(255, 80, 34, 0.15);
-      border: 1px solid rgba(255, 80, 34, 0.3);
-      color: var(--orange);
-      font-size: 0.85rem;
+    .hero-banner__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #F59E0B;
+      color: #1a1a1a;
+      font-size: 0.75rem;
       font-weight: 700;
       padding: 8px 16px;
       border-radius: 50px;
       margin-bottom: 20px;
       letter-spacing: 0.5px;
       text-transform: uppercase;
+    }
+
+    .hero-banner__badge svg {
+      width: 16px;
+      height: 16px;
     }
 
     .hero-banner__title {
@@ -381,6 +387,10 @@
       color: #ffffff;
       line-height: 1.15;
       margin-bottom: 16px;
+    }
+
+    .hero-banner__title .highlight {
+      color: #FF6B35;
     }
 
     .hero-banner__subtitle {
@@ -1334,15 +1344,20 @@
     <div class="hero-banner__overlay"></div>
     <div class="container">
       <div class="hero-banner__content">
-        <span class="hero-banner__eyebrow">Internet + Telefonia Empresarial</span>
+        <span class="hero-banner__badge">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/>
+          </svg>
+          Solução Empresarial Completa
+        </span>
 
         <h1 class="hero-banner__title">
-          500 Mega + Telefonia Ilimitada
+          Internet Empresarial <span class="highlight">+ Telefonia Ilimitada</span>
         </h1>
 
         <p class="hero-banner__subtitle">
-          Ligações ilimitadas para fixo e celular de todo Brasil<br>
-          com PABX Virtual e 8 canais simultâneos
+          Conectividade profissional com ligações ilimitadas para todo Brasil.<br>
+          PABX Virtual incluso e 8 canais simultâneos para sua equipe.
         </p>
 
         <div class="hero-banner__price-box">
@@ -1398,9 +1413,9 @@
   <section class="plans section" id="planos">
     <div class="container">
       <header class="section-header reveal">
-        <span class="section-eyebrow">Combos Empresariais</span>
-        <h2 class="section-title">Escolha o plano ideal</h2>
-        <p class="section-subtitle">Internet Fibra + Telefonia Ilimitada para todo Brasil</p>
+        <span class="section-eyebrow">Planos Empresariais</span>
+        <h2 class="section-title">Conectividade profissional para seu negócio</h2>
+        <p class="section-subtitle">Internet Fibra Óptica + Telefonia Ilimitada com PABX Virtual para empresas de todos os portes</p>
       </header>
 
       <!-- Tabs -->
@@ -1427,7 +1442,7 @@
             </div>
 
             <div class="plan-partner">
-              <span>📞 1 linha • Fixo e Celular Brasil</span>
+              <span>🏪 Pequenos negócios • 1 linha ilimitada</span>
             </div>
 
             <div class="plan-price">
@@ -1482,7 +1497,7 @@
             </div>
 
             <div class="plan-partner">
-              <span>📞 8 canais • PABX Virtual • URA</span>
+              <span>🏢 Para equipes • 8 canais • PABX Virtual</span>
             </div>
 
             <div class="plan-price">
@@ -1530,7 +1545,7 @@
 
           <!-- Card 3 - Plus (10 canais) - FEATURED -->
           <article class="plan-card featured reveal reveal-delay-3">
-            <span class="plan-badge">⭐ Popular</span>
+            <span class="plan-badge">⭐ Mais Vendido</span>
 
             <div class="plan-speed">
               <span class="plan-speed-value">500</span>
@@ -1539,7 +1554,7 @@
             </div>
 
             <div class="plan-partner">
-              <span>📞 10 canais • Fila • Softphone</span>
+              <span>📊 Empresas em crescimento • 10 canais</span>
             </div>
 
             <div class="plan-price">
@@ -1594,7 +1609,7 @@
             </div>
 
             <div class="plan-partner">
-              <span>📞 12 canais • Tudo do Plus</span>
+              <span>🏗️ Alta demanda • 12 canais simultâneos</span>
             </div>
 
             <div class="plan-price">
@@ -1657,7 +1672,7 @@
             </div>
 
             <div class="plan-partner">
-              <span>📞 1 linha • Upload 100%</span>
+              <span>🔒 Link Simétrico • CFTV/VPN/Cloud</span>
             </div>
 
             <div class="plan-price">
@@ -1713,7 +1728,7 @@
             </div>
 
             <div class="plan-partner">
-              <span>📞 8 canais • PABX • Upload 100%</span>
+              <span>🏢 Link dedicado • 8 canais • PABX</span>
             </div>
 
             <div class="plan-price">
@@ -1771,7 +1786,7 @@
             </div>
 
             <div class="plan-partner">
-              <span>📞 10 canais • Fila • Softphone</span>
+              <span>📊 Máxima performance • 10 canais</span>
             </div>
 
             <div class="plan-price">
@@ -1827,7 +1842,7 @@
             </div>
 
             <div class="plan-partner">
-              <span>📞 12 canais • Tudo do Plus</span>
+              <span>🏗️ Call Center • 12+ canais</span>
             </div>
 
             <div class="plan-price">
@@ -1879,8 +1894,8 @@
       <!-- Tab 3: Monte seu Combo -->
       <div class="plan-panel" id="panel-monte">
         <div class="calculator-card reveal">
-          <h3 class="calculator-title">Monte seu Combo</h3>
-          <p class="calculator-subtitle">Personalize internet + telefonia para sua empresa</p>
+          <h3 class="calculator-title">Monte seu Combo Empresarial</h3>
+          <p class="calculator-subtitle">Personalize a solução de conectividade ideal para o seu negócio</p>
 
           <!-- PASSO 1: Internet -->
           <div class="calc-step">
@@ -2000,8 +2015,8 @@
   <section class="benefits section" id="beneficios">
     <div class="container">
       <header class="section-header reveal">
-        <span class="section-eyebrow">Tudo incluso</span>
-        <h2 class="section-title">Mais que internet e telefonia</h2>
+        <span class="section-eyebrow">Recursos Empresariais</span>
+        <h2 class="section-title">Tecnologia profissional para otimizar sua comunicação</h2>
       </header>
 
       <div class="benefits-grid reveal">
@@ -2044,8 +2059,8 @@
   <section class="cta-section">
     <div class="container">
       <div class="cta-card reveal">
-        <h2 class="cta-title">Simplifique a comunicação da sua empresa</h2>
-        <p class="cta-subtitle">Internet + Telefonia em uma única conta, com suporte local.</p>
+        <h2 class="cta-title">Impulsione a produtividade do seu negócio</h2>
+        <p class="cta-subtitle">Solução completa de conectividade empresarial: Internet Fibra + Telefonia Ilimitada com suporte dedicado.</p>
         <a href="https://wa.me/5581992823101?text=Olá! Gostaria de mais informações sobre os combos de telefonia empresarial"
            onclick="return openWhatsApp('cta_final', 'Interesse geral')"
            class="cta-btn">
