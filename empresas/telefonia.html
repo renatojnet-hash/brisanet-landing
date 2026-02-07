@@ -25,41 +25,41 @@
       --orange-dark: #E5481E;
       --orange-gradient: linear-gradient(135deg, #FF5022 0%, #FF6B3D 100%);
       --orange-glow: rgba(255, 80, 34, 0.4);
-
+      
       --black: #1E1E1E;
       --black-light: #2A2A2A;
       --black-lighter: #353535;
-
+      
       --gray: #C6C6C6;
       --gray-light: #E0E0E0;
       --gray-dark: #888888;
-
+      
       /* Surfaces */
       --bg: #1E1E1E;
       --bg2: #252525;
       --bg3: #2E2E2E;
       --surface: rgba(255, 255, 255, 0.04);
       --surface-hover: rgba(255, 255, 255, 0.08);
-
+      
       /* Text */
       --text: #FFFFFF;
       --text2: rgba(255, 255, 255, 0.9);
       --text-muted: #C6C6C6;
       --text-subtle: rgba(255, 255, 255, 0.5);
-
+      
       /* Accent */
       --accent: #FF5022;
       --accent2: #FF6B3D;
-
+      
       /* Green for checkmarks */
       --green: #22C55E;
       --green-glow: rgba(34, 197, 94, 0.3);
-
+      
       /* Borders */
       --border: rgba(255, 255, 255, 0.1);
       --border-hover: rgba(255, 255, 255, 0.2);
       --border-accent: rgba(255, 80, 34, 0.4);
-
+      
       /* Shadows */
       --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
       --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.5);
@@ -67,7 +67,7 @@
       --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.7);
       --shadow-glow: 0 0 40px rgba(255, 80, 34, 0.25);
       --shadow-accent: 0 8px 30px rgba(255, 80, 34, 0.35);
-
+      
       /* Motion */
       --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
       --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -75,7 +75,7 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-
+    
     body {
       font-family: 'Figtree', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
       color: var(--text2);
@@ -95,7 +95,7 @@
     a { color: inherit; text-decoration: none; }
     button { font: inherit; cursor: pointer; border: none; background: none; }
     ul { list-style: none; }
-
+    
     ::selection { background: var(--accent); color: white; }
 
     .container { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
@@ -104,7 +104,7 @@
     /* ========================================
        NAVIGATION
     ======================================== */
-
+    
     .nav {
       position: fixed;
       top: 0;
@@ -118,7 +118,7 @@
       border-bottom: 1px solid var(--border);
       transition: all 0.4s var(--ease-out);
     }
-
+    
     .nav.scrolled {
       background: rgba(255, 255, 255, 0.98);
       box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
@@ -135,11 +135,6 @@
       background: rgba(255, 80, 34, 0.08);
     }
 
-    .nav.scrolled .nav-link.active {
-      color: var(--accent);
-      background: rgba(255, 80, 34, 0.1);
-    }
-
     .nav.scrolled .nav-switch {
       color: var(--accent);
       border-color: var(--accent);
@@ -152,7 +147,7 @@
     .nav.scrolled .mobile-btn span {
       background: #1a1a1a;
     }
-
+    
     .nav-inner {
       display: flex;
       align-items: center;
@@ -162,7 +157,7 @@
 
     .logo { display: flex; align-items: center; gap: 0.5rem; }
     .logo-img { height: 38px; width: auto; }
-
+    
     /* Logo text fallback */
     .logo-text {
       font-size: 1.5rem;
@@ -173,7 +168,7 @@
     .logo-text .solucoes { color: var(--gray); }
 
     .nav-links { display: flex; align-items: center; gap: 0.5rem; }
-
+    
     .nav-link {
       padding: 0.5rem 1rem;
       font-size: 0.9rem;
@@ -182,14 +177,9 @@
       border-radius: 8px;
       transition: all 0.2s ease;
     }
-
+    
     .nav-link:hover { color: var(--text); background: var(--surface); }
-
-    .nav-link.active {
-      color: var(--accent);
-      background: var(--surface);
-    }
-
+    
     .nav-switch {
       display: flex;
       align-items: center;
@@ -215,13 +205,26 @@
       height: 16px;
     }
 
+    .nav-cta {
+      padding: 0.625rem 1.5rem;
+      background: var(--orange-gradient);
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: white;
+      box-shadow: var(--shadow-accent);
+      transition: all 0.3s var(--ease-out);
+    }
+    
+    .nav-cta:hover { transform: translateY(-2px); box-shadow: var(--shadow-glow); }
+
     .mobile-btn {
       display: none;
       flex-direction: column;
       gap: 5px;
       padding: 0.5rem;
     }
-
+    
     .mobile-btn span {
       display: block;
       width: 22px;
@@ -230,7 +233,7 @@
       border-radius: 2px;
       transition: all 0.3s var(--ease-out);
     }
-
+    
     .mobile-btn.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
     .mobile-btn.active span:nth-child(2) { opacity: 0; }
     .mobile-btn.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
@@ -249,9 +252,9 @@
       visibility: hidden;
       transition: all 0.4s var(--ease-out);
     }
-
+    
     .mobile-menu.active { opacity: 1; visibility: visible; }
-
+    
     .mobile-menu a {
       font-size: 1.5rem;
       font-weight: 600;
@@ -261,11 +264,14 @@
       transform: translateY(20px);
       transition: all 0.3s var(--ease-out);
     }
-
+    
     .mobile-menu.active a { opacity: 1; transform: translateY(0); }
     .mobile-menu.active a:nth-child(2) { transition-delay: 100ms; }
     .mobile-menu.active a:nth-child(3) { transition-delay: 150ms; }
     .mobile-menu.active a:nth-child(4) { transition-delay: 200ms; }
+    .mobile-menu.active a:nth-child(5) { transition-delay: 250ms; }
+    .mobile-menu.active a:nth-child(6) { transition-delay: 300ms; }
+    .mobile-menu.active a:nth-child(7) { transition-delay: 350ms; }
 
     .mobile-menu-close {
       position: absolute;
@@ -298,51 +304,35 @@
     }
 
     @media (max-width: 768px) {
-      .nav-links { display: none; }
+      .nav-links, .nav-cta { display: none; }
       .mobile-btn { display: flex; }
-      .nav-switch { display: none; }
     }
 
     /* ========================================
-       HERO BANNER
+       HERO BANNER - Background Image Style (Empresarial)
     ======================================== */
 
     .hero-banner {
       position: relative;
       width: 100%;
-      min-height: 650px;
+      min-height: 600px;
+      background:
+        url('../img/hero-web-empresas-dez-v2.png'),
+        linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 80%);
+      background-size: cover, cover;
+      background-position: right center, center;
+      background-repeat: no-repeat;
       display: flex;
       align-items: center;
       padding-top: 90px;
       overflow: hidden;
-      background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 80%);
-    }
-
-    .hero-banner__bg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-    }
-
-    .hero-banner__img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: right center;
-    }
-
-    .hero-banner__img--mobile {
-      display: none;
     }
 
     .hero-banner__overlay {
       position: absolute;
       top: 0;
       left: 0;
-      width: 70%;
+      width: 65%;
       height: 100%;
       background: linear-gradient(90deg,
         rgba(26, 26, 26, 0.95) 0%,
@@ -356,7 +346,7 @@
     .hero-banner__content {
       position: relative;
       z-index: 2;
-      max-width: 650px;
+      max-width: 600px;
       padding: 60px 20px;
     }
 
@@ -375,14 +365,9 @@
       text-transform: uppercase;
     }
 
-    .hero-banner__badge svg {
-      width: 16px;
-      height: 16px;
-    }
-
     .hero-banner__title {
       font-family: 'Figtree', sans-serif;
-      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-size: clamp(2rem, 5vw, 3rem);
       font-weight: 800;
       color: #ffffff;
       line-height: 1.15;
@@ -394,318 +379,306 @@
     }
 
     .hero-banner__subtitle {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       color: rgba(255, 255, 255, 0.9);
       margin-bottom: 32px;
-      line-height: 1.6;
+      line-height: 1.5;
     }
 
-    .hero-banner__price-box {
-      background: rgba(0, 0, 0, 0.4);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 16px;
-      padding: 1.5rem 2rem;
-      margin: 1.5rem 0;
-      display: inline-block;
-    }
-
-    .hero-banner__price-from {
+    .hero-banner__offer-box {
       display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 0.5rem;
+      flex-direction: column;
+      gap: 16px;
+      align-items: flex-start;
     }
 
-    .hero-banner__price-from .price-label {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-    }
-
-    .hero-banner__price-from .price-old {
-      font-size: 1.25rem;
-      color: var(--text-muted);
-      text-decoration: line-through;
-    }
-
-    .hero-banner__price-to .price-label {
-      font-size: 0.9rem;
-      color: var(--green);
-      font-weight: 600;
-    }
-
-    .hero-banner__price-to .price-current {
-      display: flex;
-      align-items: baseline;
-      gap: 0.25rem;
-    }
-
-    .hero-banner__price-to .price-currency {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--text);
-    }
-
-    .hero-banner__price-to .price-value {
-      font-size: 3.5rem;
+    /* 1. VELOCIDADE */
+    .hero-banner__plan-speed {
+      font-family: 'Figtree', sans-serif;
+      font-size: 2.5rem;
       font-weight: 800;
-      color: var(--text);
+      color: #ffffff;
       line-height: 1;
     }
 
-    .hero-banner__price-to .price-period {
-      font-size: 1.25rem;
-      color: var(--text-muted);
+    /* 2. AGREGADO - Mini-produto visual */
+    .hero-banner__aggregate {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 80, 34, 0.15);
+      border: 1px solid rgba(255, 80, 34, 0.3);
+      border-radius: 8px;
+      padding: 10px 14px;
+      width: fit-content;
     }
 
-    .hero-banner__price-note {
-      display: block;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-top: 0.5rem;
+    .hero-banner__aggregate .aggregate-icon {
+      width: 24px;
+      height: 24px;
+      color: var(--accent);
     }
 
+    .hero-banner__aggregate span {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    /* 3. BENEFÍCIOS - Checks */
     .hero-banner__checks {
       display: flex;
-      flex-wrap: wrap;
-      gap: 1rem 2rem;
-      margin-bottom: 1.5rem;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
     }
 
     .hero-banner__check {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      color: var(--text);
-      font-size: 0.95rem;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: #ffffff;
+      font-weight: 500;
     }
 
     .hero-banner__check svg {
-      width: 20px;
-      height: 20px;
-      color: var(--green);
+      width: 18px;
+      height: 18px;
+      color: #22C55E;
       flex-shrink: 0;
     }
 
-    .hero-banner__cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 14px 28px;
-      font-size: 1.05rem;
-      background: var(--orange);
+    @media (min-width: 769px) {
+      .hero-banner__checks {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 8px 20px;
+      }
+    }
+
+    /* 4. PREÇO */
+    .hero-banner__price-value {
+      font-family: 'Figtree', sans-serif;
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1;
+    }
+
+    .hero-banner__price-value .price-period {
+      font-size: 0.5em;
+      font-weight: 400;
+      opacity: 0.8;
+    }
+
+    .hero-banner .btn--highlight {
+      padding: 12px 24px;
+      font-size: 1rem;
+      background: #FF5022;
       color: #ffffff;
       font-weight: 700;
       border-radius: 50px;
       transition: all 0.3s ease;
-      box-shadow: var(--shadow-accent);
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+      text-decoration: none;
+      width: fit-content;
     }
 
-    .hero-banner__cta:hover {
-      background: var(--orange-light);
+    .hero-banner .btn--highlight:hover {
+      background: #ff5520;
       transform: translateY(-2px);
-      box-shadow: var(--shadow-glow);
-    }
-
-    .hero-banner__cta svg {
-      flex-shrink: 0;
+      box-shadow: 0 4px 20px rgba(255, 107, 53, 0.4);
     }
 
     @media (max-width: 768px) {
       .hero-banner {
-        min-height: 550px;
-      }
-
-      .hero-banner__img--desktop {
-        display: none;
-      }
-
-      .hero-banner__img--mobile {
-        display: block;
+        background:
+          url('img/hero-mob-empresas-dez-v2.png'),
+          linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 80%);
+        background-size: cover, cover;
+        background-position: center top, center;
+        min-height: auto;
+        padding: 80px 0 40px;
       }
 
       .hero-banner__overlay {
         width: 100%;
         background: linear-gradient(180deg,
-          rgba(26, 26, 26, 0.85) 0%,
-          rgba(26, 26, 26, 0.90) 100%);
+          rgba(26, 26, 26, 0.92) 0%,
+          rgba(26, 26, 26, 0.78) 40%,
+          rgba(26, 26, 26, 0.45) 65%,
+          rgba(26, 26, 26, 0.0) 85%);
       }
 
       .hero-banner__content {
-        padding: 40px 0;
+        max-width: 100%;
+        text-align: left;
+        padding: 30px 20px;
       }
 
-      .hero-banner__price-box {
-        padding: 1.25rem 1.5rem;
+      .hero-banner__offer-box {
+        align-items: flex-start;
       }
 
-      .hero-banner__price-to .price-value {
-        font-size: 2.5rem;
+      .hero-banner__plan-speed {
+        font-size: 2rem;
       }
 
-      .hero-banner__checks {
-        gap: 0.75rem 1rem;
+      .hero-banner__price-value {
+        font-size: 1.75rem;
+      }
+
+      .hero-banner .btn--highlight {
+        width: fit-content;
+        padding: 12px 24px;
       }
     }
 
     /* ========================================
-       SECTION HEADERS
+       PLANS SECTION
     ======================================== */
+    
+    .plans {
+      background: var(--bg);
+      position: relative;
+    }
 
     .section-header {
       text-align: center;
-      margin-bottom: 3rem;
+      max-width: 650px;
+      margin: 0 auto 2.5rem;
     }
-
+    
     .section-eyebrow {
-      display: inline-block;
-      background: rgba(255, 80, 34, 0.1);
-      color: var(--orange);
-      font-size: 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.8rem;
       font-weight: 700;
-      padding: 6px 16px;
-      border-radius: 50px;
-      margin-bottom: 1rem;
-      letter-spacing: 0.5px;
       text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      margin-bottom: 1rem;
     }
-
+    
+    .section-eyebrow::before,
+    .section-eyebrow::after {
+      content: '';
+      width: 32px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent));
+    }
+    
+    .section-eyebrow::after {
+      background: linear-gradient(90deg, var(--accent), transparent);
+    }
+    
     .section-title {
-      font-size: clamp(2rem, 4vw, 3rem);
+      font-size: clamp(2rem, 1.5rem + 3vw, 3rem);
       font-weight: 800;
       color: var(--text);
-      margin-bottom: 1rem;
-      line-height: 1.2;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.02em;
     }
-
+    
     .section-subtitle {
       font-size: 1.1rem;
       color: var(--text-muted);
-      max-width: 600px;
-      margin: 0 auto;
     }
 
-    /* ========================================
-       PLAN TABS
-    ======================================== */
-
+    /* Plan Tabs - Centralized */
     .plan-tabs-wrapper {
       display: flex;
       justify-content: center;
-      margin-bottom: 3rem;
+      margin-bottom: 2.5rem;
     }
-
+    
     .plan-tabs {
       display: inline-flex;
-      background: var(--surface);
-      border-radius: 12px;
-      padding: 6px;
-      gap: 6px;
+      gap: 0.25rem;
+      padding: 0.375rem;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
     }
-
-    .plan-tabs--wrap {
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
+    
     .plan-tab {
       padding: 0.75rem 2rem;
+      border-radius: 10px;
       font-size: 0.95rem;
       font-weight: 600;
       color: var(--text-muted);
-      background: transparent;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
       transition: all 0.3s var(--ease-out);
-      white-space: nowrap;
     }
-
-    .plan-tab:hover {
-      color: var(--text);
-      background: rgba(255, 255, 255, 0.05);
-    }
-
+    
     .plan-tab.active {
-      color: #1a1a1a;
-      background: var(--orange);
-      box-shadow: var(--shadow-sm);
+      color: white;
+      background: var(--orange-gradient);
+      box-shadow: var(--shadow-accent);
+    }
+    
+    .plan-tab:hover:not(.active) {
+      color: var(--text);
+      background: var(--surface);
     }
 
-    .plan-panel {
-      display: none;
-    }
-
-    .plan-panel.active {
-      display: block;
-      animation: fadeIn 0.5s var(--ease-out);
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @media (max-width: 640px) {
-      .plan-tabs--wrap {
-        gap: 0.5rem;
-      }
-
-      .plan-tabs--wrap .plan-tab {
-        flex: 1 1 calc(50% - 0.5rem);
-        min-width: 140px;
-        padding: 0.65rem 1rem;
-        font-size: 0.875rem;
-      }
-
-      /* Terceiro tab ocupa linha inteira no mobile */
-      .plan-tabs--wrap .plan-tab:nth-child(3) {
-        flex: 1 1 100%;
-      }
-    }
-
-    /* ========================================
-       PLAN GRID
-    ======================================== */
+    .plan-panel { display: none; }
+    .plan-panel.active { display: block; animation: fadeIn 0.5s var(--ease-out); }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
     .plan-grid {
       display: grid;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-    }
-
-    .plan-grid--4 {
       grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
     }
-
-    @media (max-width: 1024px) {
-      .plan-grid--4 {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
+    
+    @media (max-width: 1200px) { .plan-grid { grid-template-columns: repeat(2, 1fr); } }
+    
     @media (max-width: 640px) {
-      .plan-grid--4 {
-        grid-template-columns: 1fr;
+      .plan-grid {
+        display: flex;
+        gap: 1rem;
+        overflow-x: auto;
+        overflow-y: visible;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        padding: 1rem 0.5rem 1.5rem;
+        margin: 0 -1.5rem;
+        scrollbar-width: none;
+        touch-action: auto;
+        overscroll-behavior-x: contain;
+        overscroll-behavior-y: auto;
+      }
+      .plan-grid::-webkit-scrollbar { display: none; }
+      .plan-card {
+        flex: 0 0 85%;
+        scroll-snap-align: center;
+        min-width: 300px;
+        touch-action: auto;
       }
     }
 
-    /* ========================================
-       PLAN CARDS
-    ======================================== */
-
+    /* Plan Cards */
     .plan-card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 2rem 1.5rem;
+      background: linear-gradient(180deg, #2A2A2A 0%, #252525 100%);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 20px;
+      padding: 1.75rem;
       position: relative;
-      transition: all 0.3s var(--ease-out);
+      transition: all 0.4s var(--ease-out);
       display: flex;
       flex-direction: column;
       overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
     }
-
+    
     .plan-card::before {
       content: '';
       position: absolute;
@@ -713,578 +686,896 @@
       left: 0;
       right: 0;
       height: 3px;
-      background: var(--orange-gradient);
-      opacity: 0;
-      transition: opacity 0.3s var(--ease-out);
+      background: var(--border);
+      transition: all 0.4s var(--ease-out);
     }
-
+    
     .plan-card:hover {
-      border-color: var(--border-hover);
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-lg);
+      transform: translateY(-8px);
+      border-color: rgba(255, 255, 255, 0.25);
+      box-shadow: 0 12px 48px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.1);
     }
-
+    
     .plan-card:hover::before {
-      opacity: 1;
+      background: var(--orange-gradient);
     }
-
+    
     .plan-card.featured {
-      border-color: var(--border-accent);
-      background: linear-gradient(135deg, var(--bg2) 0%, rgba(255, 80, 34, 0.05) 100%);
+      border-color: var(--accent);
+      background: linear-gradient(180deg, rgba(255, 80, 34, 0.1) 0%, var(--bg2) 30%);
+      box-shadow: var(--shadow-glow);
     }
-
+    
     .plan-card.featured::before {
-      opacity: 1;
+      background: var(--orange-gradient);
+      height: 4px;
     }
 
     .plan-badge {
-      display: inline-block;
-      align-self: flex-start;
-      background: var(--surface);
-      color: var(--text-muted);
-      font-size: 0.75rem;
-      font-weight: 700;
-      padding: 6px 12px;
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      padding: 0.375rem 0.875rem;
+      background: var(--bg3);
+      border: 1px solid var(--border);
       border-radius: 6px;
-      margin-bottom: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .plan-badge--green {
-      background: rgba(34, 197, 94, 0.15);
-      color: var(--green);
-    }
-
-    .plan-card.featured .plan-badge {
-      background: var(--orange);
-      color: #ffffff;
-    }
-
-    .plan-speed {
-      margin-bottom: 1.5rem;
-    }
-
-    .plan-speed-value {
-      font-size: 3rem;
-      font-weight: 800;
-      color: var(--text);
-      line-height: 1;
-    }
-
-    .plan-speed-unit {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--text-muted);
-      margin-left: 0.25rem;
-    }
-
-    .plan-speed-label {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      margin-top: 0.5rem;
-    }
-
-    .plan-speed-badge {
-      display: inline-block;
-      background: var(--orange);
-      color: #ffffff;
       font-size: 0.7rem;
       font-weight: 700;
-      padding: 4px 10px;
-      border-radius: 4px;
-      margin-left: 0.5rem;
-      vertical-align: middle;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+    }
+    
+    .plan-badge.pop {
+      background: var(--green);
+      border-color: transparent;
+      color: white;
+      animation: badge-glow 2s ease-in-out infinite;
+    }
+    
+    @keyframes badge-glow {
+      0%, 100% { box-shadow: 0 0 0 0 var(--green-glow); }
+      50% { box-shadow: 0 0 20px 4px var(--green-glow); }
+    }
+
+    .plan-speed { margin-bottom: 0.75rem; }
+    
+    .plan-speed-value {
+      font-size: clamp(2.5rem, 2rem + 2vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1;
+      color: var(--text);
+    }
+    
+    .plan-card.featured .plan-speed-value {
+      background: var(--orange-gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .plan-speed-unit {
+      font-size: 1.125rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+    
+    .plan-speed-label {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+    }
+
+    .plan-speed-bar {
+      height: 6px;
+      background: var(--bg3);
+      border-radius: 6px;
+      margin-top: 0.75rem;
+      overflow: hidden;
+    }
+    
+    .plan-speed-bar-fill {
+      height: 100%;
+      background: var(--orange-gradient);
+      border-radius: 6px;
+      transition: width 0.8s var(--ease-out);
+      position: relative;
+    }
+    
+    .plan-speed-bar-fill::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 12px;
+      height: 12px;
+      background: var(--bg);
+      border: 3px solid var(--accent);
+      border-radius: 50%;
     }
 
     .plan-partner {
-      background: var(--surface);
-      border-radius: 8px;
-      padding: 0.75rem 1rem;
-      margin-bottom: 1.5rem;
+      height: 32px;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
       font-size: 0.9rem;
-      color: var(--text);
-      text-align: center;
+      color: var(--text2);
+      font-weight: 500;
     }
 
     .plan-price {
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border);
     }
-
+    
     .plan-price-label {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      margin-bottom: 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 0.25rem;
     }
-
-    .plan-price-from {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      margin-bottom: 0.5rem;
+    
+    .plan-price-old {
+      font-size: 0.875rem;
+      color: var(--text-subtle);
+      text-decoration: line-through;
+      margin-bottom: 0.125rem;
     }
-
-    .plan-price-from s {
-      opacity: 0.7;
-    }
-
+    
     .plan-price-current {
       display: flex;
       align-items: baseline;
-      gap: 0.25rem;
+      gap: 0.125rem;
     }
-
+    
     .plan-price-currency {
       font-size: 1.25rem;
       font-weight: 700;
-      color: var(--text);
+      color: var(--text-muted);
+      align-self: flex-start;
+      margin-top: 0.5rem;
     }
-
+    
     .plan-price-value {
-      font-size: 2.5rem;
+      font-size: clamp(2.25rem, 2rem + 1.5vw, 3rem);
       font-weight: 800;
       color: var(--text);
       line-height: 1;
     }
-
+    
+    .plan-card.featured .plan-price-value { color: var(--accent); }
+    
     .plan-price-period {
-      font-size: 1rem;
+      font-size: 0.9rem;
       color: var(--text-muted);
+      margin-left: 0.25rem;
     }
-
-    .plan-card.featured .plan-price-value {
-      color: var(--orange);
+    
+    .plan-price-consult {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
     }
 
     .plan-features {
       flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.625rem;
       margin-bottom: 1.5rem;
     }
-
+    
     .plan-feature {
       display: flex;
-      align-items: flex-start;
-      gap: 0.75rem;
-      margin-bottom: 0.75rem;
+      align-items: center;
+      gap: 0.625rem;
       font-size: 0.9rem;
-      color: var(--text-muted);
+      color: var(--text2);
     }
-
-    .plan-feature:last-child {
-      margin-bottom: 0;
-    }
-
+    
     .plan-feature svg {
       width: 18px;
       height: 18px;
-      color: var(--green);
       flex-shrink: 0;
-      margin-top: 2px;
+      color: var(--green);
+    }
+    
+    .plan-feature.highlight {
+      color: var(--accent);
+      font-weight: 600;
+    }
+    
+    .plan-feature.highlight svg {
+      color: var(--accent);
     }
 
-    .plan-cta {
-      display: block;
-      width: 100%;
-      padding: 0.875rem 1.5rem;
-      background: var(--orange-gradient);
-      color: #ffffff;
-      font-weight: 600;
-      font-size: 0.95rem;
-      text-align: center;
-      border-radius: 8px;
-      transition: all 0.3s var(--ease-out);
-      box-shadow: var(--shadow-sm);
+    /* CTA Button - Centralized */
+    .plan-cta-wrapper {
+      display: flex;
+      justify-content: center;
     }
+    
+    .plan-cta {
+      padding: 1rem 2rem;
+      background: var(--orange-gradient);
+      border: none;
+      border-radius: 12px;
+      font-weight: 600;
+      color: #fff;
+      transition: all 0.3s var(--ease-out);
+      box-shadow: var(--shadow-accent);
+    }
+
+    .plan-cta span { position: relative; z-index: 1; }
 
     .plan-cta:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-accent);
-    }
-
-    /* ========================================
-       CALCULATOR
-    ======================================== */
-
-    .calculator-card {
-      max-width: 800px;
-      margin: 0 auto;
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 2.5rem;
-    }
-
-    .calculator-title {
-      font-size: 2rem;
-      font-weight: 800;
-      color: var(--text);
-      text-align: center;
-      margin-bottom: 0.5rem;
-    }
-
-    .calculator-subtitle {
-      font-size: 1rem;
-      color: var(--text-muted);
-      text-align: center;
-      margin-bottom: 2.5rem;
-    }
-
-    .calc-step {
-      margin-bottom: 2.5rem;
-    }
-
-    .calc-step h4 {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 1rem;
-    }
-
-    .calc-optional {
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--text-muted);
-    }
-
-    .calc-note {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      margin-bottom: 1rem;
-    }
-
-    .calc-options {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-    }
-
-    .calc-option {
-      position: relative;
-      cursor: pointer;
-    }
-
-    .calc-option input[type="radio"] {
-      position: absolute;
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .calc-option-card {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      background: var(--surface);
-      border: 2px solid var(--border);
-      border-radius: 12px;
-      padding: 1.25rem;
-      transition: all 0.3s var(--ease-out);
-    }
-
-    .calc-option-card.featured {
-      border-color: var(--border-accent);
-      background: rgba(255, 80, 34, 0.05);
-    }
-
-    .calc-option input:checked + .calc-option-card {
-      border-color: var(--orange);
-      background: rgba(255, 80, 34, 0.1);
-    }
-
-    .calc-option:hover .calc-option-card {
-      border-color: var(--border-hover);
-      transform: translateY(-2px);
-    }
-
-    .calc-option-card strong {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--text);
-    }
-
-    .calc-option-card small {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-    }
-
-    .calc-price {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--orange);
-      margin-top: 0.25rem;
-    }
-
-    .calc-counter {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1.5rem;
-      margin: 1.5rem 0;
-    }
-
-    .calc-counter-btn {
-      width: 44px;
-      height: 44px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      color: var(--text);
-      font-size: 1.5rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .calc-counter-btn:hover {
-      background: var(--orange);
-      border-color: var(--orange);
-      color: #ffffff;
-    }
-
-    .calc-counter-value {
-      font-size: 2rem;
-      font-weight: 800;
-      color: var(--text);
-      min-width: 60px;
-      text-align: center;
-    }
-
-    .calc-total-channels {
-      text-align: center;
-      font-size: 1rem;
-      color: var(--text-muted);
-    }
-
-    .calc-total-channels strong {
-      color: var(--orange);
-      font-weight: 700;
-    }
-
-    .calc-summary {
-      background: rgba(0, 0, 0, 0.3);
-      border-radius: 12px;
-      padding: 2rem;
-      margin-top: 2rem;
-    }
-
-    .calc-summary h4 {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 1.5rem;
-      text-align: center;
-    }
-
-    .calc-summary-items {
-      margin-bottom: 1.5rem;
-    }
-
-    .calc-empty {
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 0.95rem;
-    }
-
-    .summary-row {
-      display: flex;
-      justify-content: space-between;
-      padding: 0.75rem 0;
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .summary-row:last-child {
-      border-bottom: none;
-    }
-
-    .calc-summary-total {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.5rem 0 1rem;
-      border-top: 2px solid var(--border);
-      font-size: 1.1rem;
-    }
-
-    .calc-summary-total span {
-      color: var(--text-muted);
-      font-weight: 500;
-    }
-
-    .calc-summary-total strong {
-      font-size: 2rem;
-      font-weight: 800;
-      color: var(--orange);
-    }
-
-    .calc-cta-whatsapp {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.75rem;
-      width: 100%;
-      padding: 1rem 2rem;
-      background: var(--orange);
-      color: #ffffff;
-      font-weight: 700;
-      font-size: 1.05rem;
-      border-radius: 50px;
-      transition: all 0.3s ease;
-      box-shadow: var(--shadow-accent);
-    }
-
-    .calc-cta-whatsapp:hover {
-      background: var(--orange-light);
-      transform: translateY(-2px);
+      transform: translateY(-3px);
       box-shadow: var(--shadow-glow);
     }
 
-    .calc-cta-whatsapp.disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-      pointer-events: none;
+    /* Navigation Arrows */
+    .plan-nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    
+    .plan-nav-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      transition: all 0.3s var(--ease-out);
+    }
+    
+    .plan-nav-btn:hover {
+      background: var(--orange-gradient);
+      border-color: transparent;
+      color: white;
+      transform: scale(1.1);
+      box-shadow: var(--shadow-accent);
+    }
+    
+    .plan-nav-btn svg { width: 24px; height: 24px; }
+
+    /* Setas removidas - apenas dots */
+    .plan-nav { display: none; }
+
+    /* Plan Dots */
+    .plan-dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-top: 2rem;
     }
 
-    @media (max-width: 640px) {
-      .calculator-card {
-        padding: 1.5rem;
-      }
+    .plan-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: transparent;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      cursor: pointer;
+      transition: all 0.3s var(--ease-out);
+    }
 
-      .calc-options {
-        grid-template-columns: 1fr;
-      }
+    .plan-dot.active {
+      background: var(--accent);
+      border-color: #ffffff;
+      transform: scale(1.15);
+    }
+
+    .plan-dot:hover:not(.active) {
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    @media (min-width: 641px) {
+      .plan-dots { display: none; }
     }
 
     /* ========================================
        BENEFITS SECTION
     ======================================== */
-
+    
     .benefits {
       background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
     }
 
     .benefits-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
     }
+    
+    @media (max-width: 1024px) { .benefits-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px) { .benefits-grid { grid-template-columns: 1fr; } }
 
     .benefit-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
+      background: linear-gradient(180deg, #252525 0%, #1E1E1E 100%);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 20px;
       padding: 2rem;
-      text-align: center;
-      transition: all 0.3s var(--ease-out);
+      transition: all 0.4s var(--ease-out);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
     }
-
+    
+    .benefit-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: var(--orange-gradient);
+      transition: width 0.4s var(--ease-out);
+    }
+    
     .benefit-card:hover {
-      border-color: var(--border-hover);
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
+      transform: translateY(-6px);
+      border-color: rgba(255, 255, 255, 0.25);
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 80, 34, 0.3);
     }
+    
+    .benefit-card:hover::after { width: 100%; }
 
     .benefit-icon {
-      font-size: 3rem;
-      margin-bottom: 1rem;
+      width: 56px;
+      height: 56px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 1.25rem;
+      transition: all 0.3s var(--ease-out);
     }
-
-    .benefit-card h3 {
+    
+    .benefit-card:hover .benefit-icon {
+      background: var(--orange-gradient);
+      border-color: transparent;
+      box-shadow: var(--shadow-accent);
+    }
+    
+    .benefit-icon svg {
+      width: 26px;
+      height: 26px;
+      color: var(--accent);
+      transition: color 0.3s ease;
+    }
+    
+    .benefit-card:hover .benefit-icon svg { color: white; }
+    
+    .benefit-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+    
+    .benefit-title {
       font-size: 1.25rem;
       font-weight: 700;
       color: var(--text);
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.5rem;
     }
-
-    .benefit-card p {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-
-    .benefits-note {
-      text-align: center;
+    
+    .benefit-desc {
       font-size: 0.9rem;
       color: var(--text-muted);
-      margin-top: 2rem;
+      line-height: 1.7;
     }
 
     /* ========================================
-       CTA SECTION
+       TESTIMONIALS
     ======================================== */
-
-    .cta-section {
-      padding: 5rem 0;
+    
+    .testimonials {
       background: var(--bg);
     }
 
-    .cta-card {
-      max-width: 700px;
-      margin: 0 auto;
-      text-align: center;
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 3rem 2rem;
-    }
-
-    .cta-title {
-      font-size: clamp(1.75rem, 4vw, 2.5rem);
-      font-weight: 800;
-      color: var(--text);
-      margin-bottom: 1rem;
-      line-height: 1.2;
-    }
-
-    .cta-subtitle {
-      font-size: 1.1rem;
-      color: var(--text-muted);
-      margin-bottom: 2rem;
-      line-height: 1.6;
-    }
-
-    .cta-btn {
-      display: inline-flex;
+    .testimonials-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
       align-items: center;
-      gap: 0.75rem;
-      padding: 1rem 2.5rem;
-      background: var(--orange);
-      color: #ffffff;
+    }
+    
+    @media (max-width: 1024px) { .testimonials-wrapper { grid-template-columns: 1fr; gap: 2.5rem; } }
+
+    .experience-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    
+    .experience-card {
+      background: linear-gradient(180deg, #2A2A2A 0%, #252525 100%);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      padding: 1.5rem;
+      transition: all 0.3s var(--ease-out);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+    
+    .experience-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    
+    .experience-card-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--bg3);
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 1rem;
+    }
+    
+    .experience-card-icon svg {
+      width: 22px;
+      height: 22px;
+      color: var(--accent);
+    }
+    
+    .experience-card h4 {
+      font-size: 1rem;
       font-weight: 700;
-      font-size: 1.05rem;
-      border-radius: 50px;
-      transition: all 0.3s ease;
-      box-shadow: var(--shadow-accent);
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+    
+    .experience-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
     }
 
-    .cta-btn:hover {
-      background: var(--orange-light);
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-glow);
+    .testimonial-track { position: relative; min-height: 320px; }
+    
+    .testimonial-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.5s var(--ease-out);
+    }
+    
+    .testimonial-slide.active { opacity: 1; visibility: visible; }
+
+    .testimonial-card {
+      background: linear-gradient(180deg, #2A2A2A 0%, #252525 100%);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 24px;
+      padding: 2rem;
+      position: relative;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+    }
+    
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: 1.5rem;
+      left: 2rem;
+      font-size: 100px;
+      line-height: 1;
+      background: var(--orange-gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      opacity: 0.2;
+    }
+    
+    .testimonial-quote {
+      font-size: 1.25rem;
+      font-weight: 500;
+      line-height: 1.7;
+      color: var(--text);
+      margin-bottom: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .testimonial-avatar {
+      width: 52px;
+      height: 52px;
+      background: var(--orange-gradient);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: white;
+    }
+    
+    .testimonial-info h5 {
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+    
+    .testimonial-info span {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+    
+    .testimonial-rating {
+      display: flex;
+      gap: 2px;
+      margin-left: auto;
+    }
+    
+    .testimonial-rating svg {
+      width: 18px;
+      height: 18px;
+      color: #FBBF24;
+      fill: #FBBF24;
     }
 
-    .cta-btn svg {
-      flex-shrink: 0;
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 2rem;
+    }
+    
+    .carousel-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: transparent;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      transition: all 0.3s var(--ease-out);
+      cursor: pointer;
+    }
+
+    .carousel-dot.active {
+      background: var(--accent);
+      border-color: #ffffff;
+      transform: scale(1.15);
+      box-shadow: 0 2px 8px var(--orange-glow);
+    }
+
+    .carousel-dot:hover:not(.active) {
+      border-color: rgba(255, 255, 255, 0.5);
     }
 
     /* ========================================
-       REVEAL ANIMATIONS
+       FAQ
+    ======================================== */
+    
+    .faq { background: var(--bg2); border-top: 1px solid var(--border); }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    @media (max-width: 768px) { .faq-grid { grid-template-columns: 1fr; } }
+
+    .faq-item {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.3s var(--ease-out);
+    }
+    
+    .faq-item:hover { border-color: var(--border-hover); }
+    
+    .faq-item[open] {
+      border-color: var(--accent);
+      box-shadow: var(--shadow-glow);
+    }
+    
+    .faq-item summary {
+      padding: 1.25rem 1.5rem;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      list-style: none;
+    }
+    
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary:hover { background: var(--surface); }
+    
+    .faq-item summary::after {
+      content: '+';
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--accent);
+      transition: transform 0.3s var(--ease-out);
+    }
+    
+    .faq-item[open] summary::after { transform: rotate(45deg); }
+    .faq-item[open] summary { background: var(--surface); }
+    
+    .faq-item p {
+      padding: 0 1.5rem 1.5rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    /* ========================================
+       CTA SECTION - Simplificada com Expansão
     ======================================== */
 
+    .cta-section {
+      background: linear-gradient(135deg, #1E1E1E 0%, #252525 100%);
+      padding: 5rem 0;
+      margin: 0;
+    }
+
+    .cta-card {
+      background: transparent;
+      border-radius: 0;
+      padding: 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-content {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .cta-title {
+      font-family: 'Figtree', sans-serif;
+      font-size: clamp(2rem, 1.5rem + 3vw, 3rem);
+      font-weight: 800;
+      color: white;
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .cta-subtitle {
+      font-size: 1.35rem;
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 2.5rem;
+      line-height: 1.5;
+    }
+
+    /* Ocultar os checkmarks */
+    .cta-features {
+      display: none;
+    }
+
+    .cta-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    /* Botão primário LARANJA */
+    .cta-btn-p {
+      padding: 1.25rem 3rem;
+      background: var(--orange-gradient);
+      color: white;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 1.125rem;
+      transition: all 0.3s var(--ease-spring);
+      box-shadow: var(--shadow-accent);
+    }
+
+    .cta-btn-p:hover {
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: var(--shadow-glow);
+      background: linear-gradient(135deg, #FF6B3D 0%, #FF8C42 100%);
+    }
+
+    /* Ocultar botão secundário */
+    .cta-btn-s {
+      display: none;
+    }
+
+    /* ========================================
+       FOOTER
+    ======================================== */
+    
+    .footer {
+      background: var(--black);
+      padding: 3rem 0 120px;
+      border-top: 1px solid var(--border);
+    }
+    
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      text-align: center;
+    }
+    
+    .footer-logo { display: flex; align-items: center; gap: 0.5rem; }
+    .footer-logo .logo-img { height: 36px; width: auto; }
+    
+    .footer-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      color: var(--gray);
+      font-size: 0.9rem;
+    }
+    
+    .footer-contact {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+    
+    .footer-contact a {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+    
+    .footer-contact a:hover { color: var(--accent); }
+    .footer-contact svg { width: 18px; height: 18px; }
+    
+    .footer-legal {
+      font-size: 0.8rem;
+      color: var(--text-subtle);
+      max-width: 600px;
+    }
+
+    /* ========================================
+       WHATSAPP WIDGET
+    ======================================== */
+    
+    .whatsapp-float {
+      position: fixed;
+      bottom: 32px;
+      right: 24px;
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.625rem;
+    }
+    
+    @media (max-width: 640px) { .whatsapp-float { bottom: 28px; right: 16px; } }
+    
+    .whatsapp-online {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 0.5rem 1rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text2);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: var(--shadow-md);
+      animation: fadeUp 0.6s var(--ease-out) 1s forwards;
+      opacity: 0;
+    }
+    
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .whatsapp-online .dot {
+      width: 8px;
+      height: 8px;
+      background: var(--green);
+      border-radius: 50%;
+      position: relative;
+    }
+    
+    .whatsapp-online .dot::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: pulse-ring 2s ease-out infinite;
+    }
+    
+    @keyframes pulse-ring {
+      0% { transform: scale(1); opacity: 0.4; }
+      100% { transform: scale(2); opacity: 0; }
+    }
+    
+    .whatsapp-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+      padding: 1rem 1.75rem;
+      background: #25D366;
+      color: white;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      box-shadow: var(--shadow-lg), 0 8px 24px -8px rgba(37, 211, 102, 0.5);
+      transition: all 0.3s var(--ease-spring);
+      animation: wa-float 3s ease-in-out infinite;
+    }
+    
+    @keyframes wa-float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+    
+    .whatsapp-btn:hover {
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: var(--shadow-xl), 0 12px 32px -8px rgba(37, 211, 102, 0.6);
+    }
+    
+    .whatsapp-btn svg { width: 24px; height: 24px; }
+    
+    @media (max-width: 640px) {
+      .whatsapp-btn span { display: none; }
+      .whatsapp-btn { padding: 1rem; border-radius: 50%; }
+    }
+
+    /* Reveal animations */
     .reveal {
       opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.6s var(--ease-out);
+      transform: translateY(40px);
+      transition: all 0.8s var(--ease-out);
     }
+    
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 100ms; }
+    .reveal-delay-2 { transition-delay: 200ms; }
+    .reveal-delay-3 { transition-delay: 300ms; }
+    .reveal-delay-4 { transition-delay: 400ms; }
 
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
     }
-
-    .reveal-delay-1 { transition-delay: 0.1s; }
-    .reveal-delay-2 { transition-delay: 0.2s; }
-    .reveal-delay-3 { transition-delay: 0.3s; }
-    .reveal-delay-4 { transition-delay: 0.4s; }
   </style>
 </head>
 <body>
@@ -1293,785 +1584,614 @@
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
-  <!-- NAVIGATION -->
+  <!-- Navigation -->
   <nav class="nav" id="nav">
     <div class="container">
       <div class="nav-inner">
         <a href="../empresas.html" class="logo">
-          <img src="../img/logo-brisasolucoes.png" alt="Brisasoluções" class="logo-img">
+          <img src="../img/logo-brisasolucoes.png" alt="Brisasoluções" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <span class="logo-text" style="display:none;"><span class="brisa">brisa</span><span class="solucoes">soluções</span></span>
         </a>
-
         <div class="nav-links">
           <a href="../empresas.html" class="nav-link">Planos Fibra</a>
           <a href="telefonia.html" class="nav-link active">Telefonia</a>
           <a href="../index.html" class="nav-switch">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-              <polyline points="9 22 9 12 15 12 15 22"/>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
             Residencial
           </a>
         </div>
-
-        <button class="mobile-btn" id="mobile-btn">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
+        <a href="https://wa.me/5581992823101" onclick="return openWhatsApp('header', 'empresas')" class="nav-cta">Falar com consultor</a>
+        <button class="mobile-btn" id="mobile-btn" aria-label="Menu"><span></span><span></span><span></span></button>
       </div>
     </div>
   </nav>
 
-  <!-- MOBILE MENU -->
+  <!-- Mobile Menu -->
   <div class="mobile-menu" id="mobile-menu">
-    <button class="mobile-menu-close" id="mobile-close">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <line x1="18" y1="6" x2="6" y2="18"/>
-        <line x1="6" y1="6" x2="18" y2="18"/>
-      </svg>
+    <button class="mobile-menu-close" id="mobile-close" aria-label="Fechar menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
     </button>
     <a href="../empresas.html">Planos Fibra</a>
     <a href="telefonia.html">Telefonia</a>
     <a href="../index.html">Residencial</a>
   </div>
 
-  <!-- HERO BANNER -->
-  <section class="hero-banner">
-    <div class="hero-banner__bg">
-      <img src="../img/hero-web-empresas-dez-v2.png" alt="" class="hero-banner__img hero-banner__img--desktop">
-      <img src="../img/hero-mob-empresas-dez-v2.png" alt="" class="hero-banner__img hero-banner__img--mobile">
-    </div>
-    <div class="hero-banner__overlay"></div>
-    <div class="container">
-      <div class="hero-banner__content">
-        <span class="hero-banner__badge">
-          <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/>
-          </svg>
-          Solução Empresarial Completa
-        </span>
+  <main>
+    <!-- Hero Section - Background Image Style -->
+    <section class="hero-banner" id="top">
+      <div class="hero-banner__overlay"></div>
 
-        <h1 class="hero-banner__title">
-          Internet Empresarial <span class="highlight">+ Telefonia Ilimitada</span>
-        </h1>
+      <div class="container">
+        <div class="hero-banner__content">
 
-        <p class="hero-banner__subtitle">
-          Conectividade profissional com ligações ilimitadas para todo Brasil.<br>
-          PABX Virtual incluso e 8 canais simultâneos para sua equipe.
-        </p>
-
-        <div class="hero-banner__price-box">
-          <div class="hero-banner__price-from">
-            <span class="price-label">De</span>
-            <span class="price-old">R$ 219,90</span>
-          </div>
-          <div class="hero-banner__price-to">
-            <span class="price-label">Por apenas</span>
-            <div class="price-current">
-              <span class="price-currency">R$</span>
-              <span class="price-value">179,90</span>
-              <span class="price-period">/mês</span>
-            </div>
-          </div>
-          <span class="hero-banner__price-note">*Promoção válida para contrato de 12 meses</span>
-        </div>
-
-        <div class="hero-banner__checks">
-          <div class="hero-banner__check">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-              <path d="M20 6L9 17l-5-5"/>
+          <!-- BADGE -->
+          <span class="hero-banner__badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/>
             </svg>
-            <span>Portabilidade Gratuita</span>
-          </div>
-          <div class="hero-banner__check">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-              <path d="M20 6L9 17l-5-5"/>
-            </svg>
-            <span>PABX Virtual incluso</span>
-          </div>
-          <div class="hero-banner__check">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-              <path d="M20 6L9 17l-5-5"/>
-            </svg>
-            <span>Instalação em até 48h</span>
-          </div>
-        </div>
+            Solução Empresarial Completa
+          </span>
 
-        <a href="https://wa.me/5581992823101?text=Olá! Quero contratar o combo 500 Mega + Telefonia 8 canais por R$ 179,90"
-           onclick="return openWhatsApp('hero_cta', '500M + Smart 8ch R$179,90')"
-           class="hero-banner__cta">
-          Contratar agora
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-          </svg>
-        </a>
-      </div>
-    </div>
-  </section>
+          <!-- TÍTULO -->
+          <h1 class="hero-banner__title">
+            Internet Empresarial + Telefonia Ilimitada
+            <span class="highlight">para seu negócio</span>
+          </h1>
 
-  <!-- PLANS SECTION -->
-  <section class="plans section" id="planos">
-    <div class="container">
-      <header class="section-header reveal">
-        <span class="section-eyebrow">Planos Empresariais</span>
-        <h2 class="section-title">Conectividade profissional para seu negócio</h2>
-        <p class="section-subtitle">Internet Fibra Óptica + Telefonia Ilimitada com PABX Virtual para empresas de todos os portes</p>
-      </header>
+          <!-- SUBTÍTULO -->
+          <p class="hero-banner__subtitle">
+            Conectividade profissional com ligações ilimitadas e PABX Virtual para sua equipe.
+          </p>
 
-      <!-- Tabs -->
-      <div class="plan-tabs-wrapper reveal">
-        <div class="plan-tabs plan-tabs--wrap">
-          <button class="plan-tab active" data-tab="essenciais">Essenciais</button>
-          <button class="plan-tab" data-tab="full">FULL</button>
-          <button class="plan-tab" data-tab="monte">Monte seu Combo</button>
-        </div>
-      </div>
+          <!-- OFERTA - Bloco de Valor -->
+          <div class="hero-banner__offer-box">
+            <!-- 1. VELOCIDADE -->
+            <div class="hero-banner__plan-speed">500 MEGA + Telefonia</div>
 
-      <!-- Tab 1: Essenciais -->
-      <div class="plan-panel active" id="panel-essenciais">
-        <div class="plan-grid plan-grid--4">
-
-          <!-- Card 1 - Entrada -->
-          <article class="plan-card reveal reveal-delay-1">
-            <span class="plan-badge plan-badge--green">Econômico</span>
-
-            <div class="plan-speed">
-              <span class="plan-speed-value">500</span>
-              <span class="plan-speed-unit">Mega</span>
-              <p class="plan-speed-label">+ Fixo Ilimitado</p>
-            </div>
-
-            <div class="plan-partner">
-              <span>🏪 Pequenos negócios • 1 linha ilimitada</span>
-            </div>
-
-            <div class="plan-price">
-              <p class="plan-price-label">Por apenas</p>
-              <div class="plan-price-current">
-                <span class="plan-price-currency">R$</span>
-                <span class="plan-price-value">149,90</span>
-                <span class="plan-price-period">/mês</span>
-              </div>
-            </div>
-
-            <ul class="plan-features">
-              <li class="plan-feature">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                  <path d="M20 6L9 17l-5-5"/>
-                </svg>
-                <span>1 Linha telefônica</span>
-              </li>
-              <li class="plan-feature">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                  <path d="M20 6L9 17l-5-5"/>
-                </svg>
-                <span>Ligações ilimitadas Brasil</span>
-              </li>
-              <li class="plan-feature">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                  <path d="M20 6L9 17l-5-5"/>
-                </svg>
-                <span>Identificador de chamadas</span>
-              </li>
-              <li class="plan-feature">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                  <path d="M20 6L9 17l-5-5"/>
-                </svg>
-                <span>Wi-Fi 6 empresarial</span>
-              </li>
-            </ul>
-
-            <a href="https://wa.me/5581992823101?text=Olá! Quero o combo 500 Mega + Fixo Ilimitado 1 linha por R$ 149,90"
-               onclick="return openWhatsApp('card_essencial', '500M + Fixo 1 linha R$149,90')"
-               class="plan-cta">
-              Contratar
-            </a>
-          </article>
-
-          <!-- Card 2 - Essencial (8 canais) -->
-          <article class="plan-card reveal reveal-delay-2">
-            <div class="plan-speed">
-              <span class="plan-speed-value">500</span>
-              <span class="plan-speed-unit">Mega</span>
-              <p class="plan-speed-label">+ Smart Ilimitado</p>
-            </div>
-
-            <div class="plan-partner">
-              <span>🏢 Para equipes • 8 canais • PABX Virtual</span>
-            </div>
-
-            <div class="plan-price">
-              <p class="plan-price-from">De <s>R$ 219,90</s></p>
-              <div class="plan-price-current">
-                <span class="plan-price-currency">R$</span>
-                <span class="plan-price-value">179,90</span>
-                <span class="plan-price-period">/mês</span>
-              </div>
-            </div>
-
-            <ul class="plan-features">
-              <li class="plan-feature">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                  <path d="M20 6L9 17l-5-5"/>
-                </svg>
-                <span>8 chamadas simultâneas</span>
-              </li>
-              <li class="plan-feature">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                  <path d="M20 6L9 17l-5-5"/>
-                </svg>
-                <span>PABX Virtual incluso</span>
-              </li>
-              <li class="plan-feature">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                  <path d="M20 6L9 17l-5-5"/>
-                </svg>
-                <span>Portabilidade gratuita</span>
-              </li>
-              <li class="plan-feature">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                  <path d="M20 6L9 17l-5-5"/>
-                </svg>
-                <span>Wi-Fi 6 empresarial</span>
-              </li>
-            </ul>
-
-            <a href="https://wa.me/5581992823101?text=Olá! Quero o combo 500 Mega + Smart Ilimitado 8 canais por R$ 179,90"
-               onclick="return openWhatsApp('card_essencial', '500M + Smart 8ch R$179,90')"
-               class="plan-cta">
-              Contratar
-            </a>
-          </article>
-
-          <!-- Card 3 - Plus (10 canais) - FEATURED -->
-          <article class="plan-card featured reveal reveal-delay-3">
-            <span class="plan-badge">⭐ Mais Vendido</span>
-
-            <div class="plan-speed">
-              <span class="plan-speed-value">500</span>
-              <span class="plan-speed-unit">Mega</span>
-              <p class="plan-speed-label">+ Smart Plus</p>
-            </div>
-
-            <div class="plan-partner">
-              <span>📊 Empresas em crescimento • 10 canais</span>
-            </div>
-
-            <div class="plan-price">
-              <p class="plan-price-from">De <s>R$ 279,90</s></p>
-              <div class="plan-price-current">
-                <span class="plan-price-currency">R$</span>
-                <span class="plan-price-value">249,90</span>
-                <span class="plan-price-period">/mês</span>
-              </div>
-            </div>
-
-            <ul class="plan-features">
-              <li class="plan-feature">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                  <path d="M20 6L9 17l-5-5"/>
-                </svg>
-                <span>10 chamadas simultâneas</span>
-              </li>
-              <li class="plan-feature">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                  <path d="M20 6L9 17l-5-5"/>
-                </svg>
-                <span>Fila de atendimento</span>
-              </li>
-              <li class="plan-feature">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                  <path d="M20 6L9 17l-5-5"/>
-                </svg>
-                <span>Relatórios de chamadas</span>
-              </li>
-              <li class="plan-feature">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                  <path d="M20 6L9 17l-5-5"/>
-                </svg>
-                <span>App Softphone (celular/PC)</span>
-              </li>
-            </ul>
-
-            <a href="https://wa.me/5581992823101?text=Olá! Quero o combo 500 Mega + Smart Plus 10 canais por R$ 249,90"
-               onclick="return openWhatsApp('card_essencial', '500M + Smart Plus 10ch R$249,90')"
-               class="plan-cta">
-              Contratar
-            </a>
-          </article>
-
-          <!-- Card 4 - Completo (12 canais) -->
-          <article class="plan-card reveal reveal-delay-4">
-            <div class="plan-speed">
-              <span class="plan-speed-value">500</span>
-              <span class="plan-speed-unit">Mega</span>
-              <p class="plan-speed-label">+ Smart Plus</p>
-            </div>
-
-            <div class="plan-partner">
-              <span>🏗️ Alta demanda • 12 canais simultâneos</span>
-            </div>
-
-            <div class="plan-price">
-              <p class="plan-price-label">Por apenas</p>
-              <div class="plan-price-current">
-                <span class="plan-price-currency">R$</span>
-                <span class="plan-price-value">289,70</span>
-                <span class="plan-price-period">/mês</span>
-              </div>
-            </div>
-
-            <ul class="plan-features">
-              <li class="plan-feature">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                  <path d="M20 6L9 17l-5-5"/>
-                </svg>
-                <span>12 chamadas simultâneas</span>
-              </li>
-              <li class="plan-feature">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                  <path d="M20 6L9 17l-5-5"/>
-                </svg>
-                <span>Tudo do Smart Plus</span>
-              </li>
-              <li class="plan-feature">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                  <path d="M20 6L9 17l-5-5"/>
-                </svg>
-                <span>Ideal para call center</span>
-              </li>
-              <li class="plan-feature">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                  <path d="M20 6L9 17l-5-5"/>
-                </svg>
-                <span>Canais extras disponíveis</span>
-              </li>
-            </ul>
-
-            <a href="https://wa.me/5581992823101?text=Olá! Quero o combo 500 Mega + Smart Plus 12 canais por R$ 289,70"
-               onclick="return openWhatsApp('card_essencial', '500M + Smart Plus 12ch R$289,70')"
-               class="plan-cta">
-              Contratar
-            </a>
-          </article>
-
-        </div>
-      </div>
-
-      <!-- Tab 2: FULL -->
-      <div class="plan-panel" id="panel-full">
-        <div class="plan-grid plan-grid--4">
-
-          <!-- Card 1 - FULL Entrada -->
-          <article class="plan-card reveal reveal-delay-1">
-            <div class="plan-speed">
-              <span class="plan-speed-value">300</span>
-              <span class="plan-speed-unit">Mega</span>
-              <span class="plan-speed-badge">FULL</span>
-              <p class="plan-speed-label">+ Fixo Ilimitado</p>
-            </div>
-
-            <div class="plan-partner">
-              <span>🔒 Link Simétrico • CFTV/VPN/Cloud</span>
-            </div>
-
-            <div class="plan-price">
-              <p class="plan-price-label">Por apenas</p>
-              <div class="plan-price-current">
-                <span class="plan-price-currency">R$</span>
-                <span class="plan-price-value">549,90</span>
-                <span class="plan-price-period">/mês</span>
-              </div>
-            </div>
-
-            <ul class="plan-features">
-              <li class="plan-feature">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                  <path d="M20 6L9 17l-5-5"/>
-                </svg>
-                <span>Upload = Download</span>
-              </li>
-              <li class="plan-feature">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                  <path d="M20 6L9 17l-5-5"/>
-                </svg>
-                <span>Ideal para CFTV/VPN</span>
-              </li>
-              <li class="plan-feature">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                  <path d="M20 6L9 17l-5-5"/>
-                </svg>
-                <span>1 Linha ilimitada Brasil</span>
-              </li>
-              <li class="plan-feature">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                  <path d="M20 6L9 17l-5-5"/>
-                </svg>
-                <span>Suporte prioritário</span>
-              </li>
-            </ul>
-
-            <a href="https://wa.me/5581992823101?text=Olá! Quero o combo 300 Mega FULL + Fixo 1 linha por R$ 549,90"
-               onclick="return openWhatsApp('card_full', '300M FULL + Fixo 1 linha R$549,90')"
-               class="plan-cta">
-              Contratar
-            </a>
-          </article>
-
-          <!-- Card 2 - FULL 8 -->
-          <article class="plan-card reveal reveal-delay-2">
-            <div class="plan-speed">
-              <span class="plan-speed-value">300</span>
-              <span class="plan-speed-unit">Mega</span>
-              <span class="plan-speed-badge">FULL</span>
-              <p class="plan-speed-label">+ Smart Ilimitado</p>
-            </div>
-
-            <div class="plan-partner">
-              <span>🏢 Link dedicado • 8 canais • PABX</span>
-            </div>
-
-            <div class="plan-price">
-              <p class="plan-price-label">Por apenas</p>
-              <div class="plan-price-current">
-                <span class="plan-price-currency">R$</span>
-                <span class="plan-price-value">579,90</span>
-                <span class="plan-price-period">/mês</span>
-              </div>
-            </div>
-
-            <ul class="plan-features">
-              <li class="plan-feature">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                  <path d="M20 6L9 17l-5-5"/>
-                </svg>
-                <span>Upload = Download</span>
-              </li>
-              <li class="plan-feature">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                  <path d="M20 6L9 17l-5-5"/>
-                </svg>
-                <span>8 chamadas simultâneas</span>
-              </li>
-              <li class="plan-feature">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                  <path d="M20 6L9 17l-5-5"/>
-                </svg>
-                <span>PABX Virtual incluso</span>
-              </li>
-              <li class="plan-feature">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                  <path d="M20 6L9 17l-5-5"/>
-                </svg>
-                <span>Suporte prioritário</span>
-              </li>
-            </ul>
-
-            <a href="https://wa.me/5581992823101?text=Olá! Quero o combo 300 Mega FULL + Smart 8 canais por R$ 579,90"
-               onclick="return openWhatsApp('card_full', '300M FULL + Smart 8ch R$579,90')"
-               class="plan-cta">
-              Contratar
-            </a>
-          </article>
-
-          <!-- Card 3 - FULL 10 - FEATURED -->
-          <article class="plan-card featured reveal reveal-delay-3">
-            <span class="plan-badge">⭐ Recomendado</span>
-
-            <div class="plan-speed">
-              <span class="plan-speed-value">300</span>
-              <span class="plan-speed-unit">Mega</span>
-              <span class="plan-speed-badge">FULL</span>
-              <p class="plan-speed-label">+ Smart Plus</p>
-            </div>
-
-            <div class="plan-partner">
-              <span>📊 Máxima performance • 10 canais</span>
-            </div>
-
-            <div class="plan-price">
-              <p class="plan-price-label">Por apenas</p>
-              <div class="plan-price-current">
-                <span class="plan-price-currency">R$</span>
-                <span class="plan-price-value">649,90</span>
-                <span class="plan-price-period">/mês</span>
-              </div>
-            </div>
-
-            <ul class="plan-features">
-              <li class="plan-feature">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                  <path d="M20 6L9 17l-5-5"/>
-                </svg>
-                <span>Upload = Download</span>
-              </li>
-              <li class="plan-feature">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                  <path d="M20 6L9 17l-5-5"/>
-                </svg>
-                <span>10 chamadas simultâneas</span>
-              </li>
-              <li class="plan-feature">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                  <path d="M20 6L9 17l-5-5"/>
-                </svg>
-                <span>Relatórios + Softphone</span>
-              </li>
-              <li class="plan-feature">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                  <path d="M20 6L9 17l-5-5"/>
-                </svg>
-                <span>Suporte prioritário</span>
-              </li>
-            </ul>
-
-            <a href="https://wa.me/5581992823101?text=Olá! Quero o combo 300 Mega FULL + Smart Plus 10 canais por R$ 649,90"
-               onclick="return openWhatsApp('card_full', '300M FULL + Smart Plus 10ch R$649,90')"
-               class="plan-cta">
-              Contratar
-            </a>
-          </article>
-
-          <!-- Card 4 - FULL 12 -->
-          <article class="plan-card reveal reveal-delay-4">
-            <div class="plan-speed">
-              <span class="plan-speed-value">300</span>
-              <span class="plan-speed-unit">Mega</span>
-              <span class="plan-speed-badge">FULL</span>
-              <p class="plan-speed-label">+ Smart Plus</p>
-            </div>
-
-            <div class="plan-partner">
-              <span>🏗️ Call Center • 12+ canais</span>
-            </div>
-
-            <div class="plan-price">
-              <p class="plan-price-label">Por apenas</p>
-              <div class="plan-price-current">
-                <span class="plan-price-currency">R$</span>
-                <span class="plan-price-value">689,70</span>
-                <span class="plan-price-period">/mês</span>
-              </div>
-            </div>
-
-            <ul class="plan-features">
-              <li class="plan-feature">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                  <path d="M20 6L9 17l-5-5"/>
-                </svg>
-                <span>Upload = Download</span>
-              </li>
-              <li class="plan-feature">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                  <path d="M20 6L9 17l-5-5"/>
-                </svg>
-                <span>12 chamadas simultâneas</span>
-              </li>
-              <li class="plan-feature">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                  <path d="M20 6L9 17l-5-5"/>
-                </svg>
-                <span>Ideal para call center</span>
-              </li>
-              <li class="plan-feature">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                  <path d="M20 6L9 17l-5-5"/>
-                </svg>
-                <span>Canais extras disponíveis</span>
-              </li>
-            </ul>
-
-            <a href="https://wa.me/5581992823101?text=Olá! Quero o combo 300 Mega FULL + Smart Plus 12 canais por R$ 689,70"
-               onclick="return openWhatsApp('card_full', '300M FULL + Smart Plus 12ch R$689,70')"
-               class="plan-cta">
-              Contratar
-            </a>
-          </article>
-
-        </div>
-      </div>
-
-      <!-- Tab 3: Monte seu Combo -->
-      <div class="plan-panel" id="panel-monte">
-        <div class="calculator-card reveal">
-          <h3 class="calculator-title">Monte seu Combo Empresarial</h3>
-          <p class="calculator-subtitle">Personalize a solução de conectividade ideal para o seu negócio</p>
-
-          <!-- PASSO 1: Internet -->
-          <div class="calc-step">
-            <h4>1. Escolha a Internet</h4>
-            <div class="calc-options">
-              <label class="calc-option">
-                <input type="radio" name="internet" data-name="500 Mbps" data-price="99.99">
-                <span class="calc-option-card">
-                  <strong>500 Mbps</strong>
-                  <small>50% upload</small>
-                  <span class="calc-price">R$ 99,99</span>
-                </span>
-              </label>
-              <label class="calc-option">
-                <input type="radio" name="internet" data-name="700 Mbps" data-price="119.99">
-                <span class="calc-option-card">
-                  <strong>700 Mbps</strong>
-                  <small>50% upload</small>
-                  <span class="calc-price">R$ 119,99</span>
-                </span>
-              </label>
-              <label class="calc-option">
-                <input type="radio" name="internet" data-name="GIGA" data-price="159.99">
-                <span class="calc-option-card">
-                  <strong>GIGA</strong>
-                  <small>50% upload</small>
-                  <span class="calc-price">R$ 159,99</span>
-                </span>
-              </label>
-              <label class="calc-option">
-                <input type="radio" name="internet" data-name="300 Mbps FULL" data-price="500.00">
-                <span class="calc-option-card featured">
-                  <strong>300 Mbps FULL</strong>
-                  <small>100% simétrico</small>
-                  <span class="calc-price">R$ 500,00</span>
-                </span>
-              </label>
-              <label class="calc-option">
-                <input type="radio" name="internet" data-name="500 Mbps FULL" data-price="700.00">
-                <span class="calc-option-card featured">
-                  <strong>500 Mbps FULL</strong>
-                  <small>100% simétrico</small>
-                  <span class="calc-price">R$ 700,00</span>
-                </span>
-              </label>
-            </div>
-          </div>
-
-          <!-- PASSO 2: Telefonia -->
-          <div class="calc-step">
-            <h4>2. Escolha a Telefonia</h4>
-            <div class="calc-options">
-              <label class="calc-option">
-                <input type="radio" name="telefonia" data-name="Fixo Nacional 1 linha" data-price="59.90" data-channels="1">
-                <span class="calc-option-card">
-                  <strong>Fixo Nacional</strong>
-                  <small>1 linha • Ilimitado Brasil</small>
-                  <span class="calc-price">R$ 59,90</span>
-                </span>
-              </label>
-              <label class="calc-option">
-                <input type="radio" name="telefonia" data-name="Smart Ilimitado" data-price="79.90" data-channels="8">
-                <span class="calc-option-card">
-                  <strong>Smart Ilimitado</strong>
-                  <small>8 canais • PABX • URA</small>
-                  <span class="calc-price">R$ 79,90</span>
-                </span>
-              </label>
-              <label class="calc-option">
-                <input type="radio" name="telefonia" data-name="Smart Plus" data-price="149.90" data-channels="10">
-                <span class="calc-option-card featured">
-                  <strong>Smart Plus</strong>
-                  <small>10 canais • Fila • Softphone</small>
-                  <span class="calc-price">R$ 149,90</span>
-                </span>
-              </label>
-            </div>
-          </div>
-
-          <!-- PASSO 3: Canais Extras (só aparece se telefonia > 1 canal) -->
-          <div class="calc-step" id="step-canais" style="display: none;">
-            <h4>3. Canais Extras <span class="calc-optional">(opcional)</span></h4>
-            <p class="calc-note">+1 chamada simultânea por canal • R$ 19,90/canal</p>
-            <div class="calc-counter">
-              <button type="button" class="calc-counter-btn" id="ch-minus">−</button>
-              <span class="calc-counter-value" id="ch-count">0</span>
-              <button type="button" class="calc-counter-btn" id="ch-plus">+</button>
-            </div>
-            <p class="calc-total-channels">Total de canais: <strong id="total-channels">0</strong></p>
-          </div>
-
-          <!-- RESUMO -->
-          <div class="calc-summary">
-            <h4>Resumo do seu Combo</h4>
-            <div class="calc-summary-items" id="summary-items">
-              <p class="calc-empty">Selecione as opções acima</p>
-            </div>
-            <div class="calc-summary-total">
-              <span>Total mensal:</span>
-              <strong id="total-price">R$ 0,00</strong>
-            </div>
-            <a href="#" id="calc-whatsapp" class="calc-cta-whatsapp disabled">
-              <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-                <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/>
+            <!-- 2. AGREGADO (mini-produto) -->
+            <div class="hero-banner__aggregate">
+              <svg class="aggregate-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
               </svg>
-              Contratar via WhatsApp
+              <span>+ Smart Ilimitado • 8 canais simultâneos</span>
+            </div>
+
+            <!-- 3. BENEFÍCIOS -->
+            <div class="hero-banner__checks">
+              <div class="hero-banner__check">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+                <span>Portabilidade Gratuita</span>
+              </div>
+              <div class="hero-banner__check">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+                <span>PABX Virtual incluso</span>
+              </div>
+              <div class="hero-banner__check">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+                <span>Instalação em até 48h</span>
+              </div>
+            </div>
+
+            <!-- 4. PREÇO -->
+            <div class="hero-banner__price-value">R$ 179,90<span class="price-period">/mês</span></div>
+
+            <!-- 5. CTA -->
+            <a href="https://wa.me/5581992823101" onclick="return openWhatsApp('hero', '500 Mega + Smart 8ch R$179,90')" class="btn btn--highlight">
+              Contratar este plano
             </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Plans Section -->
+    <section class="section plans" id="planos">
+      <div class="container">
+        <header class="section-header reveal">
+          <span class="section-eyebrow">Planos Empresariais</span>
+          <h2 class="section-title">Conectividade profissional para seu negócio</h2>
+          <p class="section-subtitle">Internet Fibra Óptica + Telefonia Ilimitada com PABX Virtual para empresas de todos os portes</p>
+        </header>
+
+        <!-- Tabs Centralizadas -->
+        <div class="plan-tabs-wrapper reveal">
+          <div class="plan-tabs">
+            <button class="plan-tab active" data-tab="pme">Essenciais</button>
+            <button class="plan-tab" data-tab="fullip">FULL</button>
+            <button class="plan-tab" data-tab="monte">Monte seu Combo</button>
+          </div>
+        </div>
+
+        <!-- PME - Fibra Empresas Panel -->
+        <div class="plan-panel active" id="panel-pme">
+          <div class="plan-grid" id="grid-pme">
+            <article class="plan-card reveal reveal-delay-1">
+              <span class="plan-badge">Econômico</span>
+              <div class="plan-speed">
+                <span class="plan-speed-value">500</span><span class="plan-speed-unit">Mega</span>
+                <p class="plan-speed-label">+ Fixo Ilimitado</p>
+                <div class="plan-speed-bar"><div class="plan-speed-bar-fill" style="width:50%"></div></div>
+              </div>
+              <div class="plan-partner"><span>🏪 Pequenos negócios • 1 linha ilimitada</span></div>
+              <div class="plan-price">
+                <p class="plan-price-label">Por apenas</p>
+                <div class="plan-price-current">
+                  <span class="plan-price-currency">R$</span>
+                  <span class="plan-price-value">149,90</span>
+                  <span class="plan-price-period">/mês</span>
+                </div>
+              </div>
+              <ul class="plan-features">
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>1 Linha telefônica</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Ligações ilimitadas Brasil</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Identificador de chamadas</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Wi-Fi 6 empresarial</span></li>
+              </ul>
+              <div class="plan-cta-wrapper">
+                <a href="https://wa.me/5581992823101" onclick="return openWhatsApp('card_essencial', '500M + Fixo 1 linha R$149,90')" class="plan-cta"><span>Contratar este plano</span></a>
+              </div>
+            </article>
+
+            <article class="plan-card reveal reveal-delay-2">
+              <div class="plan-speed">
+                <span class="plan-speed-value">500</span><span class="plan-speed-unit">Mega</span>
+                <p class="plan-speed-label">+ Smart Ilimitado</p>
+                <div class="plan-speed-bar"><div class="plan-speed-bar-fill" style="width:50%"></div></div>
+              </div>
+              <div class="plan-partner"><span>🏢 Para equipes • 8 canais • PABX Virtual</span></div>
+              <div class="plan-price">
+                <p class="plan-price-label">De <s>R$ 219,90</s> Por apenas</p>
+                <div class="plan-price-current">
+                  <span class="plan-price-currency">R$</span>
+                  <span class="plan-price-value">179,90</span>
+                  <span class="plan-price-period">/mês</span>
+                </div>
+              </div>
+              <ul class="plan-features">
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>8 chamadas simultâneas</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>PABX Virtual incluso</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Portabilidade gratuita</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Wi-Fi 6 empresarial</span></li>
+              </ul>
+              <div class="plan-cta-wrapper">
+                <a href="https://wa.me/5581992823101" onclick="return openWhatsApp('card_essencial', '500M + Smart 8ch R$179,90')" class="plan-cta"><span>Contratar este plano</span></a>
+              </div>
+            </article>
+
+            <article class="plan-card featured reveal reveal-delay-3">
+              <span class="plan-badge pop">Mais Vendido</span>
+              <div class="plan-speed">
+                <span class="plan-speed-value">500</span><span class="plan-speed-unit">Mega</span>
+                <p class="plan-speed-label">+ Smart Plus</p>
+                <div class="plan-speed-bar"><div class="plan-speed-bar-fill" style="width:50%"></div></div>
+              </div>
+              <div class="plan-partner"><span>📊 Empresas em crescimento • 10 canais</span></div>
+              <div class="plan-price">
+                <p class="plan-price-label">De <s>R$ 279,90</s> Por apenas</p>
+                <div class="plan-price-current">
+                  <span class="plan-price-currency">R$</span>
+                  <span class="plan-price-value">249,90</span>
+                  <span class="plan-price-period">/mês</span>
+                </div>
+              </div>
+              <ul class="plan-features">
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>10 chamadas simultâneas</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Fila de atendimento</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Relatórios de chamadas</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>App Softphone (celular/PC)</span></li>
+              </ul>
+              <div class="plan-cta-wrapper">
+                <a href="https://wa.me/5581992823101" onclick="return openWhatsApp('card_essencial', '500M + Smart Plus 10ch R$249,90')" class="plan-cta"><span>Contratar este plano</span></a>
+              </div>
+            </article>
+
+            <article class="plan-card reveal reveal-delay-4">
+              <span class="plan-badge">Completo</span>
+              <div class="plan-speed">
+                <span class="plan-speed-value">500</span><span class="plan-speed-unit">Mega</span>
+                <p class="plan-speed-label">+ Smart Plus</p>
+                <div class="plan-speed-bar"><div class="plan-speed-bar-fill" style="width:50%"></div></div>
+              </div>
+              <div class="plan-partner"><span>🏗️ Alta demanda • 12 canais simultâneos</span></div>
+              <div class="plan-price">
+                <p class="plan-price-label">Por apenas</p>
+                <div class="plan-price-current">
+                  <span class="plan-price-currency">R$</span>
+                  <span class="plan-price-value">289,70</span>
+                  <span class="plan-price-period">/mês</span>
+                </div>
+              </div>
+              <ul class="plan-features">
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Wi-Fi 6 empresarial</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação prioritária</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Ideal para call center</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Canais extras disponíveis</span></li>
+              </ul>
+              <div class="plan-cta-wrapper">
+                <a href="https://wa.me/5581992823101" onclick="return openWhatsApp('planos_pme', '500M + Smart Plus 12ch R$289,70')" class="plan-cta"><span>Contratar este plano</span></a>
+              </div>
+            </article>
+          </div>
+
+          <!-- Dots de Navegação -->
+          <div class="plan-dots" data-grid="grid-pme">
+            <button class="plan-dot active" data-index="0" aria-label="Plano 1"></button>
+            <button class="plan-dot" data-index="1" aria-label="Plano 2"></button>
+            <button class="plan-dot" data-index="2" aria-label="Plano 3"></button>
+            <button class="plan-dot" data-index="3" aria-label="Plano 4"></button>
+          </div>
+
+          <!-- Setas de Navegação -->
+          <div class="plan-nav" data-grid="grid-pme">
+            <button class="plan-nav-btn" data-dir="prev" aria-label="Anterior">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <button class="plan-nav-btn" data-dir="next" aria-label="Próximo">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- PME High - Link Full IP Panel -->
+        <div class="plan-panel" id="panel-fullip">
+          <div class="plan-grid" id="grid-fullip">
+            <article class="plan-card reveal reveal-delay-1">
+              <span class="plan-badge">Full IP</span>
+              <div class="plan-speed">
+                <span class="plan-speed-value">100</span><span class="plan-speed-unit">Mega</span>
+                <p class="plan-speed-label">Link Simétrico</p>
+                <div class="plan-speed-bar"><div class="plan-speed-bar-fill" style="width:20%"></div></div>
+              </div>
+              <div class="plan-partner"><span>🔒 IP Fixo Dedicado</span></div>
+              <div class="plan-price">
+                <p class="plan-price-label">Por apenas</p>
+                <div class="plan-price-current">
+                  <span class="plan-price-currency">R$</span>
+                  <span class="plan-price-value">349,90</span>
+                  <span class="plan-price-period">/mês</span>
+                </div>
+              </div>
+              <ul class="plan-features">
+                <li class="plan-feature highlight"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>IP Fixo dedicado</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>100% simétrico (up = down)</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>NOC 24/7 dedicado</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Fidelidade 12 meses</span></li>
+              </ul>
+              <div class="plan-cta-wrapper">
+                <a href="https://wa.me/5581992823101" onclick="return openWhatsApp('planos_fullip', 'Full IP 100 Mega')" class="plan-cta"><span>Contratar este plano</span></a>
+              </div>
+            </article>
+
+            <article class="plan-card featured reveal reveal-delay-2">
+              <span class="plan-badge pop">Recomendado</span>
+              <div class="plan-speed">
+                <span class="plan-speed-value">300</span><span class="plan-speed-unit">Mega</span>
+                <p class="plan-speed-label">Link Simétrico</p>
+                <div class="plan-speed-bar"><div class="plan-speed-bar-fill" style="width:50%"></div></div>
+              </div>
+              <div class="plan-partner"><span>🔒 IP Fixo Dedicado</span></div>
+              <div class="plan-price">
+                <p class="plan-price-label">Por apenas</p>
+                <div class="plan-price-current">
+                  <span class="plan-price-currency">R$</span>
+                  <span class="plan-price-value">549,90</span>
+                  <span class="plan-price-period">/mês</span>
+                </div>
+              </div>
+              <ul class="plan-features">
+                <li class="plan-feature highlight"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>IP Fixo dedicado</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>100% simétrico (up = down)</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>NOC 24/7 dedicado</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Fidelidade 12 meses</span></li>
+              </ul>
+              <div class="plan-cta-wrapper">
+                <a href="https://wa.me/5581992823101" onclick="return openWhatsApp('planos_fullip', 'Full IP 300 Mega')" class="plan-cta"><span>Contratar este plano</span></a>
+              </div>
+            </article>
+
+            <article class="plan-card reveal reveal-delay-3">
+              <span class="plan-badge">Avançado</span>
+              <div class="plan-speed">
+                <span class="plan-speed-value">500</span><span class="plan-speed-unit">Mega</span>
+                <p class="plan-speed-label">Link Simétrico</p>
+                <div class="plan-speed-bar"><div class="plan-speed-bar-fill" style="width:80%"></div></div>
+              </div>
+              <div class="plan-partner"><span>🔒 IP Fixo Dedicado</span></div>
+              <div class="plan-price">
+                <p class="plan-price-label">Por apenas</p>
+                <div class="plan-price-current">
+                  <span class="plan-price-currency">R$</span>
+                  <span class="plan-price-value">749,90</span>
+                  <span class="plan-price-period">/mês</span>
+                </div>
+              </div>
+              <ul class="plan-features">
+                <li class="plan-feature highlight"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>IP Fixo dedicado</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>100% simétrico (up = down)</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>NOC 24/7 dedicado</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Fidelidade 12 meses</span></li>
+              </ul>
+              <div class="plan-cta-wrapper">
+                <a href="https://wa.me/5581992823101" onclick="return openWhatsApp('planos_fullip', 'Full IP 500 Mega')" class="plan-cta"><span>Contratar este plano</span></a>
+              </div>
+            </article>
+
+            <article class="plan-card reveal reveal-delay-4">
+              <span class="plan-badge">Enterprise</span>
+              <div class="plan-speed">
+                <span class="plan-speed-value">+500</span><span class="plan-speed-unit">Mega</span>
+                <p class="plan-speed-label">Link Personalizado</p>
+                <div class="plan-speed-bar"><div class="plan-speed-bar-fill" style="width:100%"></div></div>
+              </div>
+              <div class="plan-partner"><span>🏢 Solução sob medida</span></div>
+              <div class="plan-price">
+                <p class="plan-price-label">Investimento</p>
+                <div class="plan-price-current">
+                  <span class="plan-price-value" style="font-size:1.8rem;">Sob consulta</span>
+                </div>
+              </div>
+              <ul class="plan-features">
+                <li class="plan-feature highlight"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Velocidade personalizada</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>SLA customizado</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>NOC 24/7 dedicado</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Projeto técnico exclusivo</span></li>
+              </ul>
+              <div class="plan-cta-wrapper">
+                <a href="https://wa.me/5581992823101" onclick="return openWhatsApp('planos_fullip', 'Full IP +500 Mega')" class="plan-cta"><span>Solicitar proposta</span></a>
+              </div>
+            </article>
+          </div>
+
+          <!-- Dots de Navegação -->
+          <div class="plan-dots" data-grid="grid-fullip">
+            <button class="plan-dot active" data-index="0" aria-label="Plano 1"></button>
+            <button class="plan-dot" data-index="1" aria-label="Plano 2"></button>
+            <button class="plan-dot" data-index="2" aria-label="Plano 3"></button>
+            <button class="plan-dot" data-index="3" aria-label="Plano 4"></button>
+          </div>
+
+          <!-- Setas de Navegação -->
+          <div class="plan-nav" data-grid="grid-fullip">
+            <button class="plan-nav-btn" data-dir="prev" aria-label="Anterior">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <button class="plan-nav-btn" data-dir="next" aria-label="Próximo">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
+
+          <!-- Info técnica Link Full IP -->
+          <div class="fullip-info reveal" style="margin-top:2rem;padding:1.5rem;background:rgba(255,80,34,0.1);border-radius:12px;border:1px solid rgba(255,80,34,0.3);">
+            <p style="color:#C6C6C6;font-size:0.9rem;line-height:1.6;margin:0;">
+              <strong style="color:#FF5022;">ℹ️ Requisitos técnicos:</strong> ONU em modo bridge. Cliente provê roteador ou firewall próprio.<br>
+              <strong style="color:#FF5022;">📡 Características:</strong> Link 100% simétrico com banda garantida e IP dedicado.<br>
+              <strong style="color:#FF5022;">🛡️ Suporte:</strong> NOC 24/7 com monitoramento ativo e time dedicado para incidentes.
+            </p>
           </div>
         </div>
       </div>
+    </section>
 
-    </div>
-  </section>
-
-  <!-- BENEFITS SECTION -->
-  <section class="benefits section" id="beneficios">
-    <div class="container">
-      <header class="section-header reveal">
-        <span class="section-eyebrow">Recursos Empresariais</span>
-        <h2 class="section-title">Tecnologia profissional para otimizar sua comunicação</h2>
-      </header>
-
-      <div class="benefits-grid reveal">
-        <div class="benefit-card">
-          <div class="benefit-icon">📞</div>
-          <h3>PABX Virtual</h3>
-          <p>Central telefônica na nuvem, sem equipamentos físicos</p>
-        </div>
-        <div class="benefit-card">
-          <div class="benefit-icon">🔄</div>
-          <h3>Portabilidade Grátis</h3>
-          <p>Mantenha seu número atual sem custo adicional</p>
-        </div>
-        <div class="benefit-card">
-          <div class="benefit-icon">📱</div>
-          <h3>URA Inteligente</h3>
-          <p>Atendimento automático para direcionar chamadas</p>
-        </div>
-        <div class="benefit-card">
-          <div class="benefit-icon">🇧🇷</div>
-          <h3>Ilimitado Brasil</h3>
-          <p>Ligações para fixo e celular de todo o país</p>
-        </div>
-        <div class="benefit-card">
-          <div class="benefit-icon">📊</div>
-          <h3>Relatórios*</h3>
-          <p>Acompanhe chamadas e performance da equipe</p>
-        </div>
-        <div class="benefit-card">
-          <div class="benefit-icon">📲</div>
-          <h3>Softphone*</h3>
-          <p>Atenda do celular ou computador</p>
+    <!-- Benefits Section -->
+    <section class="section benefits" id="beneficios">
+      <div class="container">
+        <header class="section-header reveal">
+          <span class="section-eyebrow">Benefícios Corporativos</span>
+          <h2 class="section-title">Soluções completas para seu negócio</h2>
+          <p class="section-subtitle">Conectividade, segurança, voz e T.I em um só lugar.</p>
+        </header>
+        <div class="benefits-grid">
+          <article class="benefit-card reveal reveal-delay-1">
+            <div class="benefit-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8.5 14.5A2.5 2.5 0 0011 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 11-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 002.5 2.5z"/></svg>
+            </div>
+            <span class="benefit-label">Conectividade</span>
+            <h3 class="benefit-title">100% Fibra Óptica</h3>
+            <p class="benefit-desc">Conexão ultra estável e de alta velocidade para sua operação nunca parar.</p>
+          </article>
+          <article class="benefit-card reveal reveal-delay-2">
+            <div class="benefit-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+            </div>
+            <span class="benefit-label">Segurança</span>
+            <h3 class="benefit-title">IP Fixo e Proteção</h3>
+            <p class="benefit-desc">Endereço IP fixo para servidores, VPNs e sistemas que exigem identificação estável.</p>
+          </article>
+          <article class="benefit-card reveal reveal-delay-3">
+            <div class="benefit-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+            </div>
+            <span class="benefit-label">Voz</span>
+            <h3 class="benefit-title">Telefone Fixo Digital</h3>
+            <p class="benefit-desc">Ligações ilimitadas para todo Brasil com qualidade HD e recursos avançados.</p>
+          </article>
+          <article class="benefit-card reveal reveal-delay-4">
+            <div class="benefit-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            </div>
+            <span class="benefit-label">Suporte</span>
+            <h3 class="benefit-title">Atendimento 24/7</h3>
+            <p class="benefit-desc">Equipe técnica especializada disponível a qualquer hora para sua empresa.</p>
+          </article>
         </div>
       </div>
-      <p class="benefits-note reveal">* Disponível nos planos Smart Plus</p>
-    </div>
-  </section>
+    </section>
 
-  <!-- CTA FINAL -->
-  <section class="cta-section">
+    <!-- Testimonials Section -->
+    <section class="section testimonials" id="cases">
+      <div class="container">
+        <header class="section-header reveal">
+          <span class="section-eyebrow">Cases de Sucesso</span>
+          <h2 class="section-title">Empresas que crescem com a Brisanet</h2>
+          <p class="section-subtitle">Veja como ajudamos negócios a aumentar suas vendas.</p>
+        </header>
+        <div class="testimonials-wrapper">
+          <div class="experience-cards reveal">
+            <article class="experience-card">
+              <div class="experience-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+              <h4>E-commerce</h4>
+              <p>Lojas virtuais sempre online.</p>
+            </article>
+            <article class="experience-card">
+              <div class="experience-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+              <h4>Escritórios</h4>
+              <p>Videoconferências sem travamento.</p>
+            </article>
+            <article class="experience-card">
+              <div class="experience-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg></div>
+              <h4>Clínicas</h4>
+              <p>Sistemas sempre disponíveis.</p>
+            </article>
+            <article class="experience-card">
+              <div class="experience-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+              <h4>Varejo</h4>
+              <p>PDV e pagamentos rápidos.</p>
+            </article>
+          </div>
+          <div class="testimonial-carousel reveal">
+            <div class="testimonial-track">
+              <div class="testimonial-slide active">
+                <div class="testimonial-card">
+                  <p class="testimonial-quote">"Desde que migramos para a Brisasoluções, nossa loja virtual não teve um minuto fora do ar. As vendas aumentaram 40%."</p>
+                  <div class="testimonial-author">
+                    <div class="testimonial-avatar">RC</div>
+                    <div class="testimonial-info"><h5>Ricardo Costa</h5><span>CEO, TechStore</span></div>
+                    <div class="testimonial-rating"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+                  </div>
+                </div>
+              </div>
+              <div class="testimonial-slide">
+                <div class="testimonial-card">
+                  <p class="testimonial-quote">"O telefone fixo digital foi um divisor de águas. Ligações ilimitadas para o Brasil inteiro economizaram mais de R$800 por mês."</p>
+                  <div class="testimonial-author">
+                    <div class="testimonial-avatar">MA</div>
+                    <div class="testimonial-info"><h5>Marina Alves</h5><span>Diretora, Alves & Associados</span></div>
+                    <div class="testimonial-rating"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+                  </div>
+                </div>
+              </div>
+              <div class="testimonial-slide">
+                <div class="testimonial-card">
+                  <p class="testimonial-quote">"O IP fixo permitiu configurar nosso sistema de telemedicina na nuvem. Atendemos pacientes de todo o Nordeste."</p>
+                  <div class="testimonial-author">
+                    <div class="testimonial-avatar">DF</div>
+                    <div class="testimonial-info"><h5>Dr. Felipe Santos</h5><span>Clínica MedVida</span></div>
+                    <div class="testimonial-rating"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+                  </div>
+                </div>
+              </div>
+              <div class="testimonial-slide">
+                <div class="testimonial-card">
+                  <p class="testimonial-quote">"O suporte 24/7 nos salvou várias vezes. Qualquer problema é resolvido em minutos, não em dias."</p>
+                  <div class="testimonial-author">
+                    <div class="testimonial-avatar">PL</div>
+                    <div class="testimonial-info"><h5>Paulo Lima</h5><span>Gerente, Supermercado Bom Preço</span></div>
+                    <div class="testimonial-rating"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-dots">
+              <button class="carousel-dot active" data-index="0"></button>
+              <button class="carousel-dot" data-index="1"></button>
+              <button class="carousel-dot" data-index="2"></button>
+              <button class="carousel-dot" data-index="3"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section faq" id="faq">
+      <div class="container">
+        <header class="section-header reveal">
+          <span class="section-eyebrow">FAQ Empresarial</span>
+          <h2 class="section-title">Dúvidas frequentes</h2>
+          <p class="section-subtitle">Informações sobre nossos planos corporativos.</p>
+        </header>
+        <div class="faq-grid">
+          <details class="faq-item reveal reveal-delay-1">
+            <summary>Preciso de CNPJ para contratar?</summary>
+            <p>Nossos planos empresariais são voltados para pessoas jurídicas, mas também atendemos MEI e profissionais liberais com condições especiais. Consulte nosso time comercial.</p>
+          </details>
+          <details class="faq-item reveal reveal-delay-2">
+            <summary>O que é IP Fixo e para que serve?</summary>
+            <p>O IP Fixo é um endereço de internet permanente que permite configurar servidores, câmeras de segurança, VPNs e sistemas que precisam de identificação estável na rede.</p>
+          </details>
+          <details class="faq-item reveal reveal-delay-3">
+            <summary>Como funciona o telefone fixo digital?</summary>
+            <p>O telefone funciona através da fibra óptica, com qualidade HD. Você mantém seu número atual ou escolhe um novo. Ligações para fixos e celulares do Brasil são ilimitadas.</p>
+          </details>
+          <details class="faq-item reveal reveal-delay-4">
+            <summary>Qual o prazo de instalação?</summary>
+            <p>A instalação padrão é realizada em até 48 horas após a aprovação do cadastro, sujeita à viabilidade técnica da sua região.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section cta-section" id="contato">
+      <div class="container">
+        <div class="cta-card reveal">
+          <div class="cta-content">
+            <h2 class="cta-title">Conecte sua empresa agora</h2>
+            <p class="cta-subtitle">Fale direto no WhatsApp para confirmar disponibilidade e agendar instalação em até 48h.</p>
+            <div class="cta-features">
+              <div class="cta-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span>IP Fixo incluso</span></div>
+              <div class="cta-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span>Suporte 24/7</span></div>
+              <div class="cta-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação em 48h</span></div>
+            </div>
+            <div class="cta-buttons">
+              <a href="https://wa.me/5581992823101" onclick="return openWhatsApp('cta_section', 'empresas')" class="cta-btn-p">Falar no WhatsApp</a>
+              <a href="#planos" class="cta-btn-s">Ver planos</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
     <div class="container">
-      <div class="cta-card reveal">
-        <h2 class="cta-title">Impulsione a produtividade do seu negócio</h2>
-        <p class="cta-subtitle">Solução completa de conectividade empresarial: Internet Fibra + Telefonia Ilimitada com suporte dedicado.</p>
-        <a href="https://wa.me/5581992823101?text=Olá! Gostaria de mais informações sobre os combos de telefonia empresarial"
-           onclick="return openWhatsApp('cta_final', 'Interesse geral')"
-           class="cta-btn">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-          </svg>
-          Falar com consultor
-        </a>
+      <div class="footer-content">
+        <div class="footer-logo">
+          <img src="img/logo-brisasolucoes.png" alt="Brisasoluções" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <span class="logo-text" style="display:none;"><span class="brisa">brisa</span><span class="solucoes">soluções</span></span>
+        </div>
+        <div class="footer-info">
+          <p>Brisanet Telecomunicações S.A. | CNPJ 02.421.421/0001-11</p>
+          <p>Matriz: Pereiro - CE</p>
+        </div>
+        <div class="footer-contact">
+          <a href="tel:08002813017">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+            SAC 0800 281 3017
+          </a>
+          <a href="https://wa.me/5581992823101" onclick="return openWhatsApp('footer', 'empresas')">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+            WhatsApp Comercial
+          </a>
+        </div>
+        <p class="footer-legal">Agente Autorizado Brisanet. Planos empresariais sujeitos a análise de viabilidade técnica. Oferta válida até 30/04/2025.</p>
       </div>
     </div>
-  </section>
+  </footer>
+
+  <!-- WhatsApp Widget -->
+  <div class="whatsapp-float">
+    <div class="whatsapp-online">
+      <span class="dot"></span>
+      <span id="online-count">Consultores online</span>
+    </div>
+    <a href="https://wa.me/5581992823101" onclick="return openWhatsApp('floating', 'empresas')" class="whatsapp-btn">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+      <span>Falar com consultor</span>
+    </a>
+  </div>
 
   <script>
     // WhatsApp Click Tracking
@@ -2079,11 +2199,16 @@
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
         event: 'whatsapp_click',
-        whatsapp_origem: origem,
-        whatsapp_plano: plano,
-        whatsapp_pagina: 'telefonia'
+        whatsapp_origem: origem || '',
+        whatsapp_plano: plano || ''
       });
-      return true;
+
+      const phone = '5581992823101';
+      const msg = encodeURIComponent('Olá! Tenho interesse no plano: ' + (plano || 'Brisanet Empresas'));
+      const url = 'https://wa.me/' + phone + '?text=' + msg;
+
+      window.open(url, '_blank', 'noopener');
+      return false;
     }
 
     // Navigation scroll effect
@@ -2124,142 +2249,68 @@
       document.getElementById('panel-' + t).classList.add('active');
     }));
 
-    // Calculator state
-    const state = {
-      internet: { name: '', price: 0 },
-      telefonia: { name: '', price: 0, channels: 0 },
-      extraChannels: 0
-    };
+    // Plan navigation arrows
+    document.querySelectorAll('.plan-nav').forEach(navEl => {
+      const gridId = navEl.dataset.grid;
+      const grid = document.getElementById(gridId);
+      if (!grid) return;
 
-    function updateCalculator() {
-      const extras = state.extraChannels * 19.90;
-      const total = state.internet.price + state.telefonia.price + extras;
-      const totalChannels = state.telefonia.channels + state.extraChannels;
+      navEl.querySelectorAll('.plan-nav-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const dir = btn.dataset.dir;
+          const cardWidth = grid.querySelector('.plan-card')?.offsetWidth || 300;
+          const gap = 16;
+          const scrollAmount = cardWidth + gap;
 
-      // Mostrar/ocultar passo de canais extras (só para Smart, não para Fixo 1 linha)
-      const stepCanais = document.getElementById('step-canais');
-      if (state.telefonia.channels > 1) {
-        stepCanais.style.display = 'block';
-      } else {
-        stepCanais.style.display = 'none';
-        state.extraChannels = 0;
-        document.getElementById('ch-count').textContent = '0';
-      }
+          if (dir === 'prev') {
+            grid.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+          } else {
+            grid.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+          }
+        });
+      });
+    });
 
-      // Atualizar total de canais
-      document.getElementById('total-channels').textContent = totalChannels || '—';
+    // Plan dots navigation
+    document.querySelectorAll('.plan-dots').forEach(dotsEl => {
+      const gridId = dotsEl.dataset.grid;
+      const grid = document.getElementById(gridId);
+      if (!grid) return;
 
-      // Atualizar resumo visual
-      const summaryEl = document.getElementById('summary-items');
-      let html = '';
+      const planDots = dotsEl.querySelectorAll('.plan-dot');
+      const cards = grid.querySelectorAll('.plan-card');
 
-      if (state.internet.name) {
-        html += `<div class="summary-row">
-          <span>Internet ${state.internet.name}</span>
-          <span>R$ ${state.internet.price.toFixed(2).replace('.', ',')}</span>
-        </div>`;
-      }
+      planDots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+          const card = cards[index];
+          if (card) {
+            card.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            planDots.forEach(d => d.classList.remove('active'));
+            dot.classList.add('active');
+          }
+        });
+      });
 
-      if (state.telefonia.name) {
-        const canaisText = state.telefonia.channels > 1
-          ? `(${state.telefonia.channels} canais)`
-          : '(1 linha)';
-        html += `<div class="summary-row">
-          <span>${state.telefonia.name} ${canaisText}</span>
-          <span>R$ ${state.telefonia.price.toFixed(2).replace('.', ',')}</span>
-        </div>`;
-      }
+      // Update dots on scroll
+      grid.addEventListener('scroll', () => {
+        const scrollLeft = grid.scrollLeft;
+        const cardWidth = cards[0]?.offsetWidth || 300;
+        const currentIndex = Math.round(scrollLeft / (cardWidth + 16));
+        planDots.forEach((d, i) => d.classList.toggle('active', i === currentIndex));
+      });
+    });
 
-      if (state.extraChannels > 0) {
-        html += `<div class="summary-row">
-          <span>+${state.extraChannels} canais extras</span>
-          <span>R$ ${extras.toFixed(2).replace('.', ',')}</span>
-        </div>`;
-      }
-
-      summaryEl.innerHTML = html || '<p class="calc-empty">Selecione as opções acima</p>';
-
-      // Atualizar total
-      document.getElementById('total-price').textContent = total > 0
-        ? `R$ ${total.toFixed(2).replace('.', ',')}`
-        : 'R$ 0,00';
-
-      // Atualizar link WhatsApp com mensagem personalizada
-      const whatsappBtn = document.getElementById('calc-whatsapp');
-
-      if (state.internet.name && state.telefonia.name) {
-        whatsappBtn.classList.remove('disabled');
-
-        // Montar descrição do combo
-        let comboDesc = `${state.internet.name} + ${state.telefonia.name}`;
-        if (state.telefonia.channels > 1) {
-          comboDesc += ` (${totalChannels} canais)`;
-        }
-
-        // Mensagem personalizada para WhatsApp
-        const mensagem = `Olá! Tenho interesse no combo personalizado:
-
-📶 Internet: ${state.internet.name}
-📞 Telefonia: ${state.telefonia.name}${state.telefonia.channels > 1 ? `
-📊 Total de canais: ${totalChannels}` : ''}
-💰 Valor: R$ ${total.toFixed(2).replace('.', ',')}/mês
-
-Gostaria de mais informações para contratar.`;
-
-        const msgEncoded = encodeURIComponent(mensagem);
-        whatsappBtn.href = `https://wa.me/5581992823101?text=${msgEncoded}`;
-
-        // Tracking
-        whatsappBtn.onclick = function() {
-          openWhatsApp('calculador', comboDesc + ' R$' + total.toFixed(2));
-          return true;
-        };
-      } else {
-        whatsappBtn.classList.add('disabled');
-        whatsappBtn.href = '#';
-        whatsappBtn.onclick = function(e) { e.preventDefault(); return false; };
-      }
+    // Testimonial carousel
+    const dots = document.querySelectorAll('.carousel-dot');
+    const slides = document.querySelectorAll('.testimonial-slide');
+    let currentSlide = 0;
+    function setSlide(i) {
+      currentSlide = i;
+      slides.forEach((s, j) => s.classList.toggle('active', j === i));
+      dots.forEach((d, j) => d.classList.toggle('active', j === i));
     }
-
-    // Event listeners - Internet
-    document.querySelectorAll('input[name="internet"]').forEach(el => {
-      el.addEventListener('change', e => {
-        state.internet = {
-          name: e.target.dataset.name,
-          price: parseFloat(e.target.dataset.price)
-        };
-        updateCalculator();
-      });
-    });
-
-    // Event listeners - Telefonia
-    document.querySelectorAll('input[name="telefonia"]').forEach(el => {
-      el.addEventListener('change', e => {
-        state.telefonia = {
-          name: e.target.dataset.name,
-          price: parseFloat(e.target.dataset.price),
-          channels: parseInt(e.target.dataset.channels)
-        };
-        updateCalculator();
-      });
-    });
-
-    // Event listeners - Canais extras
-    document.getElementById('ch-minus').addEventListener('click', () => {
-      if (state.extraChannels > 0) {
-        state.extraChannels--;
-        document.getElementById('ch-count').textContent = state.extraChannels;
-        updateCalculator();
-      }
-    });
-
-    document.getElementById('ch-plus').addEventListener('click', () => {
-      if (state.extraChannels < 50) {
-        state.extraChannels++;
-        document.getElementById('ch-count').textContent = state.extraChannels;
-        updateCalculator();
-      }
-    });
+    dots.forEach(d => d.addEventListener('click', () => setSlide(parseInt(d.dataset.index))));
+    setInterval(() => setSlide((currentSlide + 1) % slides.length), 6000);
 
     // Scroll reveal
     const reveals = document.querySelectorAll('.reveal');
@@ -2274,6 +2325,20 @@ Gostaria de mais informações para contratar.`;
       const t = document.querySelector(this.getAttribute('href'));
       if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }));
+
+    // WhatsApp counter - Business hours
+    const onlineCount = document.getElementById('online-count');
+    function updateOnlineCount() {
+      const hour = new Date().getHours();
+      const isBusinessHours = hour >= 8 && hour < 18;
+      if (isBusinessHours) {
+        const consultants = Math.floor(Math.random() * 3) + 3;
+        onlineCount.textContent = consultants + ' consultores online';
+      } else {
+        onlineCount.textContent = 'Deixe sua mensagem';
+      }
+    }
+    if (onlineCount) { updateOnlineCount(); setInterval(updateOnlineCount, 10000); }
   </script>
 </body>
 </html>
