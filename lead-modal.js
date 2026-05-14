@@ -140,33 +140,36 @@
       fill: #ffffff;
     }
 
-    /* ===== SECONDARY BUTTON (Suporte) ===== */
+    /* ===== SECONDARY BUTTON (Suporte) — Ghost/Outline ===== */
     .lead-modal-btn-secondary {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 0.5rem;
-      padding: 0.75rem 1rem;
+      padding: 0.75rem 1.25rem;
       background: transparent;
-      color: #9ca3af;
-      font-size: 0.875rem;
-      font-weight: 500;
-      border: none;
-      border-radius: 10px;
+      color: #FF5722;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border: 1.5px solid #FF5722;
+      border-radius: 14px;
       cursor: pointer;
       text-decoration: none;
-      transition: all 0.2s ease;
+      transition: all 0.25s ease;
       line-height: 1.3;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .lead-modal-btn-secondary:hover {
-      color: #6b7280;
-      background: rgba(0, 0, 0, 0.04);
+      background: rgba(255, 87, 34, 0.08);
+      border-color: #ff6b3d;
+      color: #e64a19;
+      transform: translateY(-1px);
     }
 
     .lead-modal-btn-secondary span {
-      text-decoration: underline;
-      text-underline-offset: 2px;
+      text-decoration: none;
     }
 
     /* ===== MOBILE ===== */
