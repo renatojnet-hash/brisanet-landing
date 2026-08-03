@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Disallow: /form-contratacao.html
+Disallow: /fwa-campanha.html
+
+Sitemap: https://assinebrisanet.com.br/sitemap.xml
