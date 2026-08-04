@@ -231,7 +231,8 @@
 
     .nav-cta {
       padding: 0.625rem 1.5rem;
-      background: var(--accent);
+      /* laranja escuro: o --accent (#ff5722) dava 3,16:1 com branco */
+      background: #C2410C;
       border-radius: 50px;
       font-size: 0.9rem;
       font-weight: 600;
@@ -513,14 +514,16 @@
 
     .hero-banner__price-after {
       font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.7);
+      /* 0.7 caia para 4,41:1 sobre o azul mais claro do gradiente no mobile */
+      color: rgba(255, 255, 255, 0.82);
       margin-top: -8px;
     }
 
     .hero-banner .btn--highlight {
       padding: 12px 24px;
       font-size: 1rem;
-      background: #FF6B35;
+      /* laranja escuro: o #FF6B35 dava 2,83:1 com branco */
+      background: #C2410C;
       color: #ffffff;
       font-weight: 700;
       border-radius: 50px;
@@ -1097,41 +1100,44 @@
 
     .plan-dots {
       display: flex;
-      gap: 10px;
+      /* 8px de folga entre alvos de 24px: centros a 32px, acima dos 24px do WCAG */
+      gap: 8px;
     }
 
+    /* O alvo e' o proprio botao (24x24). O ponto visual de 12px fica no ::after —
+       pseudo-elemento nao conta como area de clique para o target-size. */
     .plan-dot {
+      width: 24px;
+      height: 24px;
+      background: transparent;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .plan-dot::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       width: 12px;
       height: 12px;
       border-radius: 50%;
       background: transparent;
       border: 2px solid rgba(255, 255, 255, 0.5);
       transition: all 0.3s ease;
-      cursor: pointer;
-      padding: 0;
-      /* Touch target wrapper - mínimo 44px para WCAG */
-      position: relative;
     }
 
-    .plan-dot::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-    }
-
-    .plan-dot:hover {
+    .plan-dot:hover::after {
       border-color: rgba(255, 255, 255, 0.8);
     }
 
-    .plan-dot.active {
+    .plan-dot.active::after {
       background: var(--accent);
       border-color: #ffffff;
-      transform: scale(1.15);
+      transform: translate(-50%, -50%) scale(1.15);
       box-shadow: 0 0 8px rgba(255, 87, 34, 0.5);
     }
 
@@ -1319,33 +1325,6 @@
       color: var(--accent);
     }
 
-    /* Cards brancos sobre azul */
-    .testimonials .experience-card {
-      background: white;
-      border: 1px solid rgba(0, 0, 0, 0.08);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-    }
-
-    .testimonials .experience-card:hover {
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    }
-
-    .testimonials .experience-card-icon {
-      background: rgba(255, 87, 34, 0.1);
-    }
-
-    .testimonials .experience-card-icon svg {
-      color: var(--accent) !important;
-    }
-
-    .testimonials .experience-card h4 {
-      color: #1a1a1a !important;
-    }
-
-    .testimonials .experience-card p {
-      color: #5f6368 !important;
-    }
-
     .testimonials .testimonial-card {
       background: white;
       border: 1px solid rgba(0, 0, 0, 0.08);
@@ -1444,7 +1423,10 @@
     @media (max-width: 900px) {
       .experience-cards { grid-template-columns: repeat(2, 1fr); }
     }
-    
+
+    /* Cenarios de uso vivem na secao de beneficios (fundo cinza claro) */
+    .benefits .experience-cards { margin-top: 1.5rem; }
+
     .experience-card {
       background: var(--card-light);
       border: 1px solid var(--border-light);
@@ -1476,7 +1458,7 @@
       color: var(--accent);
     }
 
-    .experience-card h4 {
+    .experience-card h3 {
       font-size: 1rem;
       font-weight: 700;
       color: var(--text-on-light);
@@ -1660,15 +1642,14 @@
       color: var(--text-on-white-muted);
     }
 
+    /* Coluna unica: em duas colunas, abrir um acordeao empurrava o item ao lado */
     .faq-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: 1fr;
       gap: 1rem;
-      max-width: 900px;
+      max-width: 760px;
       margin: 0 auto;
     }
-    
-    @media (max-width: 768px) { .faq-grid { grid-template-columns: 1fr; } }
 
     .faq-item {
       background: var(--bg);
@@ -1870,7 +1851,8 @@
     
     .footer-legal {
       font-size: 0.8rem;
-      color: rgba(255, 255, 255, 0.6);
+      /* 5,04:1 sobre o azul do rodape (0.6 dava 3,3:1) */
+      color: rgba(255, 255, 255, 0.85);
       max-width: 600px;
     }
 
@@ -1891,57 +1873,14 @@
     
     @media (max-width: 640px) { .whatsapp-float { bottom: 28px; right: 16px; } }
     
-    .whatsapp-online {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 50px;
-      padding: 0.5rem 1rem;
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: var(--text2);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      box-shadow: var(--shadow-md);
-      animation: fadeUp 0.6s var(--ease-out) 1s forwards;
-      opacity: 0;
-    }
-    
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    .whatsapp-online .dot {
-      width: 8px;
-      height: 8px;
-      background: var(--green);
-      border-radius: 50%;
-      position: relative;
-    }
-    
-    .whatsapp-online .dot::before {
-      content: '';
-      position: absolute;
-      inset: -2px;
-      border-radius: 50%;
-      background: var(--green);
-      animation: pulse-ring 2s ease-out infinite;
-    }
-    
-    @keyframes pulse-ring {
-      0% { transform: scale(1); opacity: 0.4; }
-      100% { transform: scale(2); opacity: 0; }
-    }
-    
     .whatsapp-btn {
       display: flex;
       align-items: center;
       gap: 0.625rem;
       padding: 1rem 1.75rem;
-      background: #25D366;
-      /* verde escuro sobre o verde da marca: 5,19:1 (branco dava 1,98:1) */
-      color: #0A4A33;
+      /* verde escuro solido com texto branco: 5,41:1 */
+      background: #0B7A45;
+      color: #ffffff;
       border-radius: 50px;
       font-weight: 600;
       font-size: 0.95rem;
@@ -2239,7 +2178,7 @@
             </div>
             <span class="benefit-label">Tecnologia</span>
             <h3 class="benefit-title">Wi-Fi de última geração</h3>
-            <p class="benefit-desc">Planos com Wi-Fi 6 para melhor alcance, menos interferência e mais performance em toda casa.</p>
+            <p class="benefit-desc">Wi-Fi 6 nos planos a partir de 600 Mega, para melhor alcance em toda a casa.</p>
           </article>
           <article class="benefit-card reveal reveal-delay-3">
             <div class="benefit-icon">
@@ -2258,6 +2197,32 @@
             <p class="benefit-desc">Instalação inclusa e acompanhamento do pedido até a ativação com equipe local.</p>
           </article>
         </div>
+
+        <!-- Cenarios de uso: conteudo de produto, fica junto dos beneficios
+             (antes estava na secao de avaliacoes, que e' prova social).
+             h3 e nao h4: a secao abre em h2 e os benefit-title ja sao h3. -->
+        <div class="experience-cards reveal">
+          <article class="experience-card">
+            <div class="experience-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="15" rx="2"/><path d="M17 2l-5 5-5-5"/></svg></div>
+            <h3>Streaming 4K</h3>
+            <p>TVs e tablets rodando séries sem travar.</p>
+          </article>
+          <article class="experience-card">
+            <div class="experience-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+            <h3>Home office</h3>
+            <p>Chamadas de vídeo estáveis em toda casa.</p>
+          </article>
+          <article class="experience-card">
+            <div class="experience-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M12 18h.01"/></svg></div>
+            <h3>Gamers</h3>
+            <p>Baixa latência para consoles e PCs.</p>
+          </article>
+          <article class="experience-card">
+            <div class="experience-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+            <h3>Famílias</h3>
+            <p>Rede segura para estudos e redes sociais.</p>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -2269,28 +2234,6 @@
           <p class="section-subtitle">Avaliações no Google</p>
         </header>
         <div class="testimonials-wrapper">
-          <div class="experience-cards reveal">
-            <article class="experience-card">
-              <div class="experience-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="15" rx="2"/><path d="M17 2l-5 5-5-5"/></svg></div>
-              <h4>Streaming 4K</h4>
-              <p>TVs e tablets rodando séries sem travar.</p>
-            </article>
-            <article class="experience-card">
-              <div class="experience-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
-              <h4>Home office</h4>
-              <p>Chamadas de vídeo estáveis em toda casa.</p>
-            </article>
-            <article class="experience-card">
-              <div class="experience-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M12 18h.01"/></svg></div>
-              <h4>Gamers</h4>
-              <p>Baixa latência para consoles e PCs.</p>
-            </article>
-            <article class="experience-card">
-              <div class="experience-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
-              <h4>Famílias</h4>
-              <p>Rede segura para estudos e redes sociais.</p>
-            </article>
-          </div>
         <div class="google-reviews reveal">
           <article class="review-card">
             <div class="review-head">
@@ -2425,11 +2368,7 @@
 
   <!-- WhatsApp Widget -->
   <div class="whatsapp-float">
-    <div class="whatsapp-online">
-      <span class="dot"></span>
-      <span id="online-count">127 pessoas online</span>
-    </div>
-    <a href="https://wa.me/5581992823101" onclick="return openWhatsApp('floating', 'geral')" class="whatsapp-btn">
+    <a href="https://wa.me/5581992823101" onclick="return openWhatsApp('floating', 'geral')" class="whatsapp-btn" aria-label="Falar no WhatsApp">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
       <span>WhatsApp</span>
     </a>
@@ -2539,36 +2478,6 @@
       if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }));
 
-    // WhatsApp counter - Heatmap-based logic (Google Ads pattern)
-    const onlineCount = document.getElementById('online-count');
-    function updateOnlineCount() {
-      const now = new Date();
-      const day = now.getDay(); // 0=Dom, 1=Seg, 2=Ter, 3=Qua, 4=Qui, 5=Sex, 6=Sab
-      const hour = now.getHours();
-
-      // Intensidade por hora (0-1) baseada no mapa de calor Google Ads
-      const hourIntensity = [
-        0.05, 0.03, 0.02, 0.02, 0.02, 0.05, // 00-05: muito baixo
-        0.15, 0.30, 0.50, 0.75, 0.90, 1.00, // 06-11: subindo até pico
-        0.95, 0.90, 0.85, 0.75, 0.65, 0.55, // 12-17: pico descendo
-        0.40, 0.30, 0.20, 0.15, 0.10, 0.08  // 18-23: caindo
-      ][hour];
-
-      // Multiplicador por dia (Dom menos, Ter-Qui mais)
-      const dayMultiplier = [0.60, 0.85, 1.00, 1.00, 0.95, 0.80, 0.70][day];
-
-      // Calcular base: max 150 no pico absoluto
-      const maxOnline = 150;
-      const minOnline = 8;
-      const baseCount = Math.round(minOnline + (maxOnline - minOnline) * hourIntensity * dayMultiplier);
-
-      // Adicionar variação aleatória de ±10%
-      const variance = Math.round(baseCount * 0.1 * (Math.random() * 2 - 1));
-      const count = Math.max(minOnline, Math.min(maxOnline, baseCount + variance));
-
-      onlineCount.textContent = count + ' pessoas online';
-    }
-    if (onlineCount) { updateOnlineCount(); setInterval(updateOnlineCount, 12000); }
   </script>
   <script src="lead-modal.js"></script>
 </body>

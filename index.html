@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Internet Fibra Brisanet: 500 Mega por R$ 84,99, planos até 1 Giga com Wi-Fi 6, BrisaChip e instalação inclusa. Fale com um consultor e confira a cobertura na sua cidade.">
+  <meta name="description" content="Internet Fibra Brisanet a partir de R$ 84,99. Planos de 500 Mega a 1 Giga, com BrisaChip e instalação inclusa. Fale com um consultor e confira a cobertura na sua cidade.">
   <meta name="theme-color" content="#2855d4">
-  <title>Internet Fibra Brisanet | Planos com Wi-Fi 6 e BrisaChip</title>
+  <title>Internet Fibra Brisanet | Planos de 500 Mega a 1 Giga e BrisaChip</title>
   <link rel="icon" type="image/x-icon" href="img/favicon.ico">
 
   <!-- Google Tag Manager (GTM-WS3T5W6V) -->
@@ -232,7 +232,8 @@
 
     .nav-cta {
       padding: 0.625rem 1.5rem;
-      background: var(--accent);
+      /* laranja escuro: o --accent (#ff5722) dava 3,16:1 com branco */
+      background: #C2410C;
       border-radius: 50px;
       font-size: 0.9rem;
       font-weight: 600;
@@ -391,26 +392,77 @@
       padding: 60px 20px;
     }
 
+    /* Imagem em sangria: ocupa a metade direita ate a borda da viewport.
+       Fica fora do .container de proposito — por isso e' irma do __grid no markup. */
     .hero-banner__media {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      justify-content: center;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 50%;
+      z-index: 1;
+      display: block;
+    }
+
+    .hero-banner__media picture {
+      display: block;
+      width: 100%;
+      height: 100%;
     }
 
     .hero-banner__media img {
       display: block;
       width: 100%;
-      height: auto;
-      max-width: 460px;
-      border-radius: 20px;
+      height: 100%;
+      max-width: none;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 0;
+    }
+
+    /* Funde a imagem com a area de texto: azul do hero solido na borda esquerda
+       da imagem, transparente por volta de 60% da largura dela. As paradas usam
+       o mesmo RGB (nao a keyword transparent) para nao interpolar via preto.
+       Fallback para navegadores sem mask-image. */
+    .hero-banner__media::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg,
+        rgb(42, 88, 214) 0%,
+        rgba(42, 88, 214, 0.92) 12%,
+        rgba(42, 88, 214, 0.55) 35%,
+        rgba(42, 88, 214, 0.0) 60%);
+      pointer-events: none;
+    }
+
+    /* Onde houver mask-image, pinta o PROPRIO radial-gradient da secao sobre a
+       imagem e recorta a opacidade na horizontal. Como a imagem ocupa exatamente
+       a metade direita, um background de 200% alinhado a direita reproduz pixel
+       a pixel o fundo da secao — nao sobra emenda visivel na juncao. */
+    @supports (mask-image: linear-gradient(#000, #000)) or (-webkit-mask-image: linear-gradient(#000, #000)) {
+      .hero-banner__media::after {
+        background: radial-gradient(ellipse at top left, #3b6be8 0%, #2855d4 50%, #1e45b8 100%);
+        background-size: 200% 100%;
+        background-position: right center;
+        background-repeat: no-repeat;
+        -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 12%, rgba(0, 0, 0, 0.55) 35%, transparent 60%);
+        mask-image: linear-gradient(90deg, #000 0%, #000 12%, rgba(0, 0, 0, 0.55) 35%, transparent 60%);
+      }
     }
 
     @media (max-width: 900px) {
-      /* mobile empilha: texto primeiro, imagem depois — o CTA nao pode sair da primeira tela */
+      /* mobile empilha: texto primeiro, imagem depois — o CTA nao pode sair da primeira tela.
+         A sangria lateral nao se aplica aqui. */
+      .hero-banner { flex-direction: column; align-items: stretch; }
       .hero-banner__grid { grid-template-columns: 1fr; gap: 0; }
-      .hero-banner__media { margin: 0 20px 40px; }
-      .hero-banner__media img { max-width: 340px; }
+      .hero-banner__media {
+        position: static;
+        width: 100%;
+        /* altura fixa: reserva o espaco antes do load, sem CLS */
+        height: 320px;
+      }
+      .hero-banner__media::after { display: none; }
     }
 
     .hero-banner__badge {
@@ -480,13 +532,8 @@
       flex-shrink: 0;
     }
 
-    @media (min-width: 769px) {
-      .hero-banner__checks {
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 8px 20px;
-      }
-    }
+    /* Os checks ficam empilhados em coluna em todas as larguras (base do
+       .hero-banner__checks). Nao reintroduzir flex-direction: row aqui. */
 
     .hero-banner__offer-box {
       display: flex;
@@ -565,7 +612,8 @@
 
     .hero-banner__price-after {
       font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.7);
+      /* 0.7 caia para 4,41:1 sobre o azul mais claro do gradiente no mobile */
+      color: rgba(255, 255, 255, 0.82);
       margin-top: -8px;
     }
 
@@ -1384,33 +1432,6 @@
       color: var(--accent);
     }
 
-    /* Cards brancos sobre azul */
-    .testimonials .experience-card {
-      background: white;
-      border: 1px solid rgba(0, 0, 0, 0.08);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-    }
-
-    .testimonials .experience-card:hover {
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    }
-
-    .testimonials .experience-card-icon {
-      background: rgba(255, 87, 34, 0.1);
-    }
-
-    .testimonials .experience-card-icon svg {
-      color: var(--accent) !important;
-    }
-
-    .testimonials .experience-card h3 {
-      color: #1a1a1a !important;
-    }
-
-    .testimonials .experience-card p {
-      color: #5f6368 !important;
-    }
-
     .testimonials .testimonial-card {
       background: white;
       border: 1px solid rgba(0, 0, 0, 0.08);
@@ -1536,6 +1557,9 @@
     @media (max-width: 900px) {
       .experience-cards { grid-template-columns: repeat(2, 1fr); }
     }
+
+    /* Cenarios de uso vivem na secao de beneficios (fundo cinza claro) */
+    .benefits .experience-cards { margin-top: 1.5rem; }
     
     .experience-card {
       background: var(--card-light);
@@ -1752,15 +1776,14 @@
       color: var(--text-on-white-muted);
     }
 
+    /* Coluna unica: em duas colunas, abrir um acordeao empurrava o item ao lado */
     .faq-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: 1fr;
       gap: 1rem;
-      max-width: 900px;
+      max-width: 760px;
       margin: 0 auto;
     }
-    
-    @media (max-width: 768px) { .faq-grid { grid-template-columns: 1fr; } }
 
     .faq-item {
       background: var(--bg);
@@ -2007,9 +2030,9 @@
       align-items: center;
       gap: 0.625rem;
       padding: 1rem 1.75rem;
-      background: #25D366;
-      /* verde escuro sobre o verde da marca: 5,19:1 (branco dava 1,98:1) */
-      color: #0A4A33;
+      /* verde escuro solido com texto branco: 5,41:1 */
+      background: #0B7A45;
+      color: #ffffff;
       border-radius: 50px;
       font-weight: 600;
       font-size: 0.95rem;
@@ -2158,23 +2181,24 @@
           </div>
 
         </div>
+      </div>
 
-        <div class="hero-banner__media">
-          <picture>
-            <source type="image/avif"
-                    srcset="img/hero-familia-tvblur-760.avif 760w,
-                            img/hero-familia-tvblur-1200.avif 1200w"
-                    sizes="(max-width: 900px) 100vw, 45vw">
-            <source type="image/webp"
-                    srcset="img/hero-familia-tvblur-760.webp 760w,
-                            img/hero-familia-tvblur-1200.webp 1200w"
-                    sizes="(max-width: 900px) 100vw, 45vw">
-            <img src="img/hero-familia-tvblur-1200.webp"
-                 width="1200" height="1490"
-                 fetchpriority="high" decoding="async"
-                 alt="Família assistindo streaming na sala de casa com internet fibra">
-          </picture>
-        </div>
+      <!-- Fora do .container: a imagem sangra ate a borda direita da viewport -->
+      <div class="hero-banner__media">
+        <picture>
+          <source type="image/avif"
+                  srcset="img/hero-familia-tvblur-760.avif 760w,
+                          img/hero-familia-tvblur-1200.avif 1200w"
+                  sizes="(max-width: 900px) 100vw, 50vw">
+          <source type="image/webp"
+                  srcset="img/hero-familia-tvblur-760.webp 760w,
+                          img/hero-familia-tvblur-1200.webp 1200w"
+                  sizes="(max-width: 900px) 100vw, 50vw">
+          <img src="img/hero-familia-tvblur-1200.webp"
+               width="1200" height="1490"
+               fetchpriority="high" decoding="async"
+               alt="Família assistindo streaming na sala de casa com internet fibra">
+        </picture>
       </div>
     </section>
 
@@ -2589,7 +2613,7 @@
             </div>
             <span class="benefit-label">Tecnologia</span>
             <h3 class="benefit-title">Wi-Fi de última geração</h3>
-            <p class="benefit-desc">Planos com Wi-Fi 6 para melhor alcance, menos interferência e mais performance em toda casa.</p>
+            <p class="benefit-desc">Wi-Fi 6 nos planos a partir de 600 Mega, para melhor alcance em toda a casa.</p>
           </article>
           <article class="benefit-card reveal reveal-delay-3">
             <div class="benefit-icon">
@@ -2608,6 +2632,31 @@
             <p class="benefit-desc">Instalação inclusa e acompanhamento do pedido até a ativação com equipe local.</p>
           </article>
         </div>
+
+        <!-- Cenarios de uso: conteudo de produto, fica junto dos beneficios
+             (antes estava na secao de avaliacoes, que e' prova social) -->
+        <div class="experience-cards reveal">
+          <article class="experience-card">
+            <div class="experience-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="15" rx="2"/><path d="M17 2l-5 5-5-5"/></svg></div>
+            <h3>Streaming 4K</h3>
+            <p>TVs e tablets rodando séries sem travar.</p>
+          </article>
+          <article class="experience-card">
+            <div class="experience-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+            <h3>Home office</h3>
+            <p>Chamadas de vídeo estáveis em toda casa.</p>
+          </article>
+          <article class="experience-card">
+            <div class="experience-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M12 18h.01"/></svg></div>
+            <h3>Gamers</h3>
+            <p>Baixa latência para consoles e PCs.</p>
+          </article>
+          <article class="experience-card">
+            <div class="experience-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+            <h3>Famílias</h3>
+            <p>Rede segura para estudos e redes sociais.</p>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -2622,28 +2671,6 @@
           <div class="award-banner reveal">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
             <p><strong>Prêmio Melhor Plano 2026</strong> — a Brisanet foi eleita a Melhor Internet Fixa no Ceará, no Rio Grande do Norte e em Sergipe, além de outras 84 cidades, nas categorias melhor provedor para quem joga online, maior velocidade, maior estabilidade e maior satisfação.</p>
-          </div>
-          <div class="experience-cards reveal">
-            <article class="experience-card">
-              <div class="experience-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="15" rx="2"/><path d="M17 2l-5 5-5-5"/></svg></div>
-              <h3>Streaming 4K</h3>
-              <p>TVs e tablets rodando séries sem travar.</p>
-            </article>
-            <article class="experience-card">
-              <div class="experience-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
-              <h3>Home office</h3>
-              <p>Chamadas de vídeo estáveis em toda casa.</p>
-            </article>
-            <article class="experience-card">
-              <div class="experience-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M12 18h.01"/></svg></div>
-              <h3>Gamers</h3>
-              <p>Baixa latência para consoles e PCs.</p>
-            </article>
-            <article class="experience-card">
-              <div class="experience-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
-              <h3>Famílias</h3>
-              <p>Rede segura para estudos e redes sociais.</p>
-            </article>
           </div>
         <div class="google-reviews reveal">
           <article class="review-card">
