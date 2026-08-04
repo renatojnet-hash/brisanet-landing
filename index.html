@@ -171,40 +171,15 @@
       right: 0;
       z-index: 200;
       padding: 0.75rem 0;
-      background: rgba(40, 85, 212, 0.85);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-      transition: all 0.4s var(--ease-out);
+      /* branco solido desde o topo: o logo laranja nao tem contraste sobre o azul do hero */
+      background: #ffffff;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      transition: padding 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
     }
 
     .nav.scrolled {
-      background: rgba(255, 255, 255, 0.98);
       box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
       padding: 0.5rem 0;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-    }
-
-    .nav.scrolled .nav-link {
-      color: #1a1a1a;
-    }
-
-    .nav.scrolled .nav-link:hover {
-      color: var(--brand-blue);
-      background: rgba(40, 85, 212, 0.08);
-    }
-
-    .nav.scrolled .nav-switch {
-      color: var(--brand-blue);
-      border-color: var(--brand-blue);
-    }
-
-    .nav.scrolled .logo-img {
-      filter: none;
-    }
-
-    .nav.scrolled .mobile-btn span {
-      background: #1a1a1a;
     }
     
     .nav-inner {
@@ -223,12 +198,12 @@
       padding: 0.5rem 1rem;
       font-size: 0.9rem;
       font-weight: 500;
-      color: #ffffff;
+      color: #1a1a1a;
       border-radius: 8px;
       transition: all 0.2s ease;
     }
     
-    .nav-link:hover { color: var(--text); background: var(--surface); }
+    .nav-link:hover { color: var(--brand-blue); background: rgba(40, 85, 212, 0.08); }
     
     .nav-switch {
       display: flex;
@@ -237,9 +212,9 @@
       padding: 0.5rem 1rem;
       font-size: 0.875rem;
       font-weight: 600;
-      color: #ffffff;
+      color: var(--brand-blue);
       background: transparent;
-      border: 2px solid #ffffff;
+      border: 2px solid var(--brand-blue);
       border-radius: 50px;
       text-decoration: none;
       transition: all 0.3s ease;
@@ -279,7 +254,7 @@
       display: block;
       width: 22px;
       height: 2px;
-      background: var(--text);
+      background: #1a1a1a;
       border-radius: 2px;
       transition: all 0.3s var(--ease-out);
     }
@@ -400,11 +375,42 @@
       z-index: 1;
     }
 
+    .hero-banner__grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
+      gap: 2rem;
+      align-items: center;
+    }
+
     .hero-banner__content {
       position: relative;
       z-index: 2;
       max-width: 600px;
       padding: 60px 20px;
+    }
+
+    .hero-banner__media {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-banner__media img {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-width: 460px;
+      border-radius: 20px;
+    }
+
+    @media (max-width: 900px) {
+      /* mobile empilha: texto primeiro, imagem depois — o CTA nao pode sair da primeira tela */
+      .hero-banner__grid { grid-template-columns: 1fr; gap: 0; }
+      .hero-banner__media { margin: 0 20px 40px; }
+      .hero-banner__media img { max-width: 340px; }
     }
 
     .hero-banner__badge {
@@ -501,14 +507,34 @@
     /* 2. AGREGADO - Mini-produto visual */
     .hero-banner__aggregate {
       display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: rgba(255, 87, 34, 0.15);
-      border: 1px solid rgba(255, 87, 34, 0.3);
+      align-items: baseline;
+      gap: 8px;
+      /* fundo claro para a cor da marca ter contraste (sobre o azul do hero nao teria) */
+      background: #ffffff;
+      border: 1px solid rgba(0, 0, 0, 0.08);
       border-radius: 8px;
-      padding: 10px 14px;
+      padding: 10px 16px;
       width: fit-content;
     }
+
+    /* ===== MARCAS PARCEIRAS =====
+       Tratamento tipografico provisorio. Os logos oficiais entram como <svg>
+       inline no lugar marcado no markup — nunca PNG (ver img/marcas/README.md). */
+    .aggregate-plus {
+      font-weight: 600;
+      font-size: 1rem;
+      color: #3c4043;
+    }
+
+    .brand-name {
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      color: var(--text-on-white);
+    }
+
+    .brand-netflix { color: #E50914; }
+
+    .plan-features .brand-name { font-weight: 700; }
 
     .hero-banner__aggregate .aggregate-icon {
       width: 24px;
@@ -517,9 +543,9 @@
     }
 
     .hero-banner__aggregate span {
-      font-size: 0.95rem;
+      font-size: 1.05rem;
       font-weight: 600;
-      color: #ffffff;
+      /* sem cor forçada: o badge tem fundo branco e cada marca traz a sua */
     }
 
     /* 4. PREÇO */
@@ -891,9 +917,9 @@
     }
 
     .plan-badge {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
+      /* faixa no topo do card, acima da linha de velocidade */
+      align-self: flex-start;
+      margin-bottom: 1rem;
       padding: 0.375rem 0.875rem;
       background: var(--blue);
       border-radius: 6px;
@@ -931,9 +957,11 @@
     }
     
     .plan-speed-unit {
-      font-size: 1.125rem;
+      /* ~60% do tamanho do número (que usa clamp(2.5rem, 2rem + 2vw, 3.5rem)) */
+      font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.1rem);
       color: var(--text-muted);
       font-weight: 600;
+      margin-left: 0.15em;
     }
     
     .plan-speed-label {
@@ -994,9 +1022,9 @@
     }
 
     .plan-aggregate span {
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       font-weight: 600;
-      color: var(--text-on-white);
+      /* sem cor forçada: cada marca traz a sua (ver .brand-name / .brand-netflix) */
     }
 
     .plan-partner {
@@ -1402,16 +1430,12 @@
     }
 
     .testimonials-wrapper {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: center;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
     }
-    
-    @media (max-width: 1024px) { .testimonials-wrapper { grid-template-columns: 1fr; gap: 2.5rem; } }
 
     .award-banner {
-      grid-column: 1 / -1;
       display: flex;
       align-items: flex-start;
       gap: 1rem;
@@ -1440,10 +1464,77 @@
       .award-banner { flex-direction: column; gap: 0.75rem; padding: 1.25rem; }
     }
 
+    /* ===== AVALIAÇÕES DO GOOGLE ===== */
+    .google-reviews {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      align-items: start;
+    }
+
+    @media (max-width: 1024px) { .google-reviews { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px)  { .google-reviews { grid-template-columns: 1fr; } }
+
+    .review-card {
+      background: #ffffff;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 16px;
+      padding: 1.25rem;
+      box-shadow: var(--shadow-card-light);
+    }
+
+    .review-head {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.875rem;
+    }
+
+    .review-avatar {
+      flex-shrink: 0;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      /* 19px/700 qualifica como texto grande (AA 3:1) nas cores de avatar mais claras */
+      font-size: 1.1875rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .review-meta { flex: 1; min-width: 0; }
+
+    .review-name {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--text-on-white);
+      margin-bottom: 0.25rem;
+    }
+
+    .review-stars { display: flex; gap: 2px; }
+    .review-stars svg { width: 15px; height: 15px; display: block; }
+    .star-on svg  { fill: #FBBC04; }
+    .star-off svg { fill: #dadce0; }
+
+    .review-google { width: 18px; height: 18px; flex-shrink: 0; align-self: flex-start; }
+
+    .review-text {
+      font-size: 0.9375rem;
+      line-height: 1.6;
+      color: var(--text-on-white-muted);
+    }
+
     .experience-cards {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 1rem;
+    }
+
+    @media (max-width: 900px) {
+      .experience-cards { grid-template-columns: repeat(2, 1fr); }
     }
     
     .experience-card {
@@ -1736,17 +1827,36 @@
       background: transparent;
       border-radius: 0;
       padding: 0;
-      text-align: center;
       position: relative;
       overflow: hidden;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 3rem;
+      align-items: center;
     }
 
     .cta-content {
       position: relative;
       z-index: 1;
       max-width: 700px;
-      margin: 0 auto;
       padding: 0 1.5rem;
+      text-align: left;
+    }
+
+    .cta-media { display: flex; justify-content: center; }
+
+    .cta-media img {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-width: 560px;
+      border-radius: 20px;
+    }
+
+    @media (max-width: 900px) {
+      .cta-card { grid-template-columns: 1fr; gap: 2.5rem; }
+      .cta-content { margin: 0 auto; text-align: center; }
+      .cta-buttons { justify-content: center; }
     }
 
     .cta-title {
@@ -1898,7 +2008,8 @@
       gap: 0.625rem;
       padding: 1rem 1.75rem;
       background: #25D366;
-      color: white;
+      /* verde escuro sobre o verde da marca: 5,19:1 (branco dava 1,98:1) */
+      color: #0A4A33;
       border-radius: 50px;
       font-weight: 600;
       font-size: 0.95rem;
@@ -1995,14 +2106,8 @@
     <section class="hero-banner" id="top">
       <div class="hero-banner__overlay"></div>
 
-      <div class="container">
+      <div class="container hero-banner__grid">
         <div class="hero-banner__content">
-
-          <!-- BADGE EDITORIAL (sazonal) -->
-          <!-- ATUALIZAR MENSALMENTE — vigência do book de ofertas -->
-          <span class="hero-banner__badge">
-            Ofertas válidas de 1 a 31 de agosto de 2026.
-          </span>
 
           <!-- TÍTULO H1 SEO -->
           <h1 class="hero-banner__title">
@@ -2021,11 +2126,9 @@
 
             <!-- 2. AGREGADO (mini-produto) -->
             <div class="hero-banner__aggregate">
-              <svg class="aggregate-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="2" y="3" width="20" height="14" rx="2"/>
-                <path d="M8 21h8M12 17v4"/>
-              </svg>
-              <span>+ Netflix</span>
+              <span class="aggregate-plus">+</span>
+              <!-- logo oficial entra aqui como <svg> inline: ver img/marcas/README.md -->
+              <span class="brand-name brand-netflix">Netflix</span>
             </div>
 
             <!-- 3. BENEFÍCIOS -->
@@ -2055,6 +2158,23 @@
           </div>
 
         </div>
+
+        <div class="hero-banner__media">
+          <picture>
+            <source type="image/avif"
+                    srcset="img/hero-familia-tvblur-760.avif 760w,
+                            img/hero-familia-tvblur-1200.avif 1200w"
+                    sizes="(max-width: 900px) 100vw, 45vw">
+            <source type="image/webp"
+                    srcset="img/hero-familia-tvblur-760.webp 760w,
+                            img/hero-familia-tvblur-1200.webp 1200w"
+                    sizes="(max-width: 900px) 100vw, 45vw">
+            <img src="img/hero-familia-tvblur-1200.webp"
+                 width="1200" height="1490"
+                 fetchpriority="high" decoding="async"
+                 alt="Família assistindo streaming na sala de casa com internet fibra">
+          </picture>
+        </div>
       </div>
     </section>
 
@@ -2075,8 +2195,9 @@
           </div>
         </div>
 
-        <!-- Aviso de disponibilidade por região -->
-        <p class="plans-region-note reveal">Disponibilidade de planos varia por cidade. Consulte pelo WhatsApp qual portfólio atende seu endereço.</p>
+        <!-- Vigência + disponibilidade por região -->
+        <!-- ATUALIZAR MENSALMENTE — vigência do book de ofertas -->
+        <p class="plans-region-note reveal">Ofertas válidas de 1 a 31 de agosto de 2026. Disponibilidade de planos varia por cidade — consulte pelo WhatsApp qual portfólio atende seu endereço.</p>
 
         <!-- Internet Panel -->
         <div class="plan-panel active" id="panel-internet">
@@ -2157,6 +2278,25 @@
                 <a href="https://wa.me/5581992823101" target="_blank" onclick="return openWhatsApp('planos_fibra', '1 GIGA')" class="plan-cta"><span>Contratar este plano</span></a>
               </div>
             </article>
+
+            <article class="plan-card reveal reveal-delay-4" style="background: linear-gradient(135deg, #2855d4 0%, #4a90e2 100%); border: none;">
+              <div style="text-align: center; padding: 1.5rem 0.75rem;">
+                <div style="margin-bottom: 1.5rem;">
+                  <svg style="width: 64px; height: 64px; color: white; margin: 0 auto;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M12 8v4M12 16h.01"/>
+                  </svg>
+                </div>
+                <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.25rem; font-weight: 700; color: white; margin-bottom: 0.75rem;">Monte seu combo ideal</h3>
+                <p style="font-size: 1rem; color: rgba(255, 255, 255, 0.9); margin-bottom: 1.5rem; line-height: 1.5;">Escolha a velocidade, quantidade de chips e plataformas de streaming. Fale conosco!</p>
+                <a href="https://wa.me/5581992823101" onclick="return openWhatsApp('planos_fibra', 'Combo Personalizado')" class="plan-cta" style="background: white; color: #2855d4; display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 0.875rem 1.25rem; border-radius: 50px; font-weight: 700; text-decoration: none; white-space: nowrap; transition: all 0.3s ease;">
+                  <span>Falar no WhatsApp</span>
+                  <svg style="width: 20px; height: 20px; margin-left: 8px;" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                  </svg>
+                </a>
+              </div>
+            </article>
           </div>
 
           <!-- Navegação - Internet (apenas dots) -->
@@ -2165,6 +2305,7 @@
               <button class="plan-dot active" data-index="0" aria-label="Plano 1"></button>
               <button class="plan-dot" data-index="1" aria-label="Plano 2"></button>
               <button class="plan-dot" data-index="2" aria-label="Plano 3"></button>
+              <button class="plan-dot" data-index="3" aria-label="Plano 4"></button>
             </div>
           </div>
         </div>
@@ -2179,8 +2320,9 @@
                 <div class="plan-speed-bar"><div class="plan-speed-bar-fill" style="width:60%"></div></div>
               </div>
               <div class="plan-aggregate">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-                <span>+ Netflix</span>
+                <span class="aggregate-plus">+</span>
+                <!-- logo oficial entra aqui como <svg> inline: ver img/marcas/README.md -->
+                <span class="brand-name brand-netflix">Netflix</span>
               </div>
               <div class="plan-price">
                 <p class="plan-price-old">Por 3 meses, depois R$ 120,80/mês</p>
@@ -2192,7 +2334,7 @@
               </div>
               <ul class="plan-features">
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Internet 600 Mega</span></li>
-                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Netflix Padrão com Anúncios</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span><strong class="brand-name brand-netflix">Netflix</strong> Padrão com Anúncios</span></li>
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Wi-Fi 6 incluso</span></li>
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação inclusa</span></li>
               </ul>
@@ -2208,8 +2350,9 @@
                 <div class="plan-speed-bar"><div class="plan-speed-bar-fill" style="width:50%"></div></div>
               </div>
               <div class="plan-aggregate">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-                <span>+ SKY+ Light</span>
+                <span class="aggregate-plus">+</span>
+                <!-- logo oficial entra aqui como <svg> inline: ver img/marcas/README.md -->
+                <span class="brand-name">SKY+ Light</span>
               </div>
               <div class="plan-price">
                 <p class="plan-price-old">Por 3 meses, depois R$ 99,89/mês</p>
@@ -2221,7 +2364,7 @@
               </div>
               <ul class="plan-features">
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Internet 500 Mega</span></li>
-                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>SKY+ Light</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span><strong class="brand-name">SKY+</strong> Light</span></li>
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Wi-Fi incluso</span></li>
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação inclusa</span></li>
               </ul>
@@ -2237,8 +2380,9 @@
                 <div class="plan-speed-bar"><div class="plan-speed-bar-fill" style="width:50%"></div></div>
               </div>
               <div class="plan-aggregate">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-                <span>+ SKY+ e Prime</span>
+                <span class="aggregate-plus">+</span>
+                <!-- logo oficial entra aqui como <svg> inline: ver img/marcas/README.md -->
+                <span class="brand-name">SKY+ e Prime</span>
               </div>
               <div class="plan-price">
                 <p class="plan-price-old">Por 3 meses, depois R$ 114,79/mês</p>
@@ -2250,12 +2394,31 @@
               </div>
               <ul class="plan-features">
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Internet 500 Mega</span></li>
-                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>SKY+ Light</span></li>
-                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Amazon Prime</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span><strong class="brand-name">SKY+</strong> Light</span></li>
+                <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span><strong class="brand-name">Amazon Prime</strong></span></li>
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação inclusa</span></li>
               </ul>
               <div class="plan-cta-wrapper">
                 <a href="https://wa.me/5581992823101" target="_blank" onclick="return openWhatsApp('planos_streaming', '500 MEGA + SKY+ e Prime')" class="plan-cta"><span>Contratar este plano</span></a>
+              </div>
+            </article>
+
+            <article class="plan-card reveal reveal-delay-4" style="background: linear-gradient(135deg, #2855d4 0%, #4a90e2 100%); border: none;">
+              <div style="text-align: center; padding: 1.5rem 0.75rem;">
+                <div style="margin-bottom: 1.5rem;">
+                  <svg style="width: 64px; height: 64px; color: white; margin: 0 auto;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M12 8v4M12 16h.01"/>
+                  </svg>
+                </div>
+                <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.25rem; font-weight: 700; color: white; margin-bottom: 0.75rem;">Monte seu combo ideal</h3>
+                <p style="font-size: 1rem; color: rgba(255, 255, 255, 0.9); margin-bottom: 1.5rem; line-height: 1.5;">Escolha a velocidade, quantidade de chips e plataformas de streaming. Fale conosco!</p>
+                <a href="https://wa.me/5581992823101" onclick="return openWhatsApp('planos_streaming', 'Combo Personalizado')" class="plan-cta" style="background: white; color: #2855d4; display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 0.875rem 1.25rem; border-radius: 50px; font-weight: 700; text-decoration: none; white-space: nowrap; transition: all 0.3s ease;">
+                  <span>Falar no WhatsApp</span>
+                  <svg style="width: 20px; height: 20px; margin-left: 8px;" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                  </svg>
+                </a>
               </div>
             </article>
           </div>
@@ -2266,6 +2429,7 @@
               <button class="plan-dot active" data-index="0" aria-label="Plano 1"></button>
               <button class="plan-dot" data-index="1" aria-label="Plano 2"></button>
               <button class="plan-dot" data-index="2" aria-label="Plano 3"></button>
+              <button class="plan-dot" data-index="3" aria-label="Plano 4"></button>
             </div>
           </div>
         </div>
@@ -2388,25 +2552,6 @@
                 <a href="https://wa.me/5581992823101" target="_blank" onclick="return openWhatsApp('planos_celular', '700 MEGA + 20GB 3 chips')" class="plan-cta"><span>Contratar este plano</span></a>
               </div>
             </article>
-
-            <article class="plan-card reveal reveal-delay-4" style="background: linear-gradient(135deg, #2855d4 0%, #4a90e2 100%); border: none;">
-              <div style="text-align: center; padding: 2rem 1rem;">
-                <div style="margin-bottom: 1.5rem;">
-                  <svg style="width: 64px; height: 64px; color: white; margin: 0 auto;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="10"/>
-                    <path d="M12 8v4M12 16h.01"/>
-                  </svg>
-                </div>
-                <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; color: white; margin-bottom: 0.75rem;">Monte seu combo ideal</h3>
-                <p style="font-size: 1rem; color: rgba(255, 255, 255, 0.9); margin-bottom: 1.5rem; line-height: 1.5;">Escolha a velocidade, quantidade de chips e plataformas de streaming. Fale conosco!</p>
-                <a href="https://wa.me/5581992823101" onclick="return openWhatsApp('planos_celular', 'Combo Personalizado')" class="plan-cta" style="background: white; color: #2855d4; display: inline-flex; align-items: center; justify-content: center; padding: 1rem 2rem; border-radius: 50px; font-weight: 700; text-decoration: none; transition: all 0.3s ease;">
-                  <span>Falar no WhatsApp</span>
-                  <svg style="width: 20px; height: 20px; margin-left: 8px;" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-                  </svg>
-                </a>
-              </div>
-            </article>
           </div>
 
           <!-- Navegação - Celular (5 cards: 4 planos + card institucional) -->
@@ -2416,7 +2561,6 @@
               <button class="plan-dot" data-index="1" aria-label="Plano 2"></button>
               <button class="plan-dot" data-index="2" aria-label="Plano 3"></button>
               <button class="plan-dot" data-index="3" aria-label="Plano 4"></button>
-              <button class="plan-dot" data-index="4" aria-label="Plano 5"></button>
             </div>
           </div>
         </div>
@@ -2472,7 +2616,7 @@
       <div class="container">
         <header class="section-header reveal">
           <h2 class="section-title">A experiência de quem já escolheu a Brisanet</h2>
-          <p class="section-subtitle">Experiências reais de quem vive essa internet todos os dias.</p>
+          <p class="section-subtitle">Avaliações no Google</p>
         </header>
         <div class="testimonials-wrapper">
           <div class="award-banner reveal">
@@ -2501,56 +2645,115 @@
               <p>Rede segura para estudos e redes sociais.</p>
             </article>
           </div>
-          <div class="testimonial-carousel reveal">
-            <div class="testimonial-track">
-              <div class="testimonial-slide active">
-                <div class="testimonial-card">
-                  <p class="testimonial-quote">"Contratei a internet fibra Brisanet e a velocidade é excelente, tanto para streaming quanto para trabalho remoto."</p>
-                  <div class="testimonial-author">
-                    <div class="testimonial-avatar">FS</div>
-                    <div class="testimonial-info"><h4>Família Silva</h4><span>Cliente desde 2023</span></div>
-                    <div class="testimonial-rating"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
-                  </div>
+        <div class="google-reviews reveal">
+          <article class="review-card">
+            <div class="review-head">
+              <span class="review-avatar" style="background: #1A73E8;" aria-hidden="true">JA</span>
+              <div class="review-meta">
+                <p class="review-name">Juliana A.</p>
+                <div class="review-stars" role="img" aria-label="5 de 5 estrelas">
+                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
                 </div>
               </div>
-              <div class="testimonial-slide">
-                <div class="testimonial-card">
-                  <p class="testimonial-quote">"Com a Brisanet consigo fazer calls em 4K enquanto as crianças assistem streaming. Internet estável de verdade."</p>
-                  <div class="testimonial-author">
-                    <div class="testimonial-avatar">AC</div>
-                    <div class="testimonial-info"><h4>Ana Carolina</h4><span>Home office</span></div>
-                    <div class="testimonial-rating"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
-                  </div>
-                </div>
-              </div>
-              <div class="testimonial-slide">
-                <div class="testimonial-card">
-                  <p class="testimonial-quote">"A internet Brisanet é perfeita para games. Ping baixo, upload alto e não oscila nas lives."</p>
-                  <div class="testimonial-author">
-                    <div class="testimonial-avatar">MR</div>
-                    <div class="testimonial-info"><h4>Matheus Reis</h4><span>Gamer / Streamer</span></div>
-                    <div class="testimonial-rating"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
-                  </div>
-                </div>
-              </div>
-              <div class="testimonial-slide">
-                <div class="testimonial-card">
-                  <p class="testimonial-quote">"Instalação rápida e equipe local muito atenciosa. A internet fibra funciona perfeitamente."</p>
-                  <div class="testimonial-author">
-                    <div class="testimonial-avatar">DL</div>
-                    <div class="testimonial-info"><h4>Daniela Lima</h4><span>Cliente Brisanet</span></div>
-                    <div class="testimonial-rating"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
-                  </div>
-                </div>
-              </div>
+              <svg class="review-google" viewBox="0 0 48 48" role="img" aria-label="Google"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
             </div>
-            <div class="carousel-dots">
-              <button class="carousel-dot active" data-index="0" aria-label="Depoimento 1"></button>
-              <button class="carousel-dot" data-index="1" aria-label="Depoimento 2"></button>
-              <button class="carousel-dot" data-index="2" aria-label="Depoimento 3"></button>
-              <button class="carousel-dot" data-index="3" aria-label="Depoimento 4"></button>
+            <p class="review-text">Satisfeita, fiz hoje o pedido e em menos de 3 horas a internet foi ligada. O funcionário que nos atendeu via WhatsApp e o que fez o serviço de ligação foram super atenciosos.</p>
+          </article>
+
+          <article class="review-card">
+            <div class="review-head">
+              <span class="review-avatar" style="background: #D93025;" aria-hidden="true">JM</span>
+              <div class="review-meta">
+                <p class="review-name">João Maurício</p>
+                <div class="review-stars" role="img" aria-label="5 de 5 estrelas">
+                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                </div>
+              </div>
+              <svg class="review-google" viewBox="0 0 48 48" role="img" aria-label="Google"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
             </div>
-          </div>
+            <p class="review-text">700 mb funcionando perfeitamente. Tenho há quase 2 anos.</p>
+          </article>
+
+          <article class="review-card">
+            <div class="review-head">
+              <span class="review-avatar" style="background: #188038;" aria-hidden="true">SF</span>
+              <div class="review-meta">
+                <p class="review-name">Sâmmyo Freitas</p>
+                <div class="review-stars" role="img" aria-label="5 de 5 estrelas">
+                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                </div>
+              </div>
+              <svg class="review-google" viewBox="0 0 48 48" role="img" aria-label="Google"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+            </div>
+            <p class="review-text">Ping 20 ms ~ 45 ms. Rápido, visse!</p>
+          </article>
+
+          <article class="review-card">
+            <div class="review-head">
+              <span class="review-avatar" style="background: #E37400;" aria-hidden="true">RN</span>
+              <div class="review-meta">
+                <p class="review-name">Ryan Nailton</p>
+                <div class="review-stars" role="img" aria-label="5 de 5 estrelas">
+                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                </div>
+              </div>
+              <svg class="review-google" viewBox="0 0 48 48" role="img" aria-label="Google"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+            </div>
+            <p class="review-text">Internet de alta qualidade, planos de streaming parceiros muito bons, com bastante entretenimento.</p>
+          </article>
+
+          <article class="review-card">
+            <div class="review-head">
+              <span class="review-avatar" style="background: #9334E6;" aria-hidden="true">MC</span>
+              <div class="review-meta">
+                <p class="review-name">Maria Clara Firmino</p>
+                <div class="review-stars" role="img" aria-label="5 de 5 estrelas">
+                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                </div>
+              </div>
+              <svg class="review-google" viewBox="0 0 48 48" role="img" aria-label="Google"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+            </div>
+            <p class="review-text">Tenho há alguns anos já e sempre que tenho problemas eles prestam esclarecimentos e resolvem. Já tive outras e tive muito mais dor de cabeça, super recomendo.</p>
+          </article>
+
+          <article class="review-card">
+            <div class="review-head">
+              <span class="review-avatar" style="background: #0B8043;" aria-hidden="true">LC</span>
+              <div class="review-meta">
+                <p class="review-name">Leila Cristiane</p>
+                <div class="review-stars" role="img" aria-label="4 de 5 estrelas">
+                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                <span class="star-off"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                </div>
+              </div>
+              <svg class="review-google" viewBox="0 0 48 48" role="img" aria-label="Google"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+            </div>
+            <p class="review-text">Até o presente momento, 8 meses de serviços de internet e não tenho o que reclamar. Sempre que precisei dos serviços, foi rápido e eficiente o atendimento, tanto por telefone quanto por visita técnica.</p>
+          </article>
+        </div>
         </div>
       </div>
     </section>
@@ -2597,15 +2800,26 @@
         <div class="cta-card reveal">
           <div class="cta-content">
             <h2 class="cta-title">Pronto para contratar sua Internet Fibra Brisanet?</h2>
-            <p class="cta-subtitle">Escolha o plano ideal para sua casa e aproveite internet rápida, estável e com Wi-Fi de última geração.</p>
-            <div class="cta-features">
-              <div class="cta-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span>500 Mega a 1 Giga</span></div>
-              <div class="cta-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span>Wi-Fi 6 incluso</span></div>
-              <div class="cta-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação inclusa</span></div>
-            </div>
+            <p class="cta-subtitle">Escolha o plano ideal para sua casa e aproveite internet rápida, estável e com Wi-Fi incluso.</p>
             <div class="cta-buttons">
               <a href="#planos" class="cta-btn-p">Escolher meu plano</a>
             </div>
+          </div>
+          <div class="cta-media">
+            <picture>
+              <source type="image/avif"
+                      srcset="img/fechamento-homeoffice-800.avif 800w,
+                              img/fechamento-homeoffice-1400.avif 1400w"
+                      sizes="(max-width: 900px) 100vw, 50vw">
+              <source type="image/webp"
+                      srcset="img/fechamento-homeoffice-800.webp 800w,
+                              img/fechamento-homeoffice-1400.webp 1400w"
+                      sizes="(max-width: 900px) 100vw, 50vw">
+              <img src="img/fechamento-homeoffice-1400.webp"
+                   width="1400" height="933"
+                   loading="lazy" decoding="async"
+                   alt="Mulher em videochamada trabalhando de casa com internet fibra estável">
+            </picture>
           </div>
         </div>
       </div>
@@ -2734,18 +2948,6 @@
       grid.addEventListener('scroll', updateDots);
       updateDots();
     });
-
-    // Testimonial carousel
-    const dots = document.querySelectorAll('.carousel-dot');
-    const slides = document.querySelectorAll('.testimonial-slide');
-    let currentSlide = 0;
-    function setSlide(i) {
-      currentSlide = i;
-      slides.forEach((s, j) => s.classList.toggle('active', j === i));
-      dots.forEach((d, j) => d.classList.toggle('active', j === i));
-    }
-    dots.forEach(d => d.addEventListener('click', () => setSlide(parseInt(d.dataset.index))));
-    setInterval(() => setSlide((currentSlide + 1) % slides.length), 6000);
 
     // Scroll reveal
     const reveals = document.querySelectorAll('.reveal');
