@@ -9,7 +9,10 @@
   <title>Internet 5G FWA Brisanet | Contrate Agora</title>
   <link rel="icon" type="image/x-icon" href="img/favicon.ico">
 
-  <link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <!-- Fundo do hero = elemento LCP desta pagina -->
+  <link rel="preload" as="image" href="img/hero-brisanet-web-v4-2200.avif" type="image/avif" media="(min-width: 769px)" fetchpriority="high">
+  <link rel="preload" as="image" href="img/hero-brisanet-mob-v4-375.webp" type="image/webp" media="(max-width: 768px)" fetchpriority="high">
+<link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
   <!-- Google Tag Manager (GTM-WS3T5W6V) -->
   <script>
@@ -290,7 +293,8 @@
 
     .nav-cta {
       padding: 0.625rem 1.5rem;
-      background: var(--accent);
+      /* laranja escuro: o --accent (#ff5722) dava 3,16:1 com branco */
+      background: #C2410C;
       border-radius: 50px;
       font-size: 0.9rem;
       font-weight: 600;
@@ -406,8 +410,10 @@
       position: relative;
       width: 100%;
       min-height: 600px;
+      /* Mesma arte de antes, so' reencodada: o PNG de 4,07 MB virou AVIF de 16 KB.
+         Esta declaracao e' o fallback para quem nao tem image-set(). */
       background:
-        url('img/hero-brisanet-web-v4.png'),
+        url('img/hero-brisanet-web-v4-2200.webp'),
         radial-gradient(ellipse at top left, #3b6be8 0%, #2855d4 50%, #1e45b8 100%);
       background-size: cover, cover;
       background-position: right center, center;
@@ -416,6 +422,17 @@
       align-items: center;
       padding-top: 90px;
       overflow: hidden;
+    }
+
+    /* Mantido como background (e nao <picture>) de proposito: preserva exatamente
+       o enquadramento do cover + background-position: right center. */
+    @supports (background-image: image-set(url('x.avif') type('image/avif'))) {
+      .hero-banner {
+        background-image:
+          image-set(url('img/hero-brisanet-web-v4-2200.avif') type('image/avif'),
+                    url('img/hero-brisanet-web-v4-2200.webp') type('image/webp')),
+          radial-gradient(ellipse at top left, #3b6be8 0%, #2855d4 50%, #1e45b8 100%);
+      }
     }
 
     .hero-banner__overlay {
@@ -579,7 +596,8 @@
     .hero-banner .btn--highlight {
       padding: 12px 24px;
       font-size: 1rem;
-      background: #FF6B35;
+      /* laranja escuro: o #FF6B35 dava 2,83:1 com branco */
+      background: #C2410C;
       color: #ffffff;
       font-weight: 700;
       border-radius: 50px;
@@ -602,7 +620,7 @@
     @media (max-width: 768px) {
       .hero-banner {
         background:
-          url('img/hero-brisanet-mob-v4%20(2).png'),
+          url('img/hero-brisanet-mob-v4-375.webp'),
           radial-gradient(ellipse at top left, #3b6be8 0%, #2855d4 50%, #1e45b8 100%);
         background-size: cover, cover;
         background-position: center top, center;
