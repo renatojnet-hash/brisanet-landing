@@ -15,6 +15,9 @@
   <title>Telefonia Empresarial + Internet Fibra | Brisanet Empresas</title>
   <link rel="icon" type="image/x-icon" href="../img/favicon.ico">
 
+  <!-- Fundo do hero = elemento LCP -->
+  <link rel="preload" as="image" href="../img/hero-web-empresas-dez-v2-1883.avif" type="image/avif" media="(min-width: 769px)" fetchpriority="high">
+  <link rel="preload" as="image" href="../img/hero-mob-empresas-dez-v2-1600.avif" type="image/avif" media="(max-width: 768px)" fetchpriority="high">
   <link rel="preload" href="../fonts/figtree-latin.woff2" as="font" type="font/woff2" crossorigin>
   <style>
     /* ===== FONTE SELF-HOSTED =====
@@ -315,8 +318,10 @@
       position: relative;
       width: 100%;
       min-height: 600px;
+      /* Mesma arte, so' reencodada: o PNG de 2,5 MB virou AVIF de 29 KB.
+         Esta declaracao e' o fallback para quem nao tem image-set(). */
       background:
-        url('../img/hero-web-empresas-dez-v2.png'),
+        url('../img/hero-web-empresas-dez-v2-1883.webp'),
         linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 80%);
       background-size: cover, cover;
       background-position: right center, center;
@@ -325,6 +330,17 @@
       align-items: center;
       padding-top: 90px;
       overflow: hidden;
+    }
+
+    /* Mantido como background (e nao <picture>) para preservar o enquadramento
+       do cover + background-position: right center. */
+    @supports (background-image: image-set(url('x.avif') type('image/avif'))) {
+      .hero-banner {
+        background-image:
+          image-set(url('../img/hero-web-empresas-dez-v2-1883.avif') type('image/avif'),
+                    url('../img/hero-web-empresas-dez-v2-1883.webp') type('image/webp')),
+          linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 80%);
+      }
     }
 
     .hero-banner__overlay {
@@ -500,12 +516,21 @@
     @media (max-width: 768px) {
       .hero-banner {
         background:
-          url('img/hero-mob-empresas-dez-v2.png'),
+          url('../img/hero-mob-empresas-dez-v2-1600.webp'),
           linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 80%);
         background-size: cover, cover;
         background-position: center top, center;
         min-height: auto;
         padding: 80px 0 40px;
+      }
+
+      @supports (background-image: image-set(url('x.avif') type('image/avif'))) {
+        .hero-banner {
+          background-image:
+            image-set(url('../img/hero-mob-empresas-dez-v2-1600.avif') type('image/avif'),
+                      url('../img/hero-mob-empresas-dez-v2-1600.webp') type('image/webp')),
+            linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 80%);
+        }
       }
 
       .hero-banner__overlay {
@@ -2137,7 +2162,7 @@
     <div class="container">
       <div class="footer-content">
         <div class="footer-logo">
-          <img src="img/logo-brisasolucoes.png" alt="Brisasoluções" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <img src="../img/logo-brisasolucoes.png" alt="Brisasoluções" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
           <span class="logo-text" style="display:none;"><span class="brisa">brisa</span><span class="solucoes">soluções</span></span>
         </div>
         <div class="footer-info">
@@ -2153,7 +2178,7 @@
             WhatsApp Comercial: 81 99282-3101
           </a>
         </div>
-        <p class="footer-legal">Agente Autorizado Brisanet. Planos empresariais sujeitos a análise de viabilidade técnica. Oferta válida até 30/04/2025.</p>
+        <p class="footer-legal">Agente Autorizado Brisanet. Planos empresariais sujeitos a análise de viabilidade técnica.</p>
         <p class="footer-legal">Site desenvolvido e publicado por VIRTUNEX INTERMEDIACAO DE SERVICOS LTDA | CNPJ 57.999.680/0001-16. Parceiro autorizado BRISANET. Uso da marca regulamentado. Preços e condições sujeitos a alteração. Todos os direitos reservados.</p>
       </div>
     </div>

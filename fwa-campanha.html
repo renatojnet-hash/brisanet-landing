@@ -9,10 +9,7 @@
   <title>Internet 5G FWA Brisanet | Contrate Agora</title>
   <link rel="icon" type="image/x-icon" href="img/favicon.ico">
 
-    <!-- Fundo do hero = elemento LCP desta pagina -->
-  <link rel="preload" as="image" href="img/hero-brisanet-web-v4-2200.avif" type="image/avif" media="(min-width: 769px)" fetchpriority="high">
-  <link rel="preload" as="image" href="img/hero-brisanet-mob-v4-375.webp" type="image/webp" media="(max-width: 768px)" fetchpriority="high">
-<link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
   <!-- Google Tag Manager (GTM-WS3T5W6V) -->
   <script>
@@ -410,29 +407,19 @@
       position: relative;
       width: 100%;
       min-height: 600px;
-      /* Mesma arte de antes, so' reencodada: o PNG de 4,07 MB virou AVIF de 16 KB.
-         Esta declaracao e' o fallback para quem nao tem image-set(). */
-      background:
-        url('img/hero-brisanet-web-v4-2200.webp'),
-        radial-gradient(ellipse at top left, #3b6be8 0%, #2855d4 50%, #1e45b8 100%);
-      background-size: cover, cover;
-      background-position: right center, center;
+      /* DEC-011: a arte "MEGA BLACK" (peca de Black Friday) saiu daqui.
+         DEC-012: esta pagina e' a base de campanha — o hero fica no gradiente
+         institucional ate entrar uma peca sazonal. Quando os arquivos
+         img/fwa-hero-*.{avif,webp} chegarem, e' aqui que eles entram, junto
+         com o @supports/image-set logo abaixo e os preloads do <head>. */
+      background: radial-gradient(ellipse at top left, #3b6be8 0%, #2855d4 50%, #1e45b8 100%);
+      background-size: cover;
+      background-position: center;
       background-repeat: no-repeat;
       display: flex;
       align-items: center;
       padding-top: 90px;
       overflow: hidden;
-    }
-
-    /* Mantido como background (e nao <picture>) de proposito: preserva exatamente
-       o enquadramento do cover + background-position: right center. */
-    @supports (background-image: image-set(url('x.avif') type('image/avif'))) {
-      .hero-banner {
-        background-image:
-          image-set(url('img/hero-brisanet-web-v4-2200.avif') type('image/avif'),
-                    url('img/hero-brisanet-web-v4-2200.webp') type('image/webp')),
-          radial-gradient(ellipse at top left, #3b6be8 0%, #2855d4 50%, #1e45b8 100%);
-      }
     }
 
     .hero-banner__overlay {
@@ -619,11 +606,9 @@
 
     @media (max-width: 768px) {
       .hero-banner {
-        background:
-          url('img/hero-brisanet-mob-v4-375.webp'),
-          radial-gradient(ellipse at top left, #3b6be8 0%, #2855d4 50%, #1e45b8 100%);
-        background-size: cover, cover;
-        background-position: center top, center;
+        background: radial-gradient(ellipse at top left, #3b6be8 0%, #2855d4 50%, #1e45b8 100%);
+        background-size: cover;
+        background-position: center;
         min-height: auto;
         padding: 80px 0 40px;
       }
@@ -674,10 +659,13 @@
   <!-- Navigation - Simplified for Campaign -->
   <nav class="nav" id="nav" style="background: rgba(40, 85, 212, 0.95);">
     <div class="container">
-      <div class="nav-inner" style="justify-content: center;">
-        <a href="fwa-campanha.html" class="logo">
+      <!-- Landing page: sem menu e com o logo sem link, para nao dar saida ao
+           trafego pago. Unica acao do header e' o CTA. -->
+      <div class="nav-inner">
+        <span class="logo">
           <img src="img/logo.webp" alt="Brisanet" class="logo-img" width="450" height="114">
-        </a>
+        </span>
+        <a href="https://wa.me/5581992823101" target="_blank" onclick="return openWhatsApp('header', '500GB FWA 5G')" class="nav-cta">Contratar</a>
       </div>
     </div>
   </nav>
@@ -697,12 +685,12 @@
 
           <!-- TÍTULO H1 SEO -->
           <h1 class="hero-banner__title">
-            Internet 5G FWA Brisanet
+            Só ligar na tomada
           </h1>
 
           <!-- SUBTÍTULO DE APOIO -->
           <p class="hero-banner__subtitle">
-            Internet sem fio de alta velocidade para sua casa. Instalação rápida e sem obras.
+            Internet 5G sem fio, com Wi-Fi para toda a casa.
           </p>
 
           <!-- OFERTA - Bloco de Valor -->
