@@ -239,12 +239,37 @@
   ================================================ */
   var overlay = document.getElementById('lead-modal-overlay');
   var closeBtn = document.getElementById('lead-modal-close');
+  var btnNovoPlano = document.getElementById('btn-novo-plano');
+
+  var VENDAS_PHONE = '5581992823101';
+
+  // Contexto do CTA que abriu o modal (preenchido em openModal)
+  var leadContext = { origem: '', plano: '' };
+
+  function buildVendasUrl(plano) {
+    var msg = plano
+      ? 'Olá! Tenho interesse no plano: ' + plano
+      : 'Olá! Quero contratar internet Brisanet.';
+    return 'https://wa.me/' + VENDAS_PHONE + '?text=' + encodeURIComponent(msg);
+  }
 
   function openModal(e) {
+    var trigger = null;
+
     if (e) {
       e.preventDefault();
       e.stopPropagation();
+      trigger = e.currentTarget;
     }
+
+    leadContext.origem = (trigger && trigger.dataset.leadOrigem) || '';
+    leadContext.plano = (trigger && trigger.dataset.leadPlano) || '';
+
+    // Repassa o plano para o botão de vendas antes de exibir o modal
+    if (btnNovoPlano) {
+      btnNovoPlano.setAttribute('href', buildVendasUrl(leadContext.plano));
+    }
+
     overlay.classList.add('active');
     document.body.style.overflow = 'hidden';
   }
@@ -275,7 +300,9 @@
     window.dataLayer.push({
       event: 'lead_qualification',
       lead_tipo: tipo,
-      lead_pagina: window.location.pathname
+      lead_pagina: window.location.pathname,
+      lead_origem: leadContext.origem,
+      lead_plano: leadContext.plano
     });
   };
 
@@ -292,6 +319,21 @@
     'a[href*="wa.me"]'
   ];
 
+  // Extrai origem e plano de onclick="return openWhatsApp('origem', 'plano')"
+  var ONCLICK_RE = /openWhatsApp\(\s*'([^']*)'\s*,\s*'([^']*)'\s*\)/;
+
+  function captureLeadContext(el) {
+    var onclick = el.getAttribute('onclick');
+    if (!onclick) return;
+
+    var match = onclick.match(ONCLICK_RE);
+    if (!match) return;
+
+    el.dataset.leadOrigem = match[1];
+    // 'geral' é o marcador de CTA sem plano específico (header, footer, flutuante)
+    el.dataset.leadPlano = match[2] === 'geral' ? '' : match[2];
+  }
+
   function interceptCTAs() {
     var combined = ctaSelectors.join(', ');
     var elements = document.querySelectorAll(combined);
@@ -299,6 +341,9 @@
     elements.forEach(function (el) {
       // Skip the modal's own buttons
       if (el.id === 'btn-novo-plano' || el.id === 'btn-sou-cliente') return;
+
+      // Preserva origem/plano antes de descartar o handler inline
+      captureLeadContext(el);
 
       // Remove existing onclick handlers
       el.removeAttribute('onclick');
@@ -322,6 +367,7 @@
     // Also intercept mobile menu WhatsApp links
     var mobileMenuLinks = document.querySelectorAll('.mobile-menu a[href*="wa.me"]');
     mobileMenuLinks.forEach(function (el) {
+      captureLeadContext(el);
       el.removeAttribute('onclick');
       el.addEventListener('click', function (e) {
         // Close mobile menu first

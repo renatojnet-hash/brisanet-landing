@@ -170,40 +170,15 @@
       right: 0;
       z-index: 200;
       padding: 0.75rem 0;
-      background: rgba(40, 85, 212, 0.85);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-      transition: all 0.4s var(--ease-out);
+      /* branco solido desde o topo: o logo laranja nao tem contraste sobre o azul do hero */
+      background: #ffffff;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      transition: padding 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
     }
 
     .nav.scrolled {
-      background: rgba(255, 255, 255, 0.98);
       box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
       padding: 0.5rem 0;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-    }
-
-    .nav.scrolled .nav-link {
-      color: #1a1a1a;
-    }
-
-    .nav.scrolled .nav-link:hover {
-      color: var(--brand-blue);
-      background: rgba(40, 85, 212, 0.08);
-    }
-
-    .nav.scrolled .nav-switch {
-      color: var(--brand-blue);
-      border-color: var(--brand-blue);
-    }
-
-    .nav.scrolled .logo-img {
-      filter: none;
-    }
-
-    .nav.scrolled .mobile-btn span {
-      background: #1a1a1a;
     }
     
     .nav-inner {
@@ -222,12 +197,12 @@
       padding: 0.5rem 1rem;
       font-size: 0.9rem;
       font-weight: 500;
-      color: #ffffff;
+      color: #1a1a1a;
       border-radius: 8px;
       transition: all 0.2s ease;
     }
     
-    .nav-link:hover { color: var(--text); background: var(--surface); }
+    .nav-link:hover { color: var(--brand-blue); background: rgba(40, 85, 212, 0.08); }
     
     .nav-switch {
       display: flex;
@@ -236,9 +211,9 @@
       padding: 0.5rem 1rem;
       font-size: 0.875rem;
       font-weight: 600;
-      color: #ffffff;
+      color: var(--brand-blue);
       background: transparent;
-      border: 2px solid #ffffff;
+      border: 2px solid var(--brand-blue);
       border-radius: 50px;
       text-decoration: none;
       transition: all 0.3s ease;
@@ -256,7 +231,8 @@
 
     .nav-cta {
       padding: 0.625rem 1.5rem;
-      background: var(--accent);
+      /* laranja escuro: o --accent (#ff5722) dava 3,16:1 com branco */
+      background: #C2410C;
       border-radius: 50px;
       font-size: 0.9rem;
       font-weight: 600;
@@ -278,7 +254,7 @@
       display: block;
       width: 22px;
       height: 2px;
-      background: var(--text);
+      background: #1a1a1a;
       border-radius: 2px;
       transition: all 0.3s var(--ease-out);
     }
@@ -538,14 +514,16 @@
 
     .hero-banner__price-after {
       font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.7);
+      /* 0.7 caia para 4,41:1 sobre o azul mais claro do gradiente no mobile */
+      color: rgba(255, 255, 255, 0.82);
       margin-top: -8px;
     }
 
     .hero-banner .btn--highlight {
       padding: 12px 24px;
       font-size: 1rem;
-      background: #FF6B35;
+      /* laranja escuro: o #FF6B35 dava 2,83:1 com branco */
+      background: #C2410C;
       color: #ffffff;
       font-weight: 700;
       border-radius: 50px;
@@ -1122,41 +1100,44 @@
 
     .plan-dots {
       display: flex;
-      gap: 10px;
+      /* 8px de folga entre alvos de 24px: centros a 32px, acima dos 24px do WCAG */
+      gap: 8px;
     }
 
+    /* O alvo e' o proprio botao (24x24). O ponto visual de 12px fica no ::after —
+       pseudo-elemento nao conta como area de clique para o target-size. */
     .plan-dot {
+      width: 24px;
+      height: 24px;
+      background: transparent;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .plan-dot::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       width: 12px;
       height: 12px;
       border-radius: 50%;
       background: transparent;
       border: 2px solid rgba(255, 255, 255, 0.5);
       transition: all 0.3s ease;
-      cursor: pointer;
-      padding: 0;
-      /* Touch target wrapper - mínimo 44px para WCAG */
-      position: relative;
     }
 
-    .plan-dot::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-    }
-
-    .plan-dot:hover {
+    .plan-dot:hover::after {
       border-color: rgba(255, 255, 255, 0.8);
     }
 
-    .plan-dot.active {
+    .plan-dot.active::after {
       background: var(--accent);
       border-color: #ffffff;
-      transform: scale(1.15);
+      transform: translate(-50%, -50%) scale(1.15);
       box-shadow: 0 0 8px rgba(255, 87, 34, 0.5);
     }
 
@@ -1344,33 +1325,6 @@
       color: var(--accent);
     }
 
-    /* Cards brancos sobre azul */
-    .testimonials .experience-card {
-      background: white;
-      border: 1px solid rgba(0, 0, 0, 0.08);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-    }
-
-    .testimonials .experience-card:hover {
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    }
-
-    .testimonials .experience-card-icon {
-      background: rgba(255, 87, 34, 0.1);
-    }
-
-    .testimonials .experience-card-icon svg {
-      color: var(--accent) !important;
-    }
-
-    .testimonials .experience-card h4 {
-      color: #1a1a1a !important;
-    }
-
-    .testimonials .experience-card p {
-      color: #5f6368 !important;
-    }
-
     .testimonials .testimonial-card {
       background: white;
       border: 1px solid rgba(0, 0, 0, 0.08);
@@ -1390,20 +1344,89 @@
     }
 
     .testimonials-wrapper {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: center;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
     }
     
     @media (max-width: 1024px) { .testimonials-wrapper { grid-template-columns: 1fr; gap: 2.5rem; } }
 
+    /* ===== AVALIAÇÕES DO GOOGLE ===== */
+    .google-reviews {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      align-items: start;
+    }
+
+    @media (max-width: 1024px) { .google-reviews { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px)  { .google-reviews { grid-template-columns: 1fr; } }
+
+    .review-card {
+      background: #ffffff;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 16px;
+      padding: 1.25rem;
+      box-shadow: var(--shadow-card-light);
+    }
+
+    .review-head {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.875rem;
+    }
+
+    .review-avatar {
+      flex-shrink: 0;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      /* 19px/700 qualifica como texto grande (AA 3:1) nas cores de avatar mais claras */
+      font-size: 1.1875rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .review-meta { flex: 1; min-width: 0; }
+
+    .review-name {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--text-on-white);
+      margin-bottom: 0.25rem;
+    }
+
+    .review-stars { display: flex; gap: 2px; }
+    .review-stars svg { width: 15px; height: 15px; display: block; }
+    .star-on svg  { fill: #FBBC04; }
+    .star-off svg { fill: #dadce0; }
+
+    .review-google { width: 18px; height: 18px; flex-shrink: 0; align-self: flex-start; }
+
+    .review-text {
+      font-size: 0.9375rem;
+      line-height: 1.6;
+      color: var(--text-on-white-muted);
+    }
+
     .experience-cards {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 1rem;
     }
-    
+
+    @media (max-width: 900px) {
+      .experience-cards { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* Cenarios de uso vivem na secao de beneficios (fundo cinza claro) */
+    .benefits .experience-cards { margin-top: 1.5rem; }
+
     .experience-card {
       background: var(--card-light);
       border: 1px solid var(--border-light);
@@ -1435,7 +1458,7 @@
       color: var(--accent);
     }
 
-    .experience-card h4 {
+    .experience-card h3 {
       font-size: 1rem;
       font-weight: 700;
       color: var(--text-on-light);
@@ -1619,15 +1642,14 @@
       color: var(--text-on-white-muted);
     }
 
+    /* Coluna unica: em duas colunas, abrir um acordeao empurrava o item ao lado */
     .faq-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: 1fr;
       gap: 1rem;
-      max-width: 900px;
+      max-width: 760px;
       margin: 0 auto;
     }
-    
-    @media (max-width: 768px) { .faq-grid { grid-template-columns: 1fr; } }
 
     .faq-item {
       background: var(--bg);
@@ -1829,7 +1851,8 @@
     
     .footer-legal {
       font-size: 0.8rem;
-      color: rgba(255, 255, 255, 0.6);
+      /* 5,04:1 sobre o azul do rodape (0.6 dava 3,3:1) */
+      color: rgba(255, 255, 255, 0.85);
       max-width: 600px;
     }
 
@@ -1850,56 +1873,14 @@
     
     @media (max-width: 640px) { .whatsapp-float { bottom: 28px; right: 16px; } }
     
-    .whatsapp-online {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 50px;
-      padding: 0.5rem 1rem;
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: var(--text2);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      box-shadow: var(--shadow-md);
-      animation: fadeUp 0.6s var(--ease-out) 1s forwards;
-      opacity: 0;
-    }
-    
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    .whatsapp-online .dot {
-      width: 8px;
-      height: 8px;
-      background: var(--green);
-      border-radius: 50%;
-      position: relative;
-    }
-    
-    .whatsapp-online .dot::before {
-      content: '';
-      position: absolute;
-      inset: -2px;
-      border-radius: 50%;
-      background: var(--green);
-      animation: pulse-ring 2s ease-out infinite;
-    }
-    
-    @keyframes pulse-ring {
-      0% { transform: scale(1); opacity: 0.4; }
-      100% { transform: scale(2); opacity: 0; }
-    }
-    
     .whatsapp-btn {
       display: flex;
       align-items: center;
       gap: 0.625rem;
       padding: 1rem 1.75rem;
-      background: #25D366;
-      color: white;
+      /* verde escuro solido com texto branco: 5,41:1 */
+      background: #0B7A45;
+      color: #ffffff;
       border-radius: 50px;
       font-weight: 600;
       font-size: 0.95rem;
@@ -2197,7 +2178,7 @@
             </div>
             <span class="benefit-label">Tecnologia</span>
             <h3 class="benefit-title">Wi-Fi de última geração</h3>
-            <p class="benefit-desc">Planos com Wi-Fi 6 para melhor alcance, menos interferência e mais performance em toda casa.</p>
+            <p class="benefit-desc">Wi-Fi 6 nos planos a partir de 600 Mega, para melhor alcance em toda a casa.</p>
           </article>
           <article class="benefit-card reveal reveal-delay-3">
             <div class="benefit-icon">
@@ -2216,6 +2197,32 @@
             <p class="benefit-desc">Instalação inclusa e acompanhamento do pedido até a ativação com equipe local.</p>
           </article>
         </div>
+
+        <!-- Cenarios de uso: conteudo de produto, fica junto dos beneficios
+             (antes estava na secao de avaliacoes, que e' prova social).
+             h3 e nao h4: a secao abre em h2 e os benefit-title ja sao h3. -->
+        <div class="experience-cards reveal">
+          <article class="experience-card">
+            <div class="experience-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="15" rx="2"/><path d="M17 2l-5 5-5-5"/></svg></div>
+            <h3>Streaming 4K</h3>
+            <p>TVs e tablets rodando séries sem travar.</p>
+          </article>
+          <article class="experience-card">
+            <div class="experience-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+            <h3>Home office</h3>
+            <p>Chamadas de vídeo estáveis em toda casa.</p>
+          </article>
+          <article class="experience-card">
+            <div class="experience-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M12 18h.01"/></svg></div>
+            <h3>Gamers</h3>
+            <p>Baixa latência para consoles e PCs.</p>
+          </article>
+          <article class="experience-card">
+            <div class="experience-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+            <h3>Famílias</h3>
+            <p>Rede segura para estudos e redes sociais.</p>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -2224,81 +2231,64 @@
       <div class="container">
         <header class="section-header reveal">
           <h2 class="section-title">A experiência de quem já escolheu a Brisanet</h2>
-          <p class="section-subtitle">Experiências reais de quem vive essa internet todos os dias.</p>
+          <p class="section-subtitle">Avaliações no Google</p>
         </header>
         <div class="testimonials-wrapper">
-          <div class="experience-cards reveal">
-            <article class="experience-card">
-              <div class="experience-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="15" rx="2"/><path d="M17 2l-5 5-5-5"/></svg></div>
-              <h4>Streaming 4K</h4>
-              <p>TVs e tablets rodando séries sem travar.</p>
-            </article>
-            <article class="experience-card">
-              <div class="experience-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
-              <h4>Home office</h4>
-              <p>Chamadas de vídeo estáveis em toda casa.</p>
-            </article>
-            <article class="experience-card">
-              <div class="experience-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M12 18h.01"/></svg></div>
-              <h4>Gamers</h4>
-              <p>Baixa latência para consoles e PCs.</p>
-            </article>
-            <article class="experience-card">
-              <div class="experience-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
-              <h4>Famílias</h4>
-              <p>Rede segura para estudos e redes sociais.</p>
-            </article>
-          </div>
-          <div class="testimonial-carousel reveal">
-            <div class="testimonial-track">
-              <div class="testimonial-slide active">
-                <div class="testimonial-card">
-                  <p class="testimonial-quote">"Contratei a internet fibra Brisanet e a velocidade é excelente, tanto para streaming quanto para trabalho remoto."</p>
-                  <div class="testimonial-author">
-                    <div class="testimonial-avatar">FS</div>
-                    <div class="testimonial-info"><h5>Família Silva</h5><span>Cliente desde 2023</span></div>
-                    <div class="testimonial-rating"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
-                  </div>
+        <div class="google-reviews reveal">
+          <article class="review-card">
+            <div class="review-head">
+              <span class="review-avatar" style="background: #1967D2;" aria-hidden="true">ES</span>
+              <div class="review-meta">
+                <p class="review-name">Élida Silva</p>
+                <div class="review-stars" role="img" aria-label="5 de 5 estrelas">
+                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
                 </div>
               </div>
-              <div class="testimonial-slide">
-                <div class="testimonial-card">
-                  <p class="testimonial-quote">"Com a Brisanet consigo fazer calls em 4K enquanto as crianças assistem streaming. Internet estável de verdade."</p>
-                  <div class="testimonial-author">
-                    <div class="testimonial-avatar">AC</div>
-                    <div class="testimonial-info"><h5>Ana Carolina</h5><span>Home office</span></div>
-                    <div class="testimonial-rating"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
-                  </div>
-                </div>
-              </div>
-              <div class="testimonial-slide">
-                <div class="testimonial-card">
-                  <p class="testimonial-quote">"A internet Brisanet é perfeita para games. Ping baixo, upload alto e não oscila nas lives."</p>
-                  <div class="testimonial-author">
-                    <div class="testimonial-avatar">MR</div>
-                    <div class="testimonial-info"><h5>Matheus Reis</h5><span>Gamer / Streamer</span></div>
-                    <div class="testimonial-rating"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
-                  </div>
-                </div>
-              </div>
-              <div class="testimonial-slide">
-                <div class="testimonial-card">
-                  <p class="testimonial-quote">"Instalação rápida e equipe local muito atenciosa. A internet fibra funciona perfeitamente."</p>
-                  <div class="testimonial-author">
-                    <div class="testimonial-avatar">DL</div>
-                    <div class="testimonial-info"><h5>Daniela Lima</h5><span>Cliente Brisanet</span></div>
-                    <div class="testimonial-rating"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
-                  </div>
-                </div>
-              </div>
+              <svg class="review-google" viewBox="0 0 48 48" role="img" aria-label="Google"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
             </div>
-            <div class="carousel-dots">
-              <button class="carousel-dot active" data-index="0" aria-label="Depoimento 1"></button>
-              <button class="carousel-dot" data-index="1" aria-label="Depoimento 2"></button>
-              <button class="carousel-dot" data-index="2" aria-label="Depoimento 3"></button>
-              <button class="carousel-dot" data-index="3" aria-label="Depoimento 4"></button>
+            <p class="review-text">Utilizo a Internet da Brisanet há 2 anos, e posso dizer que sempre fui muito bem atendida. Principalmente quando ocorrem falhas, os técnicos vêm rapidamente à minha residência resolver, até mesmo em dias de domingo e feriado. Recomendo!</p>
+          </article>
+
+          <article class="review-card">
+            <div class="review-head">
+              <span class="review-avatar" style="background: #B06000;" aria-hidden="true">SA</span>
+              <div class="review-meta">
+                <p class="review-name">Sonia Alves</p>
+                <div class="review-stars" role="img" aria-label="5 de 5 estrelas">
+                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                </div>
+              </div>
+              <svg class="review-google" viewBox="0 0 48 48" role="img" aria-label="Google"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
             </div>
-          </div>
+            <p class="review-text">Fui atendida com rapidez, ótimas instalações para o cliente e, acima de tudo, fui atendida com respeito e educação pela atendente, que tirou todas as minhas dúvidas. Empresa que prioriza seus clientes. Eu dou nota dez.</p>
+          </article>
+
+          <article class="review-card">
+            <div class="review-head">
+              <span class="review-avatar" style="background: #7627BB;" aria-hidden="true">RL</span>
+              <div class="review-meta">
+                <p class="review-name">Rafaela Lopes</p>
+                <div class="review-stars" role="img" aria-label="5 de 5 estrelas">
+                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                </div>
+              </div>
+              <svg class="review-google" viewBox="0 0 48 48" role="img" aria-label="Google"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+            </div>
+            <p class="review-text">Até agora, a experiência está sendo ótima: fiz o pedido quinta à noite, e no sábado pela manhã já vieram instalar, e a internet é ótima. Espero que siga assim.</p>
+          </article>
+        </div>
         </div>
       </div>
     </section>
@@ -2341,12 +2331,7 @@
         <div class="cta-card reveal">
           <div class="cta-content">
             <h2 class="cta-title">Pronto para contratar sua Internet Fibra Brisanet?</h2>
-            <p class="cta-subtitle">Escolha o plano ideal para sua casa e aproveite internet rápida, estável e com Wi-Fi de última geração.</p>
-            <div class="cta-features">
-              <div class="cta-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span>500 Mega a 1 Giga</span></div>
-              <div class="cta-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span>Wi-Fi 6 incluso</span></div>
-              <div class="cta-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação inclusa</span></div>
-            </div>
+            <p class="cta-subtitle">Escolha o plano ideal para sua casa e aproveite internet rápida, estável e com Wi-Fi incluso.</p>
             <div class="cta-buttons">
               <a href="#planos" class="cta-btn-p">Escolher meu plano</a>
             </div>
@@ -2364,8 +2349,7 @@
           <img src="img/logo.png" alt="Brisanet" class="logo-img">
         </div>
         <div class="footer-info">
-          <p>Brisanet Telecomunicações S.A. | CNPJ 02.421.421/0001-11</p>
-          <p>Matriz: Pereiro - CE</p>
+          <p>Brisanet Telecomunicações S.A. | CNPJ 02.421.421/0001-11 | Matriz: Pereiro - CE</p>
         </div>
         <div class="footer-contact">
           <a href="tel:08002813017">
@@ -2377,18 +2361,14 @@
             WhatsApp: 81 99282-3101
           </a>
         </div>
-        <p class="footer-legal">Agente Autorizado Brisanet. Preços e condições sujeitos a alteração.</p>
+        <p class="footer-legal">Site desenvolvido e publicado por VIRTUNEX INTERMEDIACAO DE SERVICOS LTDA | CNPJ 57.999.680/0001-16. Parceiro autorizado BRISANET. Uso da marca regulamentado. Preços e condições sujeitos a alteração. Todos os direitos reservados.</p>
       </div>
     </div>
   </footer>
 
   <!-- WhatsApp Widget -->
   <div class="whatsapp-float">
-    <div class="whatsapp-online">
-      <span class="dot"></span>
-      <span id="online-count">127 pessoas online</span>
-    </div>
-    <a href="https://wa.me/5581992823101" onclick="return openWhatsApp('floating', 'geral')" class="whatsapp-btn">
+    <a href="https://wa.me/5581992823101" onclick="return openWhatsApp('floating', 'geral')" class="whatsapp-btn" aria-label="Falar no WhatsApp">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
       <span>WhatsApp</span>
     </a>
@@ -2484,18 +2464,6 @@
       updateDots();
     });
 
-    // Testimonial carousel
-    const dots = document.querySelectorAll('.carousel-dot');
-    const slides = document.querySelectorAll('.testimonial-slide');
-    let currentSlide = 0;
-    function setSlide(i) {
-      currentSlide = i;
-      slides.forEach((s, j) => s.classList.toggle('active', j === i));
-      dots.forEach((d, j) => d.classList.toggle('active', j === i));
-    }
-    dots.forEach(d => d.addEventListener('click', () => setSlide(parseInt(d.dataset.index))));
-    setInterval(() => setSlide((currentSlide + 1) % slides.length), 6000);
-
     // Scroll reveal
     const reveals = document.querySelectorAll('.reveal');
     const revealObserver = new IntersectionObserver(entries => entries.forEach(e => {
@@ -2510,36 +2478,6 @@
       if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }));
 
-    // WhatsApp counter - Heatmap-based logic (Google Ads pattern)
-    const onlineCount = document.getElementById('online-count');
-    function updateOnlineCount() {
-      const now = new Date();
-      const day = now.getDay(); // 0=Dom, 1=Seg, 2=Ter, 3=Qua, 4=Qui, 5=Sex, 6=Sab
-      const hour = now.getHours();
-
-      // Intensidade por hora (0-1) baseada no mapa de calor Google Ads
-      const hourIntensity = [
-        0.05, 0.03, 0.02, 0.02, 0.02, 0.05, // 00-05: muito baixo
-        0.15, 0.30, 0.50, 0.75, 0.90, 1.00, // 06-11: subindo até pico
-        0.95, 0.90, 0.85, 0.75, 0.65, 0.55, // 12-17: pico descendo
-        0.40, 0.30, 0.20, 0.15, 0.10, 0.08  // 18-23: caindo
-      ][hour];
-
-      // Multiplicador por dia (Dom menos, Ter-Qui mais)
-      const dayMultiplier = [0.60, 0.85, 1.00, 1.00, 0.95, 0.80, 0.70][day];
-
-      // Calcular base: max 150 no pico absoluto
-      const maxOnline = 150;
-      const minOnline = 8;
-      const baseCount = Math.round(minOnline + (maxOnline - minOnline) * hourIntensity * dayMultiplier);
-
-      // Adicionar variação aleatória de ±10%
-      const variance = Math.round(baseCount * 0.1 * (Math.random() * 2 - 1));
-      const count = Math.max(minOnline, Math.min(maxOnline, baseCount + variance));
-
-      onlineCount.textContent = count + ' pessoas online';
-    }
-    if (onlineCount) { updateOnlineCount(); setInterval(updateOnlineCount, 12000); }
   </script>
   <script src="lead-modal.js"></script>
 </body>

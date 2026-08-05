@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#2855d4">
+  <title>Página não encontrada | Brisanet Fibra</title>
+  <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+
+  <!-- Google Tag Manager (GTM-WS3T5W6V) -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-WS3T5W6V');</script>
+  <!-- End Google Tag Manager (GTM-WS3T5W6V) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brand-blue: #2855d4;
+      --accent: #C2410C;
+      --bg-footer: #2855d4;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      background: #f5f5f7;
+      color: #3c4043;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ===== NAV ===== */
+    .nav {
+      background: var(--brand-blue);
+      padding: 1rem 0;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .logo-img {
+      height: 28px;
+      width: auto;
+      display: block;
+    }
+
+    .nav-cta {
+      background: var(--accent);
+      color: #ffffff;
+      padding: 0.625rem 1.25rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.9375rem;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    /* ===== CONTEÚDO ===== */
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      padding: 4rem 0;
+    }
+
+    .error-box {
+      max-width: 620px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .error-code {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 4rem;
+      font-weight: 700;
+      color: var(--brand-blue);
+      line-height: 1;
+      margin-bottom: 0.75rem;
+    }
+
+    .error-box h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.875rem;
+      font-weight: 700;
+      color: #1a237e;
+      margin-bottom: 0.75rem;
+      line-height: 1.25;
+    }
+
+    .error-box p {
+      font-size: 1.0625rem;
+      line-height: 1.6;
+      color: #5f6368;
+      margin-bottom: 2rem;
+    }
+
+    .error-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.875rem;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.875rem 1.75rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--brand-blue);
+      color: #ffffff;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--accent);
+      border: 2px solid var(--accent);
+    }
+
+    .btn-primary:hover,
+    .btn-secondary:hover { opacity: 0.85; }
+
+    .btn-secondary svg { width: 20px; height: 20px; fill: currentColor; }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: var(--bg-footer);
+      padding: 3rem 0;
+      color: #ffffff;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1rem;
+    }
+
+    .footer-info p { font-size: 0.9375rem; }
+
+    .footer-contact {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    .footer-contact a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 0.9375rem;
+      font-weight: 500;
+    }
+
+    .footer-contact a:hover { opacity: 0.8; }
+
+    .footer-legal {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.85);
+      max-width: 600px;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 640px) {
+      .error-code { font-size: 3rem; }
+      .error-box h1 { font-size: 1.5rem; }
+      .error-actions { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Google Tag Manager (noscript) (GTM-WS3T5W6V) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WS3T5W6V"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) (GTM-WS3T5W6V) -->
+
+  <nav class="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="/" aria-label="Brisanet — página inicial">
+          <img src="/img/logo.png" alt="Brisanet" class="logo-img">
+        </a>
+        <a href="https://wa.me/5581992823101" target="_blank" rel="noopener" class="nav-cta">Contratar</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <div class="container">
+      <div class="error-box">
+        <p class="error-code">404</p>
+        <h1>Página não encontrada</h1>
+        <p>O endereço que você acessou não existe ou foi movido.</p>
+        <div class="error-actions">
+          <a href="/" class="btn-primary">Ir para a página inicial</a>
+          <a href="https://wa.me/5581992823101" target="_blank" rel="noopener" class="btn-secondary">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+            Falar no WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-info">
+          <p>Brisanet Telecomunicações S.A. | CNPJ 02.421.421/0001-11 | Matriz: Pereiro - CE</p>
+        </div>
+        <div class="footer-contact">
+          <a href="tel:08002813017">SAC 0800 281 3017</a>
+          <a href="https://wa.me/5581992823101" target="_blank" rel="noopener">WhatsApp: 81 99282-3101</a>
+        </div>
+        <p class="footer-legal">Site desenvolvido e publicado por VIRTUNEX INTERMEDIACAO DE SERVICOS LTDA | CNPJ 57.999.680/0001-16. Parceiro autorizado BRISANET. Uso da marca regulamentado. Preços e condições sujeitos a alteração. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

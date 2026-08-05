@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
   <meta name="description" content="Internet 5G FWA Brisanet: conexão sem fio de alta velocidade para sua casa. Planos a partir de R$ 99,90 com aparelho em comodato.">
   <meta name="theme-color" content="#2855d4">
   <title>Internet 5G FWA Brisanet | Contrate Agora</title>
@@ -170,40 +171,15 @@
       right: 0;
       z-index: 200;
       padding: 0.75rem 0;
-      background: rgba(40, 85, 212, 0.85);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-      transition: all 0.4s var(--ease-out);
+      /* branco solido desde o topo: o logo laranja nao tem contraste sobre o azul do hero */
+      background: #ffffff;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      transition: padding 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
     }
 
     .nav.scrolled {
-      background: rgba(255, 255, 255, 0.98);
       box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
       padding: 0.5rem 0;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-    }
-
-    .nav.scrolled .nav-link {
-      color: #1a1a1a;
-    }
-
-    .nav.scrolled .nav-link:hover {
-      color: var(--brand-blue);
-      background: rgba(40, 85, 212, 0.08);
-    }
-
-    .nav.scrolled .nav-switch {
-      color: var(--brand-blue);
-      border-color: var(--brand-blue);
-    }
-
-    .nav.scrolled .logo-img {
-      filter: none;
-    }
-
-    .nav.scrolled .mobile-btn span {
-      background: #1a1a1a;
     }
     
     .nav-inner {
@@ -222,12 +198,12 @@
       padding: 0.5rem 1rem;
       font-size: 0.9rem;
       font-weight: 500;
-      color: #ffffff;
+      color: #1a1a1a;
       border-radius: 8px;
       transition: all 0.2s ease;
     }
     
-    .nav-link:hover { color: var(--text); background: var(--surface); }
+    .nav-link:hover { color: var(--brand-blue); background: rgba(40, 85, 212, 0.08); }
     
     .nav-switch {
       display: flex;
@@ -236,9 +212,9 @@
       padding: 0.5rem 1rem;
       font-size: 0.875rem;
       font-weight: 600;
-      color: #ffffff;
+      color: var(--brand-blue);
       background: transparent;
-      border: 2px solid #ffffff;
+      border: 2px solid var(--brand-blue);
       border-radius: 50px;
       text-decoration: none;
       transition: all 0.3s ease;
@@ -278,7 +254,7 @@
       display: block;
       width: 22px;
       height: 2px;
-      background: var(--text);
+      background: #1a1a1a;
       border-radius: 2px;
       transition: all 0.3s var(--ease-out);
     }
@@ -1850,56 +1826,14 @@
     
     @media (max-width: 640px) { .whatsapp-float { bottom: 28px; right: 16px; } }
     
-    .whatsapp-online {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 50px;
-      padding: 0.5rem 1rem;
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: var(--text2);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      box-shadow: var(--shadow-md);
-      animation: fadeUp 0.6s var(--ease-out) 1s forwards;
-      opacity: 0;
-    }
-    
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    .whatsapp-online .dot {
-      width: 8px;
-      height: 8px;
-      background: var(--green);
-      border-radius: 50%;
-      position: relative;
-    }
-    
-    .whatsapp-online .dot::before {
-      content: '';
-      position: absolute;
-      inset: -2px;
-      border-radius: 50%;
-      background: var(--green);
-      animation: pulse-ring 2s ease-out infinite;
-    }
-    
-    @keyframes pulse-ring {
-      0% { transform: scale(1); opacity: 0.4; }
-      100% { transform: scale(2); opacity: 0; }
-    }
-    
     .whatsapp-btn {
       display: flex;
       align-items: center;
       gap: 0.625rem;
       padding: 1rem 1.75rem;
-      background: #25D366;
-      color: white;
+      /* verde escuro solido com texto branco: 5,41:1 */
+      background: #0B7A45;
+      color: #ffffff;
       border-radius: 50px;
       font-weight: 600;
       font-size: 0.95rem;
@@ -2252,20 +2186,20 @@
           <img src="img/logo.png" alt="Brisanet" class="logo-img" style="max-width: 120px;">
         </div>
         <div class="footer-info">
-          <p style="color: white; margin: 0;">Brisanet Telecomunicações S.A. | CNPJ 02.421.421/0001-11</p>
-          <p style="margin-top: 0.5rem; color: rgba(255,255,255,0.8);">Agente Autorizado Brisanet</p>
+          <p style="color: white; margin: 0;">Brisanet Telecomunicações S.A. | CNPJ 02.421.421/0001-11 | Matriz: Pereiro - CE</p>
         </div>
+        <div class="footer-contact">
+          <a href="tel:08002813017" style="color: white;">SAC 0800 281 3017</a>
+          <a href="https://wa.me/5581992823101" onclick="return openWhatsApp('footer', 'geral')" style="color: white;">WhatsApp: 81 99282-3101</a>
+        </div>
+        <p class="footer-legal" style="color: rgba(255,255,255,0.85);">Site desenvolvido e publicado por VIRTUNEX INTERMEDIACAO DE SERVICOS LTDA | CNPJ 57.999.680/0001-16. Parceiro autorizado BRISANET. Uso da marca regulamentado. Preços e condições sujeitos a alteração. Todos os direitos reservados.</p>
       </div>
     </div>
   </footer>
 
   <!-- WhatsApp Widget -->
   <div class="whatsapp-float">
-    <div class="whatsapp-online">
-      <span class="dot"></span>
-      <span id="online-count">127 pessoas online</span>
-    </div>
-    <a href="https://wa.me/5581992823101" onclick="return openWhatsApp('floating', 'geral')" class="whatsapp-btn">
+    <a href="https://wa.me/5581992823101" onclick="return openWhatsApp('floating', 'geral')" class="whatsapp-btn" aria-label="Falar no WhatsApp">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
       <span>WhatsApp</span>
     </a>
@@ -2387,36 +2321,6 @@
       if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }));
 
-    // WhatsApp counter - Heatmap-based logic (Google Ads pattern)
-    const onlineCount = document.getElementById('online-count');
-    function updateOnlineCount() {
-      const now = new Date();
-      const day = now.getDay(); // 0=Dom, 1=Seg, 2=Ter, 3=Qua, 4=Qui, 5=Sex, 6=Sab
-      const hour = now.getHours();
-
-      // Intensidade por hora (0-1) baseada no mapa de calor Google Ads
-      const hourIntensity = [
-        0.05, 0.03, 0.02, 0.02, 0.02, 0.05, // 00-05: muito baixo
-        0.15, 0.30, 0.50, 0.75, 0.90, 1.00, // 06-11: subindo até pico
-        0.95, 0.90, 0.85, 0.75, 0.65, 0.55, // 12-17: pico descendo
-        0.40, 0.30, 0.20, 0.15, 0.10, 0.08  // 18-23: caindo
-      ][hour];
-
-      // Multiplicador por dia (Dom menos, Ter-Qui mais)
-      const dayMultiplier = [0.60, 0.85, 1.00, 1.00, 0.95, 0.80, 0.70][day];
-
-      // Calcular base: max 150 no pico absoluto
-      const maxOnline = 150;
-      const minOnline = 8;
-      const baseCount = Math.round(minOnline + (maxOnline - minOnline) * hourIntensity * dayMultiplier);
-
-      // Adicionar variação aleatória de ±10%
-      const variance = Math.round(baseCount * 0.1 * (Math.random() * 2 - 1));
-      const count = Math.max(minOnline, Math.min(maxOnline, baseCount + variance));
-
-      onlineCount.textContent = count + ' pessoas online';
-    }
-    if (onlineCount) { updateOnlineCount(); setInterval(updateOnlineCount, 12000); }
   </script>
   <script src="lead-modal.js"></script>
 </body>
