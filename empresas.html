@@ -14,10 +14,30 @@
   <meta name="theme-color" content="#1E1E1E">
   <title>Brisasoluções | Internet Fibra para Empresas</title>
   <link rel="icon" type="image/x-icon" href="img/favicon.ico">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="preload" href="fonts/figtree-latin.woff2" as="font" type="font/woff2" crossorigin>
   <style>
+    /* ===== FONTE SELF-HOSTED =====
+       Figtree variavel: um arquivo por subset cobre o eixo 400-800, que sao
+       exatamente os pesos usados nesta pagina. */
+    @font-face {
+      font-family: 'Figtree';
+      font-style: normal;
+      font-weight: 400 800;
+      font-display: swap;
+      src: url('fonts/figtree-latin.woff2') format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    @font-face {
+      font-family: 'Figtree';
+      font-style: normal;
+      font-weight: 400 800;
+      font-display: swap;
+      src: url('fonts/figtree-latin-ext.woff2') format('woff2');
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
     :root {
       /* Brisasoluções Brand Colors */
       --orange: #FF5022;
@@ -112,40 +132,20 @@
       right: 0;
       z-index: 200;
       padding: 0.75rem 0;
-      background: rgba(30, 30, 30, 0.85);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-      transition: all 0.4s var(--ease-out);
+      /* branco solido desde o topo, como nas demais paginas */
+      background: #ffffff;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      transition: padding 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
     }
-    
+
     .nav.scrolled {
-      background: rgba(255, 255, 255, 0.98);
       box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
       padding: 0.5rem 0;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
     }
 
-    .nav.scrolled .nav-link {
-      color: #1a1a1a;
-    }
-
-    .nav.scrolled .nav-link:hover {
-      color: var(--accent);
+    .nav-link:hover {
+      color: #C2410C;
       background: rgba(255, 80, 34, 0.08);
-    }
-
-    .nav.scrolled .nav-switch {
-      color: var(--accent);
-      border-color: var(--accent);
-    }
-
-    .nav.scrolled .logo-img {
-      filter: none;
-    }
-
-    .nav.scrolled .mobile-btn span {
-      background: #1a1a1a;
     }
     
     .nav-inner {
@@ -173,12 +173,10 @@
       padding: 0.5rem 1rem;
       font-size: 0.9rem;
       font-weight: 500;
-      color: #ffffff;
+      color: #1a1a1a;
       border-radius: 8px;
       transition: all 0.2s ease;
     }
-    
-    .nav-link:hover { color: var(--text); background: var(--surface); }
     
     .nav-switch {
       display: flex;
@@ -187,9 +185,10 @@
       padding: 0.5rem 1rem;
       font-size: 0.875rem;
       font-weight: 600;
-      color: #ffffff;
+      /* laranja escuro: 5,18:1 com branco, ao contrario do --accent (#FF5022) */
+      color: #C2410C;
       background: transparent;
-      border: 2px solid #ffffff;
+      border: 2px solid #C2410C;
       border-radius: 50px;
       text-decoration: none;
       transition: all 0.3s ease;
@@ -477,7 +476,8 @@
     .hero-banner .btn--highlight {
       padding: 12px 24px;
       font-size: 1rem;
-      background: #FF5022;
+      /* laranja escuro: o #FF5022 dava 3,26:1 com branco */
+      background: #C2410C;
       color: #ffffff;
       font-weight: 700;
       border-radius: 50px;
@@ -962,23 +962,39 @@
       margin-top: 2rem;
     }
 
+    /* O alvo e' o proprio botao (24x24). O ponto visual de 10px fica no ::after —
+       pseudo-elemento nao conta como area de clique para o target-size. */
     .plan-dot {
+      width: 24px;
+      height: 24px;
+      background: transparent;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .plan-dot::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       width: 10px;
       height: 10px;
       border-radius: 50%;
       background: transparent;
       border: 2px solid rgba(255, 255, 255, 0.3);
-      cursor: pointer;
       transition: all 0.3s var(--ease-out);
     }
 
-    .plan-dot.active {
+    .plan-dot.active::after {
       background: var(--accent);
       border-color: #ffffff;
-      transform: scale(1.15);
+      transform: translate(-50%, -50%) scale(1.15);
     }
 
-    .plan-dot:hover:not(.active) {
+    .plan-dot:hover:not(.active)::after {
       border-color: rgba(255, 255, 255, 0.5);
     }
 
@@ -1138,7 +1154,7 @@
       color: var(--accent);
     }
     
-    .experience-card h4 {
+    .experience-card h3 {
       font-size: 1rem;
       font-weight: 700;
       color: var(--text);
@@ -1213,7 +1229,10 @@
       color: white;
     }
     
-    .testimonial-info h5 {
+    .testimonial-info h4 {
+      /* era <h5> (0.83em = 13.28px por padrao do navegador); virou <h4> para
+         corrigir heading-order, entao o tamanho fica fixado para nao mudar nada */
+      font-size: 0.83rem;
       font-weight: 700;
       color: var(--text);
       margin-bottom: 2px;
@@ -1482,56 +1501,14 @@
     
     @media (max-width: 640px) { .whatsapp-float { bottom: 28px; right: 16px; } }
     
-    .whatsapp-online {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 50px;
-      padding: 0.5rem 1rem;
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: var(--text2);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      box-shadow: var(--shadow-md);
-      animation: fadeUp 0.6s var(--ease-out) 1s forwards;
-      opacity: 0;
-    }
-    
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    .whatsapp-online .dot {
-      width: 8px;
-      height: 8px;
-      background: var(--green);
-      border-radius: 50%;
-      position: relative;
-    }
-    
-    .whatsapp-online .dot::before {
-      content: '';
-      position: absolute;
-      inset: -2px;
-      border-radius: 50%;
-      background: var(--green);
-      animation: pulse-ring 2s ease-out infinite;
-    }
-    
-    @keyframes pulse-ring {
-      0% { transform: scale(1); opacity: 0.4; }
-      100% { transform: scale(2); opacity: 0; }
-    }
-    
     .whatsapp-btn {
       display: flex;
       align-items: center;
       gap: 0.625rem;
       padding: 1rem 1.75rem;
-      background: #25D366;
-      color: white;
+      /* verde escuro solido com texto branco: 5,41:1 */
+      background: #0B7A45;
+      color: #ffffff;
       border-radius: 50px;
       font-weight: 600;
       font-size: 0.95rem;
@@ -2031,22 +2008,22 @@
           <div class="experience-cards reveal">
             <article class="experience-card">
               <div class="experience-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
-              <h4>E-commerce</h4>
+              <h3>E-commerce</h3>
               <p>Lojas virtuais sempre online.</p>
             </article>
             <article class="experience-card">
               <div class="experience-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
-              <h4>Escritórios</h4>
+              <h3>Escritórios</h3>
               <p>Videoconferências sem travamento.</p>
             </article>
             <article class="experience-card">
               <div class="experience-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg></div>
-              <h4>Clínicas</h4>
+              <h3>Clínicas</h3>
               <p>Sistemas sempre disponíveis.</p>
             </article>
             <article class="experience-card">
               <div class="experience-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
-              <h4>Varejo</h4>
+              <h3>Varejo</h3>
               <p>PDV e pagamentos rápidos.</p>
             </article>
           </div>
@@ -2057,7 +2034,7 @@
                   <p class="testimonial-quote">"Desde que migramos para a Brisasoluções, nossa loja virtual não teve um minuto fora do ar. As vendas aumentaram 40%."</p>
                   <div class="testimonial-author">
                     <div class="testimonial-avatar">RC</div>
-                    <div class="testimonial-info"><h5>Ricardo Costa</h5><span>CEO, TechStore</span></div>
+                    <div class="testimonial-info"><h4>Ricardo Costa</h4><span>CEO, TechStore</span></div>
                     <div class="testimonial-rating"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
                   </div>
                 </div>
@@ -2067,7 +2044,7 @@
                   <p class="testimonial-quote">"O telefone fixo digital foi um divisor de águas. Ligações ilimitadas para o Brasil inteiro economizaram mais de R$800 por mês."</p>
                   <div class="testimonial-author">
                     <div class="testimonial-avatar">MA</div>
-                    <div class="testimonial-info"><h5>Marina Alves</h5><span>Diretora, Alves & Associados</span></div>
+                    <div class="testimonial-info"><h4>Marina Alves</h4><span>Diretora, Alves & Associados</span></div>
                     <div class="testimonial-rating"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
                   </div>
                 </div>
@@ -2077,7 +2054,7 @@
                   <p class="testimonial-quote">"O IP fixo permitiu configurar nosso sistema de telemedicina na nuvem. Atendemos pacientes de todo o Nordeste."</p>
                   <div class="testimonial-author">
                     <div class="testimonial-avatar">DF</div>
-                    <div class="testimonial-info"><h5>Dr. Felipe Santos</h5><span>Clínica MedVida</span></div>
+                    <div class="testimonial-info"><h4>Dr. Felipe Santos</h4><span>Clínica MedVida</span></div>
                     <div class="testimonial-rating"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
                   </div>
                 </div>
@@ -2087,17 +2064,17 @@
                   <p class="testimonial-quote">"O suporte 24/7 nos salvou várias vezes. Qualquer problema é resolvido em minutos, não em dias."</p>
                   <div class="testimonial-author">
                     <div class="testimonial-avatar">PL</div>
-                    <div class="testimonial-info"><h5>Paulo Lima</h5><span>Gerente, Supermercado Bom Preço</span></div>
+                    <div class="testimonial-info"><h4>Paulo Lima</h4><span>Gerente, Supermercado Bom Preço</span></div>
                     <div class="testimonial-rating"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
                   </div>
                 </div>
               </div>
             </div>
             <div class="carousel-dots">
-              <button class="carousel-dot active" data-index="0"></button>
-              <button class="carousel-dot" data-index="1"></button>
-              <button class="carousel-dot" data-index="2"></button>
-              <button class="carousel-dot" data-index="3"></button>
+              <button class="carousel-dot active" data-index="0" aria-label="Depoimento 1"></button>
+              <button class="carousel-dot" data-index="1" aria-label="Depoimento 2"></button>
+              <button class="carousel-dot" data-index="2" aria-label="Depoimento 3"></button>
+              <button class="carousel-dot" data-index="3" aria-label="Depoimento 4"></button>
             </div>
           </div>
         </div>
@@ -2164,8 +2141,7 @@
           <span class="logo-text" style="display:none;"><span class="brisa">brisa</span><span class="solucoes">soluções</span></span>
         </div>
         <div class="footer-info">
-          <p>Brisanet Telecomunicações S.A. | CNPJ 02.421.421/0001-11</p>
-          <p>Matriz: Pereiro - CE</p>
+          <p>Brisanet Telecomunicações S.A. | CNPJ 02.421.421/0001-11 | Matriz: Pereiro - CE</p>
         </div>
         <div class="footer-contact">
           <a href="tel:08002813017">
@@ -2174,21 +2150,18 @@
           </a>
           <a href="https://wa.me/5581992823101" onclick="return openWhatsApp('footer', 'empresas')">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
-            WhatsApp Comercial
+            WhatsApp Comercial: 81 99282-3101
           </a>
         </div>
         <p class="footer-legal">Agente Autorizado Brisanet. Planos empresariais sujeitos a análise de viabilidade técnica. Oferta válida até 30/04/2025.</p>
+        <p class="footer-legal">Site desenvolvido e publicado por VIRTUNEX INTERMEDIACAO DE SERVICOS LTDA | CNPJ 57.999.680/0001-16. Parceiro autorizado BRISANET. Uso da marca regulamentado. Preços e condições sujeitos a alteração. Todos os direitos reservados.</p>
       </div>
     </div>
   </footer>
 
   <!-- WhatsApp Widget -->
   <div class="whatsapp-float">
-    <div class="whatsapp-online">
-      <span class="dot"></span>
-      <span id="online-count">Consultores online</span>
-    </div>
-    <a href="https://wa.me/5581992823101" onclick="return openWhatsApp('floating', 'empresas')" class="whatsapp-btn">
+    <a href="https://wa.me/5581992823101" onclick="return openWhatsApp('floating', 'empresas')" class="whatsapp-btn" aria-label="Falar com consultor no WhatsApp">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
       <span>Falar com consultor</span>
     </a>
@@ -2327,19 +2300,6 @@
       if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }));
 
-    // WhatsApp counter - Business hours
-    const onlineCount = document.getElementById('online-count');
-    function updateOnlineCount() {
-      const hour = new Date().getHours();
-      const isBusinessHours = hour >= 8 && hour < 18;
-      if (isBusinessHours) {
-        const consultants = Math.floor(Math.random() * 3) + 3;
-        onlineCount.textContent = consultants + ' consultores online';
-      } else {
-        onlineCount.textContent = 'Deixe sua mensagem';
-      }
-    }
-    if (onlineCount) { updateOnlineCount(); setInterval(updateOnlineCount, 10000); }
   </script>
   <script src="lead-modal.js"></script>
 </body>

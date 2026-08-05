@@ -1,54 +1,80 @@
-# Imagens sem referencia no repositorio
+# Imagens sem uso no repositorio
 
-Levantamento gerado em 2026-08-05 (Fase 3, item 3.7).
+Levantamento atualizado em 2026-08-05 (Fase 3.1, item 3.1.1d).
 
 **Nada foi apagado.** Esta lista existe para o autorizador decidir a remocao.
 
 ## Metodo
 
-Para cada imagem em `img/`, procurou-se o nome do arquivo (e a variante
-url-encoded, com `%20` no lugar de espacos) em **todo** arquivo de texto do
-repositorio: `.html`, `.js`, `.css`, `.md`, `.txt`, `.xml`, `.json`, `.svg`.
-A varredura incluiu `empresas.html` e `empresas/telefonia.html`, que estao fora
-de escopo para edicao mas dentro de escopo para leitura.
+Para cada imagem em `img/`, procurou-se o nome do arquivo (e a variante url-encoded,
+com `%20` no lugar de espacos) em **todo** arquivo de texto do repositorio: `.html`,
+`.js`, `.css`, `.md`, `.txt`, `.xml`, `.json`, `.svg` — incluindo `empresas.html` e
+`empresas/telefonia.html`.
 
-Entram nesta lista apenas os arquivos com **zero** ocorrencias — inclusive zero
-ocorrencias dentro de comentarios de codigo.
+Esta versao separa dois casos que antes ficavam juntos:
 
-**19 arquivos, 43.1 MB no total.**
+- **Sem nenhuma referencia** — o nome nao aparece em lugar nenhum.
+- **Referencia so em comentario** — o nome so aparece dentro de codigo comentado,
+  ou seja, nenhum navegador chega a pedir o arquivo.
 
-| # | Arquivo | Dimensoes | Tamanho | Referencias encontradas |
+**21 arquivos, 47.3 MB no total.**
+
+## Sem nenhuma referencia
+
+| # | Arquivo | Dimensoes | Tamanho |
+|---|---|---|---|
+| 1 | `img/banner-desktop.png` | 1800x576 | 792 KB |
+| 2 | `img/banner-empresas-desktop.png` | 1800x576 | 792 KB |
+| 3 | `img/banner-empresas-mobile.png` | 750x794 | 432 KB |
+| 4 | `img/banner-mobile.png` | 750x794 | 432 KB |
+| 5 | `img/hero-brisanet-mob-v4.png` | 1886x2048 | 3334 KB |
+| 6 | `img/hero-mob-residencial-dez-v2.png` | 1385x1384 | 2861 KB |
+| 7 | `img/hero-mob-residencial-dez-v3.png` | 2048x2048 | 3984 KB |
+| 8 | `img/hero-mobile-empresas-dezembro.png` | 1856x2304 | 5050 KB |
+| 9 | `img/hero-mobile-residencia-dezembro.png` | 1856x2304 | 4722 KB |
+| 10 | `img/hero-web-empresas-dezembro.png` | 2752x1536 | 5058 KB |
+| 11 | `img/hero-web-residencia-dezembro.png` | 2752x1536 | 4498 KB |
+| 12 | `img/hero-web-residencial-dez-v2.png` | 2561x1515 | 5609 KB |
+| 13 | `img/hero-web-residencial-dez-v3.png` | 3584x1184 | 3848 KB |
+| 14 | `img/logo-assinatura.png` | 949x243 | 27 KB |
+| 15 | `img/logo-brisanet-empresas-branca.png` | 2708x764 | 50 KB |
+| 16 | `img/logo-brisanet-empresas.png` | 2708x763 | 54 KB |
+| 17 | `img/logo.png` | 5046x1281 | 82 KB |
+| 18 | `img/modelo-empresarial.png` | 960x540 | 264 KB |
+| 19 | `img/modelo-residencial.png` | 1800x576 | 232 KB |
+
+## Referenciados apenas em codigo comentado
+
+Nenhum navegador baixa estes arquivos; a mencao esta dentro de `/* ... */`.
+
+| # | Arquivo | Dimensoes | Tamanho | Onde aparece |
 |---|---|---|---|---|
-| 1 | `img/banner-desktop.png` | 1800x576 | 792 KB | nenhuma |
-| 2 | `img/banner-empresas-desktop.png` | 1800x576 | 792 KB | nenhuma |
-| 3 | `img/banner-empresas-mobile.png` | 750x794 | 432 KB | nenhuma |
-| 4 | `img/banner-mobile.png` | 750x794 | 432 KB | nenhuma |
-| 5 | `img/hero-brisanet-mob-v4.png` | 1886x2048 | 3334 KB | nenhuma |
-| 6 | `img/hero-mob-residencial-dez-v2.png` | 1385x1384 | 2861 KB | nenhuma |
-| 7 | `img/hero-mob-residencial-dez-v3.png` | 2048x2048 | 3984 KB | nenhuma |
-| 8 | `img/hero-mobile-empresas-dezembro.png` | 1856x2304 | 5050 KB | nenhuma |
-| 9 | `img/hero-mobile-residencia-dezembro.png` | 1856x2304 | 4722 KB | nenhuma |
-| 10 | `img/hero-web-empresas-dezembro.png` | 2752x1536 | 5058 KB | nenhuma |
-| 11 | `img/hero-web-residencia-dezembro.png` | 2752x1536 | 4498 KB | nenhuma |
-| 12 | `img/hero-web-residencial-dez-v2.png` | 2561x1515 | 5609 KB | nenhuma |
-| 13 | `img/hero-web-residencial-dez-v3.png` | 3584x1184 | 3848 KB | nenhuma |
-| 14 | `img/logo-assinatura.png` | 949x243 | 27 KB | nenhuma |
-| 15 | `img/logo-brisanet-empresas-branca.png` | 2708x764 | 50 KB | nenhuma |
-| 16 | `img/logo-brisanet-empresas.png` | 2708x763 | 54 KB | nenhuma |
-| 17 | `img/logo.png` | 5046x1281 | 82 KB | nenhuma |
-| 18 | `img/modelo-empresarial.png` | 960x540 | 264 KB | nenhuma |
-| 19 | `img/modelo-residencial.png` | 1800x576 | 232 KB | nenhuma |
+| 1 | `img/hero-brisanet-mob-v4 (2).png` | 375x510 | 84 KB | `./fwa.html`, `./index.html` |
+| 2 | `img/hero-brisanet-web-v4.png` | 3417x1184 | 3974 KB | `./fwa.html`, `./index.html` |
 
 ## Duplicatas byte-identicas
-
-Pares com o mesmo SHA-256 — o conteudo e' o mesmo arquivo salvo com dois nomes:
 
 - `img/banner-desktop.png` == `img/banner-empresas-desktop.png` (792 KB cada)
 - `img/banner-empresas-mobile.png` == `img/banner-mobile.png` (432 KB cada)
 
-## Observacoes
+## Mudancas desta fase (3.1)
 
-- `img/logo.png` entrou nesta lista **nesta fase**: o item 3.5 trocou todas as
-  referencias para `img/logo.webp` (450x114, 20 KB). O PNG original de
-  5046x1281 ficou sem uso, mas foi mantido no repositorio como fonte.
-- Os demais 18 arquivos ja estavam sem referencia antes desta fase.
+- `img/hero-brisanet-web-v4.png` (3417x1184, 3974 KB) **deixou de ser carregado**:
+  o item 3.1.1 trocou o fundo do hero de `fwa-campanha.html` pelos derivados
+  `hero-brisanet-web-v4-2200.avif` (16 KB) e `.webp` (22 KB). O PNG foi mantido
+  no repositorio como fonte, conforme o pacote.
+- `img/hero-brisanet-mob-v4 (2).png` (375x510, 84 KB) idem, substituido por
+  `hero-brisanet-mob-v4-375.webp` (6 KB). Nesse tamanho o AVIF ficava maior que
+  o WebP, entao so o WebP foi gerado.
+- `img/logo.png` continua sem uso desde a Fase 3, quando as referencias passaram
+  para `img/logo.webp`.
+
+## Ainda em uso, mas pesados
+
+Nao entram na lista acima porque **sao carregados de verdade**. Ficam registrados
+porque dominam o peso das paginas de empresas:
+
+| Arquivo | Dimensoes | Tamanho | Carregado por |
+|---|---|---|---|
+| `img/hero-mob-empresas-dez-v2.png` | 1856x2304 | 4021 KB | `empresas.html` (mobile, <=768px) |
+| `img/hero-web-empresas-dez-v2.png` | 1883x1059 | 2561 KB | `empresas.html` e `empresas/telefonia.html` (desktop) |

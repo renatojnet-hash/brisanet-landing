@@ -517,41 +517,44 @@
 
     .plan-dots {
       display: flex;
-      gap: 10px;
+      /* 8px de folga entre alvos de 24px: centros a 32px, acima dos 24px do WCAG */
+      gap: 8px;
     }
 
+    /* O alvo e' o proprio botao (24x24). O ponto visual de 12px fica no ::after —
+       pseudo-elemento nao conta como area de clique para o target-size. */
     .plan-dot {
+      width: 24px;
+      height: 24px;
+      background: transparent;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .plan-dot::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       width: 12px;
       height: 12px;
       border-radius: 50%;
       background: transparent;
       border: 2px solid rgba(255, 255, 255, 0.5);
       transition: all 0.3s ease;
-      cursor: pointer;
-      padding: 0;
-      /* Touch target wrapper - mínimo 44px para WCAG */
-      position: relative;
     }
 
-    .plan-dot::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-    }
-
-    .plan-dot:hover {
+    .plan-dot:hover::after {
       border-color: rgba(255, 255, 255, 0.8);
     }
 
-    .plan-dot.active {
+    .plan-dot.active::after {
       background: var(--accent);
       border-color: #ffffff;
-      transform: scale(1.15);
+      transform: translate(-50%, -50%) scale(1.15);
       box-shadow: 0 0 8px rgba(255, 87, 34, 0.5);
     }
 
@@ -1224,7 +1227,8 @@
     
     .footer-legal {
       font-size: 0.8rem;
-      color: rgba(255, 255, 255, 0.6);
+      /* 5,04:1 sobre o azul do rodape (0.6 dava 3,3:1) */
+      color: rgba(255, 255, 255, 0.85);
       max-width: 600px;
     }
 
