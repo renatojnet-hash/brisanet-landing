@@ -54,7 +54,8 @@
     }
 
     .plans .plan-price-old {
-      color: var(--text-on-white-subtle);
+      /* --text-on-white-subtle (#9aa0a6) dava 2,64:1 sobre o card branco */
+      color: var(--text-on-white-muted-aa);
     }
 
     .plans .plan-price-currency,
@@ -169,7 +170,8 @@
 
     .plan-tab.active {
       color: white;
-      background: var(--accent);
+      /* --accent (#FF5722) dava 3,16:1 com branco */
+      background: var(--accent-ink);
       box-shadow: 0 4px 16px rgba(255, 87, 34, 0.4);
     }
 
@@ -338,7 +340,8 @@
     }
     
     .plan-badge.pop {
-      background: var(--green);
+      /* --green (#10b981) dava 2,54:1 com branco */
+      background: var(--green-ink);
       animation: badge-glow 2s ease-in-out infinite;
     }
     
@@ -430,7 +433,10 @@
     .plan-aggregate span {
       font-size: 0.9rem;
       font-weight: 600;
-      /* sem cor forçada: cada marca traz a sua (ver .brand-name / .brand-netflix) */
+      /* Sem cor propria, herdava o branco da secao e sumia no card branco
+         (1,23:1 medido em "+ 20GB"). As marcas com cor propria seguem
+         sobrescrevendo via .brand-name / .brand-netflix. */
+      color: var(--accent-ink);
     }
 
     .plan-partner {
@@ -518,7 +524,8 @@
     
     .plan-cta {
       padding: 1rem 2rem;
-      background: var(--accent);
+      /* mesmo criterio do .nav-cta: o laranja vibrante reprova com texto branco */
+      background: var(--accent-ink);
       border: none;
       border-radius: 12px;
       font-weight: 700;
@@ -533,12 +540,12 @@
 
     .plan-cta:hover {
       transform: translateY(-3px);
-      background: #ff6b3d;
+      background: #A8380A;
       box-shadow: 0 8px 24px rgba(255, 87, 34, 0.4);
     }
 
     .plan-card.featured .plan-cta {
-      background: var(--accent);
+      background: var(--accent-ink);
       border-color: transparent;
       box-shadow: 0 4px 16px rgba(255, 87, 34, 0.3);
     }
@@ -547,7 +554,7 @@
 
     .plan-card.featured .plan-cta:hover {
       transform: translateY(-4px) scale(1.02);
-      background: #ff6b3d;
+      background: #A8380A;
       box-shadow: 0 12px 48px rgba(255, 87, 34, 0.4);
     }
 
@@ -693,7 +700,7 @@
     }
 
     .benefits .benefit-label {
-      color: var(--accent);
+      color: var(--accent-ink);
     }
 
     .benefits .benefit-title {
@@ -704,10 +711,94 @@
       color: var(--text-on-white-muted);
     }
 
+    /* ══ Secao "Por que Brisanet?" — repaginacao minimalista ═════════════
+       Eram 8 caixas brancas com borda e sombra sobre um fundo cinza claro:
+       muita moldura para pouco conteudo. Aqui o card perde a moldura e fica
+       so' o essencial — icone, titulo, uma linha — separado por respiro em
+       vez de borda. Os rotulos (PERFORMANCE/TECNOLOGIA/...) sairam do HTML:
+       repetiam o titulo logo abaixo. */
     .benefits-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 1.5rem;
+      gap: 2.5rem 2rem;
+    }
+
+    .benefits .benefit-card,
+    .benefits .benefit-card:hover {
+      background: none;
+      border: none;
+      box-shadow: none;
+      transform: none;
+    }
+
+    .benefits .benefit-card { padding: 0; border-radius: 0; }
+    .benefits .benefit-card::after { display: none; }
+
+    /* icone sem a "pastilha": so' o traco, no laranja da marca */
+    .benefits .benefit-icon,
+    .benefits .benefit-card:hover .benefit-icon {
+      width: auto;
+      height: auto;
+      background: none;
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+      margin-bottom: 0.875rem;
+      justify-items: start;
+    }
+
+    .benefits .benefit-icon svg,
+    .benefits .benefit-card:hover .benefit-icon svg {
+      width: 28px;
+      height: 28px;
+      color: var(--accent-ink);
+    }
+
+    .benefits .benefit-title { margin-bottom: 0.375rem; }
+
+    /* Cenarios de uso: linha compacta, separada por um filete e nao por caixas */
+    .benefits .experience-cards {
+      margin-top: 3rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+      gap: 2rem;
+    }
+
+    .benefits .experience-card,
+    .benefits .experience-card:hover {
+      background: none;
+      border: none;
+      box-shadow: none;
+      transform: none;
+      padding: 0;
+    }
+
+    .benefits .experience-card-icon,
+    .benefits .experience-card:hover .experience-card-icon {
+      width: auto;
+      height: auto;
+      background: none;
+      border: none;
+      box-shadow: none;
+      margin-bottom: 0.625rem;
+    }
+
+    .benefits .experience-card-icon svg {
+      width: 22px;
+      height: 22px;
+      color: var(--accent-ink);
+    }
+
+    /* mesma cor de titulo das duas fileiras — o azul destoava */
+    .benefits .experience-card h3 { color: var(--text-on-white); }
+
+    @media (max-width: 640px) {
+      .benefits-grid { gap: 2rem; }
+      .benefits .experience-cards {
+        margin-top: 2.25rem;
+        padding-top: 1.75rem;
+        gap: 1.5rem;
+      }
     }
     
     @media (max-width: 1024px) { .benefits-grid { grid-template-columns: repeat(2, 1fr); } }
@@ -903,7 +994,8 @@
     }
 
     .reviews-marquee.is-ready .reviews-marquee__track {
-      animation: reviews-scroll 60s linear infinite;
+      /* lenta de proposito: da' tempo de ler sem precisar pausar */
+      animation: reviews-scroll 110s linear infinite;
     }
 
     .reviews-marquee.is-ready:hover .reviews-marquee__track,
@@ -963,16 +1055,16 @@
 
     .review-card {
       /* dimensao unica: largura fixa e altura minima igual para todos */
-      flex: 0 0 300px;
-      width: 300px;
-      min-height: 196px;
+      flex: 0 0 320px;
+      width: 320px;
+      min-height: 212px;
       display: flex;
       flex-direction: column;
       background: #ffffff;
       border: 1px solid rgba(0, 0, 0, 0.08);
-      border-radius: 16px;
-      padding: 1.25rem;
-      box-shadow: var(--shadow-card-light);
+      border-radius: 14px;
+      padding: 1.375rem;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.09);
     }
 
     .review-head {
@@ -1003,7 +1095,7 @@
       font-size: 0.9375rem;
       font-weight: 600;
       color: var(--text-on-white);
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.0625rem;
       /* sempre em uma linha — senao o card cresceria e quebraria a altura unica */
       white-space: nowrap;
       overflow: hidden;
@@ -1021,13 +1113,40 @@
       font-size: 0.9375rem;
       line-height: 1.6;
       color: var(--text-on-white-muted);
-      /* trava em 4 linhas: e' o texto que varia, nao o card */
+      /* trava em 3 linhas: e' o texto que varia, nao o card */
       display: -webkit-box;
-      -webkit-line-clamp: 4;
-      line-clamp: 4;
+      -webkit-line-clamp: 3;
+      line-clamp: 3;
       -webkit-box-orient: vertical;
       overflow: hidden;
+      /* NAO usar flex:1 aqui: o -webkit-line-clamp respeita a altura da caixa,
+         e esticar a caixa faz vazar uma 4a linha por tras das estrelas.
+         Quem empurra as estrelas para o rodape e' o margin-top:auto delas. */
+      max-height: 4.8em;   /* 3 linhas x line-height 1.6 */
+      margin-bottom: 0.875rem;
     }
+
+    /* aspas tipograficas por CSS: nao mexem no texto real da avaliacao */
+    .review-text::before { content: '\201C'; }
+    .review-text::after  { content: '\201D'; }
+
+    .review-role {
+      font-size: 0.8125rem;
+      color: var(--text-on-white-muted);
+      line-height: 1.3;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* estrelas no rodape, alinhadas a' direita e um pouco maiores */
+    .review-card > .review-stars {
+      justify-content: flex-end;
+      margin-top: auto;
+      gap: 3px;
+    }
+
+    .review-card > .review-stars svg { width: 17px; height: 17px; }
 
     .experience-cards {
       display: grid;
@@ -1425,7 +1544,7 @@
     .cta-btn-p:hover {
       transform: translateY(-4px) scale(1.03);
       box-shadow: 0 12px 48px rgba(255, 87, 34, 0.5);
-      background: #ff6b3d;
+      background: #A8380A;
     }
 
     /* Ocultar botão secundário */

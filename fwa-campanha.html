@@ -147,6 +147,13 @@
       --blue-gradient: linear-gradient(135deg, #2855d4 0%, #4a90e2 100%);
 
       --green: #10b981;
+
+      /* Versoes escurecidas para quando a cor CARREGA TEXTO.
+         Medido: #FF5722 da' 3,16:1 com branco (reprova em AA);
+         #C2410C da' 5,18:1. #10b981 da' 2,54:1 com branco; #047857 da' 5,48:1. */
+      --accent-ink: #C2410C;
+      --green-ink: #047857;
+      --text-on-white-muted-aa: #5F6368;   /* 6,05:1 sobre branco */
       --green-glow: rgba(16, 185, 129, 0.3);
 
       /* Borders */
@@ -283,8 +290,10 @@
       margin-left: 0.5rem;
     }
     .nav-switch:hover {
-      background: var(--primary);
-      color: #fff;
+      /* era var(--primary) — variavel inexistente: o fundo ficava transparente
+         e o texto branco desaparecia sobre a navbar branca. */
+      background: var(--brand-blue);
+      color: #ffffff;
       transform: translateY(-2px);
     }
     .nav-switch svg {
@@ -705,8 +714,8 @@
       }
     }
   </style>
-  <link rel="preload" href="css/fwa-campanha.css" as="style" onload="this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="css/fwa-campanha.css"></noscript>
+  <link rel="preload" href="css/fwa-campanha.css?v=202609290441" as="style" onload="this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="css/fwa-campanha.css?v=202609290441"></noscript>
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->
@@ -1153,6 +1162,6 @@
     }));
 
   </script>
-  <script src="lead-modal.js"></script>
+  <script src="lead-modal.js?v=202609290441"></script>
 </body>
 </html>

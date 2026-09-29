@@ -54,7 +54,8 @@
     }
 
     .plans .plan-price-old {
-      color: var(--text-on-white-subtle);
+      /* --text-on-white-subtle (#9aa0a6) dava 2,64:1 sobre o card branco */
+      color: var(--text-on-white-muted-aa);
     }
 
     .plans .plan-price-currency,
@@ -169,7 +170,8 @@
 
     .plan-tab.active {
       color: white;
-      background: var(--accent);
+      /* --accent (#FF5722) dava 3,16:1 com branco */
+      background: var(--accent-ink);
       box-shadow: 0 4px 16px rgba(255, 87, 34, 0.4);
     }
 
@@ -288,7 +290,8 @@
     }
     
     .plan-badge.pop {
-      background: var(--green);
+      /* --green (#10b981) dava 2,54:1 com branco */
+      background: var(--green-ink);
       animation: badge-glow 2s ease-in-out infinite;
     }
     
@@ -466,7 +469,8 @@
     
     .plan-cta {
       padding: 1rem 2rem;
-      background: var(--accent);
+      /* mesmo criterio do .nav-cta: o laranja vibrante reprova com texto branco */
+      background: var(--accent-ink);
       border: none;
       border-radius: 12px;
       font-weight: 700;
@@ -481,12 +485,12 @@
 
     .plan-cta:hover {
       transform: translateY(-3px);
-      background: #ff6b3d;
+      background: #A8380A;
       box-shadow: 0 8px 24px rgba(255, 87, 34, 0.4);
     }
 
     .plan-card.featured .plan-cta {
-      background: var(--accent);
+      background: var(--accent-ink);
       border-color: transparent;
       box-shadow: 0 4px 16px rgba(255, 87, 34, 0.3);
     }
@@ -495,7 +499,7 @@
 
     .plan-card.featured .plan-cta:hover {
       transform: translateY(-4px) scale(1.02);
-      background: #ff6b3d;
+      background: #A8380A;
       box-shadow: 0 12px 48px rgba(255, 87, 34, 0.4);
     }
 
@@ -641,7 +645,7 @@
     }
 
     .benefits .benefit-label {
-      color: var(--accent);
+      color: var(--accent-ink);
     }
 
     .benefits .benefit-title {
@@ -1186,7 +1190,7 @@
     .cta-btn-p:hover {
       transform: translateY(-4px) scale(1.03);
       box-shadow: 0 12px 48px rgba(255, 87, 34, 0.5);
-      background: #ff6b3d;
+      background: #A8380A;
     }
 
     /* Ocultar botão secundário */

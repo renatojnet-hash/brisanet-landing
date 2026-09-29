@@ -143,6 +143,13 @@
       --blue-gradient: linear-gradient(135deg, #2855d4 0%, #4a90e2 100%);
 
       --green: #10b981;
+
+      /* Versoes escurecidas para quando a cor CARREGA TEXTO.
+         Medido: #FF5722 da' 3,16:1 com branco (reprova em AA);
+         #C2410C da' 5,18:1. #10b981 da' 2,54:1 com branco; #047857 da' 5,48:1. */
+      --accent-ink: #C2410C;
+      --green-ink: #047857;
+      --text-on-white-muted-aa: #5F6368;   /* 6,05:1 sobre branco */
       --green-glow: rgba(16, 185, 129, 0.3);
 
       /* Borders */
@@ -279,8 +286,10 @@
       margin-left: 0.5rem;
     }
     .nav-switch:hover {
-      background: var(--primary);
-      color: #fff;
+      /* era var(--primary) — variavel inexistente: o fundo ficava transparente
+         e o texto branco desaparecia sobre a navbar branca. */
+      background: var(--brand-blue);
+      color: #ffffff;
       transform: translateY(-2px);
     }
     .nav-switch svg {
@@ -767,8 +776,8 @@
       }
     }
   </style>
-  <link rel="preload" href="css/index.css" as="style" onload="this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="css/index.css"></noscript>
+  <link rel="preload" href="css/index.css?v=202609290441" as="style" onload="this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="css/index.css?v=202609290441"></noscript>
 </head>
 <body>
 
@@ -1287,16 +1296,14 @@
     <!-- Benefits Section -->
     <section class="section benefits" id="beneficios">
       <div class="container">
-        <header class="section-header reveal">
-          <h2 class="section-title">Por que contratar a Internet Brisanet?</h2>
-          <p class="section-subtitle">Fibra óptica de verdade, com tecnologia de ponta e suporte local.</p>
+        <header class="section-header section-header--tight reveal">
+          <h2 class="section-title">Por que Brisanet?</h2>
         </header>
         <div class="benefits-grid">
           <article class="benefit-card reveal reveal-delay-1">
             <div class="benefit-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
             </div>
-            <span class="benefit-label">Performance</span>
             <h3 class="benefit-title">Mais velocidade e estabilidade</h3>
             <p class="benefit-desc">A fibra óptica da Brisanet entrega internet rápida e estável mesmo com vários dispositivos conectados.</p>
           </article>
@@ -1304,7 +1311,6 @@
             <div class="benefit-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.5c3-5 6-7 7-7s4 2 7 7M8 15c2-3 3.5-4 4-4s2 1 4 4"/><circle cx="12" cy="18" r="1"/></svg>
             </div>
-            <span class="benefit-label">Tecnologia</span>
             <h3 class="benefit-title">Wi-Fi de última geração</h3>
             <p class="benefit-desc">Wi-Fi 6 nos planos a partir de 600 Mega, para melhor alcance em toda a casa.</p>
           </article>
@@ -1312,7 +1318,6 @@
             <div class="benefit-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M12 18h.01"/></svg>
             </div>
-            <span class="benefit-label">Mobilidade</span>
             <h3 class="benefit-title">Internet além da sua casa</h3>
             <p class="benefit-desc">Com o BrisaChip, você também navega fora de casa com 50GB de internet móvel inclusa.</p>
           </article>
@@ -1320,7 +1325,6 @@
             <div class="benefit-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
             </div>
-            <span class="benefit-label">Suporte</span>
             <h3 class="benefit-title">Atendimento e instalação</h3>
             <p class="benefit-desc">Instalação inclusa e acompanhamento do pedido até a ativação com equipe local.</p>
           </article>
@@ -1356,15 +1360,10 @@
     <!-- Testimonials Section -->
     <section class="section testimonials" id="cases">
       <div class="container">
-        <header class="section-header reveal">
-          <h2 class="section-title">A experiência de quem já escolheu a Brisanet</h2>
-          <p class="section-subtitle">Avaliações no Google</p>
+        <header class="section-header section-header--tight reveal">
+          <h2 class="section-title">Clientes Brisanet</h2>
         </header>
         <div class="testimonials-wrapper">
-          <div class="award-banner reveal">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
-            <p><strong>Prêmio Melhor Plano 2026</strong> — a Brisanet foi eleita a Melhor Internet Fixa no Ceará, no Rio Grande do Norte e em Sergipe, além de outras 84 cidades, nas categorias melhor provedor para quem joga online, maior velocidade, maior estabilidade e maior satisfação.</p>
-          </div>
         <!-- Esteira infinita. O grupo e' duplicado por JS (ver bloco reviews-marquee
              no rodape) para nao dobrar o peso do HTML; sem JS vira uma faixa
              rolavel manualmente. -->
@@ -1377,17 +1376,18 @@
                   <span class="review-avatar" style="background: #1A73E8;" aria-hidden="true">JA</span>
                   <div class="review-meta">
                     <p class="review-name">Juliana A.</p>
-                    <div class="review-stars" role="img" aria-label="5 de 5 estrelas">
+                    <p class="review-role">Cliente Brisanet</p>
+                  </div>
+                  <svg class="review-google" viewBox="0 0 48 48" role="img" aria-label="Google"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+                </div>
+                <p class="review-text">Satisfeita, fiz hoje o pedido e em menos de 3 horas a internet foi ligada. O funcionário que nos atendeu via WhatsApp e o que fez o serviço de ligação foram super atenciosos.</p>
+            <div class="review-stars" role="img" aria-label="5 de 5 estrelas">
                     <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
                     <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
                     <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
                     <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
                     <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
                     </div>
-                  </div>
-                  <svg class="review-google" viewBox="0 0 48 48" role="img" aria-label="Google"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
-                </div>
-                <p class="review-text">Satisfeita, fiz hoje o pedido e em menos de 3 horas a internet foi ligada. O funcionário que nos atendeu via WhatsApp e o que fez o serviço de ligação foram super atenciosos.</p>
               </article>
 
               <article class="review-card">
@@ -1395,17 +1395,18 @@
                   <span class="review-avatar" style="background: #D93025;" aria-hidden="true">JM</span>
                   <div class="review-meta">
                     <p class="review-name">João Maurício</p>
-                    <div class="review-stars" role="img" aria-label="5 de 5 estrelas">
+                    <p class="review-role">Cliente Brisanet</p>
+                  </div>
+                  <svg class="review-google" viewBox="0 0 48 48" role="img" aria-label="Google"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+                </div>
+                <p class="review-text">700 mb funcionando perfeitamente. Tenho há quase 2 anos.</p>
+            <div class="review-stars" role="img" aria-label="5 de 5 estrelas">
                     <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
                     <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
                     <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
                     <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
                     <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
                     </div>
-                  </div>
-                  <svg class="review-google" viewBox="0 0 48 48" role="img" aria-label="Google"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
-                </div>
-                <p class="review-text">700 mb funcionando perfeitamente. Tenho há quase 2 anos.</p>
               </article>
 
               <article class="review-card">
@@ -1413,17 +1414,18 @@
                   <span class="review-avatar" style="background: #188038;" aria-hidden="true">SF</span>
                   <div class="review-meta">
                     <p class="review-name">Sâmmyo Freitas</p>
-                    <div class="review-stars" role="img" aria-label="5 de 5 estrelas">
+                    <p class="review-role">Cliente Brisanet</p>
+                  </div>
+                  <svg class="review-google" viewBox="0 0 48 48" role="img" aria-label="Google"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+                </div>
+                <p class="review-text">Ping 20 ms ~ 45 ms. Rápido, visse!</p>
+            <div class="review-stars" role="img" aria-label="5 de 5 estrelas">
                     <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
                     <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
                     <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
                     <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
                     <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
                     </div>
-                  </div>
-                  <svg class="review-google" viewBox="0 0 48 48" role="img" aria-label="Google"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
-                </div>
-                <p class="review-text">Ping 20 ms ~ 45 ms. Rápido, visse!</p>
               </article>
 
               <article class="review-card">
@@ -1431,17 +1433,18 @@
                   <span class="review-avatar" style="background: #E37400;" aria-hidden="true">RN</span>
                   <div class="review-meta">
                     <p class="review-name">Ryan Nailton</p>
-                    <div class="review-stars" role="img" aria-label="5 de 5 estrelas">
+                    <p class="review-role">Cliente Brisanet</p>
+                  </div>
+                  <svg class="review-google" viewBox="0 0 48 48" role="img" aria-label="Google"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+                </div>
+                <p class="review-text">Internet de alta qualidade, planos de streaming parceiros muito bons, com bastante entretenimento.</p>
+            <div class="review-stars" role="img" aria-label="5 de 5 estrelas">
                     <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
                     <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
                     <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
                     <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
                     <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
                     </div>
-                  </div>
-                  <svg class="review-google" viewBox="0 0 48 48" role="img" aria-label="Google"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
-                </div>
-                <p class="review-text">Internet de alta qualidade, planos de streaming parceiros muito bons, com bastante entretenimento.</p>
               </article>
 
               <article class="review-card">
@@ -1449,17 +1452,18 @@
                   <span class="review-avatar" style="background: #9334E6;" aria-hidden="true">MC</span>
                   <div class="review-meta">
                     <p class="review-name">Maria Clara Firmino</p>
-                    <div class="review-stars" role="img" aria-label="5 de 5 estrelas">
+                    <p class="review-role">Cliente Brisanet</p>
+                  </div>
+                  <svg class="review-google" viewBox="0 0 48 48" role="img" aria-label="Google"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+                </div>
+                <p class="review-text">Tenho há alguns anos já e sempre que tenho problemas eles prestam esclarecimentos e resolvem. Já tive outras e tive muito mais dor de cabeça, super recomendo.</p>
+            <div class="review-stars" role="img" aria-label="5 de 5 estrelas">
                     <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
                     <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
                     <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
                     <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
                     <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
                     </div>
-                  </div>
-                  <svg class="review-google" viewBox="0 0 48 48" role="img" aria-label="Google"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
-                </div>
-                <p class="review-text">Tenho há alguns anos já e sempre que tenho problemas eles prestam esclarecimentos e resolvem. Já tive outras e tive muito mais dor de cabeça, super recomendo.</p>
               </article>
 
               <article class="review-card">
@@ -1467,17 +1471,18 @@
                   <span class="review-avatar" style="background: #0B8043;" aria-hidden="true">LC</span>
                   <div class="review-meta">
                     <p class="review-name">Leila Cristiane</p>
-                    <div class="review-stars" role="img" aria-label="4 de 5 estrelas">
+                    <p class="review-role">Cliente Brisanet</p>
+                  </div>
+                  <svg class="review-google" viewBox="0 0 48 48" role="img" aria-label="Google"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+                </div>
+                <p class="review-text">Até o presente momento, 8 meses de serviços de internet e não tenho o que reclamar. Sempre que precisei dos serviços, foi rápido e eficiente o atendimento, tanto por telefone quanto por visita técnica.</p>
+            <div class="review-stars" role="img" aria-label="4 de 5 estrelas">
                     <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
                     <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
                     <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
                     <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
                     <span class="star-off"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
                     </div>
-                  </div>
-                  <svg class="review-google" viewBox="0 0 48 48" role="img" aria-label="Google"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
-                </div>
-                <p class="review-text">Até o presente momento, 8 meses de serviços de internet e não tenho o que reclamar. Sempre que precisei dos serviços, foi rápido e eficiente o atendimento, tanto por telefone quanto por visita técnica.</p>
               </article>
               </div>
             </div>
@@ -1494,9 +1499,8 @@
     <!-- FAQ Section -->
     <section class="section faq" id="faq">
       <div class="container">
-        <header class="section-header reveal">
-          <h2 class="section-title">Dúvidas frequentes sobre a Internet Fibra Brisanet</h2>
-          <p class="section-subtitle">Tudo que você precisa saber antes de contratar.</p>
+        <header class="section-header section-header--tight reveal">
+          <h2 class="section-title">Dúvidas frequentes</h2>
         </header>
         <div class="faq-grid">
           <details class="faq-item reveal reveal-delay-1">
@@ -1532,8 +1536,8 @@
       <div class="container">
         <div class="cta-card reveal">
           <div class="cta-content">
-            <h2 class="cta-title">Pronto para contratar sua Internet Fibra Brisanet?</h2>
-            <p class="cta-subtitle">Escolha o plano ideal para sua casa e aproveite internet rápida, estável e com Wi-Fi incluso.</p>
+            <h2 class="cta-title">Pronto para contratar?</h2>
+            <p class="cta-subtitle">Escolha seu plano e tenha internet fibra Brisanet em casa, com Wi-Fi incluso.</p>
             <div class="cta-buttons">
               <a href="#planos" class="cta-btn-p">Escolher meu plano</a>
             </div>
@@ -1722,6 +1726,6 @@
     })();
 
   </script>
-  <script src="lead-modal.js"></script>
+  <script src="lead-modal.js?v=202609290441"></script>
 </body>
 </html>
