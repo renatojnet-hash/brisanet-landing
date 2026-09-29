@@ -26,7 +26,7 @@ const CONFIG = {
     ORIGEM: 'LP_RESIDENCIAL',
 
     // WhatsApp comercial
-    WHATSAPP_COMERCIAL: '5581992823101',
+    WHATSAPP_COMERCIAL: '5584981194435',
 
     // Versão do formulário (para debug)
     VERSION: '1.1.0'

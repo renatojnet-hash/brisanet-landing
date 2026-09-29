@@ -4,7 +4,7 @@
  * that routes users to Sales (novo plano) or Support (sou cliente).
  *
  * IDs for GTM tracking:
- *   - btn-novo-plano  → Vendas (wa.me/5581992823101)
+ *   - btn-novo-plano  → Vendas (wa.me/5584981194435)
  *   - btn-sou-cliente → Suporte (wa.me/5584981118525)
  *   - lead-modal-overlay → Modal backdrop
  *   - lead-modal-close → Close button
@@ -218,7 +218,7 @@
         <h2 class="lead-modal-title" id="lead-modal-heading">Como podemos te ajudar hoje?</h2>
         <p class="lead-modal-subtitle">Escolha a opção que melhor se encaixa para te direcionar ao atendimento certo.</p>
         <div class="lead-modal-actions">
-          <a href="https://wa.me/5581992823101" target="_blank" rel="noopener" id="btn-novo-plano" class="lead-modal-btn-primary" onclick="leadModalTrack('vendas')">
+          <a href="https://wa.me/5584981194435" target="_blank" rel="noopener" id="btn-novo-plano" class="lead-modal-btn-primary" onclick="leadModalTrack('vendas')">
             ${whatsappSvg}
             Assinar Novo Plano
           </a>
@@ -241,7 +241,7 @@
   var closeBtn = document.getElementById('lead-modal-close');
   var btnNovoPlano = document.getElementById('btn-novo-plano');
 
-  var VENDAS_PHONE = '5581992823101';
+  var VENDAS_PHONE = '5584981194435';
 
   // Contexto do CTA que abriu o modal (preenchido em openModal)
   var leadContext = { origem: '', plano: '' };

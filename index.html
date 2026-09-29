@@ -521,6 +521,28 @@
         height: 320px;
       }
       .hero-banner__media::after { display: none; }
+
+      /* O bloco da oferta (600 MEGA + Netflix) vinha solto, encostando na
+         faixa da imagem. Ganha superficie propria: um painel azul mais escuro
+         que a hero — escurecer AUMENTA o contraste do texto branco, ao
+         contrario de um vidro claro — e respiro antes da imagem.
+         Sem backdrop-filter: e' elemento grande e acima da dobra. */
+      .hero-banner__offer-box {
+        width: 100%;
+        gap: 14px;
+        padding: 18px;
+        border-radius: 16px;
+        background: rgba(10, 28, 84, 0.35);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
+      }
+
+      .hero-banner__checks {
+        margin-bottom: 0;
+        padding-bottom: 14px;
+      }
+
+      .hero-banner__content { padding-bottom: 36px; }
     }
 
     .hero-banner__badge {
@@ -547,10 +569,13 @@
 
     .hero-banner__title {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(2rem, 5vw, 3rem);
+      /* Escala do H1: sempre ~1.35x o .section-title (H2) em qualquer largura.
+         A regra anterior (5vw) fazia o H2 ultrapassar o H1 entre 769px e ~1100px. */
+      font-size: clamp(2.25rem, 1.45rem + 3.4vw, 3.5rem);
       font-weight: 800;
       color: #ffffff;
-      line-height: 1.15;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
       margin-bottom: 16px;
     }
 
@@ -770,7 +795,7 @@
             Para Empresas
           </a>
         </div>
-        <a href="https://wa.me/5581992823101" target="_blank" onclick="return openWhatsApp('header', 'geral')" class="nav-cta">Contratar</a>
+        <a href="https://wa.me/5584981194435" target="_blank" onclick="return openWhatsApp('header', 'geral')" class="nav-cta">Contratar</a>
         <button class="mobile-btn" id="mobile-btn" aria-label="Menu"><span></span><span></span><span></span></button>
       </div>
     </div>
@@ -787,7 +812,7 @@
     <a href="#cases">Depoimentos</a>
     <a href="#faq">FAQ</a>
     <a href="empresas.html">Para Empresas</a>
-    <a href="https://wa.me/5581992823101" onclick="return openWhatsApp('mobile_menu', 'geral')" style="color: var(--accent);">Contratar agora</a>
+    <a href="https://wa.me/5584981194435" onclick="return openWhatsApp('mobile_menu', 'geral')" style="color: var(--accent);">Contratar agora</a>
   </div>
 
   <main>
@@ -800,12 +825,12 @@
 
           <!-- TÍTULO H1 SEO -->
           <h1 class="hero-banner__title">
-            Internet Brisanet Fibra: a estabilidade que sua família precisa
+            Internet fibra Brisanet para toda a família
           </h1>
 
           <!-- SUBTÍTULO DE APOIO -->
           <p class="hero-banner__subtitle">
-            Internet rápida e estável para streaming, home office, estudos e toda a família.
+            Velocidade e estabilidade para streaming, home office e estudos.
           </p>
 
           <!-- OFERTA - Bloco de Valor -->
@@ -841,7 +866,7 @@
             <div class="hero-banner__price-after">Por 3 meses, depois R$ 120,80/mês</div>
 
             <!-- 5. CTA -->
-            <a href="https://wa.me/5581992823101" target="_blank" onclick="return openWhatsApp('hero', '600 MEGA + Netflix')" class="btn btn--highlight">
+            <a href="https://wa.me/5584981194435" target="_blank" onclick="return openWhatsApp('hero', '600 MEGA + Netflix')" class="btn btn--highlight">
               Contratar este plano
             </a>
           </div>
@@ -871,9 +896,10 @@
     <!-- Plans Section -->
     <section class="section plans" id="planos">
       <div class="container">
-        <header class="section-header reveal">
-          <h2 class="section-title">Planos Brisanet Internet Fibra</h2>
-          <p class="section-subtitle">Escolha a velocidade ideal para sua casa e aproveite mais estabilidade no dia a dia.</p>
+        <header class="section-header section-header--tight reveal">
+          <!-- Titulo curto de proposito: cabe em uma linha ate' 375px.
+               Sem subtitulo — os tabs logo abaixo ja' dizem o que escolher. -->
+          <h2 class="section-title">Planos Brisanet Fibra</h2>
         </header>
 
         <!-- Tabs Centralizadas -->
@@ -885,9 +911,10 @@
           </div>
         </div>
 
-        <!-- Vigência + disponibilidade por região -->
-        <!-- ATUALIZAR MENSALMENTE — vigência do book de ofertas -->
-        <p class="plans-region-note reveal">Ofertas válidas de 1 a 31 de agosto de 2026. Disponibilidade de planos varia por cidade — consulte pelo WhatsApp qual portfólio atende seu endereço.</p>
+        <!-- Disponibilidade por regiao (DEC-003) como nota discreta.
+             A vigencia da campanha saiu do corpo da pagina: envelhecia sozinha
+             e nenhum concorrente expoe isso acima dos planos. -->
+        <p class="plans-region-note reveal">Disponibilidade varia por cidade — confirme a cobertura do seu endereço pelo WhatsApp.</p>
 
         <!-- Internet Panel -->
         <div class="plan-panel active" id="panel-internet">
@@ -914,7 +941,7 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação inclusa</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101" target="_blank" onclick="return openWhatsApp('planos_fibra', '500 MEGA')" class="plan-cta"><span>Contratar este plano</span></a>
+                <a href="https://wa.me/5584981194435" target="_blank" onclick="return openWhatsApp('planos_fibra', '500 MEGA')" class="plan-cta"><span>Contratar este plano</span></a>
               </div>
             </article>
 
@@ -940,7 +967,7 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação inclusa</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101" target="_blank" onclick="return openWhatsApp('planos_fibra', '700 MEGA')" class="plan-cta"><span>Contratar este plano</span></a>
+                <a href="https://wa.me/5584981194435" target="_blank" onclick="return openWhatsApp('planos_fibra', '700 MEGA')" class="plan-cta"><span>Contratar este plano</span></a>
               </div>
             </article>
 
@@ -965,7 +992,7 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação inclusa</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101" target="_blank" onclick="return openWhatsApp('planos_fibra', '1 GIGA')" class="plan-cta"><span>Contratar este plano</span></a>
+                <a href="https://wa.me/5584981194435" target="_blank" onclick="return openWhatsApp('planos_fibra', '1 GIGA')" class="plan-cta"><span>Contratar este plano</span></a>
               </div>
             </article>
 
@@ -979,7 +1006,7 @@
                 </div>
                 <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.25rem; font-weight: 700; color: white; margin-bottom: 0.75rem;">Monte seu combo ideal</h3>
                 <p style="font-size: 1rem; color: rgba(255, 255, 255, 0.9); margin-bottom: 1.5rem; line-height: 1.5;">Escolha a velocidade, quantidade de chips e plataformas de streaming. Fale conosco!</p>
-                <a href="https://wa.me/5581992823101" onclick="return openWhatsApp('planos_fibra', 'Combo Personalizado')" class="plan-cta" style="background: white; color: #2855d4; display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 0.875rem 1.25rem; border-radius: 50px; font-weight: 700; text-decoration: none; white-space: nowrap; transition: all 0.3s ease;">
+                <a href="https://wa.me/5584981194435" onclick="return openWhatsApp('planos_fibra', 'Combo Personalizado')" class="plan-cta" style="background: white; color: #2855d4; display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 0.875rem 1.25rem; border-radius: 50px; font-weight: 700; text-decoration: none; white-space: nowrap; transition: all 0.3s ease;">
                   <span>Falar no WhatsApp</span>
                   <svg style="width: 20px; height: 20px; margin-left: 8px;" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
@@ -1029,7 +1056,7 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação inclusa</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101" target="_blank" onclick="return openWhatsApp('planos_streaming', '600 MEGA + Netflix')" class="plan-cta"><span>Contratar este plano</span></a>
+                <a href="https://wa.me/5584981194435" target="_blank" onclick="return openWhatsApp('planos_streaming', '600 MEGA + Netflix')" class="plan-cta"><span>Contratar este plano</span></a>
               </div>
             </article>
 
@@ -1059,7 +1086,7 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação inclusa</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101" target="_blank" onclick="return openWhatsApp('planos_streaming', '500 MEGA + SKY+ Light')" class="plan-cta"><span>Contratar este plano</span></a>
+                <a href="https://wa.me/5584981194435" target="_blank" onclick="return openWhatsApp('planos_streaming', '500 MEGA + SKY+ Light')" class="plan-cta"><span>Contratar este plano</span></a>
               </div>
             </article>
 
@@ -1089,7 +1116,7 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Instalação inclusa</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101" target="_blank" onclick="return openWhatsApp('planos_streaming', '500 MEGA + SKY+ e Prime')" class="plan-cta"><span>Contratar este plano</span></a>
+                <a href="https://wa.me/5584981194435" target="_blank" onclick="return openWhatsApp('planos_streaming', '500 MEGA + SKY+ e Prime')" class="plan-cta"><span>Contratar este plano</span></a>
               </div>
             </article>
 
@@ -1103,7 +1130,7 @@
                 </div>
                 <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.25rem; font-weight: 700; color: white; margin-bottom: 0.75rem;">Monte seu combo ideal</h3>
                 <p style="font-size: 1rem; color: rgba(255, 255, 255, 0.9); margin-bottom: 1.5rem; line-height: 1.5;">Escolha a velocidade, quantidade de chips e plataformas de streaming. Fale conosco!</p>
-                <a href="https://wa.me/5581992823101" onclick="return openWhatsApp('planos_streaming', 'Combo Personalizado')" class="plan-cta" style="background: white; color: #2855d4; display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 0.875rem 1.25rem; border-radius: 50px; font-weight: 700; text-decoration: none; white-space: nowrap; transition: all 0.3s ease;">
+                <a href="https://wa.me/5584981194435" onclick="return openWhatsApp('planos_streaming', 'Combo Personalizado')" class="plan-cta" style="background: white; color: #2855d4; display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 0.875rem 1.25rem; border-radius: 50px; font-weight: 700; text-decoration: none; white-space: nowrap; transition: all 0.3s ease;">
                   <span>Falar no WhatsApp</span>
                   <svg style="width: 20px; height: 20px; margin-left: 8px;" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
@@ -1152,7 +1179,7 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Wi-Fi e instalação inclusos</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101" target="_blank" onclick="return openWhatsApp('planos_celular', '500 MEGA + 20GB')" class="plan-cta"><span>Contratar este plano</span></a>
+                <a href="https://wa.me/5584981194435" target="_blank" onclick="return openWhatsApp('planos_celular', '500 MEGA + 20GB')" class="plan-cta"><span>Contratar este plano</span></a>
               </div>
             </article>
 
@@ -1181,7 +1208,7 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Wi-Fi 6 e instalação inclusos</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101" target="_blank" onclick="return openWhatsApp('planos_celular', '700 MEGA + 30GB')" class="plan-cta"><span>Contratar este plano</span></a>
+                <a href="https://wa.me/5584981194435" target="_blank" onclick="return openWhatsApp('planos_celular', '700 MEGA + 30GB')" class="plan-cta"><span>Contratar este plano</span></a>
               </div>
             </article>
 
@@ -1210,7 +1237,7 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Wi-Fi 6 e instalação inclusos</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101" target="_blank" onclick="return openWhatsApp('planos_celular', '800 MEGA + 50GB')" class="plan-cta"><span>Contratar este plano</span></a>
+                <a href="https://wa.me/5584981194435" target="_blank" onclick="return openWhatsApp('planos_celular', '800 MEGA + 50GB')" class="plan-cta"><span>Contratar este plano</span></a>
               </div>
             </article>
 
@@ -1239,7 +1266,7 @@
                 <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span>Wi-Fi 6 e instalação inclusos</span></li>
               </ul>
               <div class="plan-cta-wrapper">
-                <a href="https://wa.me/5581992823101" target="_blank" onclick="return openWhatsApp('planos_celular', '700 MEGA + 20GB 3 chips')" class="plan-cta"><span>Contratar este plano</span></a>
+                <a href="https://wa.me/5584981194435" target="_blank" onclick="return openWhatsApp('planos_celular', '700 MEGA + 20GB 3 chips')" class="plan-cta"><span>Contratar este plano</span></a>
               </div>
             </article>
           </div>
@@ -1338,114 +1365,127 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
             <p><strong>Prêmio Melhor Plano 2026</strong> — a Brisanet foi eleita a Melhor Internet Fixa no Ceará, no Rio Grande do Norte e em Sergipe, além de outras 84 cidades, nas categorias melhor provedor para quem joga online, maior velocidade, maior estabilidade e maior satisfação.</p>
           </div>
-        <div class="google-reviews reveal">
-          <article class="review-card">
-            <div class="review-head">
-              <span class="review-avatar" style="background: #1A73E8;" aria-hidden="true">JA</span>
-              <div class="review-meta">
-                <p class="review-name">Juliana A.</p>
-                <div class="review-stars" role="img" aria-label="5 de 5 estrelas">
-                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
-                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
-                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
-                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
-                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+        <!-- Esteira infinita. O grupo e' duplicado por JS (ver bloco reviews-marquee
+             no rodape) para nao dobrar o peso do HTML; sem JS vira uma faixa
+             rolavel manualmente. -->
+        <div class="reviews-marquee reveal" role="group" aria-label="Avaliacoes de clientes no Google">
+          <div class="reviews-marquee__viewport">
+            <div class="reviews-marquee__track">
+              <div class="reviews-marquee__group">
+              <article class="review-card">
+                <div class="review-head">
+                  <span class="review-avatar" style="background: #1A73E8;" aria-hidden="true">JA</span>
+                  <div class="review-meta">
+                    <p class="review-name">Juliana A.</p>
+                    <div class="review-stars" role="img" aria-label="5 de 5 estrelas">
+                    <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                    <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                    <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                    <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                    <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                    </div>
+                  </div>
+                  <svg class="review-google" viewBox="0 0 48 48" role="img" aria-label="Google"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
                 </div>
-              </div>
-              <svg class="review-google" viewBox="0 0 48 48" role="img" aria-label="Google"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
-            </div>
-            <p class="review-text">Satisfeita, fiz hoje o pedido e em menos de 3 horas a internet foi ligada. O funcionário que nos atendeu via WhatsApp e o que fez o serviço de ligação foram super atenciosos.</p>
-          </article>
+                <p class="review-text">Satisfeita, fiz hoje o pedido e em menos de 3 horas a internet foi ligada. O funcionário que nos atendeu via WhatsApp e o que fez o serviço de ligação foram super atenciosos.</p>
+              </article>
 
-          <article class="review-card">
-            <div class="review-head">
-              <span class="review-avatar" style="background: #D93025;" aria-hidden="true">JM</span>
-              <div class="review-meta">
-                <p class="review-name">João Maurício</p>
-                <div class="review-stars" role="img" aria-label="5 de 5 estrelas">
-                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
-                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
-                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
-                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
-                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+              <article class="review-card">
+                <div class="review-head">
+                  <span class="review-avatar" style="background: #D93025;" aria-hidden="true">JM</span>
+                  <div class="review-meta">
+                    <p class="review-name">João Maurício</p>
+                    <div class="review-stars" role="img" aria-label="5 de 5 estrelas">
+                    <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                    <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                    <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                    <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                    <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                    </div>
+                  </div>
+                  <svg class="review-google" viewBox="0 0 48 48" role="img" aria-label="Google"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
                 </div>
-              </div>
-              <svg class="review-google" viewBox="0 0 48 48" role="img" aria-label="Google"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
-            </div>
-            <p class="review-text">700 mb funcionando perfeitamente. Tenho há quase 2 anos.</p>
-          </article>
+                <p class="review-text">700 mb funcionando perfeitamente. Tenho há quase 2 anos.</p>
+              </article>
 
-          <article class="review-card">
-            <div class="review-head">
-              <span class="review-avatar" style="background: #188038;" aria-hidden="true">SF</span>
-              <div class="review-meta">
-                <p class="review-name">Sâmmyo Freitas</p>
-                <div class="review-stars" role="img" aria-label="5 de 5 estrelas">
-                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
-                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
-                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
-                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
-                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+              <article class="review-card">
+                <div class="review-head">
+                  <span class="review-avatar" style="background: #188038;" aria-hidden="true">SF</span>
+                  <div class="review-meta">
+                    <p class="review-name">Sâmmyo Freitas</p>
+                    <div class="review-stars" role="img" aria-label="5 de 5 estrelas">
+                    <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                    <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                    <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                    <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                    <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                    </div>
+                  </div>
+                  <svg class="review-google" viewBox="0 0 48 48" role="img" aria-label="Google"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
                 </div>
-              </div>
-              <svg class="review-google" viewBox="0 0 48 48" role="img" aria-label="Google"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
-            </div>
-            <p class="review-text">Ping 20 ms ~ 45 ms. Rápido, visse!</p>
-          </article>
+                <p class="review-text">Ping 20 ms ~ 45 ms. Rápido, visse!</p>
+              </article>
 
-          <article class="review-card">
-            <div class="review-head">
-              <span class="review-avatar" style="background: #E37400;" aria-hidden="true">RN</span>
-              <div class="review-meta">
-                <p class="review-name">Ryan Nailton</p>
-                <div class="review-stars" role="img" aria-label="5 de 5 estrelas">
-                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
-                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
-                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
-                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
-                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+              <article class="review-card">
+                <div class="review-head">
+                  <span class="review-avatar" style="background: #E37400;" aria-hidden="true">RN</span>
+                  <div class="review-meta">
+                    <p class="review-name">Ryan Nailton</p>
+                    <div class="review-stars" role="img" aria-label="5 de 5 estrelas">
+                    <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                    <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                    <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                    <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                    <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                    </div>
+                  </div>
+                  <svg class="review-google" viewBox="0 0 48 48" role="img" aria-label="Google"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
                 </div>
-              </div>
-              <svg class="review-google" viewBox="0 0 48 48" role="img" aria-label="Google"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
-            </div>
-            <p class="review-text">Internet de alta qualidade, planos de streaming parceiros muito bons, com bastante entretenimento.</p>
-          </article>
+                <p class="review-text">Internet de alta qualidade, planos de streaming parceiros muito bons, com bastante entretenimento.</p>
+              </article>
 
-          <article class="review-card">
-            <div class="review-head">
-              <span class="review-avatar" style="background: #9334E6;" aria-hidden="true">MC</span>
-              <div class="review-meta">
-                <p class="review-name">Maria Clara Firmino</p>
-                <div class="review-stars" role="img" aria-label="5 de 5 estrelas">
-                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
-                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
-                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
-                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
-                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+              <article class="review-card">
+                <div class="review-head">
+                  <span class="review-avatar" style="background: #9334E6;" aria-hidden="true">MC</span>
+                  <div class="review-meta">
+                    <p class="review-name">Maria Clara Firmino</p>
+                    <div class="review-stars" role="img" aria-label="5 de 5 estrelas">
+                    <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                    <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                    <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                    <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                    <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                    </div>
+                  </div>
+                  <svg class="review-google" viewBox="0 0 48 48" role="img" aria-label="Google"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
                 </div>
-              </div>
-              <svg class="review-google" viewBox="0 0 48 48" role="img" aria-label="Google"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
-            </div>
-            <p class="review-text">Tenho há alguns anos já e sempre que tenho problemas eles prestam esclarecimentos e resolvem. Já tive outras e tive muito mais dor de cabeça, super recomendo.</p>
-          </article>
+                <p class="review-text">Tenho há alguns anos já e sempre que tenho problemas eles prestam esclarecimentos e resolvem. Já tive outras e tive muito mais dor de cabeça, super recomendo.</p>
+              </article>
 
-          <article class="review-card">
-            <div class="review-head">
-              <span class="review-avatar" style="background: #0B8043;" aria-hidden="true">LC</span>
-              <div class="review-meta">
-                <p class="review-name">Leila Cristiane</p>
-                <div class="review-stars" role="img" aria-label="4 de 5 estrelas">
-                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
-                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
-                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
-                <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
-                <span class="star-off"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+              <article class="review-card">
+                <div class="review-head">
+                  <span class="review-avatar" style="background: #0B8043;" aria-hidden="true">LC</span>
+                  <div class="review-meta">
+                    <p class="review-name">Leila Cristiane</p>
+                    <div class="review-stars" role="img" aria-label="4 de 5 estrelas">
+                    <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                    <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                    <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                    <span class="star-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                    <span class="star-off"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+                    </div>
+                  </div>
+                  <svg class="review-google" viewBox="0 0 48 48" role="img" aria-label="Google"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
                 </div>
+                <p class="review-text">Até o presente momento, 8 meses de serviços de internet e não tenho o que reclamar. Sempre que precisei dos serviços, foi rápido e eficiente o atendimento, tanto por telefone quanto por visita técnica.</p>
+              </article>
               </div>
-              <svg class="review-google" viewBox="0 0 48 48" role="img" aria-label="Google"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
             </div>
-            <p class="review-text">Até o presente momento, 8 meses de serviços de internet e não tenho o que reclamar. Sempre que precisei dos serviços, foi rápido e eficiente o atendimento, tanto por telefone quanto por visita técnica.</p>
-          </article>
+          </div>
+          <button class="reviews-marquee__toggle" type="button" aria-pressed="false" aria-label="Pausar rolagem dos depoimentos">
+            <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+            <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+          </button>
         </div>
         </div>
       </div>
@@ -1534,9 +1574,9 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
             SAC 0800 281 3017
           </a>
-          <a href="https://wa.me/5581992823101" onclick="return openWhatsApp('footer', 'geral')">
+          <a href="https://wa.me/5584981194435" onclick="return openWhatsApp('footer', 'geral')">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>
-            WhatsApp: 81 99282-3101
+            WhatsApp: 84 98119-4435
           </a>
         </div>
         <p class="footer-legal">Site desenvolvido e publicado por VIRTUNEX INTERMEDIACAO DE SERVICOS LTDA | CNPJ 57.999.680/0001-16. Parceiro autorizado BRISANET. Uso da marca regulamentado. Preços e condições sujeitos a alteração. Todos os direitos reservados.</p>
@@ -1546,7 +1586,7 @@
 
   <!-- WhatsApp Widget -->
   <div class="whatsapp-float">
-    <a href="https://wa.me/5581992823101" onclick="return openWhatsApp('floating', 'geral')" class="whatsapp-btn" aria-label="Falar no WhatsApp">
+    <a href="https://wa.me/5584981194435" onclick="return openWhatsApp('floating', 'geral')" class="whatsapp-btn" aria-label="Falar no WhatsApp">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
       <span>WhatsApp</span>
     </a>
@@ -1562,7 +1602,7 @@
         whatsapp_plano: plano || ''
       });
 
-      const phone = '5581992823101';
+      const phone = '5584981194435';
       const msg = encodeURIComponent('Olá! Tenho interesse no plano: ' + (plano || 'Brisanet'));
       const url = 'https://wa.me/' + phone + '?text=' + msg;
 
@@ -1655,6 +1695,31 @@
       const t = document.querySelector(this.getAttribute('href'));
       if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }));
+
+    // Esteira de depoimentos: duplica o grupo em runtime (nao dobra o HTML) e
+    // so' entao liga a animacao. Sem JS a faixa continua legivel, rolando na mao.
+    (function () {
+      var marquee = document.querySelector('.reviews-marquee');
+      if (!marquee) return;
+      var track = marquee.querySelector('.reviews-marquee__track');
+      var group = marquee.querySelector('.reviews-marquee__group');
+      if (!track || !group) return;
+
+      var clone = group.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      track.appendChild(clone);
+      marquee.classList.add('is-ready');
+
+      var toggle = marquee.querySelector('.reviews-marquee__toggle');
+      if (!toggle) return;
+      toggle.addEventListener('click', function () {
+        var pausado = marquee.classList.toggle('is-paused');
+        toggle.setAttribute('aria-pressed', pausado ? 'true' : 'false');
+        toggle.setAttribute('aria-label', pausado
+          ? 'Retomar rolagem dos depoimentos'
+          : 'Pausar rolagem dos depoimentos');
+      });
+    })();
 
   </script>
   <script src="lead-modal.js"></script>

@@ -96,10 +96,6 @@
         padding: 0 0.5rem;
       }
 
-      .section-title {
-        font-size: clamp(1.5rem, 1.25rem + 2vw, 2rem);
-      }
-
       .section-subtitle {
         font-size: 1rem;
       }
@@ -131,7 +127,8 @@
     
     .section-title {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(2rem, 1.5rem + 3vw, 3rem);
+      /* Um degrau abaixo do H1 da hero em toda a faixa de larguras. */
+      font-size: clamp(1.625rem, 1.15rem + 2.1vw, 2.375rem);
       font-weight: 700;
       color: var(--text);
       margin-bottom: 0.75rem;
@@ -195,6 +192,47 @@
       max-width: 560px;
       margin: 0 auto 2rem;
       line-height: 1.5;
+    }
+
+    /* Cabecalho sem subtitulo: o titulo nao precisa de 2.5rem de respiro abaixo. */
+    .section-header--tight { margin-bottom: 1.5rem; }
+    .section-header--tight .section-title { margin-bottom: 0; }
+
+    /* Nota de disponibilidade: discreta, nao um paragrafo de destaque. */
+    .plans-region-note {
+      font-size: 0.8125rem;
+      color: rgba(255, 255, 255, 0.72);
+      max-width: 44ch;
+      margin: 0 auto 1.75rem;
+    }
+
+    /* ── Densidade do card no mobile ────────────────────────────────────
+       O card ocupava quase a largura inteira e sobrava espaco vertical.
+       Aqui ele encolhe, deixa o proximo card aparecer (afordancia de que
+       rola) e aperta os espacamentos internos. So' abaixo de 640px. */
+    @media (max-width: 640px) {
+      .plan-card {
+        flex: 0 0 78%;
+        min-width: 268px;
+        padding: 1.25rem;
+        border-radius: 16px;
+      }
+      .plan-badge { margin-bottom: 0.625rem; }
+      .plan-speed { margin-bottom: 0.5rem; }
+      .plan-speed-value { font-size: 2.25rem; }
+      .plan-speed-unit { font-size: 1.375rem; }
+      .plan-price {
+        margin-bottom: 0.875rem;
+        padding-bottom: 0.875rem;
+      }
+      .plan-price-value { font-size: 2rem; }
+      .plan-features {
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+      }
+      .plan-feature { font-size: 0.85rem; }
+      .plan-cta { padding: 0.875rem 1.25rem; }
+      .plan-tabs-wrapper { margin-bottom: 1.5rem; }
     }
 
     .plan-panel { display: none; }
@@ -526,46 +564,69 @@
       display: none;
     }
 
+    /* ── Pagination dots — padrao "pilula" (referencia: fiber.google.com) ──
+       O alvo de toque e' o proprio <button> (24px de altura, largura >=24px).
+       O ponto visual vive no ::after e se estica de 12px para 40px no ativo.
+       Pseudo-elemento nao conta como area de clique para o WCAG 2.5.8, por isso
+       o botao tambem cresce: mantem o alvo real e evita sobreposicao no flex. */
     .plan-dots {
       display: flex;
-      /* 20px de gap visual + ponto de 12px = centros a 32px:
-         alvos de toque de 24px ficam com 8px de folga entre si (WCAG 2.5.8) */
-      gap: 20px;
+      align-items: center;
+      /* 8px de folga entre alvos de 24px: centros a 32px, acima dos 24px do WCAG */
+      gap: 8px;
     }
 
     .plan-dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      flex: 0 0 auto;
       background: transparent;
-      border: 2px solid rgba(255, 255, 255, 0.5);
-      transition: all 0.3s ease;
-      cursor: pointer;
+      border: none;
       padding: 0;
-      /* Touch target ampliado pelo ::before abaixo */
+      cursor: pointer;
       position: relative;
+      transition: width 0.5s var(--ease-out, cubic-bezier(0.4, 0, 0.2, 1));
     }
 
-    .plan-dot::before {
+    .plan-dot::after {
       content: '';
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
+      width: 12px;
+      height: 12px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.45);
+      transition: width 0.5s var(--ease-out, cubic-bezier(0.4, 0, 0.2, 1)),
+                  background-color 0.5s var(--ease-out, cubic-bezier(0.4, 0, 0.2, 1));
     }
 
-    .plan-dot:hover {
-      border-color: rgba(255, 255, 255, 0.8);
+    .plan-dot:hover::after {
+      background: rgba(255, 255, 255, 0.75);
     }
 
+    .plan-dot:focus-visible {
+      outline: 2px solid #ffffff;
+      outline-offset: 3px;
+      border-radius: 6px;
+    }
+
+    /* Ativo: a pilula. Branco solido em vez do laranja — na faixa azul o branco
+       tem o maior contraste e o laranja ja e' a cor dos CTAs; repeti-lo na
+       navegacao dilui o botao. */
     .plan-dot.active {
-      background: var(--accent);
-      border-color: #ffffff;
-      transform: scale(1.15);
-      box-shadow: 0 0 8px rgba(255, 87, 34, 0.5);
+      width: 52px;
+    }
+
+    .plan-dot.active::after {
+      width: 40px;
+      background: #ffffff;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .plan-dot,
+      .plan-dot::after { transition: none; }
     }
 
     @media (max-width: 640px) {
@@ -806,19 +867,107 @@
     }
 
     /* ===== AVALIAÇÕES DO GOOGLE ===== */
-    .google-reviews {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-      /* stretch + height:100% no card = mesma altura por linha, texto no topo */
-      align-items: stretch;
+    /* ══ Depoimentos — esteira infinita ══════════════════════════════════
+       Todos os cards tem a MESMA largura e a MESMA altura; o texto e' que
+       varia, entao ele e' truncado em 4 linhas (line-clamp) e o nome em 1.
+       A faixa e' duplicada por JS; a animacao so' liga com .is-ready. */
+    .reviews-marquee {
+      position: relative;
     }
 
-    @media (max-width: 1024px) { .google-reviews { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 640px)  { .google-reviews { grid-template-columns: 1fr; } }
+    .reviews-marquee__viewport {
+      overflow: hidden;
+      /* esmaece as pontas para sugerir continuidade */
+      /* fade em px, nao em %: em 375px um fade de 4% comia meia coluna do card */
+      -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 20px, #000 calc(100% - 20px), transparent 100%);
+              mask-image: linear-gradient(90deg, transparent 0, #000 20px, #000 calc(100% - 20px), transparent 100%);
+    }
+
+    /* Sem JS (faixa nao duplicada): rolagem manual, sem mascara nem animacao. */
+    .reviews-marquee:not(.is-ready) .reviews-marquee__viewport {
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-mask-image: none;
+              mask-image: none;
+      padding-bottom: 0.5rem;
+    }
+
+    .reviews-marquee:not(.is-ready) .reviews-marquee__toggle { display: none; }
+
+    .reviews-marquee__track {
+      display: flex;
+      gap: 1rem;
+      width: max-content;
+      /* padding vertical para a sombra do card nao ser cortada pelo overflow */
+      padding: 0.5rem 0;
+    }
+
+    .reviews-marquee.is-ready .reviews-marquee__track {
+      animation: reviews-scroll 60s linear infinite;
+    }
+
+    .reviews-marquee.is-ready:hover .reviews-marquee__track,
+    .reviews-marquee.is-ready:focus-within .reviews-marquee__track,
+    .reviews-marquee.is-paused .reviews-marquee__track {
+      animation-play-state: paused;
+    }
+
+    .reviews-marquee__group {
+      display: flex;
+      gap: 1rem;
+      flex: 0 0 auto;
+    }
+
+    /* -50% leva a metade da faixa; o -0.5rem compensa metade do gap entre os
+       dois grupos, fechando o laco sem salto. */
+    @keyframes reviews-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(calc(-50% - 0.5rem)); }
+    }
+
+    /* Botao pausar/retomar — WCAG 2.2.2 (conteudo em movimento > 5s) */
+    .reviews-marquee__toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      margin: 1rem auto 0;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      border-radius: 50%;
+      background: #ffffff;
+      color: var(--text-on-white-muted);
+      cursor: pointer;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .reviews-marquee__toggle:hover {
+      color: var(--text-on-light);
+      border-color: rgba(0, 0, 0, 0.28);
+    }
+
+    .reviews-marquee__toggle svg { width: 18px; height: 18px; }
+    .reviews-marquee__toggle .icon-play { display: none; }
+    .reviews-marquee.is-paused .reviews-marquee__toggle .icon-pause { display: none; }
+    .reviews-marquee.is-paused .reviews-marquee__toggle .icon-play { display: block; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reviews-marquee.is-ready .reviews-marquee__track { animation: none; }
+      .reviews-marquee__viewport {
+        overflow-x: auto;
+        -webkit-mask-image: none;
+                mask-image: none;
+      }
+      .reviews-marquee__toggle { display: none; }
+    }
 
     .review-card {
-      height: 100%;
+      /* dimensao unica: largura fixa e altura minima igual para todos */
+      flex: 0 0 300px;
+      width: 300px;
+      min-height: 196px;
+      display: flex;
+      flex-direction: column;
       background: #ffffff;
       border: 1px solid rgba(0, 0, 0, 0.08);
       border-radius: 16px;
@@ -855,6 +1004,10 @@
       font-weight: 600;
       color: var(--text-on-white);
       margin-bottom: 0.25rem;
+      /* sempre em uma linha — senao o card cresceria e quebraria a altura unica */
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .review-stars { display: flex; gap: 2px; }
@@ -868,6 +1021,12 @@
       font-size: 0.9375rem;
       line-height: 1.6;
       color: var(--text-on-white-muted);
+      /* trava em 4 linhas: e' o texto que varia, nao o card */
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
 
     .experience-cards {

@@ -96,10 +96,6 @@
         padding: 0 0.5rem;
       }
 
-      .section-title {
-        font-size: clamp(1.5rem, 1.25rem + 2vw, 2rem);
-      }
-
       .section-subtitle {
         font-size: 1rem;
       }
@@ -131,7 +127,8 @@
     
     .section-title {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(2rem, 1.5rem + 3vw, 3rem);
+      /* Um degrau abaixo do H1 da hero em toda a faixa de larguras. */
+      font-size: clamp(1.625rem, 1.15rem + 2.1vw, 2.375rem);
       font-weight: 700;
       color: var(--text);
       margin-bottom: 0.75rem;
@@ -515,22 +512,28 @@
       display: none;
     }
 
+    /* ── Pagination dots — padrao "pilula" (referencia: fiber.google.com) ──
+       O alvo de toque e' o proprio <button> (24px de altura, largura >=24px).
+       O ponto visual vive no ::after e se estica de 12px para 40px no ativo.
+       Pseudo-elemento nao conta como area de clique para o WCAG 2.5.8, por isso
+       o botao tambem cresce: mantem o alvo real e evita sobreposicao no flex. */
     .plan-dots {
       display: flex;
+      align-items: center;
       /* 8px de folga entre alvos de 24px: centros a 32px, acima dos 24px do WCAG */
       gap: 8px;
     }
 
-    /* O alvo e' o proprio botao (24x24). O ponto visual de 12px fica no ::after —
-       pseudo-elemento nao conta como area de clique para o target-size. */
     .plan-dot {
       width: 24px;
       height: 24px;
+      flex: 0 0 auto;
       background: transparent;
       border: none;
       padding: 0;
       cursor: pointer;
       position: relative;
+      transition: width 0.5s var(--ease-out, cubic-bezier(0.4, 0, 0.2, 1));
     }
 
     .plan-dot::after {
@@ -541,21 +544,37 @@
       transform: translate(-50%, -50%);
       width: 12px;
       height: 12px;
-      border-radius: 50%;
-      background: transparent;
-      border: 2px solid rgba(255, 255, 255, 0.5);
-      transition: all 0.3s ease;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.45);
+      transition: width 0.5s var(--ease-out, cubic-bezier(0.4, 0, 0.2, 1)),
+                  background-color 0.5s var(--ease-out, cubic-bezier(0.4, 0, 0.2, 1));
     }
 
     .plan-dot:hover::after {
-      border-color: rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.75);
+    }
+
+    .plan-dot:focus-visible {
+      outline: 2px solid #ffffff;
+      outline-offset: 3px;
+      border-radius: 6px;
+    }
+
+    /* Ativo: a pilula. Branco solido em vez do laranja — na faixa azul o branco
+       tem o maior contraste e o laranja ja e' a cor dos CTAs; repeti-lo na
+       navegacao dilui o botao. */
+    .plan-dot.active {
+      width: 52px;
     }
 
     .plan-dot.active::after {
-      background: var(--accent);
-      border-color: #ffffff;
-      transform: translate(-50%, -50%) scale(1.15);
-      box-shadow: 0 0 8px rgba(255, 87, 34, 0.5);
+      width: 40px;
+      background: #ffffff;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .plan-dot,
+      .plan-dot::after { transition: none; }
     }
 
     @media (max-width: 640px) {
