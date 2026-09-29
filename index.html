@@ -776,8 +776,8 @@
       }
     }
   </style>
-  <link rel="preload" href="css/index.css?v=202609290441" as="style" onload="this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="css/index.css?v=202609290441"></noscript>
+  <link rel="preload" href="css/index.css?v=202609290550" as="style" onload="this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="css/index.css?v=202609290550"></noscript>
 </head>
 <body>
 
@@ -1487,10 +1487,6 @@
               </div>
             </div>
           </div>
-          <button class="reviews-marquee__toggle" type="button" aria-pressed="false" aria-label="Pausar rolagem dos depoimentos">
-            <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
-            <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-          </button>
         </div>
         </div>
       </div>
@@ -1686,6 +1682,72 @@
       updateDots();
     });
 
+    // Arrastar o carrossel de planos com o mouse. O toque ja' rolava nativamente
+    // (overflow-x: auto); o mouse nao — so' os dots moviam a faixa.
+    // Regras: nada de sequestrar o toque (pointerType 'mouse' apenas) e o clique
+    // nos botoes so' e' cancelado depois de passar do limiar de arrasto.
+    document.querySelectorAll('.plan-grid').forEach(function (grid) {
+      var LIMIAR = 6;          // px antes de virar arrasto em vez de clique
+      var ativo = false, arrastou = false, x0 = 0, scroll0 = 0, idPonteiro = null;
+
+      function rolavel() { return grid.scrollWidth > grid.clientWidth + 1; }
+
+      // O CSS desta pagina carrega de forma assincrona (preload + onload).
+      // Quando este script roda, a folha pode ainda nao ter sido aplicada e o
+      // grid nem e' rolavel — por isso remarcamos no load e a cada resize do
+      // proprio elemento, em vez de medir uma unica vez.
+      function marcar() { grid.classList.toggle('is-draggable', rolavel()); }
+      marcar();
+      window.addEventListener('load', marcar);
+      window.addEventListener('resize', marcar);
+      if (window.ResizeObserver) new ResizeObserver(marcar).observe(grid);
+
+      grid.addEventListener('pointerdown', function (e) {
+        if (e.pointerType !== 'mouse' || e.button !== 0 || !rolavel()) return;
+        ativo = true; arrastou = false;
+        x0 = e.clientX; scroll0 = grid.scrollLeft; idPonteiro = e.pointerId;
+      });
+
+      grid.addEventListener('pointermove', function (e) {
+        if (!ativo || e.pointerId !== idPonteiro) return;
+        var dx = e.clientX - x0;
+        if (!arrastou) {
+          if (Math.abs(dx) < LIMIAR) return;
+          arrastou = true;
+          grid.classList.add('is-dragging');
+          // captura so' depois do limiar: antes disso o clique continua valendo
+          try { grid.setPointerCapture(idPonteiro); } catch (err) {}
+        }
+        e.preventDefault();
+        grid.scrollLeft = scroll0 - dx;
+      });
+
+      function encerrar(e) {
+        if (!ativo || (e && e.pointerId !== idPonteiro)) return;
+        ativo = false;
+        if (idPonteiro !== null) {
+          try { grid.releasePointerCapture(idPonteiro); } catch (err) {}
+        }
+        idPonteiro = null;
+        if (!arrastou) return;
+        // devolve o pointer-events dos links so' no proximo quadro, senao o
+        // clique que encerra o arrasto dispara o WhatsApp sem querer
+        requestAnimationFrame(function () {
+          grid.classList.remove('is-dragging');
+          arrastou = false;
+        });
+      }
+
+      grid.addEventListener('pointerup', encerrar);
+      grid.addEventListener('pointercancel', encerrar);
+      grid.addEventListener('pointerleave', encerrar);
+
+      // arrastar nao pode sair arrastando a imagem/o link
+      grid.addEventListener('dragstart', function (e) {
+        if (arrastou) e.preventDefault();
+      });
+    });
+
     // Scroll reveal
     const reveals = document.querySelectorAll('.reveal');
     const revealObserver = new IntersectionObserver(entries => entries.forEach(e => {
@@ -1714,18 +1776,43 @@
       track.appendChild(clone);
       marquee.classList.add('is-ready');
 
-      var toggle = marquee.querySelector('.reviews-marquee__toggle');
-      if (!toggle) return;
-      toggle.addEventListener('click', function () {
-        var pausado = marquee.classList.toggle('is-paused');
-        toggle.setAttribute('aria-pressed', pausado ? 'true' : 'false');
-        toggle.setAttribute('aria-label', pausado
-          ? 'Retomar rolagem dos depoimentos'
-          : 'Pausar rolagem dos depoimentos');
+      // A esteira pausa ao interagir — e nada mais: sem botao.
+      // Feito por evento em vez de so' pelo :hover do CSS, que nao e'
+      // confiavel em tela sensivel ao toque nem em alguns navegadores.
+      // Mouse, dedo e teclado entram pelo mesmo caminho.
+      var pausar  = function () { marquee.classList.add('is-paused'); };
+      var retomar = function () { marquee.classList.remove('is-paused'); };
+
+      // Pegadinha: os cards se movem por baixo do cursor parado, e o navegador
+      // dispara mouseleave logo depois do mouseenter — o hover nunca se
+      // sustenta (o :hover do CSS falha pelo mesmo motivo). Por isso a saida
+      // e' conferida pela GEOMETRIA, nao pelo evento: so' retoma quando o
+      // ponteiro esta' mesmo fora do retangulo da esteira.
+      function foraDaEsteira(e) {
+        var r = marquee.getBoundingClientRect();
+        return e.clientX < r.left || e.clientX > r.right ||
+               e.clientY < r.top  || e.clientY > r.bottom;
+      }
+
+      marquee.addEventListener('pointerover', function (e) {
+        if (e.pointerType !== 'touch') pausar();
       });
+      marquee.addEventListener('pointerout', function (e) {
+        if (e.pointerType !== 'touch' && foraDaEsteira(e)) retomar();
+      });
+      // rede de seguranca: se o ponteiro sair da pagina sem passar pela borda
+      document.addEventListener('pointermove', function (e) {
+        if (marquee.classList.contains('is-paused') && foraDaEsteira(e)) retomar();
+      }, { passive: true });
+
+      marquee.addEventListener('touchstart', pausar, { passive: true });
+      marquee.addEventListener('touchend', retomar, { passive: true });
+      marquee.addEventListener('touchcancel', retomar, { passive: true });
+      marquee.addEventListener('focusin', pausar);
+      marquee.addEventListener('focusout', retomar);
     })();
 
   </script>
-  <script src="lead-modal.js?v=202609290441"></script>
+  <script src="lead-modal.js?v=202609290550"></script>
 </body>
 </html>

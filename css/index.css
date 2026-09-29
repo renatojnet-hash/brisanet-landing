@@ -208,33 +208,16 @@
       margin: 0 auto 1.75rem;
     }
 
-    /* ── Densidade do card no mobile ────────────────────────────────────
-       O card ocupava quase a largura inteira e sobrava espaco vertical.
-       Aqui ele encolhe, deixa o proximo card aparecer (afordancia de que
-       rola) e aperta os espacamentos internos. So' abaixo de 640px. */
-    @media (max-width: 640px) {
-      .plan-card {
-        flex: 0 0 78%;
-        min-width: 268px;
-        padding: 1.25rem;
-        border-radius: 16px;
+    /* Arrastar com o mouse: o cursor anuncia que a faixa se move.
+       Em tela sensivel ao toque o dedo ja' rolava; o mouse nao. */
+    @media (hover: hover) and (pointer: fine) {
+      .plan-grid.is-draggable { cursor: grab; }
+      .plan-grid.is-dragging {
+        cursor: grabbing;
+        scroll-snap-type: none;   /* o snap brigava com o arrasto */
+        user-select: none;
       }
-      .plan-badge { margin-bottom: 0.625rem; }
-      .plan-speed { margin-bottom: 0.5rem; }
-      .plan-speed-value { font-size: 2.25rem; }
-      .plan-speed-unit { font-size: 1.375rem; }
-      .plan-price {
-        margin-bottom: 0.875rem;
-        padding-bottom: 0.875rem;
-      }
-      .plan-price-value { font-size: 2rem; }
-      .plan-features {
-        gap: 0.5rem;
-        margin-bottom: 1rem;
-      }
-      .plan-feature { font-size: 0.85rem; }
-      .plan-cta { padding: 0.875rem 1.25rem; }
-      .plan-tabs-wrapper { margin-bottom: 1.5rem; }
+      .plan-grid.is-dragging a { pointer-events: none; }
     }
 
     .plan-panel { display: none; }
@@ -268,9 +251,9 @@
       }
       .plan-grid::-webkit-scrollbar { display: none; }
       .plan-card {
-        flex: 0 0 85%;
+        /* largura definida no bloco "Card de plano no mobile" logo abaixo;
+           aqui ficam so' as propriedades de rolagem/toque do carrossel */
         scroll-snap-align: center;
-        min-width: 300px;
         touch-action: auto;
       }
     }
@@ -983,8 +966,6 @@
       padding-bottom: 0.5rem;
     }
 
-    .reviews-marquee:not(.is-ready) .reviews-marquee__toggle { display: none; }
-
     .reviews-marquee__track {
       display: flex;
       gap: 1rem;
@@ -998,6 +979,8 @@
       animation: reviews-scroll 110s linear infinite;
     }
 
+    /* Pausa apenas por interacao: mouse sobre a faixa, foco de teclado ou
+       dedo na tela (.is-paused vem do touchstart). Sem botao dedicado. */
     .reviews-marquee.is-ready:hover .reviews-marquee__track,
     .reviews-marquee.is-ready:focus-within .reviews-marquee__track,
     .reviews-marquee.is-paused .reviews-marquee__track {
@@ -1017,31 +1000,6 @@
       to   { transform: translateX(calc(-50% - 0.5rem)); }
     }
 
-    /* Botao pausar/retomar — WCAG 2.2.2 (conteudo em movimento > 5s) */
-    .reviews-marquee__toggle {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 40px;
-      height: 40px;
-      margin: 1rem auto 0;
-      border: 1px solid rgba(0, 0, 0, 0.12);
-      border-radius: 50%;
-      background: #ffffff;
-      color: var(--text-on-white-muted);
-      cursor: pointer;
-      transition: color 0.2s ease, border-color 0.2s ease;
-    }
-
-    .reviews-marquee__toggle:hover {
-      color: var(--text-on-light);
-      border-color: rgba(0, 0, 0, 0.28);
-    }
-
-    .reviews-marquee__toggle svg { width: 18px; height: 18px; }
-    .reviews-marquee__toggle .icon-play { display: none; }
-    .reviews-marquee.is-paused .reviews-marquee__toggle .icon-pause { display: none; }
-    .reviews-marquee.is-paused .reviews-marquee__toggle .icon-play { display: block; }
 
     @media (prefers-reduced-motion: reduce) {
       .reviews-marquee.is-ready .reviews-marquee__track { animation: none; }
@@ -1050,7 +1008,6 @@
         -webkit-mask-image: none;
                 mask-image: none;
       }
-      .reviews-marquee__toggle { display: none; }
     }
 
     .review-card {
@@ -1676,4 +1633,77 @@
         animation-duration: 0.01ms !important;
         transition-duration: 0.01ms !important;
       }
+    }
+
+    /* ══ Card de plano no mobile ═════════════════════════════════════════
+       Largura em clamp em vez de porcentagem: num Galaxy S20 (360px) o card
+       fica com 259px e sobram ~85px do proximo — afordancia de que rola.
+       O piso de 236px protege telas de 320px; o teto de 292px impede que
+       vire um retangulo largo demais em telas grandes.
+         360px -> 259px | 375px -> 270px | 390px -> 281px | 414px+ -> 292px  */
+    @media (max-width: 640px) {
+      .plan-card {
+        flex: 0 0 clamp(236px, 72vw, 292px);
+        min-width: 0;
+        padding: 1.25rem 1.125rem 1.125rem;
+        border-radius: 14px;
+        border-color: rgba(0, 0, 0, 0.07);
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.10);
+      }
+
+      /* O filete laranja no topo de TODOS os cards poluia a fileira.
+         Fica so' no card em destaque, onde de fato significa algo. */
+      .plan-card::before { display: none; }
+      .plan-card.featured::before {
+        display: block;
+        height: 3px;
+        background: linear-gradient(90deg, var(--accent), #ffa07a);
+      }
+
+      /* badge menor e mais leve: e' rotulo, nao manchete */
+      .plan-badge {
+        margin-bottom: 0.75rem;
+        padding: 0.25rem 0.625rem;
+        font-size: 0.625rem;
+        letter-spacing: 0.06em;
+        border-radius: 5px;
+      }
+
+      /* bloco da velocidade: numero e unidade na mesma linha de base */
+      .plan-speed { margin-bottom: 0.875rem; }
+      .plan-speed-value { font-size: 2.25rem; letter-spacing: -0.02em; }
+      .plan-speed-unit { font-size: 1.25rem; }
+      .plan-speed-label { font-size: 0.8125rem; margin-top: 0.125rem; }
+      .plan-speed-bar { height: 3px; margin-top: 0.625rem; }
+
+      .plan-aggregate {
+        padding: 6px 10px;
+        margin-bottom: 0.625rem;
+      }
+      .plan-aggregate span { font-size: 0.8125rem; }
+
+      /* preco: a ancora visual do card */
+      .plan-price {
+        margin-bottom: 0.875rem;
+        padding-bottom: 0.875rem;
+      }
+      .plan-price-old { font-size: 0.75rem; line-height: 1.35; }
+      .plan-price-value { font-size: 2rem; letter-spacing: -0.02em; }
+
+      .plan-features {
+        gap: 0.5rem;
+        margin-bottom: 1.125rem;
+      }
+      .plan-feature { font-size: 0.8125rem; gap: 0.5rem; }
+      .plan-feature svg { width: 16px; height: 16px; }
+
+      /* CTA ocupa a largura toda: alvo generoso no polegar */
+      .plan-cta {
+        width: 100%;
+        padding: 0.8125rem 1rem;
+        font-size: 0.9375rem;
+        border-radius: 10px;
+      }
+
+      .plan-tabs-wrapper { margin-bottom: 1.5rem; }
     }
