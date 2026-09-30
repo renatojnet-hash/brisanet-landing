@@ -436,17 +436,22 @@
       overflow: hidden;
     }
 
+    /* Duas camadas: um veu azul escuro na coluna do texto (garante o
+       contraste, medido) e um escurecimento geral que assenta a foto. */
     .hero-banner__overlay {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 65%;
-      height: 100%;
-      background: linear-gradient(90deg,
-        rgba(30, 64, 175, 0.95) 0%,
-        rgba(30, 64, 175, 0.75) 30%,
-        rgba(30, 64, 175, 0.40) 50%,
-        rgba(30, 64, 175, 0.0) 70%);
+      inset: 0;
+      background:
+        linear-gradient(90deg,
+          rgba(10, 28, 84, 0.93) 0%,
+          rgba(10, 28, 84, 0.88) 32%,
+          rgba(12, 34, 96, 0.62) 55%,
+          rgba(16, 42, 110, 0.34) 78%,
+          rgba(16, 42, 110, 0.28) 100%),
+        linear-gradient(180deg,
+          rgba(6, 18, 56, 0.35) 0%,
+          rgba(6, 18, 56, 0.10) 40%,
+          rgba(6, 18, 56, 0.45) 100%);
       pointer-events: none;
       z-index: 1;
     }
@@ -454,28 +459,24 @@
     .hero-banner__grid {
       position: relative;
       z-index: 2;
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
-      gap: 2rem;
-      align-items: center;
+      display: block;   /* coluna unica: a foto agora e' fundo, nao vizinha */
     }
 
     .hero-banner__content {
       position: relative;
       z-index: 2;
-      max-width: 600px;
-      padding: 60px 20px;
+      max-width: 640px;
+      padding: 72px 0 80px;
     }
 
-    /* Imagem em sangria: ocupa a metade direita ate a borda da viewport.
-       Fica fora do .container de proposito — por isso e' irma do __grid no markup. */
+    /* A foto cobre a hero inteira e o texto vive por cima dela. Antes ela
+       ocupava so' a metade direita e o bloco da oferta ficava ao lado, com
+       cara de card de plano solto dentro da secao. */
     .hero-banner__media {
       position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      width: 50%;
-      z-index: 1;
+      inset: 0;
+      width: 100%;
+      z-index: 0;
       display: block;
     }
 
@@ -491,75 +492,31 @@
       height: 100%;
       max-width: none;
       object-fit: cover;
-      object-position: center;
+      /* a familia esta' a direita do enquadramento: mantem ela visivel quando
+         a tela e' larga e o corte acontece nas laterais */
+      object-position: 72% center;
       border-radius: 0;
     }
 
-    /* Funde a imagem com a area de texto: azul do hero solido na borda esquerda
-       da imagem, transparente por volta de 60% da largura dela. As paradas usam
-       o mesmo RGB (nao a keyword transparent) para nao interpolar via preto.
-       Fallback para navegadores sem mask-image. */
-    .hero-banner__media::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(90deg,
-        rgb(42, 88, 214) 0%,
-        rgba(42, 88, 214, 0.92) 12%,
-        rgba(42, 88, 214, 0.55) 35%,
-        rgba(42, 88, 214, 0.0) 60%);
-      pointer-events: none;
-    }
-
-    /* Onde houver mask-image, pinta o PROPRIO radial-gradient da secao sobre a
-       imagem e recorta a opacidade na horizontal. Como a imagem ocupa exatamente
-       a metade direita, um background de 200% alinhado a direita reproduz pixel
-       a pixel o fundo da secao — nao sobra emenda visivel na juncao. */
-    @supports (mask-image: linear-gradient(#000, #000)) or (-webkit-mask-image: linear-gradient(#000, #000)) {
-      .hero-banner__media::after {
-        background: radial-gradient(ellipse at top left, #3b6be8 0%, #2855d4 50%, #1e45b8 100%);
-        background-size: 200% 100%;
-        background-position: right center;
-        background-repeat: no-repeat;
-        -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 12%, rgba(0, 0, 0, 0.55) 35%, transparent 60%);
-        mask-image: linear-gradient(90deg, #000 0%, #000 12%, rgba(0, 0, 0, 0.55) 35%, transparent 60%);
-      }
-    }
-
     @media (max-width: 900px) {
-      /* mobile empilha: texto primeiro, imagem depois — o CTA nao pode sair da primeira tela.
-         A sangria lateral nao se aplica aqui. */
+      /* A foto continua sendo fundo tambem no mobile — antes ela virava uma
+         faixa de 320px embaixo do texto, que era o que fazia a oferta parecer
+         um card solto. O overlay passa a escurecer de cima para baixo. */
       .hero-banner { flex-direction: column; align-items: stretch; }
-      .hero-banner__grid { grid-template-columns: 1fr; gap: 0; }
-      .hero-banner__media {
-        position: static;
-        width: 100%;
-        /* altura fixa: reserva o espaco antes do load, sem CLS */
-        height: 320px;
-      }
-      .hero-banner__media::after { display: none; }
-
-      /* O bloco da oferta (600 MEGA + Netflix) vinha solto, encostando na
-         faixa da imagem. Ganha superficie propria: um painel azul mais escuro
-         que a hero — escurecer AUMENTA o contraste do texto branco, ao
-         contrario de um vidro claro — e respiro antes da imagem.
-         Sem backdrop-filter: e' elemento grande e acima da dobra. */
-      .hero-banner__offer-box {
-        width: 100%;
-        gap: 14px;
-        padding: 18px;
-        border-radius: 16px;
-        background: rgba(10, 28, 84, 0.35);
-        border: 1px solid rgba(255, 255, 255, 0.14);
-        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
+      .hero-banner__media { object-position: 60% center; }
+      .hero-banner__media img { object-position: 60% center; }
+      /* Nao aliviar no rodape: e' exatamente onde caem o preco e o CTA, e a
+         foto tem uma janela clara ali. Medido antes do ajuste: 1,56:1 no
+         "Por 3 meses, depois R$ 120,80". O escuro volta a fechar embaixo. */
+      .hero-banner__overlay {
+        background:
+          linear-gradient(180deg,
+            rgba(7, 21, 64, 0.94) 0%,
+            rgba(7, 21, 64, 0.90) 38%,
+            rgba(8, 24, 74, 0.88) 62%,
+            rgba(7, 21, 64, 0.94) 100%);
       }
 
-      .hero-banner__checks {
-        margin-bottom: 0;
-        padding-bottom: 14px;
-      }
-
-      .hero-banner__content { padding-bottom: 36px; }
     }
 
     .hero-banner__badge {
@@ -635,11 +592,58 @@
     /* Os checks ficam empilhados em coluna em todas as larguras (base do
        .hero-banner__checks). Nao reintroduzir flex-direction: row aqui. */
 
+    /* ── Oferta em destaque, nao em caixa ─────────────────────────────
+       Antes era um painel com fundo e borda, que lia como "card de plano"
+       largado dentro da hero. Agora e' uma faixa: filete no topo, os dados
+       em linha e o CTA fechando. Quem garante a leitura sobre a foto e' o
+       overlay, nao uma caixa. */
     .hero-banner__offer-box {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 14px;
       align-items: flex-start;
+      margin-top: 28px;
+      padding-top: 26px;
+      border-top: 1px solid rgba(255, 255, 255, 0.28);
+      position: relative;
+    }
+
+    /* marca laranja no inicio do filete: ancora a oferta sem virar moldura */
+    .hero-banner__offer-box::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: 0;
+      width: 64px;
+      height: 3px;
+      border-radius: 2px;
+      background: var(--accent);
+    }
+
+    /* velocidade e agregado na mesma linha */
+    .hero-banner__offer-head {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    /* checks em linha no desktop: ocupam a largura em vez de empilhar */
+    .hero-banner__checks {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 8px 20px;
+      border-bottom: 0;
+      padding-bottom: 0;
+      margin-bottom: 4px;
+    }
+
+    /* preco e CTA lado a lado */
+    .hero-banner__close {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
     }
 
     /* 1. VELOCIDADE - Maior destaque */
@@ -714,7 +718,8 @@
       font-size: 0.9rem;
       /* 0.7 caia para 4,41:1 sobre o azul mais claro do gradiente no mobile */
       color: rgba(255, 255, 255, 0.82);
-      margin-top: -8px;
+      /* era -8px, herdado do layout em caixa: encostava no preco */
+      margin-top: 4px;
     }
 
     .hero-banner .btn--highlight {
@@ -751,14 +756,10 @@
         padding: 80px 0 40px;
       }
 
-      .hero-banner__overlay {
-        width: 100%;
-        background: linear-gradient(180deg,
-          rgba(30, 64, 175, 0.92) 0%,
-          rgba(30, 64, 175, 0.78) 40%,
-          rgba(30, 64, 175, 0.45) 65%,
-          rgba(30, 64, 175, 0.0) 85%);
-      }
+      /* Esta regra (<=768px) vinha DEPOIS da de <=900px e zerava o overlay em
+         85% da altura — justo onde caem o preco e o CTA, sobre a janela clara
+         da foto. Medido: 1,56:1 no "Por 3 meses". Herda a de 900px. */
+      .hero-banner__overlay { width: 100%; }
 
       .hero-banner__content {
         max-width: 100%;
@@ -771,8 +772,14 @@
       }
 
       .hero-banner__plan-speed {
-        font-size: 2rem;
+        font-size: 1.875rem;
       }
+
+      /* o selo Netflix competia com a velocidade em 360px */
+      .hero-banner__aggregate { padding: 7px 12px; }
+      .hero-banner__aggregate .brand-name { font-size: 1rem; }
+      .hero-banner__offer-head { gap: 10px; }
+      .hero-banner__close { gap: 16px; }
 
       .hero-banner__price-value {
         font-size: 1.75rem;
@@ -788,7 +795,7 @@
        sem este CSS: fundo escuro do tema legado e SVG sem dimensao ocupando
        a largura toda (medido: 1232x1232px num check de 18px). Sao 9,7 KB
        com gzip — o bloqueio de render nao paga o flash. -->
-  <link rel="stylesheet" href="css/index.css?v=202609300342">
+  <link rel="stylesheet" href="css/index.css?v=202609300428">
 </head>
 <body>
 
@@ -853,16 +860,16 @@
             Velocidade e estabilidade para streaming, home office e estudos.
           </p>
 
-          <!-- OFERTA - Bloco de Valor -->
+          <!-- OFERTA — faixa, nao caixa -->
           <div class="hero-banner__offer-box">
-            <!-- 1. VELOCIDADE -->
-            <div class="hero-banner__plan-speed">600 MEGA</div>
-
-            <!-- 2. AGREGADO (mini-produto) -->
-            <div class="hero-banner__aggregate">
-              <span class="aggregate-plus">+</span>
-              <!-- logo oficial entra aqui como <svg> inline: ver img/marcas/README.md -->
-              <span class="brand-name brand-netflix">Netflix</span>
+            <!-- velocidade e agregado na mesma linha -->
+            <div class="hero-banner__offer-head">
+              <div class="hero-banner__plan-speed">600 MEGA</div>
+              <div class="hero-banner__aggregate">
+                <span class="aggregate-plus">+</span>
+                <!-- logo oficial entra aqui como <svg> inline: ver img/marcas/README.md -->
+                <span class="brand-name brand-netflix">Netflix</span>
+              </div>
             </div>
 
             <!-- 3. BENEFÍCIOS -->
@@ -881,14 +888,16 @@
               </div>
             </div>
 
-            <!-- 4. PREÇO -->
-            <div class="hero-banner__price-value">R$ 99,90<span class="price-period">/mês</span></div>
-            <div class="hero-banner__price-after">Por 3 meses, depois R$ 120,80/mês</div>
-
-            <!-- 5. CTA -->
-            <a href="https://wa.me/5584981194435" target="_blank" onclick="return openWhatsApp('hero', '600 MEGA + Netflix')" class="btn btn--highlight">
-              Contratar este plano
-            </a>
+            <!-- preco e CTA fechando a faixa, lado a lado -->
+            <div class="hero-banner__close">
+              <div>
+                <div class="hero-banner__price-value">R$ 99,90<span class="price-period">/mês</span></div>
+                <div class="hero-banner__price-after">Por 3 meses, depois R$ 120,80/mês</div>
+              </div>
+              <a href="https://wa.me/5584981194435" target="_blank" onclick="return openWhatsApp('hero', '600 MEGA + Netflix')" class="btn btn--highlight">
+                Contratar este plano
+              </a>
+            </div>
           </div>
 
         </div>
@@ -900,14 +909,14 @@
           <source type="image/avif"
                   srcset="img/hero-familia-tvblur-760.avif 760w,
                           img/hero-familia-tvblur-1200.avif 1200w"
-                  sizes="(max-width: 900px) 100vw, 50vw">
+                  sizes="100vw">
           <source type="image/webp"
                   srcset="img/hero-familia-tvblur-760.webp 760w,
                           img/hero-familia-tvblur-1200.webp 1200w"
-                  sizes="(max-width: 900px) 100vw, 50vw">
+                  sizes="100vw">
           <img src="img/hero-familia-tvblur-1200.webp"
                width="1200" height="1490"
-               fetchpriority="high" decoding="async"
+               fetchpriority="high" decoding="sync"
                alt="Família assistindo streaming na sala de casa com internet fibra">
         </picture>
       </div>
@@ -934,7 +943,7 @@
         <!-- Disponibilidade por regiao (DEC-003) como nota discreta.
              A vigencia da campanha saiu do corpo da pagina: envelhecia sozinha
              e nenhum concorrente expoe isso acima dos planos. -->
-        <p class="plans-region-note reveal">Disponibilidade varia por cidade — confirme a cobertura do seu endereço pelo WhatsApp.</p>
+        <p class="plans-region-note reveal">Confirme a disponibilidade na sua região.</p>
 
         <!-- Internet Panel -->
         <div class="plan-panel active" id="panel-internet">
@@ -1740,11 +1749,13 @@
         }
         idPonteiro = null;
         if (!arrastou) return;
+        var deslocou = grid.scrollLeft - scroll0;
         // devolve o pointer-events dos links so' no proximo quadro, senao o
         // clique que encerra o arrasto dispara o WhatsApp sem querer
         requestAnimationFrame(function () {
           grid.classList.remove('is-dragging');
           arrastou = false;
+          resolverGesto(scroll0, deslocou);
         });
       }
 
@@ -1756,6 +1767,67 @@
       grid.addEventListener('dragstart', function (e) {
         if (arrastou) e.preventDefault();
       });
+
+      // ── Um card por gesto ────────────────────────────────────────────
+      // O scroll-snap fica desligado durante o arrasto (brigava com ele) e
+      // antes nao era religado: o card parava solto onde o dedo largou. E no
+      // toque o momentum do navegador atravessava varios cards de uma vez.
+      // Aqui o gesto sempre resolve em UM passo: avanca, volta ou fica.
+      // ── Um card por gesto ────────────────────────────────────────────
+      // O scroll-snap fica desligado durante o arrasto (brigava com ele) e
+      // antes nao era religado: o card parava solto onde o dedo largou. No
+      // toque, o momentum do navegador atravessava varios cards.
+      //
+      // Cuidado: o snap e' `align: center`, entao a posicao de rolagem de um
+      // card NAO e' indice x largura — e' o offsetLeft menos a folga que
+      // centraliza o card. Calcular errado fazia o gesto parar no meio.
+      function alvoDe(i) {
+        var cards = grid.querySelectorAll('.plan-card');
+        if (!cards.length) return 0;
+        i = Math.max(0, Math.min(i, cards.length - 1));
+        var c = cards[i];
+        var alvo = c.offsetLeft - (grid.clientWidth - c.offsetWidth) / 2;
+        return Math.max(0, Math.min(alvo, grid.scrollWidth - grid.clientWidth));
+      }
+
+      function indiceMaisProximo(x) {
+        var cards = grid.querySelectorAll('.plan-card');
+        var melhor = 0, menor = Infinity;
+        for (var i = 0; i < cards.length; i++) {
+          var d = Math.abs(alvoDe(i) - x);
+          if (d < menor) { menor = d; melhor = i; }
+        }
+        return melhor;
+      }
+
+      function irPara(i) {
+        grid.scrollTo({ left: alvoDe(i), behavior: 'smooth' });
+      }
+
+      // Limiar de 24px: um toque tremido nao troca de card.
+      function resolverGesto(partiuDe, deslocou) {
+        var base = indiceMaisProximo(partiuDe);
+        if (deslocou > 24) irPara(base + 1);
+        else if (deslocou < -24) irPara(base - 1);
+        else irPara(base);
+      }
+
+      // Toque: guarda onde o dedo encostou e, ao soltar, resolve em um passo.
+      var xToque = 0, scrollNoToque = 0, temporizador = null;
+      grid.addEventListener('touchstart', function (e) {
+        xToque = e.touches[0].clientX;
+        scrollNoToque = grid.scrollLeft;
+        if (temporizador) { clearTimeout(temporizador); temporizador = null; }
+      }, { passive: true });
+
+      grid.addEventListener('touchend', function (e) {
+        var dx = (e.changedTouches[0] ? e.changedTouches[0].clientX : xToque) - xToque;
+        var partiu = scrollNoToque;
+        // espera o momentum assentar antes de corrigir, senao brigamos com ele
+        temporizador = setTimeout(function () {
+          resolverGesto(partiu, -dx);   // dedo para a esquerda = avanca
+        }, 90);
+      }, { passive: true });
     });
 
     // Scroll reveal
@@ -1843,6 +1915,6 @@
     })();
 
   </script>
-  <script src="lead-modal.js?v=202609300342"></script>
+  <script src="lead-modal.js?v=202609300428"></script>
 </body>
 </html>

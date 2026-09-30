@@ -148,36 +148,61 @@
       margin-bottom: 2.5rem;
     }
     
+    /* O trilho branco com a aba laranja preenchida lia como CTA e competia
+       com o "Contratar este plano". Vira filtro: contorno em vez de fundo,
+       e a ativa marcada por um traco embaixo. */
     .plan-tabs {
       display: inline-flex;
-      gap: 0.25rem;
-      padding: 0.375rem;
-      background: rgba(255, 255, 255, 0.95);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      border-radius: 14px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-      backdrop-filter: blur(10px);
+      gap: 0.5rem;
+      /* o traco da aba ativa fica abaixo da pilula: o padding reserva o
+         espaco dele, senao era cortado pela caixa do wrapper */
+      padding: 0 0 10px;
+      background: none;
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
     }
 
     .plan-tab {
-      padding: 0.75rem 2rem;
-      border-radius: 10px;
+      position: relative;
+      padding: 0.625rem 1.25rem;
+      border-radius: 50px;
       font-size: 0.95rem;
       font-weight: 600;
-      color: #5f6368;
-      transition: all 0.3s var(--ease-out);
+      background: none;
+      /* 4,77:1 sobre o azul da secao */
+      color: rgba(255, 255, 255, 0.82);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      transition: color 0.25s var(--ease-out), border-color 0.25s var(--ease-out);
     }
 
     .plan-tab.active {
-      color: white;
-      /* --accent (#FF5722) dava 3,16:1 com branco */
-      background: var(--accent-ink);
-      box-shadow: 0 4px 16px rgba(255, 87, 34, 0.4);
+      color: #ffffff;            /* 6,29:1 sobre o azul */
+      border-color: rgba(255, 255, 255, 0.55);
+      background: none;
+      box-shadow: none;
+    }
+
+    /* o traco: e' o que marca a selecao, sem virar botao */
+    .plan-tab.active::after {
+      content: '';
+      position: absolute;
+      left: 1.25rem;
+      right: 1.25rem;
+      bottom: -7px;
+      height: 2px;
+      border-radius: 2px;
+      background: #ffffff;
     }
 
     .plan-tab:hover:not(.active) {
-      color: #1a1a1a;
-      background: rgba(0, 0, 0, 0.05);
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.45);
+    }
+
+    .plan-tab:focus-visible {
+      outline: 2px solid #ffffff;
+      outline-offset: 3px;
     }
 
     @media (max-width: 480px) {
@@ -1039,7 +1064,7 @@
 
     .reviews-marquee.is-ready .reviews-marquee__track {
       /* lenta de proposito: da' tempo de ler sem precisar pausar */
-      animation: reviews-scroll 110s linear infinite;
+      animation: reviews-scroll 85s linear infinite;
     }
 
     /* Pausa apenas por interacao: mouse sobre a faixa, foco de teclado ou
@@ -1590,30 +1615,47 @@
     
     @media (max-width: 640px) { .whatsapp-float { bottom: 28px; right: 16px; } }
     
+    /* Fundo claro com verde e contorno, no lugar do verde solido.
+       Texto #07683A sobre #F2FBF6 = 6,53:1. */
     .whatsapp-btn {
       display: flex;
       align-items: center;
       gap: 0.625rem;
       padding: 1rem 1.75rem;
-      /* verde escuro solido com texto branco: 5,41:1 */
-      background: #0B7A45;
-      color: #ffffff;
+      background: #F2FBF6;
+      color: #07683A;
+      border: 1.5px solid #0B7A45;
       border-radius: 50px;
       font-weight: 600;
       font-size: 0.95rem;
-      box-shadow: var(--shadow-lg), 0 8px 24px -8px rgba(37, 211, 102, 0.5);
-      transition: all 0.3s var(--ease-spring);
-      animation: wa-float 3s ease-in-out infinite;
+      box-shadow: 0 6px 20px -6px rgba(11, 122, 69, 0.35);
+      transition: background-color 0.25s var(--ease-out),
+                  box-shadow 0.25s var(--ease-out),
+                  transform 0.25s var(--ease-out);
+      /* pulso no halo, nao no proprio botao: nao desloca nada e nao pisca */
+      animation: wa-pulso 3.2s ease-in-out infinite;
     }
-    
-    @keyframes wa-float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-4px); }
+
+    @keyframes wa-pulso {
+      0%, 100% { box-shadow: 0 6px 20px -6px rgba(11, 122, 69, 0.35),
+                             0 0 0 0 rgba(11, 122, 69, 0.28); }
+      60%      { box-shadow: 0 6px 20px -6px rgba(11, 122, 69, 0.35),
+                             0 0 0 10px rgba(11, 122, 69, 0); }
     }
-    
+
     .whatsapp-btn:hover {
-      transform: translateY(-4px) scale(1.03);
-      box-shadow: var(--shadow-xl), 0 12px 32px -8px rgba(37, 211, 102, 0.6);
+      background: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 26px -8px rgba(11, 122, 69, 0.45);
+    }
+
+    .whatsapp-btn:focus-visible {
+      outline: 2px solid #07683A;
+      outline-offset: 3px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .whatsapp-btn { animation: none; }
     }
     
     .whatsapp-btn svg { width: 24px; height: 24px; }
