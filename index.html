@@ -192,6 +192,14 @@
     ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
 
     img, svg { display: block; max-width: 100%; }
+
+    /* Rede de seguranca: com display:block e max-width:100%, um <svg viewBox>
+       sem width/height ocupa a largura do container. Se por qualquer motivo a
+       regra de tamanho do componente nao chegar, o icone fica pequeno em vez
+       de tomar a tela. Qualquer regra especifica sobrescreve isto. */
+    /* :where() zera a especificidade — senao esta guarda venceria
+       .plan-feature svg (0,1,1) e todo icone viraria 20px. */
+    svg:where(:not([width]):not([height])) { width: 1.25rem; height: 1.25rem; }
     a { color: inherit; text-decoration: none; }
     button { font: inherit; cursor: pointer; border: none; background: none; }
     ul { list-style: none; }
@@ -776,8 +784,11 @@
       }
     }
   </style>
-  <link rel="preload" href="css/index.css?v=202609290610" as="style" onload="this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="css/index.css?v=202609290610"></noscript>
+  <!-- Sincrono de proposito. O par preload+onload deixava a pagina pintar
+       sem este CSS: fundo escuro do tema legado e SVG sem dimensao ocupando
+       a largura toda (medido: 1232x1232px num check de 18px). Sao 9,7 KB
+       com gzip — o bloqueio de render nao paga o flash. -->
+  <link rel="stylesheet" href="css/index.css?v=202609300342">
 </head>
 <body>
 
@@ -1294,56 +1305,65 @@
     </section>
 
     <!-- Benefits Section -->
-    <section class="section benefits" id="beneficios">
-      <div class="container">
-        <header class="section-header section-header--tight reveal">
+    <section class="section benefits benefits--v2" id="beneficios">
+      <div class="container bx">
+
+        <aside class="bx__aside">
+          <p class="bx__eyebrow">O que você leva</p>
           <h2 class="section-title">Por que Brisanet?</h2>
-        </header>
+          <p class="bx__lead">Quatro coisas que já estão no plano — sem letra miúda e sem cobrança separada.</p>
+          <ol class="bx__prog" aria-hidden="true"><li></li><li></li><li></li><li></li></ol>
+        </aside>
 
-        <!-- Tres afirmacoes com FATO. A versao anterior tinha 8 blocos, e 3
-             deles repetiam texto que ja' esta' dentro dos cards de plano
-             ("Wi-Fi 6 incluso", "BrisaChip", "Instalacao inclusa"). -->
-        <div class="benefits-grid">
-          <article class="benefit-card reveal reveal-delay-1">
-            <div class="benefit-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 10.5L12 3l9 7.5"/><path d="M5 9.8V21h14V9.8"/><path d="M9.5 16.5a3.5 3.5 0 015 0M12 19.5h.01"/></svg>
-            </div>
-            <h3 class="benefit-title">Fibra até dentro de casa</h3>
-            <p class="benefit-desc">Fibra óptica do poste ao seu roteador — não cabo coaxial. É o que segura a velocidade no horário de pico.</p>
-          </article>
+        <div class="bx__main">
+          <ol class="bx__list">
+            <li class="bx__item">
+              <span class="bx__num">01</span>
+              <div class="bx__body">
+                <h3 class="bx__title">Fibra até dentro de casa</h3>
+                <p class="bx__desc">Fibra óptica do poste ao seu roteador — não cabo coaxial. É o que segura a velocidade no horário de pico.</p>
+              </div>
+              <span class="bx__fact">100% fibra</span>
+            </li>
+            <li class="bx__item">
+              <span class="bx__num">02</span>
+              <div class="bx__body">
+                <h3 class="bx__title">Wi-Fi 6 e 5G no mesmo plano</h3>
+                <p class="bx__desc">Wi-Fi 6 a partir de 600 Mega e BrisaChip 5G para usar fora de casa, com aplicativos ilimitados nos combos.</p>
+              </div>
+              <span class="bx__fact">Wi-Fi 6 + 5G</span>
+            </li>
+            <li class="bx__item">
+              <span class="bx__num">03</span>
+              <div class="bx__body">
+                <h3 class="bx__title">Sem taxa, sem aluguel</h3>
+                <p class="bx__desc">Instalação e Wi-Fi inclusos no plano. O que está no preço é o que você paga.</p>
+              </div>
+              <span class="bx__fact">R$ 0</span>
+            </li>
+            <li class="bx__item">
+              <span class="bx__num">04</span>
+              <div class="bx__body">
+                <h3 class="bx__title">Tudo numa fatura só</h3>
+                <p class="bx__desc">Internet, celular e streaming na mesma conta, com o desconto de combo aplicado.</p>
+              </div>
+              <span class="bx__fact">1 fatura</span>
+            </li>
+          </ol>
 
-          <article class="benefit-card reveal reveal-delay-2">
-            <div class="benefit-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12.5c3-5 6-7 7-7s4 2 7 7M8 15c2-3 3.5-4 4-4s2 1 4 4"/><circle cx="12" cy="18" r="1"/></svg>
+          <aside class="award reveal" aria-label="Premiação">
+            <div class="award__badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
             </div>
-            <h3 class="benefit-title">Wi-Fi 6 e 5G no mesmo plano</h3>
-            <p class="benefit-desc">Wi-Fi 6 a partir de 600 Mega e BrisaChip 5G para usar fora de casa, com aplicativos ilimitados nos combos.</p>
-          </article>
-
-          <article class="benefit-card reveal reveal-delay-3">
-            <div class="benefit-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20.6 13.4l-7.2 7.2a2 2 0 01-2.8 0L2 12V2h10l8.6 8.6a2 2 0 010 2.8z"/><circle cx="7" cy="7" r="1.2"/></svg>
-            </div>
-            <h3 class="benefit-title">Sem taxa, sem aluguel</h3>
-            <p class="benefit-desc">Instalação e Wi-Fi inclusos no plano. O que está no preço é o que você paga.</p>
-          </article>
+            <p class="award__title">Prêmio Melhor Plano 2026</p>
+            <p class="award__text">Brisanet eleita a <strong>Melhor Internet Fixa</strong> no Ceará, no Rio Grande do Norte, em Sergipe e em mais 84 cidades.</p>
+            <ul class="award__seals">
+              <li>Maior velocidade</li><li>Maior estabilidade</li>
+              <li>Maior satisfação</li><li>Melhor para jogos online</li>
+            </ul>
+          </aside>
         </div>
 
-        <!-- Prova de terceiro, com fonte: book oficial de ofertas Brisanet,
-             agosto/2026. Nao e' copy de persuasao — e' atestado verificavel. -->
-        <aside class="award reveal" aria-label="Premiação">
-          <div class="award__badge">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
-          </div>
-          <p class="award__title">Prêmio Melhor Plano 2026</p>
-          <p class="award__text">Brisanet eleita a <strong>Melhor Internet Fixa</strong> no Ceará, no Rio Grande do Norte, em Sergipe e em mais 84 cidades.</p>
-          <ul class="award__seals">
-            <li>Maior velocidade</li>
-            <li>Maior estabilidade</li>
-            <li>Maior satisfação</li>
-            <li>Melhor para jogos online</li>
-          </ul>
-        </aside>
       </div>
     </section>
 
@@ -1752,6 +1772,26 @@
       if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }));
 
+    // Indicador de percurso da secao "Por que Brisanet?": acende a marca
+    // correspondente ao bloco que esta' na faixa central da tela.
+    addEventListener('DOMContentLoaded', function () {
+      var itens = document.querySelectorAll('.bx__item');
+      var marcas = document.querySelectorAll('.bx__prog li');
+      if (!itens.length || !marcas.length || !window.IntersectionObserver) return;
+      var visiveis = new Set();
+      var obs = new IntersectionObserver(function (ents) {
+        ents.forEach(function (e) {
+          var i = [].indexOf.call(itens, e.target);
+          if (e.isIntersecting) visiveis.add(i); else visiveis.delete(i);
+        });
+        // Se nada esta' na faixa (ex.: ja' passou para o bloco do premio), mantem
+        // o ultimo estado em vez de apagar tudo — apagar parecia defeito.
+        if (!visiveis.size) return;
+        marcas.forEach(function (m, i) { m.classList.toggle('on', visiveis.has(i)); });
+      }, { rootMargin: '-30% 0px -40% 0px' });
+      itens.forEach(function (el) { obs.observe(el); });
+    });
+
     // Esteira de depoimentos: duplica o grupo em runtime (nao dobra o HTML) e
     // so' entao liga a animacao. Sem JS a faixa continua legivel, rolando na mao.
     (function () {
@@ -1803,6 +1843,6 @@
     })();
 
   </script>
-  <script src="lead-modal.js?v=202609290610"></script>
+  <script src="lead-modal.js?v=202609300342"></script>
 </body>
 </html>
