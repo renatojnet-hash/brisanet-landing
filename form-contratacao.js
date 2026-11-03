@@ -1,4 +1,4 @@
-import {VERSION,PLANS,planCode,resolvePlan,digits,localDay,plusDays,availablePeriods,suggestedDates,validate,buildPayload} from './form-cadastro-model.js?v=20261103-black1';
+import {VERSION,PLANS,planCode,resolvePlan,digits,localDay,plusDays,availablePeriods,suggestedDates,validate,buildPayload} from './form-cadastro-model.js?v=20261103-black2';
 
 const ENDPOINT='https://virtunex-brisanet-intake.renatojnet.workers.dev/v1/receipts';
 const DRAFT_KEY='virtunex-brisanet-cadastro-v3';
