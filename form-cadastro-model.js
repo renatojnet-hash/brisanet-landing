@@ -1,4 +1,4 @@
-export const VERSION='3.0.0';
+export const VERSION='3.1.0';
 export const PLANS=Object.freeze({
  FIBRA_500:{name:'500 Mega',price:84.99,download:500,upload:250,condition:'R$ 84,99 por 3 meses; depois R$ 89,99/mês.'},
  FIBRA_700:{name:'700 Mega',price:99.90,download:700,upload:350,condition:'R$ 99,90 por 12 meses; depois R$ 109,90/mês.'},
@@ -37,11 +37,10 @@ export function validate(data,step,now=new Date()){
  if(step===0){required('cep','o CEP');if(digits(data.cep).length!==8)errors.cep='Informe um CEP com 8 números.';if(!planCode(data.plano_codigo))errors.plano_codigo='Selecione o plano que deseja solicitar.';}
  if(step===1){
   required('nome_completo','o nome completo');if(String(data.nome_completo??'').trim().split(/\s+/).length<2)errors.nome_completo='Informe nome e sobrenome do titular.';
-  if(!validCpf(data.cpf))errors.cpf='Confira o CPF informado.';required('rg','o RG');
+  if(!validCpf(data.cpf))errors.cpf='Confira o CPF informado.';
   if(!validDate(data.data_nascimento)||data.data_nascimento>=localDay(now))errors.data_nascimento='Informe uma data de nascimento válida, anterior a hoje.';
   for(const key of ['telefone','telefone_alternativo'])if(!/^\d{10,11}$/.test(digits(data[key])))errors[key]='Informe o telefone com DDD.';
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(data.email??'').trim()))errors.email='Confira o e-mail informado.';
-  if(!['TITULAR','OUTRO'].includes(data.quem_preenche))errors.quem_preenche='Informe quem está preenchendo.';
  }
  if(step===2){
   for(const [key,label]of [['logradouro','a rua/avenida'],['numero','o número ou marque Sem número'],['bairro','o bairro'],['cidade','a cidade'],['uf','a UF'],['referencia1','o ponto de referência 1'],['referencia2','o ponto de referência 2']])required(key,label);
@@ -62,9 +61,9 @@ export function validate(data,step,now=new Date()){
 export function buildPayload(data,id){
  const plan=PLANS[planCode(data.plano_codigo)];if(!plan)throw Error('Selecione o plano.');
  const names=String(data.nome_completo).trim().split(/\s+/);
- return {submission_id:id,consent:true,form_version:VERSION,nome:names.shift(),sobrenome:names.join(' '),cpf:digits(data.cpf),rg:String(data.rg).trim(),data_nascimento:data.data_nascimento,
+ return {submission_id:id,consent:true,form_version:VERSION,nome:names.shift(),sobrenome:names.join(' '),cpf:digits(data.cpf),rg:String(data.rg??'').trim(),data_nascimento:data.data_nascimento,
   telefone:digits(data.telefone),telefone_alternativo:digits(data.telefone_alternativo),email:String(data.email).trim(),cep:digits(data.cep),logradouro:String(data.logradouro).trim(),numero:String(data.numero).trim(),
   bairro:String(data.bairro).trim(),cidade:String(data.cidade).trim(),uf:data.uf,tipo_imovel:data.tipo_imovel,tem_complemento:data.tem_complemento===true,...normalizeAddress(data),
   referencia1:String(data.referencia1).trim(),referencia2:String(data.referencia2).trim(),plano_codigo:planCode(data.plano_codigo),plano_nome:plan.name,plano_preco:plan.price,oferta_condicoes:plan.condition,
-  addon_conecta:false,agendamento:[{data:data.data1,periodo:data.periodo1},{data:data.data2,periodo:data.periodo2}],biometria:{responsavel:data.quem_preenche,whatsapp_titular:digits(data.telefone)}};
+  addon_conecta:false,agendamento:[{data:data.data1,periodo:data.periodo1},{data:data.data2,periodo:data.periodo2}],biometria:{responsavel:data.quem_preenche||'NAO_INFORMADO',whatsapp_titular:digits(data.telefone)}};
 }
