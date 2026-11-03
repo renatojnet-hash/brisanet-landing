@@ -37,3 +37,8 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 
 /* Requested compact outline offer and inline details. */
 .plan-strip{background:transparent;border:1.5px solid #f07a23;color:#142538}.plan-strip small{color:#485568}.strip-actions button,.strip-actions a{background:white;border:1px solid #f07a23;color:#182638}.strip-actions button:hover,.strip-actions a:hover{background:#fff7ef}.plan-details-content{width:100%;border-top:1px solid #f5d1b8;padding-top:12px;font-size:.85rem}.plan-details-content dl{margin:0;display:grid;grid-template-columns:100px 1fr;gap:8px 12px}.plan-details-content dt{font-weight:650}.plan-details-content dd{margin:0;line-height:1.6}.plan-details-content p{margin-top:10px;color:#64748b;font-size:.78rem}.optional{font-size:.8rem;font-weight:400;color:#64748b}
+
+/* Wider desktop form, quieter background, compact copy. */
+body{background:linear-gradient(130deg,#7778a4 0%,#826d95 55%,#ad747d 100%);background-attachment:fixed}
+.page-header,.card,footer{max-width:800px}.card-content{padding:30px 36px}.progress{padding:23px 36px}.progress li{font-size:.78rem}.plan-strip{border-width:2px;padding:16px 18px}.strip-actions button,.strip-actions a{border-width:1.5px}.intro{font-size:.9rem;margin-bottom:20px}h1{font-size:1.6rem}.actions>button{flex:0 1 240px}.actions>button:only-child{flex:1;max-width:100%}.primary{box-shadow:0 3px 9px #b52e3720;background:linear-gradient(120deg,#db2731,#c21e2a);border-color:#cc2330}
+@media(max-width:650px){body{padding:20px 12px 80px}.card-content{padding:24px 20px}.progress{padding:20px 18px}.progress li{font-size:.64rem}.intro{font-size:.83rem}h1{font-size:1.35rem}.actions>button{flex:1}.plan-strip{padding:14px}}
