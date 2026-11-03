@@ -4,3 +4,33 @@
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
 
 .check{min-height:44px;align-items:center}.check input{margin-top:0}
+
+/* Restore the original residential form identity, retaining validated fields. */
+@font-face{font-family:Outfit;src:url('fonts/outfit-latin.woff2') format('woff2');font-weight:400 800;font-display:swap}
+@font-face{font-family:Jakarta;src:url('fonts/plus-jakarta-sans-latin.woff2') format('woff2');font-weight:400 800;font-display:swap}
+:root{font-family:Jakarta,"Segoe UI",sans-serif;--orange:#e71924;--muted:#64748b;--line:#e2e5ec}
+body{padding:28px 20px 28px;background:linear-gradient(135deg,#667eea 0%,#764ba2 50%,#ed1725 100%);background-attachment:fixed}
+h1,h2,.plan-strip strong{font-family:Outfit,sans-serif}h1{font-size:1.65rem;letter-spacing:-.3px;color:#0d2138}
+.page-header{max-width:720px;min-height:96px;margin:0 auto 24px;position:relative;justify-content:center;padding:0 0 34px}
+.brand{background:transparent;padding:0;border-radius:0}.brand img{width:205px;filter:brightness(0) invert(1)}
+.human{position:absolute;right:0;bottom:0;font-size:.8rem;color:#fff;text-decoration:none;padding:8px 0}
+.card{max-width:560px;border-radius:24px;box-shadow:0 16px 48px #41183929}.card-content{padding:26px 24px}
+.progress{padding:22px 24px 20px;background:#fafafa}.progress ol{display:flex;gap:0;position:relative;align-items:flex-start}
+.progress ol:before{content:"";position:absolute;top:16px;left:17px;right:17px;height:2px;background:#d3d9e3}
+.progress li{position:relative;display:flex;flex-direction:column;gap:7px;font-size:.69rem;color:#58677e;min-width:34px;z-index:1}
+.progress li i{font-style:normal;display:grid;place-items:center;width:34px;height:34px;border:2px solid #cbd2df;border-radius:50%;background:white;color:#58677e;font-size:1rem;font-weight:700}
+.progress li[aria-current]{color:#d51622}.progress li[aria-current] i{background:#e71924;color:white;border-color:#e71924;box-shadow:0 0 0 4px #ffdce0}
+.progress li.done{color:#078462}.progress li.done i{background:#08b887;border-color:#08b887;color:white}
+.progress li span{font-weight:550}.progress p{display:none}
+.plan-strip{background:linear-gradient(120deg,#ed1725,#bd1522);border:0;color:white;gap:10px;padding:15px 16px;border-radius:12px;flex-wrap:wrap;margin-bottom:22px}
+.plan-strip>div:first-child{width:100%;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:4px 12px}
+.plan-strip strong{font-size:1.25rem}.plan-strip #plan-price{font-size:1.15rem;margin:0}.plan-strip small{width:100%;color:white;font-size:.78rem;line-height:1.6}
+.strip-actions{justify-content:space-between;width:100%;gap:12px}.strip-actions button,.strip-actions a{font-size:.75rem;color:white;background:#ffffff21;border:1px solid #ffffff40;border-radius:7px;text-decoration:none;min-height:34px;padding:6px 12px;text-align:center;flex:1}
+.primary{background:linear-gradient(120deg,#ed1725,#c71521);border-color:#e71924;box-shadow:0 5px 13px #e7192426}.primary:hover{background:#c71521}
+input:not([type=checkbox]):not([type=radio]),select{border-color:#d8dce5;border-width:2px;border-radius:8px;min-height:48px}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline-color:#ee4951}.property-options label:has(input:checked){border-color:#e71924;color:#bb1420;background:#fff3f4;box-shadow:inset 0 0 0 1px #e71924}
+.actions>button{flex:1;min-width:0}.actions{gap:12px}footer{max-width:560px;justify-content:center;text-align:center;color:white;font-size:.72rem;flex-wrap:wrap}.draft-banner{padding:14px 24px;flex-wrap:wrap}
+.whatsapp-float{position:fixed;right:24px;bottom:24px;z-index:20;display:grid;place-items:center;width:58px;height:58px;border-radius:50%;background:#19b96b;color:white;box-shadow:0 5px 18px #0003}.whatsapp-float svg{width:35px;height:35px}
+#choose-plan{background:#fff4f4;border-radius:10px;padding:18px;margin-bottom:20px}#choose-plan p{font-size:.95rem}
+@media(max-width:650px){body{padding:20px 12px 80px}.page-header{margin-bottom:20px;min-height:94px}.brand img{width:190px}.card{border-radius:22px}.card-content{padding:24px 20px}.progress{padding:20px 18px}.progress ol{display:flex}.progress p{display:none}.progress li{font-size:.64rem}.progress li i{width:32px;height:32px}.progress ol:before{top:15px}.grid{grid-template-columns:1fr 1fr;gap:12px}.grid .field{min-width:0}.street-grid{grid-template-columns:1fr 110px}.plan-strip strong{font-size:1.15rem}.plan-strip #plan-price{font-size:1.05rem}.intro{font-size:.86rem}.property-options label{font-size:.72rem;gap:4px}.whatsapp-float{right:16px;bottom:16px;width:52px;height:52px}footer{margin-top:20px}.draft-banner{padding:14px 20px}}
+@media(max-width:370px){.grid{grid-template-columns:1fr;gap:0}.preference .grid{grid-template-columns:1fr;gap:0}.property-options label{font-size:.67rem}}
