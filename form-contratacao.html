@@ -1475,8 +1475,8 @@
                 <!-- STEP 0: CEP -->
                 <div class="step-panel active" id="step-0">
                     <div class="step-header">
-                        <h2 class="step-title">Consulte a disponibilidade</h2>
-                        <p class="step-subtitle">Digite seu CEP para verificar a cobertura</p>
+                        <h2 class="step-title">Informe seu endereço</h2>
+                        <p class="step-subtitle">Localize o endereço pelo CEP. A cobertura técnica será confirmada pela equipe.</p>
                     </div>
 
                     <div class="form-group">
@@ -1518,7 +1518,7 @@
                         <div class="plan-card-header">
                             <div class="plan-info">
                                 <h3 id="selectedPlanName">500 Mega</h3>
-                                <span class="plan-speed">Download 500 Mbps / Upload 250 Mbps</span>
+                                <span class="plan-speed">Download 500 Mbps / Upload 250 Mbps</span><p class="offer-conditions" style="font-size:.85rem;margin-top:8px">R$ 84,99 por 3 meses; depois R$ 89,99/mês. Oferta sujeita à conferência.</p>
                             </div>
                             <div class="plan-price">
                                 <span class="currency">R$</span>
@@ -1608,7 +1608,7 @@
                         <div class="plan-card-header">
                             <div class="plan-info">
                                 <h3 id="selectedPlanName2">500 Mega</h3>
-                                <span class="plan-speed">Download 500 Mbps / Upload 250 Mbps</span>
+                                <span class="plan-speed">Download 500 Mbps / Upload 250 Mbps</span><p class="offer-conditions" style="font-size:.85rem;margin-top:8px">R$ 84,99 por 3 meses; depois R$ 89,99/mês. Oferta sujeita à conferência.</p>
                             </div>
                             <div class="plan-price">
                                 <span class="currency">R$</span>
@@ -1708,7 +1708,7 @@
                 <div class="step-panel" id="step-3">
                     <div class="step-header">
                         <h2 class="step-title">Agendamento</h2>
-                        <p class="step-subtitle">Escolha duas opções de data para instalação</p>
+                        <p class="step-subtitle">Informe duas preferências de data. O agendamento depende de confirmação da operadora.</p>
                     </div>
 
                     <!-- Plan Card -->
@@ -1716,7 +1716,7 @@
                         <div class="plan-card-header">
                             <div class="plan-info">
                                 <h3 id="selectedPlanName3">500 Mega</h3>
-                                <span class="plan-speed">Download 500 Mbps / Upload 250 Mbps</span>
+                                <span class="plan-speed">Download 500 Mbps / Upload 250 Mbps</span><p class="offer-conditions" style="font-size:.85rem;margin-top:8px">R$ 84,99 por 3 meses; depois R$ 89,99/mês. Oferta sujeita à conferência.</p>
                             </div>
                             <div class="plan-price">
                                 <span class="currency">R$</span>
@@ -1908,9 +1908,7 @@
                     <div class="lgpd-check">
                         <input type="checkbox" id="lgpdCheck">
                         <label for="lgpdCheck">
-                            Li e aceito os <a href="#" target="_blank">Termos de Uso</a> e a 
-                            <a href="#" target="_blank">Política de Privacidade</a>. 
-                            Autorizo o tratamento dos meus dados conforme a LGPD.
+                            Autorizo o parceiro autorizado e a Brisanet a utilizar os dados informados para analisar esta solicitação, verificar disponibilidade e entrar em contato. O envio não conclui a contratação.
                         </label>
                     </div>
                     <span class="form-error" id="lgpdError">Você precisa aceitar os termos para continuar</span>
@@ -1927,7 +1925,7 @@
                             <i class="bi bi-arrow-left"></i> Voltar
                         </button>
                         <button type="button" class="btn btn-primary" id="btnSubmit" disabled>
-                            <i class="bi bi-check-circle"></i> Finalizar Pedido
+                            <i class="bi bi-check-circle"></i> Enviar solicitação
                         </button>
                     </div>
 
@@ -1943,29 +1941,29 @@
                         <div class="thank-you-icon">
                             <i class="bi bi-check-lg"></i>
                         </div>
-                        <h2>Pedido Realizado!</h2>
-                        <p>Recebemos sua solicitação e em breve entraremos em contato.</p>
+                        <h2>Solicitação recebida!</h2>
+                        <p>Seu cadastro foi salvo. Nossa equipe vai conferir cobertura, oferta e condições antes de concluir a contratação.</p><p style="margin-top:16px;word-break:break-word"><strong>Protocolo:</strong> <span id="receiptProtocol"></span></p>
 
                         <div class="timeline">
                             <div class="timeline-item">
                                 <div class="timeline-dot">1</div>
                                 <div class="timeline-content">
-                                    <h4>Baixe o App Brisa Cliente</h4>
-                                    <p>Disponível na App Store e Google Play</p>
+                                    <h4>Conferência da solicitação</h4>
+                                    <p>A equipe confere os dados e a disponibilidade no endereço.</p>
                                 </div>
                             </div>
                             <div class="timeline-item">
                                 <div class="timeline-dot">2</div>
                                 <div class="timeline-content">
-                                    <h4>Complete a Biometria</h4>
-                                    <p>Confirme sua identidade pelo aplicativo</p>
+                                    <h4>Contato com a equipe</h4>
+                                    <p>Se necessário, entraremos em contato para completar o cadastro.</p>
                                 </div>
                             </div>
                             <div class="timeline-item">
                                 <div class="timeline-dot">3</div>
                                 <div class="timeline-content">
-                                    <h4>Aguarde a Instalação</h4>
-                                    <p>Nossa equipe entrará em contato para confirmar</p>
+                                    <h4>Próximas etapas</h4>
+                                    <p>Biometria e agendamento dependem da orientação e aprovação da operadora.</p>
                                 </div>
                             </div>
                         </div>
@@ -1996,17 +1994,6 @@
                 <button type="button" class="modal-close" id="closePlanModal">&times;</button>
             </div>
             <div class="modal-body">
-                <div class="plan-option selected" data-plan="FIBRA_350" data-price="79.99" data-name="350 Mega" data-download="350" data-upload="175">
-                    <div class="plan-option-header">
-                        <span class="plan-option-name">350 Mega</span>
-                        <span class="plan-option-price">R$ 79,99</span>
-                    </div>
-                    <div class="plan-option-features">
-                        <span>350 Mbps Download</span>
-                        <span>175 Mbps Upload</span>
-                        <span>Wi-Fi incluso</span>
-                    </div>
-                </div>
                 <div class="plan-option" data-plan="FIBRA_500" data-price="84.99" data-name="500 Mega" data-download="500" data-upload="250">
                     <div class="plan-option-header">
                         <span class="plan-option-name">500 Mega</span>
@@ -2029,10 +2016,10 @@
                         <span>Wi-Fi incluso</span>
                     </div>
                 </div>
-                <div class="plan-option" data-plan="FIBRA_1000" data-price="149.90" data-name="1 Giga" data-download="1000" data-upload="500">
+                <div class="plan-option" data-plan="FIBRA_1000" data-price="149.99" data-name="1 Giga" data-download="1000" data-upload="500">
                     <div class="plan-option-header">
                         <span class="plan-option-name">1 Giga</span>
-                        <span class="plan-option-price">R$ 149,90</span>
+                        <span class="plan-option-price">R$ 149,99</span>
                     </div>
                     <div class="plan-option-features">
                         <span>1000 Mbps Download</span>
@@ -2045,6 +2032,6 @@
     </div>
 
     <!-- JavaScript -->
-    <script src="form-contratacao.js?v=202609300428"></script>
+    <script src="form-contratacao.js?v=20261103-capture2"></script>
 </body>
 </html>

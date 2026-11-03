@@ -17,7 +17,7 @@
 // ============================================
 const CONFIG = {
     // Endpoint do Worker Datacake v5.x
-    WORKER_URL: 'https://brisanet-datacake-worker.renatojnet.workers.dev/api/checkout',
+    WORKER_URL: 'https://virtunex-brisanet-intake.renatojnet.workers.dev/v1/receipts',
 
     // Preço do addon Conecta+
     CONECTA_PLUS_PRICE: 9.90,
@@ -29,7 +29,7 @@ const CONFIG = {
     WHATSAPP_COMERCIAL: '5584981194435',
 
     // Versão do formulário (para debug)
-    VERSION: '1.1.0'
+    VERSION: '2.0.0'
 };
 
 // ============================================
@@ -37,6 +37,9 @@ const CONFIG = {
 // Janeiro 2026 - IDs verificados via API Datacake
 // ============================================
 const PLANOS_DATACAKE = {
+    // Ofertas solicitadas; disponibilidade e condições serão conferidas pela equipe.
+    'FIBRA_350': {nome:'350 Mega',preco:79.99,download:350,upload:175},
+    'FIBRA_1000': {nome:'1 Giga',preco:149.99,download:1000,upload:500},
     // ========== FIBRA PURA ==========
     'FIBRA_400': { 
         id: '280', 
@@ -62,7 +65,7 @@ const PLANOS_DATACAKE = {
     'FIBRA_700': { 
         id: '285', 
         nome: '700 MEGA', 
-        preco: 109.90,
+        preco: 99.90,
         download: 700,
         upload: 350
     },
@@ -730,7 +733,7 @@ function showCEPSuccess(data) {
     resultDiv.innerHTML = `
         <div class="cep-success">
             <i class="bi bi-check-circle-fill"></i>
-            <h4>Ótima notícia! Temos cobertura!</h4>
+            <h4>Endereço localizado</h4>
             <p>${data.logradouro ? data.logradouro + ', ' : ''}${data.bairro || ''}<br>
             ${data.localidade}/${data.uf}</p>
         </div>
@@ -1061,6 +1064,8 @@ function updateTotal() {
 // PLAN SELECTION
 // ============================================
 function updatePlanDisplay() {
+    const condition=({FIBRA_500:'R$ 84,99 por 3 meses; depois R$ 89,99/mês.',FIBRA_700:'R$ 99,90 por 12 meses; depois R$ 109,90/mês.'})[state.plano.codigo] || 'Confirme condições e disponibilidade com a equipe.';
+    document.querySelectorAll('.offer-conditions').forEach(element=>element.textContent=condition+' Oferta sujeita à conferência.');
     // Atualizar em todos os steps
     const planNames = document.querySelectorAll('#selectedPlanName, #selectedPlanName2, #selectedPlanName3');
     const planPrices = document.querySelectorAll('#selectedPlanPrice, #selectedPlanPrice2, #selectedPlanPrice3');
@@ -1070,7 +1075,7 @@ function updatePlanDisplay() {
     });
     
     planPrices.forEach(el => {
-        if (el) el.textContent = Math.floor(state.plano.preco);
+        if (el) { el.textContent = Math.floor(state.plano.preco); if(el.nextElementSibling) el.nextElementSibling.textContent = ','+Number(state.plano.preco).toFixed(2).split('.')[1]+'/mês'; }
     });
     
     // Atualizar velocidades
@@ -1183,11 +1188,14 @@ async function submitForm() {
         addon_conecta: state.addonConecta
     });
 
-    // Obter dados do plano Datacake (ID já é o correto)
-    const planoDC = PLANOS_DATACAKE[state.plano.codigo] || PLANOS_DATACAKE['FIBRA_500'];
+    // Um reenvio conserva o protocolo; nenhum pedido é efetivado neste formulário.
+    if(!state.submissionId) state.submissionId = crypto.randomUUID();
+    saveState();
 
     // Montar payload no formato esperado pelo Worker Datacake v5.x
     const payload = {
+        submission_id: state.submissionId,
+        consent: true,
         // Dados pessoais
         nome: state.titular.nome,
         sobrenome: state.titular.sobrenome,
@@ -1195,6 +1203,7 @@ async function submitForm() {
         rg: state.titular.rg,
         data_nascimento: state.titular.dataNascimento,
         telefone: state.titular.whatsapp,
+        telefone_alternativo: state.titular.telefoneAlternativo || '',
         email: state.titular.email,
         
         // Endereço
@@ -1211,10 +1220,10 @@ async function submitForm() {
         nome_condominio: state.endereco.nomeCondominio || '',
         
         // Plano - ID Datacake direto (já inclui streaming se aplicável)
-        plano_id: planoDC.id,
-        plano_nome: planoDC.nome,
-        plano_preco: planoDC.preco,
-        plan_type_id: '1', // Residencial
+        plano_codigo: state.plano.codigo,
+        plano_nome: state.plano.nome,
+        plano_preco: state.plano.preco,
+        oferta_condicoes: ({FIBRA_500:'Valor anunciado: R$ 84,99 por 3 meses; depois R$ 89,99/mês.',FIBRA_700:'Valor anunciado: R$ 99,90 por 12 meses; depois R$ 109,90/mês.'})[state.plano.codigo] || 'Confirmar condições e disponibilidade com a equipe.',
         
         // Agendamento
         agendamento: state.agendamento,
@@ -1234,8 +1243,7 @@ async function submitForm() {
         form_version: CONFIG.VERSION
     };
     
-    console.log('Payload a ser enviado:', payload);
-    console.log('ID Datacake do plano:', planoDC.id);
+
     
     try {
         const response = await fetch(CONFIG.WORKER_URL, {
@@ -1250,15 +1258,17 @@ async function submitForm() {
         
         if (submitLoading) submitLoading.classList.remove('visible');
         
-        console.log('Resposta do Worker:', result);
+
         
-        if (response.ok && (result.status === 'auto' || result.status === 'manual' || result.success)) {
+        if (response.ok && result.status === 'received' && /^VX-S-[0-9a-f-]{36}$/i.test(result.protocol || '')) {
+            const protocolElement=document.getElementById('receiptProtocol');
+            if(protocolElement) protocolElement.textContent=result.protocol;
             // Sucesso - disparar evento ANTES de limpar
             pushDataLayer('form_success', { 
                 status: result.status,
                 deal_id: result.deal_id || null,
                 orcamento_id: result.orcamento_id || null,
-                transaction_id: result.deal_id || result.orcamento_id || null,
+                transaction_id: result.protocol,
                 plan_code: state.plano.codigo,
                 plan_name: state.plano.nome,
                 value: state.plano.preco + (state.addonConecta ? CONFIG.CONECTA_PLUS_PRICE : 0)
@@ -1271,7 +1281,7 @@ async function submitForm() {
             goToStep(5);
             
         } else {
-            throw new Error(result.message || result.error || 'Erro ao processar pedido');
+            throw new Error(result.error==='submission_conflict'?'Uma versão anterior desta solicitação já foi recebida. Fale com nossa equipe para atualizar os dados.':result.error==='too_many_requests'?'Muitas tentativas. Aguarde alguns minutos e tente novamente.':'Não conseguimos confirmar o recebimento. Seus dados foram mantidos neste navegador; tente novamente ou fale com nossa equipe.');
         }
         
     } catch (error) {
