@@ -50,6 +50,7 @@ function resetProperty(type){
 }
 function updatePlan(){
  const plan=PLANS[data.plano_codigo];$('plan-strip').hidden=!plan||step===4;
+ $('choose-plan').hidden=!!plan;document.querySelector('[data-step="0"] .actions').hidden=!plan;
  if(plan){$('plan-name').textContent=plan.name;$('plan-price').textContent=currency(plan.price)+'/mês';$('plan-condition').textContent=plan.condition;}
 }
 function clearErrors(){document.querySelectorAll('.field-error').forEach(e=>e.textContent='');form.querySelectorAll('[aria-invalid]').forEach(e=>e.removeAttribute('aria-invalid'));}
@@ -75,7 +76,7 @@ function go(next,focus=true){
  if(next===4){for(let i=0;i<4;i++){const errors=validate(data,i);if(Object.keys(errors).length){go(i,focus);showErrors(errors);return;}}}
  step=Math.max(0,Math.min(4,next));document.querySelectorAll('[data-step]').forEach(section=>section.hidden=Number(section.dataset.step)!==step);
  document.querySelectorAll('.progress li').forEach((li,index)=>{li.classList.toggle('done',index<step);if(index===step)li.setAttribute('aria-current','step');else li.removeAttribute('aria-current');});
- $('step-caption').textContent=`Etapa ${step+1} de 5 · ${['CEP e plano','Titular','Endereço','Preferências','Revisão'][step]}`;
+ $('step-caption').textContent=`Etapa ${step+1} de 5 · ${['CEP','Titular','Endereço','Preferências','Revisão'][step]}`;
  $('postal-summary').textContent=[data.cep,data.cidade&&`${data.cidade}/${data.uf}`].filter(Boolean).join(' · ');
  propertyFields();updatePlan();dates();clearErrors();message('');if(step===4)review();save();if(focus){$('heading-'+step).focus({preventScroll:true});window.scrollTo({top:0,behavior:'auto'});}
 }
@@ -85,7 +86,7 @@ function review(){
   ['Plano solicitado',0,[`${payload.plano_nome} · ${currency(payload.plano_preco)}/mês`,payload.oferta_condicoes]],
   ['Endereço de instalação',2,[`${data.logradouro}, ${data.numero} · ${data.bairro}`,`${data.cidade}/${data.uf} · CEP ${data.cep}`,payload.complemento,`Referências: ${data.referencia1}; ${data.referencia2}`]],
   ['Preferências de instalação',3,[`${displayDate(data.data1)} · ${data.periodo1==='MANHA'?'Manhã':data.periodo1==='TARDE'?'Tarde':'Selecionar período'}`,`${displayDate(data.data2)} · ${data.periodo2==='MANHA'?'Manhã':data.periodo2==='TARDE'?'Tarde':'Selecionar período'}`,'Datas e períodos dependem de confirmação da operadora.']]];
- for(const [title,target,lines]of blocks){const section=document.createElement('section');section.className='review-block';const heading=document.createElement('div');heading.className='review-heading';const h=document.createElement('h2');h.textContent=title;const edit=document.createElement('button');edit.type='button';edit.textContent='Editar';edit.setAttribute('aria-label','Editar '+title.toLowerCase());edit.addEventListener('click',()=>go(target));heading.append(h,edit);section.append(heading);for(const line of lines.filter(Boolean)){const p=document.createElement('p');p.textContent=line;section.append(p);}root.append(section);}
+ for(const [title,target,lines]of blocks){const section=document.createElement('section');section.className='review-block';const heading=document.createElement('div');heading.className='review-heading';const h=document.createElement('h2');h.textContent=title;const edit=document.createElement('button');edit.type='button';edit.textContent='Editar';edit.setAttribute('aria-label','Editar '+title.toLowerCase());edit.addEventListener('click',()=>{if(title==='Plano solicitado')location.href='/#planos';else go(target);});heading.append(h,edit);section.append(heading);for(const line of lines.filter(Boolean)){const p=document.createElement('p');p.textContent=line;section.append(p);}root.append(section);}
 }
 async function postalLookup(){
  const before=data.looked_up_cep??'',current=digits(data.cep),changed=!!before&&before!==current;
@@ -130,7 +131,7 @@ form.addEventListener('change',event=>{
  if(control.name==='data1'||control.name==='data2')dates();save();
 });
 document.querySelectorAll('[data-back]').forEach(button=>button.addEventListener('click',()=>{read();go(step-1);}));
-$('edit-cep').addEventListener('click',()=>{read();go(0);$('cep').focus();});$('change-plan').addEventListener('click',()=>{read();go(0);$('plano_codigo').focus();});
+$('edit-cep').addEventListener('click',()=>{read();go(0);$('cep').focus();});$('change-plan').addEventListener('click',()=>{read();save();});
 $('plan-details').addEventListener('click',()=>{
  const plan=PLANS[data.plano_codigo];if(!plan)return;const root=$('details-content');root.replaceChildren();for(const text of [plan.name+' · '+currency(plan.price)+'/mês',`Download ${plan.download} Mbps · upload ${plan.upload} Mbps`,plan.condition,'A equipe confirmará cobertura, condições, fidelidade e instalação antes de concluir a contratação.']){const p=document.createElement('p');p.textContent=text;root.append(p);}$('details-dialog').showModal();
 });
@@ -143,7 +144,7 @@ $('resume-draft').addEventListener('click',()=>{
 });
 $('another-registration').addEventListener('click',()=>{clearDraft();location.href=location.pathname;});
 pendingDraft=findDraft();restoreControls();propertyFields();dates();updatePlan();if(pendingDraft)$('draft-banner').hidden=false;
-if((new URLSearchParams(location.search).has('plano')||new URLSearchParams(location.search).has('plan'))&&!data.plano_codigo)message('O plano deste link não foi reconhecido. Selecione a oferta que deseja solicitar.');
+if((new URLSearchParams(location.search).has('plano')||new URLSearchParams(location.search).has('plan'))&&!data.plano_codigo)message('O plano deste link não foi reconhecido. Escolha uma oferta nos cards do site.');
 track('step_view',{step_number:0,form_version:VERSION});
 // Preserve the site's existing tag manager; no registration values are sent by this script.
 window.dataLayer=window.dataLayer||[];window.dataLayer.push({'gtm.start':Date.now(),event:'gtm.js'});
