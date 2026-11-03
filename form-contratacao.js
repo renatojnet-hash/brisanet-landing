@@ -39,7 +39,7 @@ const CONFIG = {
 const PLANOS_DATACAKE = {
     // Ofertas solicitadas; disponibilidade e condições serão conferidas pela equipe.
     'FIBRA_350': {nome:'350 Mega',preco:79.99,download:350,upload:175},
-    'FIBRA_1000': {nome:'1 Giga',preco:149.90,download:1000,upload:500},
+    'FIBRA_1000': {nome:'1 Giga',preco:149.99,download:1000,upload:500},
     // ========== FIBRA PURA ==========
     'FIBRA_400': { 
         id: '280', 
@@ -1064,6 +1064,8 @@ function updateTotal() {
 // PLAN SELECTION
 // ============================================
 function updatePlanDisplay() {
+    const condition=({FIBRA_500:'R$ 84,99 por 3 meses; depois R$ 89,99/mês.',FIBRA_700:'R$ 99,90 por 12 meses; depois R$ 109,90/mês.'})[state.plano.codigo] || 'Confirme condições e disponibilidade com a equipe.';
+    document.querySelectorAll('.offer-conditions').forEach(element=>element.textContent=condition+' Oferta sujeita à conferência.');
     // Atualizar em todos os steps
     const planNames = document.querySelectorAll('#selectedPlanName, #selectedPlanName2, #selectedPlanName3');
     const planPrices = document.querySelectorAll('#selectedPlanPrice, #selectedPlanPrice2, #selectedPlanPrice3');
@@ -1221,6 +1223,7 @@ async function submitForm() {
         plano_codigo: state.plano.codigo,
         plano_nome: state.plano.nome,
         plano_preco: state.plano.preco,
+        oferta_condicoes: ({FIBRA_500:'Valor anunciado: R$ 84,99 por 3 meses; depois R$ 89,99/mês.',FIBRA_700:'Valor anunciado: R$ 99,90 por 12 meses; depois R$ 109,90/mês.'})[state.plano.codigo] || 'Confirmar condições e disponibilidade com a equipe.',
         
         // Agendamento
         agendamento: state.agendamento,
