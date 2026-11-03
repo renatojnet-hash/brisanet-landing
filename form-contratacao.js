@@ -27,7 +27,7 @@ function findDraft(){
   const old=JSON.parse(localStorage.getItem('brisanet_form_state')||'null');if(!old?.titular)return null;
   const t=old.titular,a=old.endereco??{},c=old.cobertura??{};
   return {step:Math.min(Number(old.currentStep)||0,3),submissionId:old.submissionId,data:{nome_completo:[t.nome,t.sobrenome].filter(Boolean).join(' '),cpf:t.cpf,rg:t.rg,data_nascimento:t.dataNascimento,telefone:t.whatsapp,telefone_alternativo:t.telefoneAlternativo,email:t.email,
-   cep:c.cep,logradouro:a.logradouro||c.logradouro,numero:a.numero,bairro:c.bairro,cidade:c.cidade,uf:c.uf,tipo_imovel:a.tipoImovel,complemento:a.complemento,tem_complemento:!!a.complemento,nome_condominio:a.nomeCondominio,
+   looked_up_cep:digits(c.cep),cep:c.cep,logradouro:a.logradouro||c.logradouro,numero:a.numero,bairro:c.bairro,cidade:c.cidade,uf:c.uf,tipo_imovel:a.tipoImovel,complemento:a.complemento,tem_complemento:!!a.complemento,nome_condominio:a.nomeCondominio,
    referencia1:a.referencia1,referencia2:a.referencia2,plano_codigo:planCode(old.plano?.codigo),data1:old.agendamento?.[0]?.data,periodo1:old.agendamento?.[0]?.periodo,data2:old.agendamento?.[1]?.data,periodo2:old.agendamento?.[1]?.periodo,
    quem_preenche:old.biometria?.responsavel==='TITULAR'?'TITULAR':'OUTRO',legacy_complemento:a.tipoImovel!=='CASA'?a.complemento:''}};
  }catch{return null;}
@@ -49,7 +49,7 @@ function resetProperty(type){
  restoreControls();propertyFields();clearErrors();save();
 }
 function updatePlan(){
- const plan=PLANS[data.plano_codigo];$('plan-strip').hidden=!plan;
+ const plan=PLANS[data.plano_codigo];$('plan-strip').hidden=!plan||step===4;
  if(plan){$('plan-name').textContent=plan.name;$('plan-price').textContent=currency(plan.price)+'/mês';$('plan-condition').textContent=plan.condition;}
 }
 function clearErrors(){document.querySelectorAll('.field-error').forEach(e=>e.textContent='');form.querySelectorAll('[aria-invalid]').forEach(e=>e.removeAttribute('aria-invalid'));}
@@ -72,27 +72,29 @@ function dates(){
  $('data_nascimento').max=plusDays(localDay(),-1);
 }
 function go(next,focus=true){
+ if(next===4){for(let i=0;i<4;i++){const errors=validate(data,i);if(Object.keys(errors).length){go(i,focus);showErrors(errors);return;}}}
  step=Math.max(0,Math.min(4,next));document.querySelectorAll('[data-step]').forEach(section=>section.hidden=Number(section.dataset.step)!==step);
  document.querySelectorAll('.progress li').forEach((li,index)=>{li.classList.toggle('done',index<step);if(index===step)li.setAttribute('aria-current','step');else li.removeAttribute('aria-current');});
  $('step-caption').textContent=`Etapa ${step+1} de 5 · ${['CEP e plano','Titular','Endereço','Preferências','Revisão'][step]}`;
  $('postal-summary').textContent=[data.cep,data.cidade&&`${data.cidade}/${data.uf}`].filter(Boolean).join(' · ');
- propertyFields();updatePlan();dates();clearErrors();message('');if(step===4)review();save();if(focus)$('heading-'+step).focus();
+ propertyFields();updatePlan();dates();clearErrors();message('');if(step===4)review();save();if(focus){$('heading-'+step).focus({preventScroll:true});window.scrollTo({top:0,behavior:'auto'});}
 }
 function review(){
  const payload=buildPayload(read(),submissionId),root=$('review');root.replaceChildren();
  const blocks=[['Titular e contato',1,[`${data.nome_completo} · CPF ${data.cpf}`,`RG ${data.rg} · Nascimento ${displayDate(data.data_nascimento)}`,`WhatsApp: ${data.telefone} · Adicional: ${data.telefone_alternativo}`,data.email]],
   ['Plano solicitado',0,[`${payload.plano_nome} · ${currency(payload.plano_preco)}/mês`,payload.oferta_condicoes]],
   ['Endereço de instalação',2,[`${data.logradouro}, ${data.numero} · ${data.bairro}`,`${data.cidade}/${data.uf} · CEP ${data.cep}`,payload.complemento,`Referências: ${data.referencia1}; ${data.referencia2}`]],
-  ['Preferências de instalação',3,[`${displayDate(data.data1)} · ${data.periodo1==='MANHA'?'Manhã':'Tarde'}`,`${displayDate(data.data2)} · ${data.periodo2==='MANHA'?'Manhã':'Tarde'}`,'Datas e períodos dependem de confirmação da operadora.']]];
+  ['Preferências de instalação',3,[`${displayDate(data.data1)} · ${data.periodo1==='MANHA'?'Manhã':data.periodo1==='TARDE'?'Tarde':'Selecionar período'}`,`${displayDate(data.data2)} · ${data.periodo2==='MANHA'?'Manhã':data.periodo2==='TARDE'?'Tarde':'Selecionar período'}`,'Datas e períodos dependem de confirmação da operadora.']]];
  for(const [title,target,lines]of blocks){const section=document.createElement('section');section.className='review-block';const heading=document.createElement('div');heading.className='review-heading';const h=document.createElement('h2');h.textContent=title;const edit=document.createElement('button');edit.type='button';edit.textContent='Editar';edit.setAttribute('aria-label','Editar '+title.toLowerCase());edit.addEventListener('click',()=>go(target));heading.append(h,edit);section.append(heading);for(const line of lines.filter(Boolean)){const p=document.createElement('p');p.textContent=line;section.append(p);}root.append(section);}
 }
 async function postalLookup(){
- const before=data.looked_up_cep??'';
+ const before=data.looked_up_cep??'',current=digits(data.cep),changed=!!before&&before!==current;
+ if(changed){for(const key of ['logradouro','bairro','cidade','uf','numero','nome_condominio','apartamento','bloco','casa_lote','quadra_alameda','complemento','referencia1','referencia2'])data[key]='';data.sem_numero=false;restoreControls();}
+ data.looked_up_cep=current;
  try{
   const response=await fetch('https://viacep.com.br/ws/'+digits(data.cep)+'/json/',{signal:AbortSignal.timeout(10000)});if(!response.ok)throw Error();const result=await response.json();if(result.erro)throw Error();
   const city=String(result.localidade??''),uf=String(result.uf??'');if(!city||!uf)throw Error();
-  data.logradouro=String(result.logradouro??'');data.bairro=String(result.bairro??'');data.cidade=city;data.uf=uf;
-  if(before&&before!==digits(data.cep))for(const key of ['numero','nome_condominio','apartamento','bloco','casa_lote','quadra_alameda','complemento','referencia1','referencia2'])data[key]='';
+  if(!data.logradouro)data.logradouro=String(result.logradouro??'');if(!data.bairro)data.bairro=String(result.bairro??'');if(!data.cidade)data.cidade=city;if(!data.uf)data.uf=uf;
   data.looked_up_cep=digits(data.cep);restoreControls();go(1);if(!data.logradouro||!data.bairro)message('Este CEP não informa todos os dados. Complete rua e bairro na etapa de endereço.');
  }catch{go(1);message('Não foi possível localizar o CEP. Confira e complete o endereço manualmente na próxima etapa.');}
 }
