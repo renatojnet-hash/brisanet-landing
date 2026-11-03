@@ -1,4 +1,4 @@
-import {VERSION,PLANS,planCode,resolvePlan,digits,localDay,plusDays,availablePeriods,suggestedDates,validate,buildPayload} from './form-cadastro-model.js?v=20261103-v6';
+import {VERSION,PLANS,planCode,resolvePlan,digits,localDay,plusDays,availablePeriods,suggestedDates,validate,buildPayload} from './form-cadastro-model.js?v=20261103-black1';
 
 const ENDPOINT='https://virtunex-brisanet-intake.renatojnet.workers.dev/v1/receipts';
 const DRAFT_KEY='virtunex-brisanet-cadastro-v3';
@@ -136,7 +136,7 @@ $('edit-cep').addEventListener('click',()=>{read();go(0);$('cep').focus();});$('
 $('plan-details').addEventListener('click',()=>{
  const plan=PLANS[data.plano_codigo];if(!plan)return;const root=$('details-content');const open=$('plan-details').getAttribute('aria-expanded')!=='true';
  root.replaceChildren();const list=document.createElement('dl');
- for(const [label,value] of [['Velocidade',`Download ${plan.download} Mbps · upload ${plan.upload} Mbps`],['Mensalidade',currency(plan.price)+'/mês'],['Condições',plan.condition]]){const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=label;dd.textContent=value;list.append(dt,dd);}
+ for(const [label,value] of [['Velocidade',`Download ${plan.download} Mbps${plan.upload?' · upload '+plan.upload+' Mbps':''}`],['Mensalidade',currency(plan.price)+'/mês'],['Condições',plan.condition]]){const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=label;dd.textContent=value;list.append(dt,dd);}
  root.append(list);const hint=document.createElement('p');hint.textContent='Sujeito à análise técnica.';root.append(hint);
  root.hidden=!open;$('plan-details').setAttribute('aria-expanded',String(open));
 });

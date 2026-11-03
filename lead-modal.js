@@ -339,6 +339,8 @@
     var elements = document.querySelectorAll(combined);
 
     elements.forEach(function (el) {
+      // Navigation to plan cards stays on the page.
+      if (el.tagName === 'A' && el.getAttribute('href') === '#planos') return;
       // Explicit form links keep their destination and selected plan.
       if (el.tagName === 'A' && (el.getAttribute('href') || '').indexOf('form-contratacao') !== -1) return;
 
