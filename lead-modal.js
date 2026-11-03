@@ -339,6 +339,9 @@
     var elements = document.querySelectorAll(combined);
 
     elements.forEach(function (el) {
+      // Explicit form links keep their destination and selected plan.
+      if (el.tagName === 'A' && (el.getAttribute('href') || '').indexOf('form-contratacao') !== -1) return;
+
       // Skip the modal's own buttons
       if (el.id === 'btn-novo-plano' || el.id === 'btn-sou-cliente') return;
 
@@ -357,11 +360,7 @@
         el.removeAttribute('target');
       }
 
-      // Block links to form-contratacao.html
-      if (el.tagName === 'A' && el.getAttribute('href') && el.getAttribute('href').indexOf('form-contratacao') !== -1) {
-        el.setAttribute('href', '#');
-        el.removeAttribute('target');
-      }
+
     });
 
     // Also intercept mobile menu WhatsApp links
@@ -383,13 +382,7 @@
       el.removeAttribute('target');
     });
 
-    // Block any remaining links to form-contratacao.html
-    var formLinks = document.querySelectorAll('a[href*="form-contratacao"]');
-    formLinks.forEach(function (el) {
-      el.setAttribute('href', '#');
-      el.removeAttribute('target');
-      el.addEventListener('click', openModal);
-    });
+
   }
 
   // Run on DOM ready and also after a short delay for dynamically rendered content
