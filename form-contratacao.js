@@ -1,11 +1,11 @@
-import {VERSION,PLANS,planCode,resolvePlan,digits,localDay,plusDays,availablePeriods,suggestedDates,validate,buildPayload} from './form-cadastro-model.js?v=20261103-v3';
+import {VERSION,PLANS,planCode,resolvePlan,digits,localDay,plusDays,availablePeriods,suggestedDates,validate,buildPayload} from './form-cadastro-model.js?v=20261103-v5';
 
 const ENDPOINT='https://virtunex-brisanet-intake.renatojnet.workers.dev/v1/receipts';
 const DRAFT_KEY='virtunex-brisanet-cadastro-v3';
 const form=document.querySelector('#registration');
 const $=id=>document.getElementById(id);
 let step=0,busy=false,submissionId=crypto.randomUUID(),pendingDraft=null;
-const initial=()=>({plano_codigo:resolvePlan(location.search),quem_preenche:'TITULAR',tipo_imovel:'',tem_complemento:false,sem_numero:false});
+const initial=()=>({plano_codigo:resolvePlan(location.search),quem_preenche:'NAO_INFORMADO',tipo_imovel:'',tem_complemento:false,sem_numero:false});
 let data=initial();
 const currency=price=>Number(price).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
 const displayDate=value=>value?value.split('-').reverse().join('/'):'—';
@@ -67,7 +67,7 @@ function dates(){
   const input=$('data'+i),select=$('periodo'+i);input.min=localDay();
   if(!data['data'+i])input.value=data['data'+i]=suggested[i-1];
   const allowed=availablePeriods(input.value);
-  [...select.options].forEach(option=>{option.disabled=!!option.value&&!allowed.includes(option.value);});
+  [...select.options].forEach(option=>{option.disabled=!!option.value&&!allowed.includes(option.value);option.hidden=option.disabled;option.textContent=option.value==='MANHA'?'Manhã · 08h–12h':option.value==='TARDE'?'Tarde · 12h–18h':'Selecione';});
   if(data['periodo'+i]&&!allowed.includes(data['periodo'+i]))select.value=data['periodo'+i]='';
  }
  $('data_nascimento').max=plusDays(localDay(),-1);
@@ -82,7 +82,7 @@ function go(next,focus=true){
 }
 function review(){
  const payload=buildPayload(read(),submissionId),root=$('review');root.replaceChildren();
- const blocks=[['Titular e contato',1,[`${data.nome_completo} · CPF ${data.cpf}`,`RG ${data.rg} · Nascimento ${displayDate(data.data_nascimento)}`,`WhatsApp: ${data.telefone} · Adicional: ${data.telefone_alternativo}`,data.email]],
+ const blocks=[['Titular e contato',1,[`${data.nome_completo} · CPF ${data.cpf}`,`RG ${data.rg||'Não informado'} · Nascimento ${displayDate(data.data_nascimento)}`,`WhatsApp: ${data.telefone} · Adicional: ${data.telefone_alternativo}`,data.email]],
   ['Plano solicitado',0,[`${payload.plano_nome} · ${currency(payload.plano_preco)}/mês`,payload.oferta_condicoes]],
   ['Endereço de instalação',2,[`${data.logradouro}, ${data.numero} · ${data.bairro}`,`${data.cidade}/${data.uf} · CEP ${data.cep}`,payload.complemento,`Referências: ${data.referencia1}; ${data.referencia2}`]],
   ['Preferências de instalação',3,[`${displayDate(data.data1)} · ${data.periodo1==='MANHA'?'Manhã':data.periodo1==='TARDE'?'Tarde':'Selecionar período'}`,`${displayDate(data.data2)} · ${data.periodo2==='MANHA'?'Manhã':data.periodo2==='TARDE'?'Tarde':'Selecionar período'}`,'Datas e períodos dependem de confirmação da operadora.']]];
@@ -133,17 +133,15 @@ form.addEventListener('change',event=>{
 document.querySelectorAll('[data-back]').forEach(button=>button.addEventListener('click',()=>{read();go(step-1);}));
 $('edit-cep').addEventListener('click',()=>{read();go(0);$('cep').focus();});$('change-plan').addEventListener('click',()=>{read();save();});
 $('plan-details').addEventListener('click',()=>{
- const plan=PLANS[data.plano_codigo];if(!plan)return;const root=$('details-content');root.replaceChildren();for(const text of [plan.name+' · '+currency(plan.price)+'/mês',`Download ${plan.download} Mbps · upload ${plan.upload} Mbps`,plan.condition,'A equipe confirmará cobertura, condições, fidelidade e instalação antes de concluir a contratação.']){const p=document.createElement('p');p.textContent=text;root.append(p);}$('details-dialog').showModal();
+ const plan=PLANS[data.plano_codigo];if(!plan)return;const root=$('details-content');const open=$('plan-details').getAttribute('aria-expanded')!=='true';
+ root.replaceChildren();const list=document.createElement('dl');
+ for(const [label,value] of [['Velocidade',`Download ${plan.download} Mbps · upload ${plan.upload} Mbps`],['Mensalidade',currency(plan.price)+'/mês'],['Condições',plan.condition]]){const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=label;dd.textContent=value;list.append(dt,dd);}
+ root.append(list);const hint=document.createElement('p');hint.textContent='Cobertura, fidelidade e instalação serão confirmadas antes da contratação.';root.append(hint);
+ root.hidden=!open;$('plan-details').setAttribute('aria-expanded',String(open));
 });
 $('privacy-details').addEventListener('click',()=>$('privacy-dialog').showModal());document.querySelectorAll('[data-close]').forEach(button=>button.addEventListener('click',()=>button.closest('dialog').close()));
-$('new-draft').addEventListener('click',()=>{clearDraft();pendingDraft=null;$('draft-banner').hidden=true;data=initial();submissionId=crypto.randomUUID();restoreControls();go(0);});
-$('resume-draft').addEventListener('click',()=>{
- const saved=pendingDraft;if(!saved)return;data={...initial(),...saved.data,consent:false,plano_codigo:resolvePlan(location.search,saved.data.plano_codigo)};
- submissionId=/^[0-9a-f-]{36}$/i.test(saved.submissionId??'')?saved.submissionId:crypto.randomUUID();restoreControls();$('draft-banner').hidden=true;go(Number(saved.step)||0);
- if(data.legacy_complemento)message('Confira o complemento do cadastro anterior e distribua os dados nos campos do imóvel: '+data.legacy_complemento);
-});
 $('another-registration').addEventListener('click',()=>{clearDraft();location.href=location.pathname;});
-pendingDraft=findDraft();restoreControls();propertyFields();dates();updatePlan();if(pendingDraft)$('draft-banner').hidden=false;
+restoreControls();propertyFields();dates();updatePlan();
 if((new URLSearchParams(location.search).has('plano')||new URLSearchParams(location.search).has('plan'))&&!data.plano_codigo)message('O plano deste link não foi reconhecido. Escolha uma oferta nos cards do site.');
 track('step_view',{step_number:0,form_version:VERSION});
 // Preserve the site's existing tag manager; no registration values are sent by this script.
