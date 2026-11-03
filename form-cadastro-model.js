@@ -16,8 +16,7 @@ export function plusDays(day,n){const date=new Date(day+'T12:00:00Z');date.setUT
 export function validDate(value){if(!/^\d{4}-\d{2}-\d{2}$/.test(value??''))return false;const date=new Date(value+'T12:00:00Z');return Number.isFinite(date.getTime())&&date.toISOString().slice(0,10)===value;}
 export function availablePeriods(day,now=new Date()){
  const today=localDay(now);if(!validDate(day)||day<today)return [];
- const hour=Number(new Intl.DateTimeFormat('en-GB',{timeZone:'America/Fortaleza',hour:'2-digit',hourCycle:'h23'}).format(now));
- return day===today?[...(hour<12?['MANHA']:[]),...(hour<18?['TARDE']:[])]:['MANHA','TARDE'];
+ return ['MANHA','TARDE'];
 }
 export function suggestedDates(now=new Date()){const today=localDay(now);const first=availablePeriods(today,now).length?today:plusDays(today,1);return [first,plusDays(first,1)];}
 export function normalizeAddress(data){
@@ -52,7 +51,7 @@ export function validate(data,step,now=new Date()){
   if(data.tipo_imovel==='CONDOMINIO')required('casa_lote','a casa ou lote');
  }
  if(step===3){
-  for(const i of [1,2]){if(!availablePeriods(data['data'+i],now).length)errors['data'+i]='Escolha uma data a partir de hoje com período disponível para preferência.';
+  for(const i of [1,2]){if(!availablePeriods(data['data'+i],now).length)errors['data'+i]='Escolha uma data a partir de hoje.';
    if(!availablePeriods(data['data'+i],now).includes(data['periodo'+i]))errors['periodo'+i]='Escolha manhã ou tarde para esta data.';}
   if(data.data1===data.data2&&data.periodo1===data.periodo2)errors.data2='Escolha outra combinação de data e período.';
  }
