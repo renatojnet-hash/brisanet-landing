@@ -1,4 +1,4 @@
-import {VERSION,PLANS,planCode,resolvePlan,digits,localDay,plusDays,availablePeriods,suggestedDates,validate,buildPayload} from './form-cadastro-model.js?v=20261103-black2';
+const {VERSION,PLANS,planCode,resolvePlan,digits,localDay,plusDays,availablePeriods,suggestedDates,validate,buildPayload}=await import(new URLSearchParams(location.search).get('origem')==='joao-pessoa'?'./js/joao-pessoa-form-model.js?v=20261111-book1':'./form-cadastro-model.js?v=20261103-black2');
 
 const ENDPOINT='https://virtunex-brisanet-intake.renatojnet.workers.dev/v1/receipts';
 const DRAFT_KEY='virtunex-brisanet-cadastro-v3';

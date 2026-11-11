@@ -341,6 +341,8 @@
       var url = new URL(el.href, location.href);
       if (url.origin !== location.origin || !/^\/form-contratacao(?:\.html)?$/.test(url.pathname)) return;
       el.dataset.leadBound = 'true';
+      url.searchParams.set('origem', 'joao-pessoa');
+      el.href = url.pathname + url.search;
       el.dataset.leadForm = url.pathname + url.search;
       el.dataset.leadOrigem = el.closest('.plan-card') ? 'planos' : 'hero';
       var card = el.closest('.plan-card');
