@@ -1,11 +1,11 @@
 /**
- * Lead Qualification Modal — Brisanet Landing Pages
- * Intercepts all CTA buttons and opens a qualification modal
- * that routes users to Sales (novo plano) or Support (sou cliente).
+ * Contact Channel Modal — Brisanet Landing Pages
+ * Opens a contact channel modal from residential offer CTAs
+ * that offers WhatsApp or the registration form for residential plans.
  *
  * IDs for GTM tracking:
- *   - btn-novo-plano  → Vendas (wa.me/5584981194435)
- *   - btn-sou-cliente → Suporte (wa.me/5584981118525)
+ *   - btn-novo-plano → WhatsApp (wa.me/5584981194435)
+ *   - btn-formulario → Formulário com o plano selecionado
  *   - lead-modal-overlay → Modal backdrop
  *   - lead-modal-close → Close button
  */
@@ -42,7 +42,10 @@
       background: #ffffff;
       border-radius: 24px;
       padding: 2.5rem 2rem 2rem;
-      max-width: 420px;
+      max-width: 440px;
+      max-height: calc(100dvh - 3rem);
+      overflow-y: auto;
+      overscroll-behavior: contain;
       width: 100%;
       position: relative;
       box-shadow: 0 24px 80px rgba(0, 0, 0, 0.3);
@@ -122,7 +125,7 @@
       border-radius: 14px;
       cursor: pointer;
       text-decoration: none;
-      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
       box-shadow: 0 8px 28px rgba(255, 87, 34, 0.4);
       line-height: 1.2;
     }
@@ -140,7 +143,7 @@
       fill: #ffffff;
     }
 
-    /* ===== SECONDARY BUTTON (Suporte) — Ghost/Outline ===== */
+    /* ===== SECONDARY BUTTON (Formulário) ===== */
     .lead-modal-btn-secondary {
       display: flex;
       align-items: center;
@@ -155,7 +158,7 @@
       border-radius: 14px;
       cursor: pointer;
       text-decoration: none;
-      transition: all 0.25s ease;
+      transition: transform 0.25s ease, background-color 0.25s ease;
       line-height: 1.3;
       width: 100%;
       box-sizing: border-box;
@@ -171,6 +174,8 @@
     .lead-modal-btn-secondary span {
       text-decoration: none;
     }
+
+    .lead-modal-card a:focus-visible, .lead-modal-close:focus-visible { outline: 3px solid #07683A; outline-offset: 4px; }
 
     /* ===== MOBILE ===== */
     @media (max-width: 480px) {
@@ -207,23 +212,23 @@
   /* ================================================
      2. INJECT HTML
   ================================================ */
-  var whatsappSvg = '<svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>';
+  var whatsappSvg = '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>';
 
   var modalHTML = `
     <div class="lead-modal-overlay" id="lead-modal-overlay">
       <div class="lead-modal-card" role="dialog" aria-modal="true" aria-labelledby="lead-modal-heading">
         <button class="lead-modal-close" id="lead-modal-close" aria-label="Fechar">
-          <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
         </button>
-        <h2 class="lead-modal-title" id="lead-modal-heading">Como podemos te ajudar hoje?</h2>
-        <p class="lead-modal-subtitle">Escolha a opção que melhor se encaixa para te direcionar ao atendimento certo.</p>
+        <h2 class="lead-modal-title" id="lead-modal-heading">Como você prefere contratar?</h2>
+        <p class="lead-modal-subtitle">Fale com um consultor pelo WhatsApp ou preencha o formulário online.</p>
         <div class="lead-modal-actions">
-          <a href="https://wa.me/5584981194435" target="_blank" rel="noopener" id="btn-novo-plano" class="lead-modal-btn-primary" onclick="leadModalTrack('vendas')">
+          <a href="https://wa.me/5584981194435" target="_blank" rel="noopener" id="btn-novo-plano" class="lead-modal-btn-primary" onclick="leadModalTrack('whatsapp')">
             ${whatsappSvg}
-            Assinar Novo Plano
+            Contratar pelo WhatsApp
           </a>
-          <a href="https://wa.me/5584981118525" target="_blank" rel="noopener" id="btn-sou-cliente" class="lead-modal-btn-secondary" onclick="leadModalTrack('suporte')">
-            <span>Sou cliente e busco suporte</span>
+          <a href="/form-contratacao" id="btn-formulario" class="lead-modal-btn-secondary" onclick="leadModalTrack('formulario')">
+            <span>Contratar pelo formulário</span>
           </a>
         </div>
       </div>
@@ -240,6 +245,10 @@
   var overlay = document.getElementById('lead-modal-overlay');
   var closeBtn = document.getElementById('lead-modal-close');
   var btnNovoPlano = document.getElementById('btn-novo-plano');
+
+  var btnFormulario = document.getElementById('btn-formulario');
+  var previousFocus = null;
+  var previousOverflow = '';
 
   var VENDAS_PHONE = '5584981194435';
 
@@ -265,18 +274,27 @@
     leadContext.origem = (trigger && trigger.dataset.leadOrigem) || '';
     leadContext.plano = (trigger && trigger.dataset.leadPlano) || '';
 
-    // Repassa o plano para o botão de vendas antes de exibir o modal
+    previousFocus = trigger || document.activeElement;
+    previousOverflow = document.body.style.overflow;
+    var formUrl = trigger && trigger.dataset.leadForm;
+    btnFormulario.setAttribute('href', formUrl || '/form-contratacao');
+
+    // Preserve the selected offer in both contact channels.
     if (btnNovoPlano) {
       btnNovoPlano.setAttribute('href', buildVendasUrl(leadContext.plano));
     }
 
     overlay.classList.add('active');
     document.body.style.overflow = 'hidden';
+    setTimeout(function () {
+      if (overlay.classList.contains('active')) closeBtn.focus({ preventScroll: true });
+    }, 50);
   }
 
   function closeModal() {
     overlay.classList.remove('active');
-    document.body.style.overflow = '';
+    document.body.style.overflow = previousOverflow;
+    if (previousFocus) previousFocus.focus();
   }
 
   // Close via X button
@@ -289,7 +307,13 @@
 
   // Close via Escape
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && overlay.classList.contains('active')) closeModal();
+    if (!overlay.classList.contains('active')) return;
+    if (e.key === 'Escape') closeModal();
+    if (e.key === 'Tab') {
+      var last = btnFormulario;
+      if (e.shiftKey && document.activeElement === closeBtn) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); closeBtn.focus(); }
+    }
   });
 
   /* ================================================
@@ -309,82 +333,27 @@
   /* ================================================
      5. CTA INTERCEPTION
   ================================================ */
-  // Selectors for all CTA elements to intercept
-  var ctaSelectors = [
-    '.nav-cta',
-    '.btn--highlight',
-    '.plan-cta',
-    '.cta-btn-p',
-    '.whatsapp-btn',
-    'a[href*="wa.me"]'
-  ];
-
-  // Extrai origem e plano de onclick="return openWhatsApp('origem', 'plano')"
-  var ONCLICK_RE = /openWhatsApp\(\s*'([^']*)'\s*,\s*'([^']*)'\s*\)/;
-
-  function captureLeadContext(el) {
-    var onclick = el.getAttribute('onclick');
-    if (!onclick) return;
-
-    var match = onclick.match(ONCLICK_RE);
-    if (!match) return;
-
-    el.dataset.leadOrigem = match[1];
-    // 'geral' é o marcador de CTA sem plano específico (header, footer, flutuante)
-    el.dataset.leadPlano = match[2] === 'geral' ? '' : match[2];
-  }
-
+  // Only residential form CTAs open the channel chooser. Explicit WhatsApp
+  // contacts (including the floating button), FWA and business stay direct.
   function interceptCTAs() {
-    var combined = ctaSelectors.join(', ');
-    var elements = document.querySelectorAll(combined);
-
-    elements.forEach(function (el) {
-      // Navigation to plan cards stays on the page.
-      if (el.tagName === 'A' && el.getAttribute('href') === '#planos') return;
-      // Explicit form links keep their destination and selected plan.
-      if (el.tagName === 'A' && (el.getAttribute('href') || '').indexOf('form-contratacao') !== -1) return;
-
-      // Skip the modal's own buttons
-      if (el.id === 'btn-novo-plano' || el.id === 'btn-sou-cliente') return;
-
-      // Preserva origem/plano antes de descartar o handler inline
-      captureLeadContext(el);
-
-      // Remove existing onclick handlers
-      el.removeAttribute('onclick');
-
-      // Prevent default navigation
-      el.addEventListener('click', openModal);
-
-      // Remove href to wa.me to prevent fallthrough
-      if (el.tagName === 'A' && el.getAttribute('href') && el.getAttribute('href').indexOf('wa.me') !== -1) {
-        el.setAttribute('href', '#');
-        el.removeAttribute('target');
-      }
-
-
-    });
-
-    // Also intercept mobile menu WhatsApp links
-    var mobileMenuLinks = document.querySelectorAll('.mobile-menu a[href*="wa.me"]');
-    mobileMenuLinks.forEach(function (el) {
-      captureLeadContext(el);
-      el.removeAttribute('onclick');
+    document.querySelectorAll('a[href*="form-contratacao"]').forEach(function (el) {
+      if (overlay.contains(el) || el.dataset.leadBound) return;
+      var url = new URL(el.href, location.href);
+      if (url.origin !== location.origin || !/^\/form-contratacao(?:\.html)?$/.test(url.pathname)) return;
+      el.dataset.leadBound = 'true';
+      el.dataset.leadForm = url.pathname + url.search;
+      el.dataset.leadOrigem = el.closest('.plan-card') ? 'planos' : 'hero';
+      var card = el.closest('.plan-card');
+      el.dataset.leadPlano = card
+        ? [card.querySelector('.plan-speed-value')?.textContent, card.querySelector('.plan-speed-unit')?.textContent, card.querySelector('.plan-speed-label')?.textContent].filter(Boolean).join(' ')
+        : (url.searchParams.get('plano') || 'Brisanet');
+      el.setAttribute('aria-haspopup', 'dialog');
+      el.setAttribute('aria-controls', 'lead-modal-overlay');
       el.addEventListener('click', function (e) {
-        // Close mobile menu first
-        var mobileMenu = document.getElementById('mobile-menu');
-        var mobileBtn = document.getElementById('mobile-btn');
-        if (mobileMenu) mobileMenu.classList.remove('active');
-        if (mobileBtn) mobileBtn.classList.remove('active');
-        document.body.style.overflow = '';
-        // Then open modal
+        if (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
         openModal(e);
       });
-      el.setAttribute('href', '#');
-      el.removeAttribute('target');
     });
-
-
   }
 
   // Run on DOM ready and also after a short delay for dynamically rendered content
